@@ -9,7 +9,7 @@
 angular.module('akkurate-design-system').directive('akkSelector', [
     function () {
         return {
-            templateUrl: '/apps/brain/directives/templates/akk-selector.html',
+            templateUrl: 'templates/akk-selector.html',
             restrict: 'E',
             transclude: true,
             replace: true,

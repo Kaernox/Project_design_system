@@ -72,6 +72,9 @@
                 <h2>Multiselect</h2>
             </div>
             <div>
+                <h2>Radio</h2>
+            </div>
+            <div>
                 <h2>Select</h2>
             </div>
             <div>
@@ -89,9 +92,12 @@
             </div>
             <div>
                 <h2>Selector</h2>
+                <akk-selector label="ceci est un selector"></akk-selector>
             </div>
             <div>
                 <h2>Switch</h2>
+                <akk-switch model="view" property="switchStatus" label="{{'Cette entrée est active'| translate}}"></akk-switch>
+                <pre>{{view.switchStatus| json}}</pre>
             </div>
             <div>
                 <h2>Textarea</h2>

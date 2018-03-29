@@ -8,6 +8,7 @@ angular.module('todoApp', ['akkurate-design-system'])
                 color: "#CC0000",
                 id_type: null,
                 is_nlt: true,
+                switchStatus: true,
                 text:'',
                 tree: [
                     {
