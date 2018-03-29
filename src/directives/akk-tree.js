@@ -108,7 +108,7 @@ angular.module('akkurate-design-system').directive('akkTreeItem', [
 
         return {
             restrict: "E",
-            templateUrl: '/apps/brain/directives/templates/akk-tree-item.html',
+            templateUrl: 'templates/akk-tree-item.html',
             transclude: true,
             replace: true,
             scope: {
