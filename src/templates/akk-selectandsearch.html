@@ -1,0 +1,16 @@
+<div class="form-group {{!view.isValid ? 'has-error' : ''}}">
+    <label class="control-label" ng-if="label">
+        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>
+        {{label}}
+        <sup ng-if="req">*</sup>
+    </label>
+    <div class="form-control d-flex align-items-center justify-content-between">
+        <input type="hidden" ng-model="view.item.id" ng-required="{{req}}" />
+        <span class="input-search" ng-if="view.item != null" ng-click="methods.wizard()">
+            <span ng-repeat="field in fields"><span ng-if="!view.item[field]">{{field}}</span><span ng-if="view.item[field]">{{view.item[field]}}</span></span>
+        </span>
+        <em ng-if="view.item == null" class="text-secondary" ng-click="methods.wizard()">{{placeholder}}</em>
+        <i class="material-icons md-24 ml-auto" ng-click="methods.wizard()" role="button">more_horiz</i>
+        <i class="material-icons md-24 ml-1" ng-if="add != null" ng-click="methods.add()">add</i>
+    </div>
+</div>

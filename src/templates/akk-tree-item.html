@@ -1,0 +1,27 @@
+<li ng-class="view.item.childs != undefined ? 'has-child' : ''" class="tree-item d-flex flex-column">
+    <div class="d-flex align-items-center">
+        <i ng-if="view.item.childs && view.item.childs.length > 0 && view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">expand_more</i>
+        <i ng-if="view.item.childs && view.item.childs.length > 0 && !view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">chevron_right</i>
+        <i ng-if="!view.item.childs || view.item.childs.length == 0" ng-click="methods.toggle(view.item)" class="material-icons text-muted">bookmark</i>
+        
+        <i ng-if="view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-primary">check_box</i>
+        <i ng-if="view.item.isPartialyChecked && !view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">indeterminate_check_box</i>
+        <i ng-if="!view.item.isChecked  && !view.item.isPartialyChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">check_box_outline_blank</i>
+        
+        <a href="javascript:;" ng-if="view.item.childs && view.item.childs.length > 0" ng-click="methods.toggle(view.item)">
+            {{view.item.label}}
+        </a>
+        
+        <span ng-if="view.item.childs && view.item.childs.length > 0">
+            ({{view.item.childs.length}})
+        </span>
+        
+        <span ng-if="!view.item.childs || view.item.childs.length == 0">
+            {{view.item.label}}
+        </span>
+    </diV>
+
+    <ul ng-if="view.item.childs && view.item.childs.length > 0" ng-show="view.item.isShown">
+        <akk-tree-item item="child" ng-repeat="child in view.item.childs"></akk-tree-item>
+    </ul>
+</li>

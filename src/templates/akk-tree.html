@@ -1,0 +1,35 @@
+<div class="form-group form-tree">
+    <div class="pull-right">
+        <a href="javascript:;" ng-click="methods.expandAll()" translate>Tout ouvrir</a>
+        <span> | 
+            <a href="javascript:;" ng-click="methods.inpandAll()" translate>Tout fermer</a>
+        </span>
+        <span> |
+            <a href="javascript:;" ng-click="methods.selectAll()" translate>Tout sélectionner</a>
+        </span>
+        <span> |
+            <a href="javascript:;" ng-click="methods.unselectAll()" translate>Tout désélectionner</a>
+        </span>
+
+        <span ng-if="options.debug && options.debug == true"> |
+            <a href="javascript:;" ng-click="methods.debug()" translate>Debug</a>
+        </span>
+    </div>
+    <div class="h4" ng-if="view.title">
+        {{view.title}}
+    </div>
+    <ul>
+        <akk-tree-item item="item" ng-repeat="item in view.items"></akk-tree-item>
+    </ul>
+    <div ng-if="options.debug && options.debug == true">
+        Model debug
+        <div class="row">
+            <div class="col">
+                <pre>{{view.items| json}}</pre>
+            </div>
+            <div class="col">
+                <pre>{{model| json}}</pre>
+            </div>
+        </div>
+    </div>
+</div>

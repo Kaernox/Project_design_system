@@ -1,0 +1,11 @@
+<div class="form-group form-switch {{elementclass}}" ng-click="methods.change()">
+    <div ng-class="!alignment ? 'pull-right' : alignment;">
+        <div class="ng-class: model[property] == true ? 'switch-active' : ''; switch-box">
+            <div class="switch-handle"></div>
+        </div>
+    </div>
+    <label ng-class="!alignment ? '' : ''; alignment == 'center' ? 'hide' : alignment;">
+<!--        <input type="hidden" ng-model="model[property]" ng-true-value="{{truevalue != null ? truevalue : true}}" ng-false-value="{{falsevalue != null ? falsevalue : false}}" ng-required="{{req}}" />-->
+        {{label | translate}}
+    </label>
+</div>

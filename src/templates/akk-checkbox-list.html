@@ -1,0 +1,9 @@
+<div class="form-group {{!isValid ? 'has-error' : ''}}">
+    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>
+    <div class="checkbox {{elementclass}}" ng-repeat="option in options track by $index">
+        <label>
+            <input type="checkbox" id="{{option}}" ng-model="optionChecked[$index]" ng-change="toggleElement(option)" ng-required="{{req}}" ng-click="checkValidity()">
+            {{display != null ? option[display] : option}}
+        </label>
+    </div>
+</div>

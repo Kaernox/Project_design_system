@@ -1,0 +1,15 @@
+<div class="form-group {{!view.isValid ? 'has-error' : ''}}">
+    <label class="control-label" ng-if="label">
+        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>
+        {{label}}
+        <sup ng-if="req">*</sup>
+    </label>
+    <div class="form-control d-flex align-items-center justify-content-between">
+        <span class="input-search" ng-if="model != null" ng-click="methods.datepicker()">
+            {{model | dateShortFormat}}
+        </span>
+        <em ng-if="model == null" class="text-secondary" ng-click="methods.datepicker()">{{'Indéfini' | translate}}</em>
+        <i class="material-icons md-24 ml-auto" ng-click="methods.datepicker()">event</i>
+        <i class="material-icons md-24 ml-1" ng-if="model != null" ng-click="methods.clear()">clear</i>
+    </div>
+</div>

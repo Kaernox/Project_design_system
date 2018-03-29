@@ -1,0 +1,28 @@
+<div class="form-group form-texteditor {{!view.isValid ? 'has-error' : ''}}">
+    <label class="control-label" ng-if="label">
+        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>
+        {{label}}
+        <sup ng-if="req">*</sup>
+    </label>
+    <div>
+        <div ng-repeat="block in view.items">
+            <h2 ng-if="block.tag == 'h2'" contenteditable="true" ng->{{block.text}}</h2>
+            <h3 ng-if="block.tag == 'h3'" contenteditable="true">{{block.text}}</h3>
+            <h4 ng-if="block.tag == 'h4'" contenteditable="true">{{block.text}}</h4>
+            <h5 ng-if="block.tag == 'h5'" contenteditable="true">{{block.text}}</h5>
+            <h6 ng-if="block.tag == 'h6'" contenteditable="true">{{block.text}}</h6>
+            <p ng-if="block.tag == 'p'" contenteditable="true">{{block.text}}</p>
+            <pre ng-if="block.tag == 'pre'" contenteditable="true">{{block.text}}</pre>
+            <blockquote ng-if="block.tag == 'blockquote'">
+                <p contenteditable="true">{{block.text}}</p>
+                <footer contenteditable="true">{{block.source}}</footer>
+            </blockquote>
+            <ul ng-if="block.tag == 'ul'" contenteditable="true">
+                <li ng-repeat="point in block.list">{{point.text}}</li>
+            </ul>
+            <ol ng-if="block.tag == 'ol'" contenteditable="true">
+                <li ng-repeat="point in block.list">{{point.text}}</li>
+            </ol>
+        </div>
+    </div>
+</div>

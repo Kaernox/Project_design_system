@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="datetimePickerModalLabel">{{view.title}}</h4>
+    <button type="button" class="close" ng-click="methods.cancel()">
+        <span aria-hidden="true">
+            <i class="material-icons md-24">clear</i>
+        </span>
+    </button>
+</div>
+<div class="modal-body">
+    <div uib-datepicker
+         ng-model="view.datetime"
+         datepicker-options="view.datepickerOptions">
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" ng-click="methods.cancel()" class="btn btn-link" data-dismiss="modal" translate>Close</button>
+    <button type="button" ng-click="methods.valid()" class="btn btn-primary" translate>Select</button>
+</div>

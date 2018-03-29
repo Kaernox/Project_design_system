@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Material Icons CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+        <!-- Notification CSS -->
+        <link rel="stylesheet" href="bower_components/angular-ui-notification/dist/angular-ui-notification.min.css">
+
+        <!-- Color picker CSS -->
+        <link rel="stylesheet" href="bower_components/angular-color-picker/dist/themes/angularjs-color-picker-bootstrap.min.css">
+        <link rel="stylesheet" href="bower_components/angular-color-picker/dist/angularjs-color-picker.min.css">
+
+        <title>Hello, world!</title>
+    </head>
+    <body ng-app="todoApp">
+        <div ng-controller="TodoListController" class="container">
+            <h1>Hello, world!</h1>
+            <div ng-bind-html="view.description"></div>
+            <div>
+                <h2>Acceptance</h2>
+                <akk-acceptance model="view" property="is_nlt" label="Souhaitez-vous accepter la taille de la pomme ?"></akk-acceptance>
+                <pre>{{view.is_nlt| json}}</pre>
+            </div>
+            <div>
+                <h2>Alert</h2>
+                <akk-alert title="Youpi" icon="warning" type="danger" message="Il va faire beau !"></akk-alert>
+            </div>
+            <div>
+                <h2>Checkbox</h2>
+                <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
+                <pre>{{view.color| json}}</pre>
+            </div>
+            <div>
+                <h2>CheckboxList</h2>
+                <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
+                <pre>{{view.color| json}}</pre>
+            </div>
+            <div>
+                <h2>Color picker</h2>
+                <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
+                <pre>{{view.color| json}}</pre>
+            </div>
+            <div>
+                <h2>Datagrid</h2>
+                <akk-datagrid items="view.items" columns="['lastname', 'firstname', 'job', 'location']" label="Couleur de la pomme"></akk-datagrid>
+                <!--<pre>{{view.color | json}}</pre>-->
+            </div>
+            <div>
+                <h2>DatePicker</h2>
+                <akk-datepicker model="view.date" label="My DatePicker"></akk-datepicker>
+                <!--<pre>{{view.color | json}}</pre>-->
+            </div>
+            <div>
+                <h2>Input</h2>
+                <akk-input model="view.name" label="tarte au pomme" placeholder="ex. : Bob"></akk-input>
+                <pre>{{view.name| json}}</pre>
+            </div>
+            <div>
+                <h2>SelectAndSearch</h2>
+                <akk-selectandsearch
+                    class="text-truncate"
+                    options="view.items"
+                    label="Sélectionnez un artisan"
+                    model='view.id_type'
+                    placeholder="Sélectionnez un artisan"
+                    template-item="default"
+                    fields="['lastname', ' ', 'firstname']">
+                </akk-selectandsearch>
+                <pre>{{view.id_type| json}}</pre>
+            </div>
+            <div>
+                <h2>Directives à mettre de côté</h2>
+                <ul>
+                    <li>akk-action</li>
+                    <li>akk-bootstrap-switch</li>
+                    <li>akk-capitalize</li>
+                    <li>akk-collection-header</li>
+                    <li>akk-column</li>
+                    <li>akk-fieldView</li>
+                    <li>akk-list</li>
+                    <li>akk-no-result-search</li>
+                    <li>akk-no-result</li>
+                    <li>akk-onFileChange</li>
+                    <li>akk-related-items</li>
+                    <li>akk-timeline</li>
+                    <li>akk-texteditor</li>
+                    <li>akk-zoom</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+
+        <script src="dist/akkurate-design-system.js"></script>
+
+        <!-- Notification -->
+        <script src="bower_components/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
+
+        <!-- Bootstrap UI for everything -->
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+        <!-- Gettext for everything -->
+        <script src="bower_components/angular-gettext/dist/angular-gettext.min.js"></script>
+
+        <!-- Angular Colorpicker -->
+        <script src="bower_components/tinycolor/dist/tinycolor-min.js"></script>
+        <script src="bower_components/angular-color-picker/dist/angularjs-color-picker.min.js"></script>
+
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,10 @@
+<div class="alert" role="alert" ng-class="view.type ? 'alert-' + view.type : 'alert-dark'">
+    <div class="d-flex align-items-center">
+        <i class="material-icons mr-1" ng-bind="view.icon" ng-if="view.icon"></i>
+        <span ng-if="view.icon">&nbsp;&nbsp;&nbsp;</span>
+        <div>
+            <h4 class="alert-heading" ng-if="view.title">{{view.title}}</h4>
+            <div ng-bind-html="view.message"></div>
+        </div>
+    </div>
+</div>
