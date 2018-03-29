@@ -29,8 +29,57 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
                 },
                 open: function () {
                     var modalInstance = $uibModal.open({
-                        templateUrl: '/apps/brain/templates/modal/multiselect.html',
-                        controller: 'multiSelectCtrl',
+                        templateUrl: 'templates/modals/akk-multiselect-modal.html',
+                        controller: [
+                            '$scope',
+                            '$filter',
+                            '$uibModalInstance',
+                            'params',
+                            function ($scope, $filter, $uibModalInstance, params) {
+
+                                $scope.view = {
+                                };
+
+                                $scope.methods = {
+                                    init: function () {
+                                        $scope.view.placeholder = params.placeholder;
+                                        $scope.view.items = angular.copy(params.items);
+                                        $scope.view.selected = angular.copy(params.selected);
+                                        $scope.view.field = params.field;
+                                    },
+                                    select: function (item) {
+                                        var index = $filter('getIndexBy')($scope.view.items, 'id', item.id);
+                                        $scope.view.selected.push(item);
+                                        $scope.view.items.splice(index, 1);
+                                    },
+                                    unselect: function (item) {
+                                        var index = $filter('getIndexBy')($scope.view.selected, 'id', item.id);
+                                        $scope.view.items.push(item);
+                                        $scope.view.selected.splice(index, 1);
+                                    },
+                                    close: function(){
+                                        $uibModalInstance.dismiss('cancel');
+                                    },
+                                    cancel : function(){
+                                        $scope.methods.close();
+                                    }, 
+                                    save : function(){
+                                        $uibModalInstance.close({
+                                            items : $scope.view.items,
+                                            selected : $scope.view.selected
+                                        });
+                                    }
+                                };
+
+
+
+                                var xhr = {
+                                };
+
+                                $scope.methods.init();
+
+                            }
+                        ],
                         size: 'md',
                         resolve: {
                             params: function () {

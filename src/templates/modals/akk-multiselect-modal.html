@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{view.placeholder}}</h4>
+    <button type="button" class="close" ng-click="methods.close()" aria-label="Close">
+        <span aria-hidden="true">
+            <i class="material-icons md-24">clear</i>
+        </span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-6">
+            <h4 translate>Selectable items ({{view.items.length}})</h4>
+            <div ng-if="view.items.length">
+                <div ng-repeat="item in view.items">
+                    <a href="javascript:;"  ng-click="methods.select(item)">
+                        <span class="material-icons pull-right">keyboard_arrow_right</span>
+                    </a>
+                    <span>{{item[view.field]}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <h4 translate>Selected items ({{view.selected.length}})</h4>
+            <div ng-if="view.selected.length">
+                <div ng-repeat="item in view.selected">
+                    <a href="javascript:;"  ng-click="methods.unselect(item)" class="pull-right">
+                        <span class="material-icons">clear</span>
+                    </a>
+                    <span>{{item[view.field]}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="methods.cancel()" translate>Cancel</button>
+    <button type="button" class="btn btn-primary" ng-click="methods.save()" translate>Save</button>
+</div>

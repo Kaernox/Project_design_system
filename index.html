@@ -28,59 +28,78 @@
     <body ng-app="todoApp">
         <div ng-controller="TodoListController" class="container">
             <h1>Akkurate Design System</h1>
+
             <div ng-bind-html="view.description"></div>
+
             <div>
                 <h2>Acceptance</h2>
                 <akk-acceptance model="view" property="is_nlt" label="Souhaitez-vous accepter la taille de la pomme ?"></akk-acceptance>
                 <pre>{{view.is_nlt| json}}</pre>
             </div>
+
             <div>
                 <h2>Alert</h2>
                 <akk-alert title="Youpi" icon="warning" type="danger" message="Il va faire beau !"></akk-alert>
             </div>
+
             <div>
                 <h2>Checkbox</h2>
-                <akk-checkbox model="view.checkboxValue" label="Check me!"></akk-checkbox>
-                <span class="item-value text-muted">checkboxValue : {{view.checkboxValue| json}}</span>
-                
+                <akk-checkbox model="view.checkboxValue" label="Simuler le chargement d'une balise"></akk-checkbox>                
             </div>
+
+            <div>
+                <h2>Loader</h2>
+                <div akk-loading loading="view.checkboxValue">
+                    Chargement fini, uncheck le box et regarde au milieu de la page.
+                </div>
+            </div>
+
             <div>
                 <h2>CheckboxList</h2>
                 <akk-checkbox-list model="view.checkboxListValue.list" options="view.checkboxListValue.options" label="Checkbox List"></akk-checkbox-list>
-                <span class="item-value text-muted">checkboxListValue : {{view.checkboxListValue| json}}</span>
+                <span class="item-value text-muted">checkboxListValue : </span>
+                <pre>{{view.checkboxListValue| json}}</pre>
             </div>
+
             <div>
                 <h2>Color picker</h2>
                 <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
                 <pre>{{view.color| json}}</pre>
             </div>
+
             <div>
                 <h2>Datagrid</h2>
                 <akk-datagrid items="view.items" columns="['lastname', 'firstname', 'job', 'location']" label="Couleur de la pomme"></akk-datagrid>
                 <!--<pre>{{view.color | json}}</pre>-->
             </div>
+
             <div>
                 <h2>DatePicker</h2>
                 <akk-datepicker model="view.date" label="My DatePicker"></akk-datepicker>
                 <!--<pre>{{view.color | json}}</pre>-->
             </div>
+
             <div>
                 <h2>Input</h2>
                 <akk-input model="view.name" label="tarte au pomme" placeholder="ex. : Bob"></akk-input>
                 <pre>{{view.name| json}}</pre>
             </div>
-            <div>
-                <h2>Loader</h2>
-            </div>
+
             <div>
                 <h2>Multiselect</h2>
+                <akk-multiselect field="view.multiselectValue.field" selected="view.multiselectValue.list" items="view.multiselect.items"></akk-multiselect>
+                <pre>{{view.multiselectValue| json}}</pre>
             </div>
+
             <div>
                 <h2>Radio</h2>
             </div>
+
             <div>
                 <h2>Select</h2>
+                <akk-select></akk-select>
             </div>
+
             <div>
                 <h2>SelectAndSearch</h2>
                 <akk-selectandsearch
@@ -94,20 +113,24 @@
                 </akk-selectandsearch>
                 <pre>{{view.id_type| json}}</pre>
             </div>
+
             <div>
                 <h2>Selector</h2>
                 <akk-selector label="ceci est un selector"></akk-selector>
             </div>
+
             <div>
                 <h2>Switch</h2>
                 <akk-switch model="view" property="switchStatus" label="{{'Cette entrée est active'| translate}}"></akk-switch>
                 <pre>{{view.switchStatus| json}}</pre>
             </div>
+
             <div>
                 <h2>Textarea</h2>
                 <akk-textarea model="view.text"label="{{'Input your text here'| translate}}" placeholder="input your text" type="text" req="true"></akk-textarea>
                 <pre>{{view.text| json}}</pre>
             </div>
+
             <div>
                 <h2>Tree</h2>
                 <akk-tree model="view.tree" title="mon arbo" option="{debug: true}" items="view.tree" ></akk-tree>

@@ -28,6 +28,34 @@ angular.module('todoApp', ['akkurate-design-system'])
                        }
                     ]
                 },
+                multiselectValue: {
+                    placeholder: "My placeholder",
+                    list: [],
+                    items: [
+                        {
+                            id: 1,
+                            name: 'test 1',
+                            value: true
+                        },
+                        {
+                            id: 2,
+                            name: 'test 2',
+                            value: false
+                        },
+                        {
+                            id: 3,
+                            name: 'test 3',
+                            value: false
+                        },
+                        {
+                            id: 4,
+                            name: 'test 4',
+                            value: false
+                        }
+                    ],
+                    selected: [],
+                    field: "name"
+                },
                 date_created: new Date(),
                 name: "Bob",
                 description: "<p>Youpi pour le HTML</p>",
