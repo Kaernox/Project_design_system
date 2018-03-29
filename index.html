@@ -25,126 +25,36 @@
 
         <title>Akkurate Design System</title>
     </head>
-    <body ng-app="todoApp">
-        <div ng-controller="TodoListController" class="container">
-            <h1>Akkurate Design System</h1>
-
-            <div ng-bind-html="view.description"></div>
-
-            <div>
-                <h2>Acceptance</h2>
-                <akk-acceptance model="view" property="is_nlt" label="Souhaitez-vous accepter la taille de la pomme ?"></akk-acceptance>
-                <pre>{{view.is_nlt| json}}</pre>
-            </div>
-
-            <div>
-                <h2>Alert</h2>
-                <akk-alert title="Youpi" icon="warning" type="danger" message="Il va faire beau !"></akk-alert>
-            </div>
-
-            <div>
-                <h2>Checkbox</h2>
-                <akk-checkbox model="view.checkboxValue" label="Simuler le chargement d'une balise"></akk-checkbox>                
-            </div>
-
-            <div>
-                <h2>Loader</h2>
-                <div akk-loading loading="view.checkboxValue">
-                    Chargement fini, check le box et regarde au milieu de la page.
+    <body ng-app="AkkurateDesignSystem">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#!/"><strong>Akkurate</strong> Design System</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a ui-sref="home" class="nav-item nav-link" ui-sref-active="active">Home</a>
+                    <a ui-sref="components" class="nav-item nav-link" ui-sref-active="active">Components</a>
                 </div>
             </div>
-
-            <div>
-                <h2>CheckboxList</h2>
-                <akk-checkbox-list model="view.checkboxListValue.list" options="view.checkboxListValue.options" label="Checkbox List"></akk-checkbox-list>
-                <span class="item-value text-muted">checkboxListValue : </span>
-                <pre>{{view.checkboxListValue| json}}</pre>
-            </div>
-
-            <div>
-                <h2>Color picker</h2>
-                <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
-                <pre>{{view.color| json}}</pre>
-            </div>
-
-            <div>
-                <h2>Datagrid</h2>
-                <akk-datagrid items="view.items" columns="['lastname', 'firstname', 'job', 'location']" label="Couleur de la pomme"></akk-datagrid>
-                <!--<pre>{{view.color | json}}</pre>-->
-            </div>
-
-            <div>
-                <h2>DatePicker</h2>
-                <akk-datepicker model="view.date" label="My DatePicker"></akk-datepicker>
-                <!--<pre>{{view.color | json}}</pre>-->
-            </div>
-
-            <div>
-                <h2>Input</h2>
-                <akk-input model="view.name" label="tarte au pomme" placeholder="ex. : Bob"></akk-input>
-                <pre>{{view.name| json}}</pre>
-            </div>
-
-            <div>
-                <h2>Multiselect</h2>
-                <akk-multiselect field="view.multiselectValue.field" selected="view.multiselectValue.list" items="view.multiselect.items"></akk-multiselect>
-                <pre>{{view.multiselectValue| json}}</pre>
-            </div>
-
-            <div>
-                <h2>Radio</h2>
-            </div>
-
-            <div>
-                <h2>Select</h2>
-                <akk-select model="view.selectValue.model" options="view.selectValue.options"></akk-select>
-                <pre>{{view.selectValue| json}}</pre>
-            </div>
-
-            <div>
-                <h2>SelectAndSearch</h2>
-                <akk-selectandsearch
-                    class="text-truncate"
-                    options="view.items"
-                    label="Sélectionnez un artisan"
-                    model='view.id_type'
-                    placeholder="Sélectionnez un artisan"
-                    template-item="default"
-                    fields="['lastname', ' ', 'firstname']">
-                </akk-selectandsearch>
-                <pre>{{view.id_type| json}}</pre>
-            </div>
-
-            <div>
-                <h2>Selector</h2>
-                <akk-selector label="ceci est un selector"></akk-selector>
-            </div>
-
-            <div>
-                <h2>Switch</h2>
-                <akk-switch model="view" property="switchStatus" label="{{'Cette entrée est active'| translate}}"></akk-switch>
-                <pre>{{view.switchStatus| json}}</pre>
-            </div>
-
-            <div>
-                <h2>Textarea</h2>
-                <akk-textarea model="view.text"label="{{'Input your text here'| translate}}" placeholder="input your text" type="text" req="true"></akk-textarea>
-                <pre>{{view.text| json}}</pre>
-            </div>
-
-            <div>
-                <h2>Tree</h2>
-                <akk-tree model="view.tree" title="mon arbo" option="{debug: true}" items="view.tree" ></akk-tree>
-            </div>
-
+        </nav>
+        <div class="container mt-2 mb-2">
+            <ui-view></ui-view>
         </div>
-
+        <div class="text-center text-muted my-4">
+            <p>
+                <small>Design and built by Subvitamine(tm).</small><br />
+                <small>Currently v2.0.0. Code licensed MIT.</small>
+            </p>
+        </div>
+        
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
         <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 
 
