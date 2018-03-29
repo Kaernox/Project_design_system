@@ -7,10 +7,10 @@
 
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="dist/akkurate-design-system.css">
-        
+
         <!-- Material Icons CSS -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        
+
         <!-- Specific CSS -->
 
         <!-- Notification CSS -->
@@ -99,11 +99,14 @@
             </div>
             <div>
                 <h2>Textarea</h2>
+                <akk-textarea model="view.text"label="{{'Input your text here'| translate}}" placeholder="input your text" type="text" req="true"></akk-textarea>
+                <pre>{{view.text| json}}</pre>
             </div>
             <div>
                 <h2>Tree</h2>
+                <akk-tree model="view.tree" title="mon arbo" option="{debug: true}" items="view.tree" ></akk-tree>
             </div>
-            
+
         </div>
 
         <!-- Optional JavaScript -->
