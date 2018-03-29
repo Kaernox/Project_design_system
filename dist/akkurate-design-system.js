@@ -37,6 +37,173 @@ angular.module('akkurate-design-system').config([
         });
     }
 ]);
+angular.module('akkurate-design-system')
+        .filter('inArray', function () {
+            return function (array, value) {
+                return array.indexOf(value) !== -1;
+            };
+        })
+        .filter('getBy', function () {
+            return function (input, field, value, toReturn) {
+                var i = 0, len = input.length;
+                for (; i < len; i++) {
+                    if (input[i][field] == value) {
+                        return (toReturn) ? input[i][toReturn] : input[i];
+                    }
+                }
+                return null;
+            };
+        })
+        .filter('getIndexBy', function () {
+            return function (input, field, value, toReturn) {
+                var i = 0, len = input.length;
+                for (; i < len; i++) {
+                    if (input[i][field] == value) {
+                        return i;
+                    }
+                }
+                return null;
+            };
+        })
+        .filter('range', function () {
+            return function (input, total) {
+                total = parseInt(total);
+                for (var i = 0; i < total; i++) {
+                    input.push(i);
+                }
+                return input;
+            };
+        })
+        .filter('ucfirst', function () {
+            return function ucFirst(str) {
+                if (str.length > 0) {
+                    return str[0].toUpperCase() + str.substring(1);
+                } else {
+                    return str;
+                }
+            };
+        })
+        .filter('dateShortFormat', function ($filter) {
+            return function (input) {
+                if (input) {
+                    var _date = $filter('date')(new Date(input), 'mediumDate');
+                    return _date;
+                } else {
+                    return input;
+                }
+            };
+        })
+        .filter('timeFormat', function ($filter) {
+            return function (input) {
+                if (input) {
+                    var _date = $filter('date')(new Date(input), 'shortTime');
+                    return _date;
+                } else {
+                    return input;
+                }
+            };
+        })
+        .filter('formatBytes', function ($filter) {
+            return function (bytes, decimals) {
+                if (bytes == 0)
+                    return '0 Byte';
+                var k = 1000; // or 1024 for binary
+                var dm = decimals + 1 || 3;
+                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+                var i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            };
+        })
+        .filter('extensionIcon', function ($filter) {
+            return function (extension) {
+                var unknow = ['apk', 'sql'];
+                if (extension == null || unknow.indexOf(extension.toLowerCase()) >= 0) {
+                    return "css";
+                }
+                return extension.toLowerCase();
+            };
+        })
+        .filter('searchAndDisplay', function ($filter) {
+            return function (displayKey, array, searchKey, searchValue) {
+                var value = $filter('getBy')(array, searchKey, searchValue, displayKey);
+                if (value == null) {
+                    return null;
+                }
+                return value;
+            };
+        })
+        .filter('toArray', [function () {
+                return function (obj, addKey) {
+                    if (!angular.isObject(obj))
+                        return obj;
+                    if (addKey === false) {
+                        return Object.keys(obj).map(function (key) {
+                            return obj[key];
+                        });
+                    } else {
+                        return Object.keys(obj).map(function (key) {
+                            var value = obj[key];
+                            return angular.isObject(value) ?
+                                    Object.defineProperty(value, '$key', {enumerable: false, value: key}) :
+                                    {$key: key, $value: value};
+                        });
+                    }
+                };
+            }])
+        /**
+         * Filter credential by typeName
+         * 
+         * @param {Credential[]} credentials 
+         * @param {String} filterName   
+         */
+        .filter('credentialType', [function () {
+                return function (credentials, filterName) {
+                    var objects = [];
+                    angular.forEach(credentials, function (a, b) {
+                        if (a.type != null && a.type.name == filterName) {
+                            objects.push(a);
+                        }
+                    });
+                    return objects;
+
+                };
+            }])
+
+        .filter('truncate', function () {
+            return function (value, wordwise, max, tail) {
+                if (!value)
+                    return '';
+
+                max = parseInt(max, 10);
+                if (!max)
+                    return value;
+                if (value.length <= max)
+                    return value;
+
+                value = value.substr(0, max);
+                if (wordwise) {
+                    var lastspace = value.lastIndexOf(' ');
+                    if (lastspace != -1) {
+                        //Also remove . and , so its gives a cleaner result.
+                        if (value.charAt(lastspace - 1) == '.' || value.charAt(lastspace - 1) == ',') {
+                            lastspace = lastspace - 1;
+                        }
+                        value = value.substr(0, lastspace);
+                    }
+                }
+
+                return value + (tail || ' …');
+            };
+        })
+
+        .filter('nl2br', function ($sce) {
+            return function (msg, is_xhtml) {
+                var is_xhtml = is_xhtml || true;
+                var breakTag = (is_xhtml) ? '<br />' : '<br>';
+                var msg = (msg + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+                return $sce.trustAsHtml(msg);
+            };
+        });
 /**
  * the akkAction directive is use to validate.
  * 
@@ -1415,173 +1582,6 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
             }
         };
     }]);
-angular.module('akkurate-design-system')
-        .filter('inArray', function () {
-            return function (array, value) {
-                return array.indexOf(value) !== -1;
-            };
-        })
-        .filter('getBy', function () {
-            return function (input, field, value, toReturn) {
-                var i = 0, len = input.length;
-                for (; i < len; i++) {
-                    if (input[i][field] == value) {
-                        return (toReturn) ? input[i][toReturn] : input[i];
-                    }
-                }
-                return null;
-            };
-        })
-        .filter('getIndexBy', function () {
-            return function (input, field, value, toReturn) {
-                var i = 0, len = input.length;
-                for (; i < len; i++) {
-                    if (input[i][field] == value) {
-                        return i;
-                    }
-                }
-                return null;
-            };
-        })
-        .filter('range', function () {
-            return function (input, total) {
-                total = parseInt(total);
-                for (var i = 0; i < total; i++) {
-                    input.push(i);
-                }
-                return input;
-            };
-        })
-        .filter('ucfirst', function () {
-            return function ucFirst(str) {
-                if (str.length > 0) {
-                    return str[0].toUpperCase() + str.substring(1);
-                } else {
-                    return str;
-                }
-            };
-        })
-        .filter('dateShortFormat', function ($filter) {
-            return function (input) {
-                if (input) {
-                    var _date = $filter('date')(new Date(input), 'mediumDate');
-                    return _date;
-                } else {
-                    return input;
-                }
-            };
-        })
-        .filter('timeFormat', function ($filter) {
-            return function (input) {
-                if (input) {
-                    var _date = $filter('date')(new Date(input), 'shortTime');
-                    return _date;
-                } else {
-                    return input;
-                }
-            };
-        })
-        .filter('formatBytes', function ($filter) {
-            return function (bytes, decimals) {
-                if (bytes == 0)
-                    return '0 Byte';
-                var k = 1000; // or 1024 for binary
-                var dm = decimals + 1 || 3;
-                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-                var i = Math.floor(Math.log(bytes) / Math.log(k));
-                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-            };
-        })
-        .filter('extensionIcon', function ($filter) {
-            return function (extension) {
-                var unknow = ['apk', 'sql'];
-                if (extension == null || unknow.indexOf(extension.toLowerCase()) >= 0) {
-                    return "css";
-                }
-                return extension.toLowerCase();
-            };
-        })
-        .filter('searchAndDisplay', function ($filter) {
-            return function (displayKey, array, searchKey, searchValue) {
-                var value = $filter('getBy')(array, searchKey, searchValue, displayKey);
-                if (value == null) {
-                    return null;
-                }
-                return value;
-            };
-        })
-        .filter('toArray', [function () {
-                return function (obj, addKey) {
-                    if (!angular.isObject(obj))
-                        return obj;
-                    if (addKey === false) {
-                        return Object.keys(obj).map(function (key) {
-                            return obj[key];
-                        });
-                    } else {
-                        return Object.keys(obj).map(function (key) {
-                            var value = obj[key];
-                            return angular.isObject(value) ?
-                                    Object.defineProperty(value, '$key', {enumerable: false, value: key}) :
-                                    {$key: key, $value: value};
-                        });
-                    }
-                };
-            }])
-        /**
-         * Filter credential by typeName
-         * 
-         * @param {Credential[]} credentials 
-         * @param {String} filterName   
-         */
-        .filter('credentialType', [function () {
-                return function (credentials, filterName) {
-                    var objects = [];
-                    angular.forEach(credentials, function (a, b) {
-                        if (a.type != null && a.type.name == filterName) {
-                            objects.push(a);
-                        }
-                    });
-                    return objects;
-
-                };
-            }])
-
-        .filter('truncate', function () {
-            return function (value, wordwise, max, tail) {
-                if (!value)
-                    return '';
-
-                max = parseInt(max, 10);
-                if (!max)
-                    return value;
-                if (value.length <= max)
-                    return value;
-
-                value = value.substr(0, max);
-                if (wordwise) {
-                    var lastspace = value.lastIndexOf(' ');
-                    if (lastspace != -1) {
-                        //Also remove . and , so its gives a cleaner result.
-                        if (value.charAt(lastspace - 1) == '.' || value.charAt(lastspace - 1) == ',') {
-                            lastspace = lastspace - 1;
-                        }
-                        value = value.substr(0, lastspace);
-                    }
-                }
-
-                return value + (tail || ' …');
-            };
-        })
-
-        .filter('nl2br', function ($sce) {
-            return function (msg, is_xhtml) {
-                var is_xhtml = is_xhtml || true;
-                var breakTag = (is_xhtml) ? '<br />' : '<br>';
-                var msg = (msg + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-                return $sce.trustAsHtml(msg);
-            };
-        });
 angular.module('akkurate-design-system').run(['$templateCache', function($templateCache) {$templateCache.put('templates/akk-acceptance.html','<div class="form-group form-acceptance" ng-class="elementclass" ng-click="methods.change()">\n    <span class="check">\n        <i class="material-icons text-primary" ng-if="model[property]">check_box</i>\n        <i class="material-icons" ng-if="!model[property]">check_box_outline_blank</i>\n    </span>\n    <label>\n        {{label | translate}}\n    </label>\n</div>');
 $templateCache.put('templates/akk-alert.html','<div class="alert" role="alert" ng-class="view.type ? \'alert-\' + view.type : \'alert-dark\'">\n    <div class="d-flex align-items-center">\n        <i class="material-icons mr-1" ng-bind="view.icon" ng-if="view.icon"></i>\n        <span ng-if="view.icon">&nbsp;&nbsp;&nbsp;</span>\n        <div>\n            <h4 class="alert-heading" ng-if="view.title">{{view.title}}</h4>\n            <div ng-bind-html="view.message"></div>\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group {{!isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <div class="checkbox {{elementclass}}" ng-repeat="option in options track by $index">\n        <label>\n            <input type="checkbox" id="{{option}}" ng-model="optionChecked[$index]" ng-change="toggleElement(option)" ng-required="{{req}}" ng-click="checkValidity()">\n            {{display != null ? option[display] : option}}\n        </label>\n    </div>\n</div>');
@@ -1593,7 +1593,7 @@ $templateCache.put('templates/akk-input-int.html','<div class="form-group well {
 $templateCache.put('templates/akk-input.html','<div class="form-group" ng-class="!isValid ? \'has-error\' : \'\'">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <input type="{{type}}" class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" step="{{step}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()"/>\n</div>');
 $templateCache.put('templates/akk-loader.html','<div>\n    <div ng-show="loading" app-block="loading">\n        <div class="spinner">\n            <div class="bounce1"></div>\n            <div class="bounce2"></div>\n            <div class="bounce3"></div>\n        </div>\n        <div>{{\'Loading...\' | translate}}</div>\n    </div>\n    <div ng-show="!loading" ng-transclude></div>\n</div>');
 $templateCache.put('templates/akk-multiselect.html','<div class="form-group">\n    <label class="control-label" ng-if="view.label">{{view.label}}</label>\n    <div class="form-control" ng-click="methods.open()">\n        <div class="pull-right">\n            <i class="material-icons md-18">arrow_drop_down</i>\n        </div>\n        <span ng-if="view.selected.length">\n            {{view.selected.length}} {{view.model}} <span class="translate"> selected</span>\n        </span>\n        <span ng-if="!view.selected.length" class="placeholder">{{view.placeholder}}</span>\n    </div>\n</div>');
-$templateCache.put('templates/akk-select.html','<div class="form-group {{!isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <select class="form-control {{elementclass}}" ng-options="option{{value != null ? \'[value][\\\'name\\\']\' : \'\'}} as option{{display != null ? \'[display]\' : \'\'}} for option in options{{value == null && display != null ? \' track by option.id\' : \'\'}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()">\n        <option value="" ng-if="defaultDisplayEnabled" selected>{{defaultDisplay}}</option>\n    </select>\n</div>');
+$templateCache.put('templates/akk-select.html','<div class="form-group {{!isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <select class="form-control {{elementclass}}" ng-options="option{{value != null ? \'[value]\' : \'\'}} as option{{display != null ? \'[display]\' : \'\'}} for option in options{{value == null && display != null ? \' track by option.id\' : \'\'}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()">\n        <option value="" ng-if="defaultDisplayEnabled" selected>{{defaultDisplay}}</option>\n    </select>\n</div>');
 $templateCache.put('templates/akk-selectandsearch.html','<div class="form-group {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label" ng-if="label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        {{label}}\n        <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-control d-flex align-items-center justify-content-between">\n        <input type="hidden" ng-model="view.item.id" ng-required="{{req}}" />\n        <span class="input-search" ng-if="view.item != null" ng-click="methods.wizard()">\n            <span ng-repeat="field in fields"><span ng-if="!view.item[field]">{{field}}</span><span ng-if="view.item[field]">{{view.item[field]}}</span></span>\n        </span>\n        <em ng-if="view.item == null" class="text-secondary" ng-click="methods.wizard()">{{placeholder}}</em>\n        <i class="material-icons md-24 ml-auto" ng-click="methods.wizard()" role="button">more_horiz</i>\n        <i class="material-icons md-24 ml-1" ng-if="add != null" ng-click="methods.add()">add</i>\n    </div>\n</div>');
 $templateCache.put('templates/akk-selector.html','<div class="form-group">\n    <a href="">\n        <span class="pull-right">\n            <i class="material-icons">keyboard_arrow_right</i>\n        </span>\n        {{ label }}\n    </a>\n</div>');
 $templateCache.put('templates/akk-switch.html','<div class="form-group form-switch {{elementclass}}" ng-click="methods.change()">\n    <div ng-class="!alignment ? \'pull-right\' : alignment;">\n        <div class="ng-class: model[property] == true ? \'switch-active\' : \'\'; switch-box">\n            <div class="switch-handle"></div>\n        </div>\n    </div>\n    <label ng-class="!alignment ? \'\' : \'\'; alignment == \'center\' ? \'hide\' : alignment;">\n<!--        <input type="hidden" ng-model="model[property]" ng-true-value="{{truevalue != null ? truevalue : true}}" ng-false-value="{{falsevalue != null ? falsevalue : false}}" ng-required="{{req}}" />-->\n        {{label | translate}}\n    </label>\n</div>');

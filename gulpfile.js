@@ -3,7 +3,8 @@ var templatesFileName = 'akkurate-design-system.templates.js';
 var directivesFileName = 'akkurate-design-system.js';
 var moduleName = 'akkurate-design-system';
 var outPutFolder = "./dist";
-var srcFolder = "./src"
+var srcFolder = "./src";
+var templatesFolder = srcFolder + '/templates';
 
 // Dépendances
 var gulp = require('gulp');
@@ -16,7 +17,7 @@ var inject = require('gulp-inject');
 
 
 gulp.task('templatesCaching', function() {
-    return gulp.src(srcFolder + '/templates/**/*.html')
+    return gulp.src(templatesFolder + '/**/*.html')
         .pipe(templateCache(templatesFileName, {
             module: moduleName,
             root: "templates/" // Préfix avant les noms des templates
@@ -25,7 +26,7 @@ gulp.task('templatesCaching', function() {
 });
 
 gulp.task('concat', ['templatesCaching'], function() {
-    return gulp.src( [srcFolder + '/*.js', srcFolder + '/**/*.js', outPutFolder + '/' + templatesFileName] )
+    return gulp.src( [srcFolder + '/**/*.js', outPutFolder + '/' + templatesFileName] )
         .pipe(concat(directivesFileName))
         .pipe(gulp.dest(outPutFolder));
 });
@@ -42,15 +43,6 @@ gulp.task('minify', ['concat'], function() {
         }))
         .pipe(gulp.dest(outPutFolder));
 });
-
-//gulp.task('index', function () {
-//  var target = gulp.src('./index.html');
-//  // It's not necessary to read the files (will speed up things), we're only after their paths:
-//  var sources = gulp.src(['./node_modules/**/*.js', './bower_components/**/*.js'], {read: false});
-// 
-//  return target.pipe(inject(sources).on('error',function(e){console.log(e);}))
-//    .pipe(gulp.dest('./'));
-//});
 
 gulp.task('default', [
     'minify',
