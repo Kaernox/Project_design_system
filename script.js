@@ -56,6 +56,10 @@ angular.module('todoApp', ['akkurate-design-system'])
                     selected: [],
                     field: "name"
                 },
+                selectValue: {
+                    model: "",
+                    options: ["one", "two", "three", "four"]
+                },
                 date_created: new Date(),
                 name: "Bob",
                 description: "<p>Youpi pour le HTML</p>",
