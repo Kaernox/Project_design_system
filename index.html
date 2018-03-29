@@ -20,6 +20,9 @@
         <link rel="stylesheet" href="bower_components/angular-color-picker/dist/themes/angularjs-color-picker-bootstrap.min.css">
         <link rel="stylesheet" href="bower_components/angular-color-picker/dist/angularjs-color-picker.min.css">
 
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="style.css">
+
         <title>Akkurate Design System</title>
     </head>
     <body ng-app="todoApp">
@@ -37,13 +40,14 @@
             </div>
             <div>
                 <h2>Checkbox</h2>
-                <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
-                <pre>{{view.color| json}}</pre>
+                <akk-checkbox model="view.checkboxValue" label="Check me!"></akk-checkbox>
+                <span class="item-value text-muted">checkboxValue : {{view.checkboxValue| json}}</span>
+                
             </div>
             <div>
                 <h2>CheckboxList</h2>
-                <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
-                <pre>{{view.color| json}}</pre>
+                <akk-checkbox-list model="view.checkboxListValue.list" options="view.checkboxListValue.options" label="Checkbox List"></akk-checkbox-list>
+                <span class="item-value text-muted">checkboxListValue : {{view.checkboxListValue| json}}</span>
             </div>
             <div>
                 <h2>Color picker</h2>
