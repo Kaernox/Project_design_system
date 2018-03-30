@@ -17,21 +17,23 @@ angular.module('akkurate-design-system').directive("akkAlert",
                         title: "@",
                         message: "@",
                         icon: "@",
-                        type: "@",
                         event: "@",
-                        close: "="
+                        type: "@",
+                        isDisplayed: "=",
+                        isClosable: "="
                     },
                     link: function postLink(scope, element, attrs) {
                         
                         scope.view = {
-                            display: true
                         };
                         
                         scope.methods = {
                             init: function() {
+//                                scope.isDisplayed = true;
                             },
                             close: function() {
-                                scope.view.display = false;
+                                scope.isDisplayed = false;
+                                console.log('close', scope.isDisplayed);
 
                                 if (scope.event != null && scope.event != '') {
                                     $rootScope.$broadcast(scope.event);

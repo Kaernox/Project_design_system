@@ -1,6 +1,6 @@
 <div class="form-group {{!isValid ? 'has-error' : ''}}">
     <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>
-    <select class="form-control {{elementclass}}" ng-options="option{{value != null ? '[value]' : ''}} as option{{display != null ? '[display]' : ''}} for option in options{{value == null && display != null ? ' track by option.id' : ''}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()">
+    <select class="form-control {{elementclass}}" ng-options="option{{value != null ? '[value]' : ''}} as option{{display != null ? '[display]' : ''}} for option in options{{value == null && display != null ? ' track by option.id' : ''}}" ng-model="model" ng-required="{{req}}" ng-blur="methods.checkValidity()" ng-change="methods.change()">
         <option value="" ng-if="defaultDisplayEnabled" selected>{{defaultDisplay}}</option>
     </select>
 </div>

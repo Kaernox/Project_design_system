@@ -20,9 +20,36 @@ angular.module('akkurate-design-system').directive('akkRadio', [
                 name: "@",
                 model: "=",
                 options: "=",
-                value: "@",
-                display: "@",
+                property: "@",
                 event: "@"
+            },
+            link: function postLink(scope, element, attrs) {
+                scope.view = {
+                    isValid: false
+                }
+                
+                scope.methods = {
+                    init: function() {
+                        scope.methods.checkValidity();
+                    },
+                    select: function(option) {
+                        scope.model = option[scope.property];
+                        scope.methods.checkValidity();
+                    },
+                    checkValidity : function() {
+                        if(scope.req) {
+                            if(scope.model != null) {
+                                scope.view.isValid = true;
+                            } else {
+                                scope.view.isValid = false;
+                            }
+                        } else {
+                            scope.view.isValid = true;
+                        }
+                    }
+                }
+                
+                scope.methods.init();
             }
         };
     }

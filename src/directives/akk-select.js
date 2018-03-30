@@ -7,7 +7,8 @@
 
 'use strict';
 angular.module('akkurate-design-system').directive('akkSelect', [
-    function () {
+    '$rootScope',
+    function ($rootScope) {
         return {
             templateUrl: 'templates/akk-select.html',
             restrict: 'E',
@@ -21,6 +22,7 @@ angular.module('akkurate-design-system').directive('akkSelect', [
                 options: "=",
                 value: "@",
                 display: "@",
+                event: "@",
                 defaultDisplayEnabled: "@",
                 defaultDisplay: "@"
             },
@@ -31,8 +33,15 @@ angular.module('akkurate-design-system').directive('akkSelect', [
 
                 scope.defaultEnabled = (scope.defaultDisplayEnabled != null && scope.defaultDisplay != null) ? true : false;
 
-                scope.checkValidity = function () {
-                    scope.isValid = element[0].children[1].validity.valid;
+                scope.methods = {
+                    checkValidity: function () {
+                        scope.isValid = element[0].children[1].validity.valid;
+                    },
+                    change: function () {
+                        if (scope.event != null && scope.event != '') {
+                            $rootScope.$broadcast(scope.event);
+                        }
+                    }
                 };
             }
         };
