@@ -4,112 +4,301 @@
         <p class="lead">More than 18 components to create amazing interfaces.</p>
     </div>
 
-    <div class="component">
-        <h2>Acceptance</h2>
-        <akk-acceptance model="view" property="is_nlt" label="Souhaitez-vous accepter la taille de la pomme ?"></akk-acceptance>
-        <pre>{{view.is_nlt| json}}</pre>
-    </div>
+    <div class="row">
 
-    <div class="component">
-        <h2>Alert</h2>
-        <akk-select model="view.alert.model" label="Select the type" value="key" display="label" options="view.alert.types"></akk-select>
-        <akk-alert title="Youpi" icon="warning" type="{{view.alert.model}}" message="Il va faire beau !"></akk-alert>
-    </div>
+        <!-- Left side section that will be left clear, it contains the show data button to show how data chages on interactions with directives -->
+        <div class="col-12 col-sm-4 col-md-2">
+            <div class="sticky-top">
+                <button class="btn btn-primary btn-block mt-3" type="button" ng-click="methods.toggleValueDisplay()">
+                    Show data
+                </button>
+            </div>
+        </div>
 
-    <div class="component">
-        <h2>Checkbox</h2>
-        <akk-checkbox model="view.checkboxValue" label="Simuler le chargement d'une balise"></akk-checkbox>                
-    </div>
+        <!-- Right side section and main container that will contain all the components -->
+        <div class="col-12 col-sm-8 col-md-10">
 
-    <div class="component">
-        <h2>Loader</h2>
-        <div akk-loading loading="view.checkboxValue">
-            Chargement fini, check le box et regarde au milieu de la page.
+            <div class="component">
+                <h2>Acceptance</h2>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <akk-acceptance model="view" property="acceptanceValue" label="Do accept the conditions of use (there a none anyway) ?"></akk-acceptance>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <pre class="show-value">{{ view.acceptanceValue | json }}</pre>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <p class="description">
+                            Description goes here
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <h2>Alert</h2>
+                <div class="row">
+                    <div class="col-12 col-md-8">
+                        <akk-select model="view.alert.model" label="Select the type" value="key" display="label" options="view.alert.types"></akk-select>
+                        <akk-alert title="Youpi" icon="warning" type="{{view.alert.model}}" message="Today is a good day !"></akk-alert>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <p class="description">
+                            The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <h2>Checkbox</h2>
+                        <akk-checkbox model="view.checkboxValue" label="Simulate page loading"></akk-checkbox>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p class="description">
+                            Here we have our akk-checkbox, it's value is used to indicate wether the content on the right is loading or not. To use it in your project, simply add the akk-loading directive as an attribute to any html element that you want to add a loading status to, and then assign a value to loading attribute, that value should be true when your content is loading and then changed to false when you content has finished loading.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-3" akk-loading loading="view.checkboxValue">
+                        <h2>Loader</h2>
+                        <p class="description">
+                            To simulating loading, check the box and on the left.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+
+                <div class="component">
+                    <h2>CheckboxList</h2>
+                    <div class="row">
+                        <div class="col-12 col-md-3">
+                            <akk-checkbox-list model="view.checkboxList.selectedItems" options="view.checkboxList.options" label="Checkbox List"></akk-checkbox-list>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <p class="description">
+                                Description goes here
+                            </p>
+                        </div>
+                        <div class="col-12 col-md-3">
+                            <pre class="show-value">{{ view.checkboxList | json }}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="row">
+                <div class="component col-12 col-md-6">
+                    <h2>DatePicker</h2>
+                    <akk-datepicker model="view.date" label="My DatePicker"></akk-datepicker>
+                    <pre class="show-value">{{ view.date | json }}</pre>
+                </div>
+                <div class="component col-12 col-md-6">
+                    <h2>Color picker</h2>
+                    <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
+                    <!-- <pre class="show-value">{{ view.color | json }}</pre> -->
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component row">
+                <div class="col-12">
+                    <h2>Datagrid</h2>
+                    <p class="description">
+                        The akk-datagrid takes an array of objects and an array of columns names and displays it, the datagrid is sortable using any column, just click on the column name to sort, clicking multiple times will toggle the sort type between ascending and descending.
+                    </p>
+                    <!-- the akk-datagrid tag here is used display data from an array, this example uses the items array created for the akk-selectandsearch directive -->
+                    <akk-datagrid items="view.selectAndSearch.items" columns="['lastname', 'firstname', 'job', 'location']" label="This is a datagrid"></akk-datagrid>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <h2>Input</h2>
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <akk-input model="view.inputValue" label="Your costum label goes here" placeholder="example : Bob"></akk-input>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p class="description">
+                            Description goes here
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span class="show-value">{{ view.inputValue ? view.inputValue : 'Start typing to see the result' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <h2>Multiselect</h2>
+                        <akk-multiselect field="view.multiselect.field" selected="view.multiselect.list" items="view.multiselect.items"></akk-multiselect>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p class="description">
+                            Description goes here
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <pre class="show-value">{{ view.multiselect | json }}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <h2>Radio</h2>
+                        <akk-radio model="view.radio.model" label="voici une directive radio" options="view.radio.items"></akk-radio>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p class="description">
+                            Description goes here
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <pre class="show-value">{{ view.radio | json }}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <h2>Select</h2>
+                        <akk-select model="view.select.model" options="view.select.options"></akk-select>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p class="description">
+                            Description goes here
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <pre class="show-value">{{ view.select | json }}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <h2>SelectAndSearch</h2>
+                        <akk-selectandsearch
+                            class="text-truncate"
+                            options="view.selectAndSearch.items"
+                            label="Choose someone"
+                            model='view.selectAndSearch.selectedId'
+                            placeholder="Choose someone"
+                            template-item="default"
+                            fields="['lastname', ' ', 'firstname']">
+                        </akk-selectandsearch>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p class="description">
+                            The akk-selectandsearch directive accepts an array of objects as input as well as how you want to display every object ("fields" attribute) in the modal that pops off, the object passed to the model attribute will contain the id of the selected object, the full list of objects is displayed using the akk-datagrid.
+                            <br />
+                            To start Selecting items, click on the 3 dots on the right.
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <pre class="show-value">{{ view.selectAndSearch.selectedId | json }}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <h2>Selector</h2>
+                        <akk-selector label="Label of your field" placeholder="Select your option" model="view.selectAndSearch.items" property="lastname"></akk-selector>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        Description goes here
+                    </div>
+                    <div class="col-12 col-md-3">
+                        Data output in JSON format goes here
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <h2>Switch</h2>
+                        <akk-switch model="view" property="switchValue" label="{{'Cette entrée est active'| translate}}"></akk-switch>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <p class="description">
+                            Description goes here
+                        </p>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <pre class="show-value">{{ view.switchValue | json }}</pre>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <h2>Textarea</h2>
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <akk-textarea model="view.textareaValue"label="{{'Input your text here'| translate}}" placeholder="input your text" type="text" req="true"></akk-textarea>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        Description goes here
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <span class="show-value">{{ view.textareaValue ? view.textareaValue : 'Start typing to see the result' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-lg" />
+
+            <div class="component">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <h2>Tree</h2>
+                        <akk-tree model="view.tree" title="mon arbo" option="{debug: true}" items="view.tree" ></akk-tree>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        Description goes here
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
-    <div class="component">
-        <h2>CheckboxList</h2>
-        <akk-checkbox-list model="view.checkboxListValue.list" options="view.checkboxListValue.options" label="Checkbox List"></akk-checkbox-list>
-        <span class="item-value text-muted">checkboxListValue : </span>
-        <pre>{{view.checkboxListValue| json}}</pre>
-    </div>
-
-    <div>
-        <h2>Color picker</h2>
-        <akk-colorpicker model="view.color" label="Couleur de la pomme"></akk-colorpicker>
-        <pre>{{view.color| json}}</pre>
-    </div>
-
-    <div>
-        <h2>Datagrid</h2>
-        <akk-datagrid items="view.items" columns="['lastname', 'firstname', 'job', 'location']" label="Couleur de la pomme"></akk-datagrid>
-        <!--<pre>{{view.color | json}}</pre>-->
-    </div>
-
-    <div>
-        <h2>DatePicker</h2>
-        <akk-datepicker model="view.date" label="My DatePicker"></akk-datepicker>
-        <!--<pre>{{view.color | json}}</pre>-->
-    </div>
-
-    <div>
-        <h2>Input</h2>
-        <akk-input model="view.name" label="tarte au pomme" placeholder="ex. : Bob"></akk-input>
-        <pre>{{view.name| json}}</pre>
-    </div>
-
-    <div>
-        <h2>Multiselect</h2>
-        <akk-multiselect field="view.multiselectValue.field" selected="view.multiselectValue.list" items="view.multiselect.items"></akk-multiselect>
-        <pre>{{view.multiselectValue| json}}</pre>
-    </div>
-
-    <div>
-        <h2>Radio</h2>
-        <akk-radio model="view.radio.list" label="voici une directive radio" options="view.radio.items"></akk-radio>
-        <!--<pre>{{view.radio.items.value| json}}</pre>-->
-    </div>
-
-    <div>
-        <h2>Select</h2>
-        <akk-select model="view.selectValue.model" options="view.selectValue.options"></akk-select>
-        <pre>{{view.selectValue| json}}</pre>
-    </div>
-
-    <div>
-        <h2>SelectAndSearch</h2>
-        <akk-selectandsearch
-            class="text-truncate"
-            options="view.items"
-            label="Sélectionnez un artisan"
-            model='view.id_type'
-            placeholder="Sélectionnez un artisan"
-            template-item="default"
-            fields="['lastname', ' ', 'firstname']">
-        </akk-selectandsearch>
-        <pre>{{view.id_type| json}}</pre>
-    </div>
-
-    <div>
-        <h2>Selector</h2>
-        <akk-selector label="Label of your field" placeholder="Select your option" model="view.items" property="lastname"></akk-selector>
-    </div>
-
-    <div>
-        <h2>Switch</h2>
-        <akk-switch model="view" property="switchStatus" label="{{'Cette entrée est active'| translate}}"></akk-switch>
-        <pre>{{view.switchStatus| json}}</pre>
-    </div>
-
-    <div>
-        <h2>Textarea</h2>
-        <akk-textarea model="view.text"label="{{'Input your text here'| translate}}" placeholder="input your text" type="text" req="true"></akk-textarea>
-        <pre>{{view.text| json}}</pre>
-    </div>
-
-    <div>
-        <h2>Tree</h2>
-        <akk-tree model="view.tree" title="mon arbo" option="{debug: true}" items="view.tree" ></akk-tree>
-    </div>
 </div>
