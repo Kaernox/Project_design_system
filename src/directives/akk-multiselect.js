@@ -81,6 +81,7 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
                             }
                         ],
                         size: 'md',
+                        windowClass: 'show modal-multiselect',
                         resolve: {
                             params: function () {
                                 return {

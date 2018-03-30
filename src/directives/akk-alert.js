@@ -29,21 +29,6 @@ angular.module('akkurate-design-system').directive("akkAlert",
                         
                         scope.methods = {
                             init: function() {
-                                if(scope.title) {
-                                    scope.view.title = scope.title;
-                                }
-                                if(scope.message) {
-                                    scope.view.message = scope.message;
-                                }
-                                if(scope.icon) {
-                                    scope.view.icon = scope.icon;
-                                }
-                                if(scope.type) {
-                                    scope.view.type = scope.type;
-                                }
-                                if(scope.close) {
-                                    scope.view.close = scope.close;
-                                }
                             },
                             close: function() {
                                 scope.view.display = false;

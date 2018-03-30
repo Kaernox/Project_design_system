@@ -14,7 +14,12 @@ angular.module('akkurate-design-system').directive('akkSelector', [
             transclude: true,
             replace: true,
             scope: {
-                label: "@"
+                label: "@",
+                elementclass: "@",
+                req: "@",
+                model: "=",
+                property: "@",
+                event: "@"
             }
         };
     }

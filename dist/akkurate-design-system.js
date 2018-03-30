@@ -109,21 +109,6 @@ angular.module('akkurate-design-system').directive("akkAlert",
                         
                         scope.methods = {
                             init: function() {
-                                if(scope.title) {
-                                    scope.view.title = scope.title;
-                                }
-                                if(scope.message) {
-                                    scope.view.message = scope.message;
-                                }
-                                if(scope.icon) {
-                                    scope.view.icon = scope.icon;
-                                }
-                                if(scope.type) {
-                                    scope.view.type = scope.type;
-                                }
-                                if(scope.close) {
-                                    scope.view.close = scope.close;
-                                }
                             },
                             close: function() {
                                 scope.view.display = false;
@@ -745,6 +730,7 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
                             }
                         ],
                         size: 'md',
+                        windowClass: 'show modal-multiselect',
                         resolve: {
                             params: function () {
                                 return {
@@ -1009,7 +995,12 @@ angular.module('akkurate-design-system').directive('akkSelector', [
             transclude: true,
             replace: true,
             scope: {
-                label: "@"
+                label: "@",
+                elementclass: "@",
+                req: "@",
+                model: "=",
+                property: "@",
+                event: "@"
             }
         };
     }
@@ -1583,7 +1574,7 @@ angular.module('akkurate-design-system')
             };
         });
 angular.module('akkurate-design-system').run(['$templateCache', function($templateCache) {$templateCache.put('templates/akk-acceptance.html','<div class="form-group form-acceptance" ng-class="elementclass" ng-click="methods.change()">\n    <span class="check">\n        <i class="material-icons text-primary" ng-if="model[property]">check_box</i>\n        <i class="material-icons" ng-if="!model[property]">check_box_outline_blank</i>\n    </span>\n    <label>\n        {{label | translate}}\n    </label>\n</div>');
-$templateCache.put('templates/akk-alert.html','<div class="alert" role="alert" ng-class="view.type ? \'alert-\' + view.type : \'alert-dark\'">\n    <div class="d-flex align-items-center">\n        <i class="material-icons mr-1" ng-bind="view.icon" ng-if="view.icon"></i>\n        <span ng-if="view.icon">&nbsp;&nbsp;&nbsp;</span>\n        <div>\n            <h4 class="alert-heading" ng-if="view.title">{{view.title}}</h4>\n            <div ng-bind-html="view.message"></div>\n        </div>\n    </div>\n</div>');
+$templateCache.put('templates/akk-alert.html','<div class="alert" role="alert" ng-class="type ? \'alert-\' + type : \'alert-dark\'">\n    <div class="d-flex align-items-center">\n        <i class="material-icons mr-1" ng-bind="icon" ng-if="icon"></i>\n        <span ng-if="icon">&nbsp;&nbsp;&nbsp;</span>\n        <div>\n            <h4 class="alert-heading" ng-if="title">{{title}}</h4>\n            <div ng-bind-html="message"></div>\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group {{!isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <div class="checkbox {{elementclass}}" ng-repeat="option in options track by $index">\n        <label>\n            <input type="checkbox" id="{{option}}" ng-model="optionChecked[$index]" ng-change="toggleElement(option)" ng-required="{{req}}" ng-click="checkValidity()">\n            {{display != null ? option[display] : option}}\n        </label>\n    </div>\n</div>');
 $templateCache.put('templates/akk-checkbox.html','<div class="checkbox {{elementclass}}">\n    <label>\n        <input type="checkbox" ng-model="model" ng-true-value="{{truevalue != null ? truevalue : true}}" ng-false-value="{{falsevalue != null ? falsevalue : false}}" ng-change="onchange()"> {{label}}\n    </label>\n</div>');
 $templateCache.put('templates/akk-colorpicker.html','<div class="form-group form-colorpicker" ng-class="!view.isValid ? \'has-error\' : \'\'">\n    <label class="control-label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-container">\n        <div class="icon">\n            <i class="material-icons md-18">color_lens</i>\n        </div>\n        <color-picker\n            ng-model="model"\n            options="view.options"\n            event-api="events"\n            ></color-picker>\n    </div>\n</div>');
@@ -1595,7 +1586,7 @@ $templateCache.put('templates/akk-loader.html','<div>\n    <div ng-show="loading
 $templateCache.put('templates/akk-multiselect.html','<div class="form-group">\n    <label class="control-label" ng-if="view.label">{{view.label}}</label>\n    <div class="form-control" ng-click="methods.open()">\n        <div class="pull-right">\n            <i class="material-icons md-18">arrow_drop_down</i>\n        </div>\n        <span ng-if="view.selected.length">\n            {{view.selected.length}} {{view.model}} <span class="translate"> selected</span>\n        </span>\n        <span ng-if="!view.selected.length" class="placeholder">{{view.placeholder}}</span>\n    </div>\n</div>');
 $templateCache.put('templates/akk-select.html','<div class="form-group {{!isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <select class="form-control {{elementclass}}" ng-options="option{{value != null ? \'[value]\' : \'\'}} as option{{display != null ? \'[display]\' : \'\'}} for option in options{{value == null && display != null ? \' track by option.id\' : \'\'}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()">\n        <option value="" ng-if="defaultDisplayEnabled" selected>{{defaultDisplay}}</option>\n    </select>\n</div>');
 $templateCache.put('templates/akk-selectandsearch.html','<div class="form-group {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label" ng-if="label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        {{label}}\n        <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-control d-flex align-items-center justify-content-between">\n        <input type="hidden" ng-model="view.item.id" ng-required="{{req}}" />\n        <span class="input-search" ng-if="view.item != null" ng-click="methods.wizard()">\n            <span ng-repeat="field in fields"><span ng-if="!view.item[field]">{{field}}</span><span ng-if="view.item[field]">{{view.item[field]}}</span></span>\n        </span>\n        <em ng-if="view.item == null" class="text-secondary" ng-click="methods.wizard()">{{placeholder}}</em>\n        <i class="material-icons md-24 ml-auto" ng-click="methods.wizard()" role="button">more_horiz</i>\n        <i class="material-icons md-24 ml-1" ng-if="add != null" ng-click="methods.add()">add</i>\n    </div>\n</div>');
-$templateCache.put('templates/akk-selector.html','<div class="form-group">\n    <a href="">\n        <span class="pull-right">\n            <i class="material-icons">keyboard_arrow_right</i>\n        </span>\n        {{ label }}\n    </a>\n</div>');
+$templateCache.put('templates/akk-selector.html','<div class="form-group {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label" ng-if="label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-control d-flex align-items-center justify-content-between">\n        <input type="hidden" ng-model="view.item.id" ng-required="{{req}}" />\n        <span class="input-search" ng-if="view.item != null" ng-click="methods.wizard()">\n            {{model[property]}}\n        </span>\n        <em ng-if="view.item == null" class="text-secondary" ng-click="methods.wizard()">{{placeholder}}</em>\n        <i class="material-icons md-24 ml-auto" ng-click="methods.wizard()" role="button">keyboard_arrow_right</i>\n    </div>\n</div>');
 $templateCache.put('templates/akk-switch.html','<div class="form-group form-switch {{elementclass}}" ng-click="methods.change()">\n    <div ng-class="!alignment ? \'pull-right\' : alignment;">\n        <div class="ng-class: model[property] == true ? \'switch-active\' : \'\'; switch-box">\n            <div class="switch-handle"></div>\n        </div>\n    </div>\n    <label ng-class="!alignment ? \'\' : \'\'; alignment == \'center\' ? \'hide\' : alignment;">\n<!--        <input type="hidden" ng-model="model[property]" ng-true-value="{{truevalue != null ? truevalue : true}}" ng-false-value="{{falsevalue != null ? falsevalue : false}}" ng-required="{{req}}" />-->\n        {{label | translate}}\n    </label>\n</div>');
 $templateCache.put('templates/akk-textarea.html','<div class="form-group" ng-class="!isValid ? \'has-error\' : \'\'">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <textarea class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" ng-model="model" rows="{{size}}" ng-required="{{req}}" ng-blur="checkValidity()"></textarea>\n</div>');
 $templateCache.put('templates/akk-tree-item.html','<li ng-class="view.item.childs != undefined ? \'has-child\' : \'\'" class="tree-item d-flex flex-column">\n    <div class="d-flex align-items-center">\n        <i ng-if="view.item.childs && view.item.childs.length > 0 && view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">expand_more</i>\n        <i ng-if="view.item.childs && view.item.childs.length > 0 && !view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">chevron_right</i>\n        <i ng-if="!view.item.childs || view.item.childs.length == 0" ng-click="methods.toggle(view.item)" class="material-icons text-muted">bookmark</i>\n        \n        <i ng-if="view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-primary">check_box</i>\n        <i ng-if="view.item.isPartialyChecked && !view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">indeterminate_check_box</i>\n        <i ng-if="!view.item.isChecked  && !view.item.isPartialyChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">check_box_outline_blank</i>\n        \n        <a href="javascript:;" ng-if="view.item.childs && view.item.childs.length > 0" ng-click="methods.toggle(view.item)">\n            {{view.item.label}}\n        </a>\n        \n        <span ng-if="view.item.childs && view.item.childs.length > 0">\n            ({{view.item.childs.length}})\n        </span>\n        \n        <span ng-if="!view.item.childs || view.item.childs.length == 0">\n            {{view.item.label}}\n        </span>\n    </diV>\n\n    <ul ng-if="view.item.childs && view.item.childs.length > 0" ng-show="view.item.isShown">\n        <akk-tree-item item="child" ng-repeat="child in view.item.childs"></akk-tree-item>\n    </ul>\n</li>');
