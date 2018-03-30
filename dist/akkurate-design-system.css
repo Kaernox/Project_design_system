@@ -6131,13 +6131,22 @@ hr.hr-900 {
   font-size: 2rem; }
 
 .form-colorpicker .form-container {
-  position: relative; }
+  position: relative;
+  border: solid 1px #ced4da;
+  border-radius: 0.25rem; }
+  .form-colorpicker .form-container .color-picker-wrapper .input-group .input-group-addon {
+    border: none; }
+  .form-colorpicker .form-container .color-picker-wrapper .input-group .color-picker-input {
+    border: none;
+    width: 100%;
+    padding: 0.375rem 0.75rem; }
   .form-colorpicker .form-container > .icon {
     position: absolute;
     top: 8px;
     right: 1rem;
     color: #007bff;
-    cursor: pointer; }
+    cursor: pointer;
+    z-index: 1; }
 
 .modal-datepicker .modal-body {
   padding: .5rem; }
