@@ -1,9 +1,14 @@
-<div class="form-group {{!isValid ? 'has-error' : ''}}">
-    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>
-    <div class="checkbox {{elementclass}}" ng-repeat="option in options track by $index">
-        <label>
-            <input type="checkbox" id="{{option}}" ng-model="optionChecked[$index]" ng-change="toggleElement(option)" ng-required="{{req}}" ng-click="checkValidity()">
+<div class="form-group form-checkbox form-checkbox-list {{!view.isValid ? 'has-error' : ''}}" data-ng-class="elementclass">
+    <div class="d-flex">
+        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>
+        <div class="ml-1">{{label}}</div>
+        <sup ng-if="req">*</sup>
+    </div>
+    <div class="d-flex" ng-repeat="option in options track by $index" ng-click="methods.toggle(option)">
+        <i class="material-icons text-primary" data-ng-if="methods.inModel(option)">check_box</i>
+        <i class="material-icons text-muted" data-ng-if="!methods.inModel(option)">check_box_outline_blank</i>
+        <div class="ml-1">
             {{display != null ? option[display] : option}}
-        </label>
+        </div>
     </div>
 </div>

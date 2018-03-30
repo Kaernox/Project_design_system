@@ -1,4 +1,4 @@
-<div class="form-group" ng-class="!isValid ? 'has-error' : ''">
+<div class="form-group form-textarea" ng-class="!isValid ? 'has-error' : ''">
     <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>
     <textarea class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" ng-model="model" rows="{{size}}" ng-required="{{req}}" ng-blur="checkValidity()"></textarea>
 </div>

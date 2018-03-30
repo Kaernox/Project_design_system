@@ -1,0 +1,13 @@
+.form-colorpicker {
+    .form-container {
+        position: relative;
+
+        > .icon {
+            position: absolute;
+            top: 8px;
+            right: 1rem;
+            color: $blue;
+            cursor: pointer;
+        }
+    }
+}

@@ -3,21 +3,23 @@
         <thead>
             <tr>
                 <th ng-repeat="column in columns" ng-click="methods.sortBy(column, methods.inverseWay(column))">
-                    {{column | translate}}
-                    <i ng-if="view.dimension == column && view.way == 'desc'" class="material-icons">arrow_downward</i>
-                    <i ng-if="view.dimension == column && view.way == 'asc'" class="material-icons">arrow_upward</i>
-                    <i ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>
+                    <div class="d-flex align-items-center">
+                        <span>{{column| translate}}</span>
+                        <i ng-if="view.dimension == column && view.way == 'desc'" class="material-icons">arrow_downward</i>
+                        <i ng-if="view.dimension == column && view.way == 'asc'" class="material-icons">arrow_upward</i>
+                        <i ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>
+                    </div>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in items | orderBy: methods.order()">
+            <tr ng-repeat="item in items| orderBy: methods.order()">
                 <td ng-repeat="column in columns">{{item[column]}}</td>
             </tr>
         </tbody>
     </table>
-    <akk-alert title="{{'Aucun résultat trouvé !' | translate}}" ng-if="!items.length"></akk-alert>
+    <akk-alert title="{{'Aucun résultat trouvé !'| translate}}" ng-if="!items.length"></akk-alert>
     <hr />
-<!--     <pre>{{view | json}}</pre>
-    <pre>{{items | json}}</pre> -->
+    <!--     <pre>{{view | json}}</pre>
+        <pre>{{items | json}}</pre> -->
 </div>

@@ -372,7 +372,9 @@ designsystem.component('home', {
                             ]
                         },
                         // Data for the akk-switch directive, it will contain either true or false
-                        switchValue: true,
+                        switch: {
+                            value: true
+                        },
                         // The text entered in the akk-textarea directive will be stored here
                         textareaValue: '',
                         // This is an example representation of what the akk-tree directive is expecting, alll levels of nesting are allowed

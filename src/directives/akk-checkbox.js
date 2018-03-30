@@ -1,26 +1,37 @@
 /* 
  * directive qui gere une check box
  */
-
-
 'use strict';
-angular.module('akkurate-design-system').directive('akkCheckbox', [
-    function () {
+angular.module('akkurate-design-system').directive("akkCheckbox", [
+    '$rootScope',
+    '$window',
+    function ($rootScope, $window) {
         return {
+            restrict: "E",
             templateUrl: 'templates/akk-checkbox.html',
-            restrict: 'E',
             transclude: true,
             replace: true,
             scope: {
                 label: "@",
+                alignment: "@",
                 elementclass: "@",
                 req: "@",
                 model: "=",
-                truevalue: "@",
-                falsevalue: "@",
-                onchange: "&"
+                property: "@",
+                eventUpdate: "@"
             },
-            link: function postLink(scope, element, attrs, ngModel) {
+            link: function postLink(scope, element, attrs) {
+
+                scope.methods = {
+                    change: function () {
+                        scope.model[scope.property] = !scope.model[scope.property];
+
+                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                            $rootScope.$broadcast(scope.eventUpdate, scope.model);
+                        }
+                    }
+                };
+
             }
         };
     }

@@ -1,36 +1,47 @@
 'use strict';
-angular.module('akkurate-design-system').directive("akkSwitch",
-        [
-            '$rootScope', '$window',
-            function ($rootScope, $window) {
-                return {
-                    restrict: "E",
-                    templateUrl: 'templates/akk-switch.html',
-                    transclude: true,
-                    replace: true,
-                    scope: {
-                        label: "@",
-                        alignment: "@",
-                        elementclass: "@",
-                        icon: "@",
-                        req: "@",
-                        model: "=",
-                        property: "@",
-                        event: "@"
+angular.module('akkurate-design-system').directive("akkSwitch", [
+    '$rootScope',
+    function ($rootScope) {
+        return {
+            restrict: "E",
+            templateUrl: 'templates/akk-switch.html',
+            transclude: true,
+            replace: true,
+            scope: {
+                label: "@",
+                alignment: "@",
+                elementclass: "@",
+                icon: "@",
+                size: "@",
+                req: "@",
+                model: "=",
+                property: "@",
+                eventUpdate: "@"
+            },
+            link: function postLink(scope, element, attrs) {
+
+                scope.view = {
+                    active: angular.copy(scope.model[scope.property])
+                }
+
+                scope.methods = {
+                    init: function() {
+                        if(scope.alignment == undefined) {
+                            scope.alignment = 'right';
+                        }
                     },
-                    link: function postLink(scope, element, attrs) {
+                    toggle: function () {
+                        scope.model[scope.property] = !scope.model[scope.property];
+                        scope.view.active = scope.model[scope.property];
 
-                        scope.methods = {
-                            change: function () {
-                                scope.model[scope.property] = !scope.model[scope.property];
-
-                                if (scope.event != null && scope.event != '') {
-                                    $rootScope.$broadcast(scope.event, scope.model);
-                                }
-                            }
-                        };
-
+                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                            $rootScope.$broadcast(scope.eventUpdate, scope.model);
+                        }
                     }
                 };
+
+                scope.methods.init();
             }
-        ]);
+        };
+    }
+]);

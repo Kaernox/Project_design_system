@@ -26,7 +26,7 @@
     "moment": "^2.15.2",
     "angular-uib-alert": "https://bitbucket.org/subvitaminetm/angular-uib-alert.git",
     "angular-i18n": "^1.5.8",
-    "bootstrap": "v4.0.0-beta.3",
+    "bootstrap": "v4.0.0",
     "angular-slugify": "paulsmith/angular-slugify#^1.0.1",
     "angular-bootstrap-colorpicker": "^3.0.31",
     "angular-color-picker": "angularjs-color-picker#^3.3.0"

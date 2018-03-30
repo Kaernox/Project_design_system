@@ -1,11 +1,21 @@
-<div class="form-group form-switch {{elementclass}}" ng-click="methods.change()">
-    <div ng-class="!alignment ? 'pull-right' : alignment;">
-        <div class="ng-class: model[property] == true ? 'switch-active' : ''; switch-box">
-            <div class="switch-handle"></div>
+<div class="form-group form-switch {{elementclass}}" data-ng-click="methods.toggle()">
+    <div class="d-flex align-items-center" data-ng-class="alignment == 'center' ? 'justify-content-center' : 'justify-content-between'">
+        <div data-ng-if="alignment == 'left' || alignment == 'center'" data-ng-class="size != null ? 'switch-' + size : ''">
+            <div class="d-flex switch-box" data-ng-class="model[property] ? 'switch-active justify-content-end' : 'justify-content-start'">
+                <div class="switch-handle">
+                    <i class="material-icons text-primary" data-ng-if="model[property] && size != null">check</i>
+                </div>
+            </div>
+        </div>
+        <div data-ng-if="alignment != 'center'" data-ng-class="alignment == 'left' ? 'text-right' : '';">
+            {{label}}
+        </div>
+        <div data-ng-if="alignment == 'right'" data-ng-class="size != null ? 'switch-' + size : ''">
+            <div class="d-flex switch-box" data-ng-class="model[property] ? 'switch-active justify-content-end' : 'justify-content-start'">
+                <div class="switch-handle">
+                    <i class="material-icons text-primary" data-ng-if="model[property] && size != null">check</i>
+                </div>
+            </div>
         </div>
     </div>
-    <label ng-class="!alignment ? '' : ''; alignment == 'center' ? 'hide' : alignment;">
-<!--        <input type="hidden" ng-model="model[property]" ng-true-value="{{truevalue != null ? truevalue : true}}" ng-false-value="{{falsevalue != null ? falsevalue : false}}" ng-required="{{req}}" />-->
-        {{label | translate}}
-    </label>
 </div>
