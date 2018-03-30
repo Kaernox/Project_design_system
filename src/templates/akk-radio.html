@@ -1,0 +1,9 @@
+<div class="form-group {{!isValid ? 'has-error' : ''}}">
+    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>
+    <div class="radio {{elementclass}}" ng-repeat="option in options track by $index">
+        <label>
+            <input type="radio" ng-click="option.value" name="toto">
+            {{option.name}}
+        </label>
+    </div>
+</div>

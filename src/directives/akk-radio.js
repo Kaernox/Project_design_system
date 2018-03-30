@@ -12,7 +12,7 @@ angular.module('akkurate-design-system').directive('akkRadio', [
             restrict: 'E',
             transclude: true,
             replace: true,
-            // templateUrl: 'templates/radio.html',
+            templateUrl: 'templates/akk-radio.html',
             scope: {
                 label: "@",
                 elementclass: "@",
