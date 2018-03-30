@@ -180,6 +180,32 @@ designsystem
                                     selected: [],
                                     field: "name"
                                 },
+                                radio: {
+                                  label: 'radio',
+                                  list: [],
+                                    items: [
+                                        {
+                                            id: 1,
+                                            name: 'test 1',
+                                            value: true
+                                        },
+                                        {
+                                            id: 2,
+                                            name: 'test 2',
+                                            value: false
+                                        },
+                                        {
+                                            id: 3,
+                                            name: 'test 3',
+                                            value: false
+                                        },
+                                        {
+                                            id: 4,
+                                            name: 'test 4',
+                                            value: false
+                                        }
+                                    ],
+                                },
                                 selectValue: {
                                     model: "",
                                     options: ["one", "two", "three", "four"]
