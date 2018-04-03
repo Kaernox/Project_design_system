@@ -1,0 +1,41 @@
+.form-check {
+    
+}
+
+.modal-datepicker {
+    .modal-body {
+        padding: .5rem;
+    }
+    
+    .h3 {
+        margin: 0;
+    }
+    
+    .table-days {
+        margin-bottom: 0;
+        
+        th {
+            border: none;
+        }
+        
+        td {
+            border: none;
+            padding: .125rem;
+        }
+    }
+    
+    .btn-light:not(:disabled):not(.disabled) {
+        border-color: $gray-200;
+        background-color: $white;
+        
+        &:hover {
+            background-color: $gray-200;
+        }
+    }
+    
+    .btn-primary:not(:disabled):not(.disabled).active {
+        border-color: $primary;
+        background-color: $primary;
+        color: $white;
+    }
+}

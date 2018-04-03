@@ -1,3 +1,5 @@
+'use strict';
+
 // Paramétres du script gulp
 var templatesFileName = 'akkurate-design-system.templates.js';
 var directivesFileName = 'akkurate-design-system.js';
@@ -14,6 +16,7 @@ var rename = require('gulp-rename');
 var templateCache = require('gulp-angular-templatecache');
 var minifyHtml = require('gulp-minify-html');
 var inject = require('gulp-inject');
+var sass = require('gulp-sass');
 
 
 gulp.task('templatesCaching', function() {
@@ -44,7 +47,19 @@ gulp.task('minify', ['concat'], function() {
         .pipe(gulp.dest(outPutFolder));
 });
 
+gulp.task('sass', function () {
+  return gulp.src('./sass/**/*.scss')
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(gulp.dest(outPutFolder));
+});
+
+//gulp.task('sass:watch', function () {
+//  gulp.watch('./sass/**/*.scss', ['sass']);
+//});
+
 gulp.task('default', [
     'minify',
+    'sass',
+//    'sass:watch',
 //    'index'
 ]);

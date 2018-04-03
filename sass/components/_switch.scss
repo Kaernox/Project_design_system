@@ -1,0 +1,42 @@
+.form-switch {
+    margin: 0 0 .5rem;
+    cursor: pointer;
+    position: relative;
+
+    .switch-box {
+        @include transition(all .3s linear);
+        position: relative;
+        width: 40px;
+        height: 22px;
+        border: solid 3px $gray-300;
+        background-color: $gray-300;
+        @include border-radius(32px);
+    }
+
+    .switch-handle {
+        @include transition(all .3s linear);
+        width: 16px;
+        height: 16px;
+        background-color: $white;
+        @include border-radius(32px);
+    }
+
+    .switch-lg {
+        .switch-box {
+            width: 54px;
+            height: 30px;
+            @include border-radius(32px);
+        }
+
+        .switch-handle {
+            width: 24px;
+            height: 24px;
+            @include border-radius(32px);
+        }
+    }
+
+    .switch-active {
+        border-color: $primary;
+        background-color: $primary;
+    }
+}

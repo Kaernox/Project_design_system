@@ -71,7 +71,7 @@ angular.module('akkurate-design-system').directive("akkDatepicker",
                                             };
                                         }
                                     ],
-                                    windowClass: 'show modal-datetime-picker',
+                                    windowClass: 'show modal-datepicker',
                                     resolve: {
                                         params: function () {
                                             return {
