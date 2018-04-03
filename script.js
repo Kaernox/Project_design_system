@@ -376,61 +376,64 @@ designsystem.component('home', {
                         // The text entered in the akk-textarea directive will be stored here
                         textareaValue: '',
                         // This is an example representation of what the akk-tree directive is expecting, alll levels of nesting are allowed
-                        tree: [
-                            {
-                                label: 'label 1',
-                                value: 'label 1',
-                                childs: [
-                                    {
-                                        label: 'child 1',
-                                        value: 'child 1',
-                                        childs: [
-                                            {
-                                                label: 'granchild1',
-                                                value: 'granchild1'
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'child 2',
-                                        value: 'child 2'
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'label 2',
-                                value: 'label 2',
-                                childs: [
-                                    {
-                                        label: 'child 3',
-                                        value: 'child 3',
-                                        childs: [
-                                            {
-                                                label: 'granchild2',
-                                                value: 'granchild2'
-                                            },
-                                            {
-                                                label: 'granchild3',
-                                                value: 'granchild3'
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        label: 'child 4',
-                                        value: 'child 4'
-                                    }
-                                ]
-                            },
-                            {
-                                label: 'label 3',
-                                value: 'label 3',
-                                childs: []
-                            },
-                            {
-                                label: 'label 4',
-                                value: 'label 4'
-                            }
-                        ]
+                        tree: {
+                            model: [],
+                            items: [
+                                {
+                                    label: 'label 1',
+                                    value: 'label 1',
+                                    childs: [
+                                        {
+                                            label: 'child 1',
+                                            value: 'child 1',
+                                            childs: [
+                                                {
+                                                    label: 'granchild1',
+                                                    value: 'granchild1'
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            label: 'child 2',
+                                            value: 'child 2'
+                                        }
+                                    ]
+                                },
+                                {
+                                    label: 'label 2',
+                                    value: 'label 2',
+                                    childs: [
+                                        {
+                                            label: 'child 3',
+                                            value: 'child 3',
+                                            childs: [
+                                                {
+                                                    label: 'granchild2',
+                                                    value: 'granchild2'
+                                                },
+                                                {
+                                                    label: 'granchild3',
+                                                    value: 'granchild3'
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            label: 'child 4',
+                                            value: 'child 4'
+                                        }
+                                    ]
+                                },
+                                {
+                                    label: 'label 3',
+                                    value: 'label 3',
+                                    childs: []
+                                },
+                                {
+                                    label: 'label 4',
+                                    value: 'label 4'
+                                }
+                            ]
+                        }
                     };
 
                     $scope.$on('updateAlert', function (event) {
@@ -441,6 +444,5 @@ designsystem.component('home', {
                 }
             ]
         });
-
 designsystem.run(function ($uiRouter) {
 });
