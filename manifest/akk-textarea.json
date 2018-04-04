@@ -1,0 +1,19 @@
+{
+    "name": "akk-textarea",
+    "scope": [
+        {
+            "label": "@",
+            "elementclass": "@",
+            "size": "@",
+            "placeholder": "@",
+            "req": "@",
+            "model": "=",
+            "event": "@"
+        }
+    ],
+    "model": "view.textareaValue",
+    "label": "Input your text here",
+    "placeholder": "input your text",
+    "type": "text",
+    "req": true
+}

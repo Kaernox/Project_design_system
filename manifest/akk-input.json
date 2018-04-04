@@ -1,0 +1,20 @@
+{
+    "name": "akk-input",
+    "scope": [
+        {
+            "label": "@",
+            "elementclass": "@",
+            "type": "@",
+            "step": "@",
+            "placeholder": "@",
+            "req": "@",
+            "hasError": "=",
+            "model": "=",
+            "event": "@"
+        }
+    ],
+    "model": "view.inputValue",
+    "label": "Your custom label goes here",
+    "placeholder": "example : Bob",
+    "description": ""
+}

@@ -1,0 +1,21 @@
+{
+    "name": "akk-radio",
+    "scope": [
+        {
+            "label": "@",
+            "elementclass": "@",
+            "req": "@",
+            "name": "@",
+            "model": "=",
+            "options": "=",
+            "property": "@",
+            "event": "@"
+        }
+    ],
+    "model": "view.radio.value",
+    "property": "id",
+    "label": "voici une directive radio",
+    "options": "view.radio.items",
+    "req": true,
+    "description": ""
+}

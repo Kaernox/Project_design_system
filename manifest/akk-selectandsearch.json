@@ -1,0 +1,33 @@
+{
+    "name": "akk-selectAndSearch",
+    "scope": [
+        {
+            "label": "@",
+            "options": "=",
+            "optionsType": "@",
+            "fields": "=",
+            "filterType": "@",
+            "filterBy": "@",
+            "placeholder": "@",
+            "hasError": "=",
+            "req": "@",
+            "model": "=",
+            "event": "@",
+            "add": "@",
+            "modalSize": "@",
+            "templateItem": "@",
+            "orderBy": "@"
+        }
+    ],
+    "class": "text-truncate",
+    "options": "view.selectAndSearch.items",
+    "label": "Choose someone",
+    "model": "view.selectAndSearch.selectedId",
+    "placeholder": "Choose someone",
+    "template-item": "default",
+    "fields": [
+        "lastname",
+        " ",
+        "firstname"
+    ]
+}

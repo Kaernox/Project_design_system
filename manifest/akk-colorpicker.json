@@ -1,0 +1,15 @@
+{
+    "name": "akk-colorpicker",
+    "scope": [
+        {
+            "label": "@",
+            "req": "@",
+            "model": "=",
+            "options": "=",
+            "event": "@"
+        }
+    ],
+    "model":"view.color",
+    "label":"Couleur de la pomme",
+    "description": ""
+}

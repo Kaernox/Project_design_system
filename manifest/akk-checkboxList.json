@@ -1,0 +1,18 @@
+{
+    "name": "akk-checkboxList",
+    "scope": [
+        {
+            "label": "@",
+            "elementclass": "@",
+            "req": "@",
+            "model": "=",
+            "options": "=",
+            "value": "@",
+            "display": "@",
+            "event": "@"
+        }
+    ],
+    "model": "view.checkboxList.selectedItems",
+    "options": "view.checkboxList.options",
+    "decription": ""
+}
