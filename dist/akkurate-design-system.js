@@ -673,12 +673,6 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
                         windowClass: 'show modal-multiselect',
                         resolve: {
                             params: function () {
-                                console.log("params : ", {
-                                    placeholder: scope.view.placeholder,
-                                    items: scope.view.items,
-                                    selected: scope.view.selected,
-                                    field: scope.view.field
-                                });
                                 return {
                                     placeholder: scope.view.placeholder,
                                     items: scope.view.items,
@@ -753,12 +747,11 @@ angular.module('akkurate-design-system').directive('akkRadio', [
                     /**
                      * @description
                      *
-                     * This function will be used when
+                     * This function will be used when no property is specified for the directive.
+                     * It ill check wether the option's object is equal to the scope.model object.
                      *
-                     * @param {string} module The namespace to use for the new minErr instance.
-                     * @param {function} ErrorConstructor Custom error constructor to be instantiated when returning
-                     *   error from returned function, for cases when a particular type of error is useful.
-                     * @returns {function(code:string, template:string, ...templateArgs): Error} minErr instance
+                     * @param {object} option The object to compare to the model.
+                     * @returns {boolean} Returns true if option is equal to the scope.model object
                      */
                     checkEqualsModel : function(option) {
                         console.log("called : " + ++scope.view.count)

@@ -84,12 +84,6 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
                         windowClass: 'show modal-multiselect',
                         resolve: {
                             params: function () {
-                                console.log("params : ", {
-                                    placeholder: scope.view.placeholder,
-                                    items: scope.view.items,
-                                    selected: scope.view.selected,
-                                    field: scope.view.field
-                                });
                                 return {
                                     placeholder: scope.view.placeholder,
                                     items: scope.view.items,

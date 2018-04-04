@@ -18,7 +18,9 @@ var minifyHtml = require('gulp-minify-html');
 var inject = require('gulp-inject');
 var sass = require('gulp-sass');
 
-
+/**
+ * First we create the template cache for all our templates
+ */
 gulp.task('templatesCaching', function() {
     return gulp.src(templatesFolder + '/**/*.html')
         .pipe(templateCache(templatesFileName, {
@@ -28,12 +30,19 @@ gulp.task('templatesCaching', function() {
         .pipe(gulp.dest(outPutFolder));
 });
 
+/**
+ * Second step is to concatenate all the javascript files into one non-minified file, this file is persisted so it can help you with debugging
+ */
 gulp.task('concat', ['templatesCaching'], function() {
     return gulp.src( [srcFolder + '/**/*.js', outPutFolder + '/' + templatesFileName] )
         .pipe(concat(directivesFileName))
         .pipe(gulp.dest(outPutFolder));
 });
 
+/**
+ * Finally we minify all the source code
+ * @return {[type]} [description]
+ */
 gulp.task('minify', ['concat'], function() {
     return gulp.src(outPutFolder + '/' + directivesFileName)
         .pipe(uglify({
@@ -52,6 +61,10 @@ gulp.task('minify', ['concat'], function() {
         .pipe(gulp.dest(outPutFolder));
 });
 
+/**
+ * Here we compile our sass code into one css folder
+ * @return {[type]} [description]
+ */
 gulp.task('sass', function () {
   return gulp.src('./sass/**/*.scss')
     .pipe(sass.sync().on('error', sass.logError))
