@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -32,7 +32,7 @@ angular.module('akkurate-design-system').directive('akkSelect', [
                 scope.view = {
                     isValid: true
                 };
-
+                scope.model = scope.model || scope.options[0];
                 scope.defaultEnabled = (scope.defaultDisplayEnabled != null && scope.defaultDisplay != null) ? true : false;
 
                 scope.methods = {

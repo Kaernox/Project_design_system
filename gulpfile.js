@@ -1,6 +1,6 @@
 'use strict';
 
-// Paramétres du script gulp
+// Gulp script parameters
 var templatesFileName = 'akkurate-design-system.templates.js';
 var directivesFileName = 'akkurate-design-system.js';
 var moduleName = 'akkurate-design-system';
@@ -8,7 +8,7 @@ var outPutFolder = "./dist";
 var srcFolder = "./src";
 var templatesFolder = srcFolder + '/templates';
 
-// Dépendances
+// Dépendencies
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
@@ -23,7 +23,7 @@ gulp.task('templatesCaching', function() {
     return gulp.src(templatesFolder + '/**/*.html')
         .pipe(templateCache(templatesFileName, {
             module: moduleName,
-            root: "templates/" // Préfix avant les noms des templates
+            root: "templates/" // Préfix the names of all templates
         }))
         .pipe(gulp.dest(outPutFolder));
 });
@@ -37,10 +37,15 @@ gulp.task('concat', ['templatesCaching'], function() {
 gulp.task('minify', ['concat'], function() {
     return gulp.src(outPutFolder + '/' + directivesFileName)
         .pipe(uglify({
-            compress: {
-                sequences: false // Empéche la transformation des ';' par ','
-            }
-        }))
+                compress: {
+                    sequences: false // Prevent sequencing functions calls, this will disable the transformation of ';' with ','
+                }
+            })
+            // To show possible errors in the script
+            .on('error', function (error) {
+                console.log(error);
+            })
+        )
         .pipe(rename({
             suffix: '.min'
         }))
@@ -57,6 +62,7 @@ gulp.task('sass', function () {
 //  gulp.watch('./sass/**/*.scss', ['sass']);
 //});
 
+// If you want to add additional tasks, create a task like we did above then add the task's name to the array as we did below
 gulp.task('default', [
     'minify',
     'sass',
