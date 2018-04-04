@@ -30,7 +30,7 @@
                         <akk-alert title="Youpi" icon="warning" type="{{view.alert.model}}" is-displayed="view.alert.isDisplayed" is-closable="view.alert.isClosable" message="Il va faire beau !"></akk-alert>
                     </div>
                     <div class="col-12 col-md-4">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below.
                         </p>
                     </div>
@@ -43,10 +43,10 @@
                 <h2>Checkbox</h2>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <akk-checkbox model="view" property="acceptanceValue" label="Do accept the conditions of use (there a none anyway) ?"></akk-checkbox>
+                        <akk-checkbox model="view" property="acceptanceValue" label="Do you accept the conditions of use (there a none anyway) ?"></akk-checkbox>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             Here we have our akk-checkbox directive, it takes three values, the label, the model object and the property to take from that model object. The property will contain true if akk-checkbox is checked, or false.
                         </p>
                     </div>
@@ -62,7 +62,7 @@
                         <akk-checkbox-list model="view.checkboxList.selectedItems" options="view.checkboxList.options" label="Checkbox List"></akk-checkbox-list>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             Here we have our akk-checkbox-list directive, it's usefull when you have a list of options that you want to present to your users as a checkbox list, it taks the options to show the user and the model that will contain the selected items.
                         </p>
                     </div>
@@ -82,7 +82,7 @@
                         <!-- <pre class="show-value">{{ view.color | json }}</pre> -->
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-colorpicker directive is an improvement of the angular colorpicker directive that provide a visual view of colors, it takes the model which will contain the color chosen by the user in a 6 digit hex format.
                         </p>
                     </div>
@@ -95,7 +95,7 @@
                 <h2>Datagrid</h2>
                 <div class="row">
                     <div class="col-12">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-datagrid takes an array of objects and an array of columns names and displays it, the datagrid is sortable using any column, just click on the column name to sort, clicking multiple times will toggle the sort type between ascending and descending.
                         </p>
                         <!-- the akk-datagrid tag here is used display data from an array, this example uses the items array created for the akk-selectandsearch directive -->
@@ -114,7 +114,7 @@
                         <pre class="show-value">{{ view.date | json }}</pre>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-datepicker allows you to pick a date and store it as a javascript date object in the value provided in the model property.
                         </p>
                     </div>
@@ -127,10 +127,10 @@
                 <h2>Input</h2>
                 <div class="row">
                     <div class="col-12 col-md-3">
-                        <akk-input model="view.inputValue" label="Your costum label goes here" placeholder="example : Bob"></akk-input>
+                        <akk-input model="view.inputValue" label="Your custom label goes here" placeholder="example : Bob"></akk-input>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-input directive allows your users to type some text and stores it in the model property.
                         </p>
                     </div>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p>
+                        <p class="description text-justify">
                             Here we have our akk-loading, the property loading is binded with the checkbox so you can test this directive by indicating wether there is loading or not. To use it in your project, simply add the akk-loading directive as an attribute to any html element that you want to add a loading status to, and then assign a value to loading attribute, that value should be true when your content is loading and then changed to false when you content has finished loading.
                         </p>
                     </div>
@@ -165,10 +165,10 @@
                 <h2>Multiselect</h2>
                 <div class="row">
                     <div class="col-12 col-md-3">
-                        <akk-multiselect placeholder="The multiselect placeholder" field="{{ view.multiselect.field }}" selected="view.multiselect.selected" items="view.multiselect.items"></akk-multiselect>
+                        <akk-multiselect placeholder="{{view.multiselect.placeholder}}" field="{{ view.multiselect.field }}" selected="view.multiselect.selected" items="view.multiselect.items"></akk-multiselect>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-multiselect directive takes a list of object (in the items property) and the field to be shown from those objects in the modal that will appear, selected objects will be removed from the items array and added to the selected array.
                         </p>
                     </div>
@@ -184,11 +184,13 @@
                 <h2>Radio</h2>
                 <div class="row">
                     <div class="col-12 col-md-3">
-                        <akk-radio model="view.radio.value" property="id" label="voici une directive radio" options="view.radio.items" req="true"></akk-radio>
+                        <akk-radio model="view.radio.value" property="name" label="Your personel label" options="view.radio.items" req="false"></akk-radio>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
-                            The akk-radio is a set of radio buttons where options are specified in the options property and the selected option will be in the model property.
+                        <p class="description text-justify">
+                            The akk-radio is a set of radio buttons where options are specified in the options property as objects and the selected option will be in the model.
+                            <br />
+                            In property, you specify a field to be selected, model will contain the field vaue of the selected object, if no property has been specified, the model will contain the entire selected object, this will give you freedom to use primitives types as well as objects.
                         </p>
                     </div>
                     <div class="col-12 col-md-3">
@@ -206,7 +208,7 @@
                         <akk-select model="view.select.model" options="view.select.options"></akk-select>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-select directive provides a modal with options to select from. Options are specified in the options property and the selected item will be stored in the model property.
                         </p>
                     </div>
@@ -233,7 +235,7 @@
                         </akk-selectandsearch>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-selectandsearch directive accepts an array of objects as input as well as how you want to display every object ("fields" attribute) in the modal that pops off, the object passed to the model attribute will contain the id of the selected object, the full list of objects is displayed using the akk-datagrid.
                             <br />
                             To start Selecting items, click on the 3 dots on the right.
@@ -281,8 +283,8 @@
                         <akk-switch model="view.switch" property="value" label="{{'Switch #6 (large left)'| translate}}" alignment="left" size="lg"></akk-switch>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
-                            Description goes here
+                        <p class="description text-justify">
+                            The akk-switch directive is simply a checkbox with a lot of verification to position the label correctly
                         </p>
                     </div>
                     <div class="col-12 col-md-2">
@@ -301,7 +303,7 @@
                         <akk-textarea model="view.textareaValue"label="{{'Input your text here'| translate}}" placeholder="input your text" type="text" req="true"></akk-textarea>
                     </div>
                     <div class="col-12 col-md-6">
-                        <p class="description">
+                        <p class="description text-justify">
                             The akk-textarea directive allows your users to type some text and stores it in the model property.
                         </p>
                     </div>
@@ -323,7 +325,6 @@
                         The akk-tree directive takes a list of items with children (at any depth) and siplays them in a tree like format, the selected items of the tree will be stored within the model property.
                     </div>
                 </div>
-
             </div>
 
         </div> <!-- End main container -->
