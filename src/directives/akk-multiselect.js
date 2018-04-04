@@ -62,7 +62,7 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
                                     },
                                     cancel : function(){
                                         $scope.methods.close();
-                                    }, 
+                                    },
                                     save : function(){
                                         $uibModalInstance.close({
                                             items : $scope.view.items,
@@ -84,6 +84,12 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
                         windowClass: 'show modal-multiselect',
                         resolve: {
                             params: function () {
+                                console.log("params : ", {
+                                    placeholder: scope.view.placeholder,
+                                    items: scope.view.items,
+                                    selected: scope.view.selected,
+                                    field: scope.view.field
+                                });
                                 return {
                                     placeholder: scope.view.placeholder,
                                     items: scope.view.items,
@@ -94,8 +100,8 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
                         }
                     });
                     modalInstance.result.then(function (response) {
-                        scope.view.items = response.items;
-                        scope.view.selected = response.selected;
+                        scope.view.items = scope.items = response.items;
+                        scope.view.selected = scope.selected = response.selected;
                     });
                 }
             };
@@ -104,6 +110,3 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
         }
     };
 });
-
-
- 

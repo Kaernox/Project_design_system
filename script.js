@@ -151,7 +151,6 @@ designsystem.component('home', {
                         // Data for the akk-multiselect directive
                         multiselect: {
                             placeholder: "My placeholder",
-                            list: [],
                             items: [
                                 {
                                     id: 1,

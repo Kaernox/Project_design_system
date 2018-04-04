@@ -1,12 +1,10 @@
 <div class="form-group">
     <label class="control-label" ng-if="view.label">{{view.label}}</label>
-    <div class="form-control" ng-click="methods.open()">
-        <div class="pull-right">
-            <i class="material-icons md-18">arrow_drop_down</i>
-        </div>
+    <div class="form-control d-flex align-items-center justify-content-between" ng-click="methods.open()">
         <span ng-if="view.selected.length">
-            {{view.selected.length}} {{view.model}} <span class="translate"> selected</span>
+            {{view.selected.length}} <span>selected</span>
         </span>
-        <span ng-if="!view.selected.length" class="placeholder">{{view.placeholder}}</span>
+        <span ng-if="!view.selected.length" class="text-secondary">{{view.placeholder}}</span>
+        <i class="material-icons md-18">arrow_drop_down</i>
     </div>
 </div>
