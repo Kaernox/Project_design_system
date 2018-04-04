@@ -1,0 +1,17 @@
+{
+    "name": "akk-selector",
+    "scope": [
+        {
+            "label": "@",
+            "elementclass": "@",
+            "req": "@",
+            "model": "=",
+            "property": "@",
+            "event": "@"
+        }
+    ],
+    "label": "Label of your field",
+    "placeholder": "Select your option",
+    "model": "view.selectAndSearch.items",
+    "property": "lastname"
+}

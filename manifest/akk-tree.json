@@ -1,0 +1,16 @@
+{
+    "name": "akk-tree",
+    "scope": [
+        {
+            "title": "@",
+            "items": "=",
+            "model": "=",
+            "options": "=",
+            "event": "@"
+        }
+    ],
+    "model": "view.tree.model",
+    "title": "mon arbo",
+    "option": "{debug: true}",
+    "items": "view.tree.items"
+}

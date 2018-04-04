@@ -1,0 +1,17 @@
+{
+    "name": "akk-multiselect",
+    "scope": [
+        {
+            "label": "@",
+            "model": "@",
+            "placeholder": "@",
+            "items": "=",
+            "selected": "=",
+            "field": "@"
+        }
+    ],
+    "field": "view.multiselect.field",
+    "selected": "view.multiselect.list",
+    "items": "view.multiselect.items",
+    "description": ""
+}

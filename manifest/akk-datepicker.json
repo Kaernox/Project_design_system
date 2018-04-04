@@ -1,0 +1,14 @@
+{
+    "name": "akk-datepicker",
+    "scope": [
+        {
+            "label": "@",
+            "req": "@",
+            "model": "=",
+            "event": "@"
+        }
+    ],
+    "model": "view.date",
+    "label": "My DatePicker",
+    "descritpion": ""
+}

@@ -1,0 +1,20 @@
+{
+    "name": "akk-select",
+    "scope": [
+        {
+            "label": "@",
+            "elementclass": "@",
+            "req": "@",
+            "model": "=",
+            "options": "=",
+            "value": "@",
+            "display": "@",
+            "eventUpdate": "@",
+            "defaultDisplayEnabled": "@",
+            "defaultDisplay": "@"
+        }
+    ],
+    "model": "view.select.model",
+    "options": "view.select.options",
+    "description": ""
+}

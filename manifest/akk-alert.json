@@ -1,0 +1,22 @@
+{
+    "name": "akk-alert",
+    "scope": [
+        {
+            "title": "@",
+            "message": "@",
+            "icon": "@",
+            "event": "@",
+            "type": "@",
+            "isDisplayed": "=",
+            "isClosable": "="
+        }
+    ],
+    "title": "Youpi",
+    "model": "view.alert.model",
+    "icon": "warning",
+    "label": "",
+    "isDisplayed": "view.alert.isDisplayed",
+    "isClosable": "view.alert.isClosable",
+    "types": "",
+    "description": "The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below."
+}
