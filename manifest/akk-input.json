@@ -2,24 +2,51 @@
     "name": "akk-input",
     "scope": [
         {
-            "label": "@",
-            "elementclass": "@",
-            "type": "@",
-            "step": "@",
-            "placeholder": "@",
-            "req": "@",
-            "hasError": "=",
-            "model": "=",
-            "event": "@"
+            "attr": "label",
+            "bind": "@",
+            "value": "Your custom label goes here"
+        },
+        {
+            "attr": "elementclass",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "type",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "step",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "placeholder",
+            "bind": "@",
+            "value": "example : Bob"
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "hasError",
+            "bind": "=",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.inputValue"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
         }
+        
     ],
-    "label": "Your custom label goes here",
-    "elementclass": "",
-    "type": "",
-    "step": "",
-    "placeholder": "example : Bob",
-    "req": "",
-    "hasError": "",
-    "model": "view.inputValue",
     "description": "The akk-input directive allows your users to type some text and stores it in the model property."
 }

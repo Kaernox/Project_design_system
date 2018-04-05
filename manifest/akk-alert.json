@@ -72,15 +72,15 @@
             "attributes": [
                 {
                     "attr": "model",
-                    "model": "xxx"
+                    "model": "view.alert"
                 },
                 {
                     "attr": "property",
-                    "model": "xxx"
+                    "model": "isClosable"
                 },
                 {
                     "attr": "label",
-                    "model": "xxx"
+                    "model": "Show the close action"
                 }
             ]
         }

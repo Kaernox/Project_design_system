@@ -2,23 +2,45 @@
     "name": "akk-radio",
     "scope": [
         {
-            "label": "@",
-            "elementclass": "@",
-            "req": "@",
-            "name": "@",
-            "model": "=",
-            "options": "=",
-            "property": "@",
-            "event": "@"
+            "attr": "label",
+            "bind": "@",
+            "value": "voici une directive radio"
+        },
+        {
+            "attr": "elementclass",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "name",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.radio.value"
+        },
+        {
+            "attr": "options",
+            "bind": "=",
+            "value": "view.radio.items"
+        },
+        {
+            "attr": "property",
+            "bind": "@",
+            "value": "id"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": true
         }
     ],
-    "label": "voici une directive radio",
-    "elementclass": "",
-    "req": "",
-    "name": "",
-    "model": "view.radio.value",
-    "options": "view.radio.items",
-    "property": "id",
-    "req": true,
     "description": " The akk-radio is a set of radio buttons where options are specified in the options property as objects and the selected option will be in the model.<br /> In property, you specify a field to be selected, model will contain the field vaue of the selected object, if no property has been specified, the model will contain the entire selected object, this will give you freedom to use primitives types as well as objects."
 }

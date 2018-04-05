@@ -2,19 +2,37 @@
     "name": "akk-selector",
     "scope": [
         {
-            "label": "@",
-            "elementclass": "@",
-            "req": "@",
-            "model": "=",
-            "property": "@",
-            "event": "@"
+            "attr": "label",
+            "bind": "@",
+            "value": "Label of your field"
+        },
+        {
+            "attr": "elementclass",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.selectAndSearch.items"
+        },
+        {
+            "attr": "property",
+            "bind": "@",
+            "value": "lastname"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
         }
+        
     ],
-    "label": "Label of your field",
-    "elementclass":"",
-    "req":"",
-    "model": "view.selectAndSearch.items",
-    "property": "lastname",
     "placeholder": "Select your option",
     "description": "Here goes the description but actually the directive doesn't work like intended"
 }

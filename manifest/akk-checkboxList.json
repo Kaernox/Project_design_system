@@ -2,22 +2,45 @@
     "name": "akk-checkboxList",
     "scope": [
         {
-            "label": "@",
-            "elementclass": "@",
-            "req": "@",
-            "model": "=",
-            "options": "=",
-            "value": "@",
-            "display": "@",
-            "event": "@"
+            "attr": "label",
+            "bind": "@",
+            "value": "Checkbox List"
+        },
+        {
+            "attr": "elementclass",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.checkboxList.selectedItems"
+        },
+        {
+            "attr": "options",
+            "bind": "=",
+            "value": "view.checkboxList.options"
+        },
+        {
+            "attr": "value",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "display",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
         }
     ],
-    "label": "Checkbox List",
-    "elementclass": "",
-    "req": "",
-    "model": "view.checkboxList.selectedItems",
-    "options": "view.checkboxList.options",
-    "value": "",
-    "display": "",
     "decription": "Here we have our akk-checkbox-list directive, it's usefull when you have a list of options that you want to present to your users as a checkbox list, it taks the options to show the user and the model that will contain the selected items."
 }

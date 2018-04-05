@@ -2,14 +2,26 @@
     "name": "akk-datepicker",
     "scope": [
         {
-            "label": "@",
-            "req": "@",
-            "model": "=",
-            "event": "@"
+            "attr": "label",
+            "bind": "@",
+            "value": "My DatePicker"
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.date"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
         }
+        
     ],
-    "label": "My DatePicker",
-    "req": "",
-    "model": "view.date",
     "descritpion": "The akk-datepicker allows you to pick a date and store it as a javascript date object in the value provided in the model property."
 }

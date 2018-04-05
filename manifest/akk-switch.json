@@ -2,46 +2,71 @@
     "name": "akk-switch",
     "scope": [
         {
-            "label": "@",
-            "alignment": "@",
-            "elementclass": "@",
-            "icon": "@",
-            "size": "@",
-            "req": "@",
-            "model": "=",
-            "property": "@",
-            "eventUpdate": "@"
+            "attr": "label",
+            "bind": "@",
+            "value": [
+                "{{'Switch #1 (default default)'| translate}}",
+                "{{'Switch #2 (default center)'| translate}}",
+                "{{'Switch #3 (default left)'| translate}}",
+                "{{'Switch #4 (large default)'| translate}}",
+                "{{'Switch #5 (large CENTER)'| translate}}",
+                "{{'Switch #6 (large left)'| translate}}"
+            ]
+        },
+        {
+            "attr": "alignment",
+            "bind": "@",
+            "value": [
+                "",
+                "center",
+                "left",
+                "",
+                "center",
+                "left"
+            ]
+        },
+        {
+            "attr": "elementclass",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "icon",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "size",
+            "bind": "@",
+            "value": [
+                "",
+                "",
+                "",
+                "lg",
+                "lg",
+                "lg"
+            ]
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.switch"
+        },
+        {
+            "attr": "property",
+            "bind": "@",
+            "value": "value"
+        },
+        {
+            "attr": "eventUpdate",
+            "bind": "@",
+            "value": ""
         }
     ],
-    "label": [
-        "{{'Switch #1 (default default)'| translate}}",
-        "{{'Switch #2 (default center)'| translate}}",
-        "{{'Switch #3 (default left)'| translate}}",
-        "{{'Switch #4 (large default)'| translate}}",
-        "{{'Switch #5 (large CENTER)'| translate}}",
-        "{{'Switch #6 (large left)'| translate}}"
-    ],
-    "alignment": [
-        "",
-        "center",
-        "left",
-        "",
-        "center",
-        "left"
-    ],
-    "elementclass": "",
-    "icon": "",
-    "size": [
-        "",
-        "",
-        "",
-        "lg",
-        "lg",
-        "lg"
-    ],
-    "req": "",
-    "model": "view.switch",
-    "property": "value",
-    "eventUpdate": "",
     "description": "The akk-switch directive is simply a checkbox with a lot of verification to position the label correctly"
 }
