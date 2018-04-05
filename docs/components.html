@@ -1,12 +1,11 @@
 <div>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h1 class="display-4">Components</h1>
         <p class="lead">More than 18 components to create amazing interfaces.</p>
     </div>
 
     <div class="row">
-
-        <!-- Left side section that will be left clear, it contains the show data button to show how data chages on interactions with directives -->
+        <!-- Left side section that will be left clear, it contains the show data button to show how data changes on interactions with directives -->
         <div class="col-12 col-md-2">
             <div class="sticky-top">
                 <div class="pt-0 pt-md-3 mb-5">
@@ -19,6 +18,16 @@
 
         <!-- Right side section and main container that will contain all the components -->
         <div class="col-12 col-md-10">
+            <!-- ********** Page description ************ -->
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-justify">
+                        The Akkurate Design System is a series of individual AngularJS directives, that are designed to help developpers make websites faster. These designs are systemic and logical, as they all follow the same universal principles.
+                        <br />
+                        The component library gives developers a collection of re-usable HTML, JavaScript and SCSS partials for building their products.
+                    </p>
+                </div>
+            </div>
 
             <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
@@ -27,7 +36,7 @@
                     <div class="col-12 col-md-8">
                         <akk-select model="view.alert.model" label="Select the type" value="key" display="label" options="view.alert.types" event-update="updateAlert"></akk-select>
                         <akk-checkbox model="view.alert" property="isClosable" label="Show the close action"></akk-checkbox>
-                        <akk-alert title="Youpi" icon="warning" type="{{view.alert.model}}" is-displayed="view.alert.isDisplayed" is-closable="view.alert.isClosable" message="Il va faire beau !"></akk-alert>
+                        <akk-alert title="Youpi" icon="warning" type="{{view.alert.model}}" is-displayed="view.alert.isDisplayed" is-closable="view.alert.isClosable" message="Today is a good day !"></akk-alert>
                     </div>
                     <div class="col-12 col-md-4">
                         <p class="description text-justify">
@@ -74,6 +83,7 @@
 
             <hr class="hr-lg" />
 
+            <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
                 <h2>Color picker</h2>
                 <div class="row">
@@ -105,7 +115,7 @@
             </div>
 
             <hr class="hr-lg" />
-
+            <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
                 <h2>DatePicker</h2>
                 <div class="row">
@@ -141,12 +151,12 @@
             </div>
 
             <hr class="hr-lg" />
-
+            <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
                 <h2>Loader</h2>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <akk-checkbox model="view.loading.isDisplayed" property="isDisplayed" label="Show the loading"></akk-checkbox>
+                        <akk-checkbox model="view.loading" property="isDisplayed" label="Show the loading"></akk-checkbox>
                         <div akk-loading loading="view.loading.isDisplayed">
                             <p>Youpi, it's loaded :)</p>
                         </div>
@@ -191,6 +201,8 @@
                             The akk-radio is a set of radio buttons where options are specified in the options property as objects and the selected option will be in the model.
                             <br />
                             In property, you specify a field to be selected, model will contain the field vaue of the selected object, if no property has been specified, the model will contain the entire selected object, this will give you freedom to use primitives types as well as objects.
+                            <br />
+                            The akk-radio directive requires a all objects in options to have a property name so it can use it to display radio buttons.
                         </p>
                     </div>
                     <div class="col-12 col-md-3">
@@ -219,7 +231,7 @@
             </div>
 
             <hr class="hr-lg" />
-
+            <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
                 <h2>SelectAndSearch</h2>
                 <div class="row">
@@ -284,7 +296,9 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <p class="description text-justify">
-                            The akk-switch directive is simply a checkbox with a lot of verification to position the label correctly
+                            The akk-switch directive is simply a checkbox with a lot of verification to position the label correctly, you have three options for the button's position, you can edit it by setting the alignment property to <strong>right</strong>(default value), <strong>center</strong> or <strong>left</strong>, the example shows the three possible positions in order.
+                            <br />
+                            Size can also be increased by adding <strong>size="lg"</strong> to the directive.
                         </p>
                     </div>
                     <div class="col-12 col-md-2">
@@ -304,7 +318,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <p class="description text-justify">
-                            The akk-textarea directive allows your users to type some text and stores it in the model property.
+                            The akk-textarea directive allows your users to type some text and stores it in the model property, you can increase the length of the text area as you like by dragging the bottom-right corner up and down.
                         </p>
                     </div>
                     <div class="col-12 col-md-2">
@@ -319,10 +333,10 @@
                 <h2>Tree</h2>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <akk-tree model="view.tree.model" title="mon arbo" option="{debug: true}" items="view.tree.items" ></akk-tree>
+                        <akk-tree model="view.tree.model" title="My tree" options="{debug: false}" items="view.tree.items" ></akk-tree>
                     </div>
                     <div class="col-12 col-md-6">
-                        The akk-tree directive takes a list of items with children (at any depth) and siplays them in a tree like format, the selected items of the tree will be stored within the model property.
+                        The akk-tree directive takes a list of items with children (at any depth) and diplays them in a tree like format, the selected items of the tree will be stored within model.
                     </div>
                 </div>
             </div>
