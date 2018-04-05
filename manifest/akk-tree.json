@@ -4,7 +4,7 @@
         {
             "attr": "title",
             "bind": "@",
-            "value": "mon arbo"
+            "value": "My tree"
         },
         {
             "attr": "items",

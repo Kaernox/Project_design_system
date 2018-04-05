@@ -11,7 +11,8 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
             placeholder: "@",
             items: "=",
             selected: "=",
-            field: "@"
+            field: "@",
+            event: "@"
         },
         link: function postLink(scope, element, attrs) {
 

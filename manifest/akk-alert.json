@@ -42,28 +42,54 @@
             "field": "akk-select",
             "attributes": [
                 {
-                    "attr": "model",
-                    "data": "view.alert.model"
-                },
-                {
                     "attr": "label",
-                    "data": "Select the type"
+                    "bind": "@",
+                    "value": "Select the type"
                 },
                 {
-                    "attr": "value",
-                    "data": "key"
+                    "attr": "elementclass",
+                    "bind": "@",
+                    "value": ""
                 },
                 {
-                    "attr": "display",
-                    "data": "label"
+                    "attr": "req",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "model",
+                    "bind": "=",
+                    "value": "view.alert.model"
                 },
                 {
                     "attr": "options",
-                    "data": "view.alert.types"
+                    "bind": "=",
+                    "value": "view.alert.types"
                 },
                 {
-                    "attr": "event-update",
-                    "data": "updateAlert"
+                    "attr": "value",
+                    "bind": "@",
+                    "value": "key"
+                },
+                {
+                    "attr": "display",
+                    "bind": "@",
+                    "value": "label"
+                },
+                {
+                    "attr": "eventUpdate",
+                    "bind": "@",
+                    "value": "updateAlert"
+                },
+                {
+                    "attr": "defaultDisplayEnabled",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "defaultDisplay",
+                    "bind": "@",
+                    "value": ""
                 }
             ]
         },
@@ -71,16 +97,39 @@
             "field": "akk-checkbox",
             "attributes": [
                 {
+                    "attr": "label",
+                    "bind": "@",
+                    "value": "Show the close action"
+                },
+                {
+                    "attr": "alignment",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "elementclass",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "req",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
                     "attr": "model",
-                    "model": "view.alert"
+                    "bind": "=",
+                    "value": "view.alert"
                 },
                 {
                     "attr": "property",
-                    "model": "isClosable"
+                    "bind": "@",
+                    "value": "isClosable"
                 },
                 {
-                    "attr": "label",
-                    "model": "Show the close action"
+                    "attr": "eventUpdate",
+                    "bind": "@",
+                    "value": ""
                 }
             ]
         }

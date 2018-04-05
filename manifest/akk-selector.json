@@ -33,6 +33,5 @@
         }
         
     ],
-    "placeholder": "Select your option",
     "description": "Here goes the description but actually the directive doesn't work like intended"
 }

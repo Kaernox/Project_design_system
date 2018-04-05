@@ -239,7 +239,6 @@
                 <div class="row">
                     <div class="col-12 col-md-4">
                         <akk-selectandsearch
-                            class="text-truncate"
                             options="view.selectAndSearch.items"
                             label="Choose someone"
                             model='view.selectAndSearch.selectedId'
@@ -267,7 +266,7 @@
                 <h2>Selector</h2>
                 <div class="row">
                     <div class="col-12 col-md-4">
-                        <akk-selector label="Label of your field" placeholder="Select your option" model="view.selectAndSearch.items" property="lastname"></akk-selector>
+                        <akk-selector label="Label of your field" model="view.selectAndSearch.items" property="lastname"></akk-selector>
                     </div>
                     <div class="col-12 col-md-6">
                         Description goes here
@@ -316,7 +315,7 @@
                 <h2>Textarea</h2>
                 <div class="row">
                     <div class="col-12 col-md-4">
-                        <akk-textarea model="view.textareaValue"label="{{'Input your text here'| translate}}" placeholder="input your text" type="text" req="true"></akk-textarea>
+                        <akk-textarea model="view.textareaValue"label="{{'Input your text here'| translate}}" placeholder="input your text" req="true"></akk-textarea>
                     </div>
                     <div class="col-12 col-md-6">
                         <p class="description text-justify">

@@ -4,7 +4,7 @@
         {
             "attr": "label",
             "bind": "@",
-            "value": "Input your text here"
+            "value": "{{Input your text here | translate}}"
         },
         {
             "attr": "elementclass",
@@ -37,6 +37,5 @@
             "value": ""
         }
     ],
-    "type": "text",
     "description": "The akk-textarea directive allows your users to type some text and stores it in the model property."
 }
