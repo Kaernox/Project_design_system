@@ -11,9 +11,12 @@
             "event": "@"
         }
     ],
-    "model": "view.textareaValue",
     "label": "Input your text here",
+    "elementclass": "",
+    "size": "",
     "placeholder": "input your text",
+    "req": true,
+    "model": "view.textareaValue",
     "type": "text",
-    "req": true
+    "description": "The akk-textarea directive allows your users to type some text and stores it in the model property."
 }

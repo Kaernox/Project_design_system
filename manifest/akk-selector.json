@@ -11,7 +11,10 @@
         }
     ],
     "label": "Label of your field",
-    "placeholder": "Select your option",
+    "elementclass":"",
+    "req":"",
     "model": "view.selectAndSearch.items",
-    "property": "lastname"
+    "property": "lastname",
+    "placeholder": "Select your option",
+    "description": "Here goes the description but actually the directive doesn't work like intended"
 }

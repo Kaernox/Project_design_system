@@ -14,7 +14,15 @@
             "defaultDisplay": "@"
         }
     ],
+    "label": "",
+    "elementclass": "",
+    "req": "",
     "model": "view.select.model",
     "options": "view.select.options",
-    "description": ""
+    "value": "",
+    "display": "",
+    "eventUpdate": "",
+    "defaultDisplayEnabled": "",
+    "defaultDisplay": "",
+    "description": "The akk-select directive provides a modal with options to select from. Options are specified in the options property and the selected item will be stored in the model property."
 }
