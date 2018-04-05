@@ -1,11 +1,11 @@
 <div>
-    <div class="jumbotron">
+    <div class="jumbotron text-center">
         <h1 class="display-4">Components</h1>
         <p class="lead">More than 18 components to create amazing interfaces.</p>
     </div>
 
     <div class="row">
-        <!-- Left side section that will be left clear, it contains the show data button to show how data chages on interactions with directives -->
+        <!-- Left side section that will be left clear, it contains the show data button to show how data changes on interactions with directives -->
         <div class="col-12 col-md-2">
             <div class="sticky-top">
                 <div class="pt-0 pt-md-3 mb-5">
@@ -18,6 +18,16 @@
 
         <!-- Right side section and main container that will contain all the components -->
         <div class="col-12 col-md-10">
+            <!-- ********** Page description ************ -->
+            <div class="row">
+                <div class="col-12">
+                    <p class="text-justify">
+                        The Akkurate Design System is a series of individual AngularJS directives, that are designed to help developpers make websites faster. These designs are systemic and logical, as they all follow the same universal principles.
+                        <br />
+                        The component library gives developers a collection of re-usable HTML, JavaScript and SCSS partials for building their products.
+                    </p>
+                </div>
+            </div>
 
             <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
@@ -73,6 +83,7 @@
 
             <hr class="hr-lg" />
 
+            <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
                 <h2>Color picker</h2>
                 <div class="row">
@@ -104,7 +115,7 @@
             </div>
 
             <hr class="hr-lg" />
-
+            <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
                 <h2>DatePicker</h2>
                 <div class="row">
@@ -140,12 +151,12 @@
             </div>
 
             <hr class="hr-lg" />
-
+            <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
                 <h2>Loader</h2>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <akk-checkbox model="view.loading.isDisplayed" property="isDisplayed" label="Show the loading"></akk-checkbox>
+                        <akk-checkbox model="view.loading" property="isDisplayed" label="Show the loading"></akk-checkbox>
                         <div akk-loading loading="view.loading.isDisplayed">
                             <p>Youpi, it's loaded :)</p>
                         </div>
@@ -220,7 +231,7 @@
             </div>
 
             <hr class="hr-lg" />
-
+            <!-- *************************************************** Component ************************************************************************* -->
             <div class="component">
                 <h2>SelectAndSearch</h2>
                 <div class="row">
@@ -322,7 +333,7 @@
                 <h2>Tree</h2>
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <akk-tree model="view.tree.model" title="My tree" option="{debug: true}" items="view.tree.items" ></akk-tree>
+                        <akk-tree model="view.tree.model" title="My tree" options="{debug: false}" items="view.tree.items" ></akk-tree>
                     </div>
                     <div class="col-12 col-md-6">
                         The akk-tree directive takes a list of items with children (at any depth) and diplays them in a tree like format, the selected items of the tree will be stored within model.

@@ -63,11 +63,59 @@
     <p class="text-justify">
         Then host the project into any server (we used MAMP), go to the home page and then go to the components page to see all the components we have to offer.
     </p>
+
     <h2 id="source">Source</h2>
     <p class="text-justify">Our source files are included in a folder named src, feel free to modify them as you see fit.
         Then you can regenerate the module&#39;s file using <strong>Gulp</strong>, to do that, you first must have <strong>Gulp</strong> installed in your machine, then you must install it&#39;s dependencies :</p>
     <pre>npm install</pre>
-    <p class="text-justify">Then simply run :</p>
+    <p class="text-justify">
+        Then simply run :
+    </p>
     <pre>gulp</pre>
-    <p class="text-justify">This will generate the normal and the minified version of our module, a file containing only the template cache and a generated css file from sass source. This command must be executed whenever you modify any file within the <strong>src</strong> folder.</p>
+    <p class="text-justify">
+        This will generate the normal and the minified version of our module, a file containing only the template cache and a generated css file from sass source. This command must be executed whenever you modify any file within the <strong>src</strong> folder.
+    </p>
+
+    <!-- ********** Package content ************ -->
+    <h2>Package content</h2>
+    <div class="border border-secondary border-2 pt-2">
+        <pre>
+            <code>AkkurateDesignSystem<span class="token operator">/</span>
+                ├── dist
+                │   ├── akkurate-design-system.css
+                │   ├── akkurate-design-system.css
+                │   ├── akkurate-design-system.min.css
+                │   └── akkurate-design-system.templates.css
+                ├── docs
+                │   ├── components.html
+                │   └── home.html
+                ├── manifest
+                ├── sass
+                │   ├── base
+                │   │   └── *.sass
+                │   ├── components
+                │   │   └── *.sass
+                │   └── *.sass
+                ├── src
+                │   ├── directives
+                │   │   └── *.js
+                │   ├── filters
+                │   │   └── akk-filters.js
+                │   └── templates
+                │       ├── includes
+                │       ├── modals
+                │       │   └── *.html
+                │       ├── overload
+                │       │   └── datepicker
+                │       │        └── *.html
+                │       └── *.html
+                ├── bower.json
+                ├── gulpfile.js
+                ├── index.html
+                ├── package.json
+                ├── README.md
+                └── script.js
+            </code>
+        </pre>
+    </div>
 </div>

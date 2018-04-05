@@ -58,6 +58,7 @@ This project includes a live example to help you test all our directives, to tes
      bower install
 
 Then host the project into any server (we used MAMP), go to the home page and then go to the components page to see all the components we have to offer.
+
 ## Source
 
 Our source files are included in a folder named src, feel free to modify them as you see fit.
@@ -68,3 +69,39 @@ Then simply run :
 
     gulp
 This will generate the normal and the minified version of our module, a file containing only the template cache and a generated css file from sass source. This command must be executed whenever you modify any file within the **src** folder.
+
+## Package content
+        ├── dist
+        │   ├── akkurate-design-system.css
+        │   ├── akkurate-design-system.css
+        │   ├── akkurate-design-system.min.css
+        │   └── akkurate-design-system.templates.css
+        ├── docs
+        │   ├── components.html
+        │   └── home.html
+        ├── manifest
+        ├── sass
+        │   ├── base
+        │   │   └── *.sass
+        │   ├── components
+        │   │   └── *.sass
+        │   └── *.sass
+        ├── src
+        │   ├── directives
+        │   │   └── *.js
+        │   ├── filters
+        │   │   └── akk-filters.js
+        │   └── templates
+        │       ├── includes
+        │       ├── modals
+        │       │   └── *.html
+        │       ├── overload
+        │       │   └── datepicker
+        │       │        └── *.html
+        │       └── *.html
+        ├── bower.json
+        ├── gulpfile.js
+        ├── index.html
+        ├── package.json
+        ├── README.md
+        └── script.js
