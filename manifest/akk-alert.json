@@ -12,11 +12,10 @@
         }
     ],
     "title": "Youpi",
-    "model": "view.alert.model",
+    "message": "Il va faire beau !",
     "icon": "warning",
-    "label": "",
+    "types": "{{view.alert.model}}",
     "isDisplayed": "view.alert.isDisplayed",
     "isClosable": "view.alert.isClosable",
-    "types": "",
     "description": "The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below."
 }

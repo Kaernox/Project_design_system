@@ -13,8 +13,13 @@
             "event": "@"
         }
     ],
-    "model": "view.inputValue",
     "label": "Your custom label goes here",
+    "elementclass": "",
+    "type": "",
+    "step": "",
     "placeholder": "example : Bob",
-    "description": ""
+    "req": "",
+    "hasError": "",
+    "model": "view.inputValue",
+    "description": "The akk-input directive allows your users to type some text and stores it in the model property."
 }
