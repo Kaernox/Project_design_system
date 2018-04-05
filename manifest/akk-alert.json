@@ -2,20 +2,88 @@
     "name": "akk-alert",
     "scope": [
         {
-            "title": "@",
-            "message": "@",
-            "icon": "@",
-            "event": "@",
-            "type": "@",
-            "isDisplayed": "=",
-            "isClosable": "="
+            "attr": "title",
+            "bind": "@",
+            "value": "Youpi"
+        },
+        {
+            "attr": "message",
+            "bind": "@",
+            "value": "Il va faire beau !"
+        },
+        {
+            "attr": "icon",
+            "bind": "@",
+            "value": "warning"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "type",
+            "bind": "@",
+            "value": "view.alert.model"
+        },
+        {
+            "attr": "isDisplayed",
+            "bind": "=",
+            "value": "view.alert.isDisplayed"
+        },
+        {
+            "attr": "isClosable",
+            "bind": "=",
+            "value": "view.alert.isClosable"
         }
     ],
-    "title": "Youpi",
-    "message": "Il va faire beau !",
-    "icon": "warning",
-    "types": "{{view.alert.model}}",
-    "isDisplayed": "view.alert.isDisplayed",
-    "isClosable": "view.alert.isClosable",
+    "dependencies": [
+        {
+            "field": "akk-select",
+            "attributes": [
+                {
+                    "attr": "model",
+                    "data": "view.alert.model"
+                },
+                {
+                    "attr": "label",
+                    "data": "Select the type"
+                },
+                {
+                    "attr": "value",
+                    "data": "key"
+                },
+                {
+                    "attr": "display",
+                    "data": "label"
+                },
+                {
+                    "attr": "options",
+                    "data": "view.alert.types"
+                },
+                {
+                    "attr": "event-update",
+                    "data": "updateAlert"
+                }
+            ]
+        },
+        {
+            "field": "akk-checkbox",
+            "attributes": [
+                {
+                    "attr": "model",
+                    "model": "xxx"
+                },
+                {
+                    "attr": "property",
+                    "model": "xxx"
+                },
+                {
+                    "attr": "label",
+                    "model": "xxx"
+                }
+            ]
+        }
+    ],
     "description": "The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below."
 }
