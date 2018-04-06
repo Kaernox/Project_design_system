@@ -111,9 +111,10 @@
                             The akk-datagrid takes an array of objects and an array of columns names and displays it, the datagrid is sortable using any column, just click on the column name to sort, clicking multiple times will toggle the sort type between ascending and descending.
                         </p>
                         <!-- the akk-datagrid tag here is used display data from an array, this example uses the items array created for the akk-selectandsearch directive -->
-                        <akk-datagrid items="view.selectAndSearch.items" columns="['lastname', 'firstname', 'job', 'location']" label="This is a datagrid"></akk-datagrid>
+                        <akk-datagrid items="view.selectAndSearch.items" columns="view.datagrid.columns" selected="view.datagrid.selectedItems" legend="This is a datagrid"></akk-datagrid>
                     </div>
                 </div>
+                <pre class="show-value">{{view.datagrid.selected | json }}</pre>
             </div>
 
             <hr class="hr-lg" />

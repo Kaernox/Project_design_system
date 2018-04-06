@@ -48,6 +48,11 @@ var componentsData = {
         options: ["test1", "test2", "test3", "test4"],
         selectedItems: []
     },
+    // Data for the akk-datagird directive
+    checkboxList: {
+        columns: ['lastname', 'firstname', 'job', 'location'],
+        selectedItems: []
+    },
     // The selected color in the akk-colorpicker directive
     color: "#CC0000",
     // The date selected in the akk-datepicker directive will be stored here

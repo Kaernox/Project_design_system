@@ -1,25 +1,33 @@
-<div>
-    <table class="table table-vertical-center" ng-if="items.length">
+<div class="table-responsive">
+    <table class="table table-vertical-center" data-ng-if="items.length">
+        <caption data-ng-if="legend && legend != ''">{{legend}}</caption>
         <thead>
             <tr>
-                <th ng-repeat="column in columns" ng-click="methods.sortBy(column, methods.inverseWay(column))">
+                <th data-ng-if="">
+                    <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>
+                    <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>
+                    <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>
+                </th>
+                <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">
                     <div class="d-flex align-items-center">
                         <span>{{column| translate}}</span>
-                        <i ng-if="view.dimension == column && view.way == 'desc'" class="material-icons">arrow_downward</i>
-                        <i ng-if="view.dimension == column && view.way == 'asc'" class="material-icons">arrow_upward</i>
-                        <i ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>
+                        <i data-ng-if="view.dimension == column && view.way == 'desc'" class="material-icons">arrow_downward</i>
+                        <i data-ng-if="view.dimension == column && view.way == 'asc'" class="material-icons">arrow_upward</i>
+                        <i data-ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>
                     </div>
                 </th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in items| orderBy: methods.order()">
-                <td ng-repeat="column in columns">{{item[column]}}</td>
+            <tr data-ng-repeat="item in items| orderBy: methods.order()">
+                <td data-ng-if="">
+                    <i class="material-icons text-primary" data-ng-if="model[property]">check_box</i>
+                    <i class="material-icons text-muted" data-ng-if="!model[property]">check_box_outline_blank</i>
+                </td>
+                <td data-ng-repeat="column in columns">{{item[column]}}</td>
             </tr>
         </tbody>
     </table>
-    <akk-alert title="{{'Aucun résultat trouvé !'| translate}}" ng-if="!items.length"></akk-alert>
-    <hr />
-    <!--     <pre>{{view | json}}</pre>
-        <pre>{{items | json}}</pre> -->
+
+    <akk-alert title="{{'Aucun résultat trouvé !'| translate}}" data-ng-if="!items.length"></akk-alert>
 </div>
