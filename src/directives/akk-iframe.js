@@ -1,9 +1,9 @@
 /**
  * The Wizard directive 
- * 
  * A Wizard needs to be initialized with a data model.
  * It can search for an existing item, update it if found and create a new one.
  */
+
 'use strict';
 angular.module('akkurate-design-system').directive("akkIframe", function () {
 

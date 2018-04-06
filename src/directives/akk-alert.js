@@ -1,5 +1,6 @@
 /**
- * the akkAlert is use when you use une alert
+ * directive use to manipulate the behavior of alert
+ * it let you choose the type and its content
  * 
  */
 

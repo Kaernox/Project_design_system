@@ -1,7 +1,9 @@
 /*
- * Directive pour ouvrir une modal, rechercher un item dans une liste et le selectionner
+ * directive who open a modal for search an item in a list and select him
+ * the selected item is return for an ulterior use
  * @return {int}
  */
+
 'use strict';
 angular.module('akkurate-design-system').directive('akkSelectandsearch', ['$rootScope', '$window', '$filter', '$uibModal',
     function ($rootScope, $window, $filter, $uibModal) {

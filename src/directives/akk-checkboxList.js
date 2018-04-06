@@ -1,8 +1,8 @@
 /**
- * Manages a list of checkboxes
+ * directive who can let you manage the behavior of 
+ * multiple checkbox order in a list
  * 
  */
-
 
 'use strict';
 angular.module('akkurate-design-system').directive('akkCheckboxList', [

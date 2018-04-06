@@ -1,6 +1,9 @@
 /* 
- * directive qui gere une check box
+ * directive use to manage the behavior of a checkbox
+ * 
+ * 
  */
+
 'use strict';
 angular.module('akkurate-design-system').directive("akkCheckbox", [
     '$rootScope',

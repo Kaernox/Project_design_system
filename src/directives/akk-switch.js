@@ -1,3 +1,9 @@
+/* 
+ * directive who manage the behavior of a switch
+ * he can be use to set the position and the size
+ * 
+ */
+
 'use strict';
 angular.module('akkurate-design-system').directive("akkSwitch", [
     '$rootScope',

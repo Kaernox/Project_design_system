@@ -1,6 +1,9 @@
 /*
  * Directive to display a loader
+ * 
+ * 
  */
+
 'use strict';
 angular.module('akkurate-design-system').directive('akkLoading', function () {
     return {

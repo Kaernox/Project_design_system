@@ -1,12 +1,14 @@
 <div class="table-responsive">
     <table class="table table-vertical-center" data-ng-if="items.length">
-        <caption data-ng-if="legend && legend != ''">{{legend}}</caption>
+        <caption data-ng-if="caption && caption != ''">{{caption}}</caption>
         <thead>
             <tr>
                 <th data-ng-if="">
-                    <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>
-                    <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>
-                    <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>
+                    <div data-ng-click="methods.toggleAll()">
+                        <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>
+                        <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>
+                        <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>
+                    </div>
                 </th>
                 <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">
                     <div class="d-flex align-items-center">

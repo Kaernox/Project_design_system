@@ -1,3 +1,9 @@
+/*
+ * directives for picking a date
+ * 
+ * 
+ */
+
 'use strict';
 angular.module('akkurate-design-system').directive("akkDatepicker",
         [

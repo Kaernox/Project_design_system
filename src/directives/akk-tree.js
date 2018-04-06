@@ -3,6 +3,7 @@
  * checkbox and toggle are implement
  * you can open-closed all and check-uncheck all
  */
+
 'use strict';
 angular.module('akkurate-design-system').directive('akkTree', [
     '$rootScope',

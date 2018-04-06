@@ -1,6 +1,9 @@
 /* 
- * directive qui permet de rentré et passé des grande portion de texte
+ * directive who manage to let the user input a large text
+ * the input zone can be sized manualy by the user or 
+ * fit the input
  */
+
 'use strict';
 angular.module('akkurate-design-system').directive('akkTextarea', [
     function () {

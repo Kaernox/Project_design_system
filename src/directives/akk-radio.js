@@ -1,9 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * directive use to manage the behavior of the radio button
+ * the choice can be use afterward
+ * 
  */
-
 
 'use strict';
 angular.module('akkurate-design-system').directive('akkRadio', [

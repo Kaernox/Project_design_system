@@ -1,5 +1,6 @@
 /**
- * 
+ * directive use to calibrate modal when use on smartphone and 
+ * other portable device.
  * 
  */
 

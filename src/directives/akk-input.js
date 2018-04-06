@@ -1,7 +1,8 @@
 /* 
- * directive qui permet de rentré du text dans uen zone limité
+ * directive to create a zone for an text entry
+ * the entry can be use for ulterior fonction
+ * 
  */
-
 
 'use strict';
 angular.module('akkurate-design-system').directive('akkInput', [

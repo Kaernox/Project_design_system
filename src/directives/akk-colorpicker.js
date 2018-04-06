@@ -1,8 +1,8 @@
 /*
- * directive qui premet de choisir et de changé la couleur
+ * directive who let the user pick a  color
+ * the color pick can be pass for ulterior use
  * 
  */
-
 
 'use strict';
 angular.module('akkurate-design-system').directive("akkColorpicker",

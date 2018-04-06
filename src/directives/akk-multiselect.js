@@ -1,3 +1,9 @@
+/*
+ * can open a modal to display a list
+ * then the user can chose multiple choice of the selection
+ * this choices can be use at the exit of the modal
+ */
+
 'use strict';
 angular.module('akkurate-design-system').directive("akkMultiselect", function ($uibModal) {
     return {

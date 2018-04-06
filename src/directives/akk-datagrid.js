@@ -1,6 +1,9 @@
 /*
- * UI Directive for a datagrid
+ * directive who order a list in a table. This one can be reorder
+ * and can use chebox for passing somme parameter
+ * 
  */
+
 'use strict';
 angular.module('akkurate-design-system').directive("akkDatagrid", function () {
     return {
@@ -9,7 +12,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", function () {
         transclude: true,
         replace: true,
         scope: {
-            legend: "@",
+            caption: "@",
             items: "=",
             columns: "=",
             selected: "=",
@@ -33,13 +36,9 @@ angular.module('akkurate-design-system').directive("akkDatagrid", function () {
                     var index = $filter('getIndexBy')(scope.selected, 'id', item.id);
                     scope.selected.splice(index, 1);
                 },
-                selectAll: function () {
+                toggleAll: function () {
                     var index = $filter('getIndexBy')(scope.items, 'id', item.id);
                     scope.selected.push(item);
-                },
-                unselectAll: function () {
-                    var index = $filter('getIndexBy')(scope.selected, 'id', item.id);
-                    scope.selected.splice(index, 1);
                 },
                 sortBy: function (dimension, way) {
                     scope.view.dimension = dimension;

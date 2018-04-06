@@ -47,16 +47,6 @@
                     "value": "Select the type"
                 },
                 {
-                    "attr": "elementclass",
-                    "bind": "@",
-                    "value": ""
-                },
-                {
-                    "attr": "req",
-                    "bind": "@",
-                    "value": ""
-                },
-                {
                     "attr": "model",
                     "bind": "=",
                     "value": "view.alert.model"
@@ -80,16 +70,6 @@
                     "attr": "eventUpdate",
                     "bind": "@",
                     "value": "updateAlert"
-                },
-                {
-                    "attr": "defaultDisplayEnabled",
-                    "bind": "@",
-                    "value": ""
-                },
-                {
-                    "attr": "defaultDisplay",
-                    "bind": "@",
-                    "value": ""
                 }
             ]
         },
@@ -102,21 +82,6 @@
                     "value": "Show the close action"
                 },
                 {
-                    "attr": "alignment",
-                    "bind": "@",
-                    "value": ""
-                },
-                {
-                    "attr": "elementclass",
-                    "bind": "@",
-                    "value": ""
-                },
-                {
-                    "attr": "req",
-                    "bind": "@",
-                    "value": ""
-                },
-                {
                     "attr": "model",
                     "bind": "=",
                     "value": "view.alert"
@@ -125,12 +90,7 @@
                     "attr": "property",
                     "bind": "@",
                     "value": "isClosable"
-                },
-                {
-                    "attr": "eventUpdate",
-                    "bind": "@",
-                    "value": ""
-                }
+                }    
             ]
         }
     ],
