@@ -1,0 +1,41 @@
+{
+    "name": "akk-checkbox",
+    "scope": [
+        {
+            "attr": "label",
+            "bind": "@",
+            "value": "Do accept the conditions of use (there a none anyway)?"
+        },
+        {
+            "attr": "alignment",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "elementclass",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view"
+        },
+        {
+            "attr": "property",
+            "bind": "@",
+            "value": "acceptanceValue"
+        },
+        {
+            "attr": "eventUpdate",
+            "bind": "@",
+            "value": ""
+        }
+    ],
+    "description": "Here we have our akk-checkbox directive, it takes three values, the label, the model object and the property to take from that model object. The property will contain true if akk-checkbox is checked, or false."
+}

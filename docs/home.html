@@ -6,15 +6,24 @@
 </div>
 <div class="container">
     <h2 id="welcome-to-akkurate-design-system">Welcome to Akkurate-Design-System</h2>
-    <p>Akkurate-Design-System is a module for AngularJS which contains directives and filters.</p>
-    <p>Directives were created using Bootstrap 4 CSS framework.</p>
+    <p class="text-justify">
+        Akkurate-Design-System is a module for AngularJS which contains directives and filters.
+    </p>
+    <p class="text-justify">
+        Directives were created using Bootstrap 4 CSS framework.
+    </p>
     <h2 id="usage">Usage</h2>
-    <p>You simply have to inculde our module into your controller&#39;s dependencies and include our module&#39;s file ( dist/akkurate-design-system.js ) in your project.
+    <p class="text-justify">
+        You simply have to inculde our module into your controller&#39;s dependencies and include our module&#39;s file ( dist/akkurate-design-system.js ) in your project.
         In our example, we created another module named &#39;AkkurateDesignSystem&#39; to test our components module, you can change that with your module&#39;s name :
-        <code>angular.module(&#39;AkkurateDesignSystem&#39;, [&#39;akkurate-design-system&#39;])</code></p>
+        <code>angular.module(&#39;AkkurateDesignSystem&#39;, [&#39;akkurate-design-system&#39;])</code>
+        <br />
+        Feel free to change the source code of the components.html file to see how our directives react.
+    </p>
     <h2 id="our-module-s-dependencies">Our module&#39;s dependencies</h2>
-    <p>Your index file must have the following scripts included in order for our module to be fully functional</p>
-    <pre>    &lt;!-- jQuery --&gt;
+    <p class="text-justify">Your index file must have the following scripts included in order for our module to be fully functional</p>
+    <pre>
+        &lt;!-- jQuery --&gt;
         &lt;script src=&quot;https://code.jquery.com/jquery-3.2.1.slim.min.js&quot;
          integrity=&quot;sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN&quot; crossorigin=&quot;anonymous&quot;&gt;&lt;/script&gt;
 
@@ -51,16 +60,66 @@
         &lt;!-- Your scripts goes here --&gt;
         &lt;script src=&quot;your-script.js&quot;&gt;&lt;/script&gt;
     </pre>
-    
+
     <h2 id="live-example">Live Example</h2>
-    <p>This project includes a live example to help you test all our directives, to test our project, after you download it, go to the project folder and simply run the following command  :</p>
+    <p class="text-justify">This project includes a live example to help you test all our directives, to test our project, after you download it, go to the project folder and simply run the following command  :</p>
     <pre>bower install</pre>
-    
+    <p class="text-justify">
+        Then host the project into any server (we used MAMP), go to the home page and then go to the components page to see all the components we have to offer.
+    </p>
+
     <h2 id="source">Source</h2>
-    <p>Our source files are included in a folder named src, feel free to modify them as you see fit.
+    <p class="text-justify">Our source files are included in a folder named src, feel free to modify them as you see fit.
         Then you can regenerate the module&#39;s file using <strong>Gulp</strong>, to do that, you first must have <strong>Gulp</strong> installed in your machine, then you must install it&#39;s dependencies :</p>
     <pre>npm install</pre>
-    <p>Then simply run :</p>
+    <p class="text-justify">
+        Then simply run :
+    </p>
     <pre>gulp</pre>
-    <p>This will generate the normal and the minified version of our module, this command must be executed whenever you modify any file within the <strong>src</strong> folder.</p>
+    <p class="text-justify">
+        This will generate the normal and the minified version of our module, a file containing only the template cache and a generated css file from sass source. This command must be executed whenever you modify any file within the <strong>src</strong> folder.
+    </p>
+
+    <!-- ********** Package content ************ -->
+    <h2>Package content</h2>
+    <div class="bg-light border rounded border-secondary border-2 pt-2">
+        <pre>
+            <code>AkkurateDesignSystem<span class="token operator">/</span>
+                ├── dist
+                │   ├── akkurate-design-system.css
+                │   ├── akkurate-design-system.css
+                │   ├── akkurate-design-system.min.css
+                │   └── akkurate-design-system.templates.css
+                ├── docs
+                │   ├── components.html
+                │   └── home.html
+                ├── manifest
+                ├── sass
+                │   ├── base
+                │   │   └── *.sass
+                │   ├── components
+                │   │   └── *.sass
+                │   └── *.sass
+                ├── src
+                │   ├── directives
+                │   │   └── *.js
+                │   ├── filters
+                │   │   └── akk-filters.js
+                │   └── templates
+                │       ├── includes
+                │       ├── modals
+                │       │   └── *.html
+                │       ├── overload
+                │       │   └── datepicker
+                │       │        └── *.html
+                │       └── *.html
+                ├── bower.json
+                ├── gulpfile.js
+                ├── index.html
+                ├── package.json
+                ├── README.md
+                └── script.js
+            </code>
+        </pre>
+    </div>
 </div>

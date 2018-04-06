@@ -1,0 +1,31 @@
+{
+    "name": "akk-tree",
+    "scope": [
+        {
+            "attr": "title",
+            "bind": "@",
+            "value": "My tree"
+        },
+        {
+            "attr": "items",
+            "bind": "=",
+            "value": "view.tree.items"
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.tree.model"
+        },
+        {
+            "attr": "options",
+            "bind": "=",
+            "value": "{debug: false}"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
+        }
+    ],
+    "description": "The akk-tree directive takes a list of items with children (at any depth) and siplays them in a tree like format, the selected items of the tree will be stored within the model property."
+}

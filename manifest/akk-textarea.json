@@ -1,0 +1,41 @@
+{
+    "name": "akk-textarea",
+    "scope": [
+        {
+            "attr": "label",
+            "bind": "@",
+            "value": "{{Input your text here | translate}}"
+        },
+        {
+            "attr": "elementclass",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "size",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "placeholder",
+            "bind": "@",
+            "value": "input your text"
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": true
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.textareaValue"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
+        }
+    ],
+    "description": "The akk-textarea directive allows your users to type some text and stores it in the model property."
+}

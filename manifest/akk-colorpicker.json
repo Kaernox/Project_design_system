@@ -1,0 +1,31 @@
+{
+    "name": "akk-colorpicker",
+    "scope": [
+        {
+            "attr": "label",
+            "bind": "@",
+            "value": "Couleur de la pomme"
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "@",
+            "value": "view.color"
+        },
+        {
+            "attr": "options",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
+        }
+    ],
+    "description": "The akk-colorpicker directive is an improvement of the angular colorpicker directive that provide a visual view of colors, it takes the model which will contain the color chosen by the user in a 6 digit hex format."
+}

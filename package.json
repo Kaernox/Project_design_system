@@ -2,6 +2,10 @@
   "name": "akkurate-design-system",
   "version": "1.0.0",
   "description": "",
+  "authors": [
+    "Olivier Lacombe <olacombe@subvitamine.com>",
+    "Moatez Mkhinini <mkhinini.motaz@gmail.com>"
+  ],
   "main": " ",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

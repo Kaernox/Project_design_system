@@ -1,0 +1,138 @@
+{
+    "name": "akk-alert",
+    "scope": [
+        {
+            "attr": "title",
+            "bind": "@",
+            "value": "Youpi"
+        },
+        {
+            "attr": "message",
+            "bind": "@",
+            "value": "Il va faire beau !"
+        },
+        {
+            "attr": "icon",
+            "bind": "@",
+            "value": "warning"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "type",
+            "bind": "@",
+            "value": "view.alert.model"
+        },
+        {
+            "attr": "isDisplayed",
+            "bind": "=",
+            "value": "view.alert.isDisplayed"
+        },
+        {
+            "attr": "isClosable",
+            "bind": "=",
+            "value": "view.alert.isClosable"
+        }
+    ],
+    "dependencies": [
+        {
+            "field": "akk-select",
+            "attributes": [
+                {
+                    "attr": "label",
+                    "bind": "@",
+                    "value": "Select the type"
+                },
+                {
+                    "attr": "elementclass",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "req",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "model",
+                    "bind": "=",
+                    "value": "view.alert.model"
+                },
+                {
+                    "attr": "options",
+                    "bind": "=",
+                    "value": "view.alert.types"
+                },
+                {
+                    "attr": "value",
+                    "bind": "@",
+                    "value": "key"
+                },
+                {
+                    "attr": "display",
+                    "bind": "@",
+                    "value": "label"
+                },
+                {
+                    "attr": "eventUpdate",
+                    "bind": "@",
+                    "value": "updateAlert"
+                },
+                {
+                    "attr": "defaultDisplayEnabled",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "defaultDisplay",
+                    "bind": "@",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "field": "akk-checkbox",
+            "attributes": [
+                {
+                    "attr": "label",
+                    "bind": "@",
+                    "value": "Show the close action"
+                },
+                {
+                    "attr": "alignment",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "elementclass",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "req",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "model",
+                    "bind": "=",
+                    "value": "view.alert"
+                },
+                {
+                    "attr": "property",
+                    "bind": "@",
+                    "value": "isClosable"
+                },
+                {
+                    "attr": "eventUpdate",
+                    "bind": "@",
+                    "value": ""
+                }
+            ]
+        }
+    ],
+    "description": "The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below."
+}

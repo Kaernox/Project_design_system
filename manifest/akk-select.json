@@ -1,0 +1,56 @@
+{
+    "name": "akk-select",
+    "scope": [
+        {
+            "attr": "label",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "elementclass",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.select.model"
+        },
+        {
+            "attr": "options",
+            "bind": "=",
+            "value": "view.select.options"
+        },
+        {
+            "attr": "value",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "display",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "eventUpdate",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "defaultDisplayEnabled",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "defaultDisplay",
+            "bind": "@",
+            "value": ""
+        }
+    ],
+    "description": "The akk-select directive provides a modal with options to select from. Options are specified in the options property and the selected item will be stored in the model property."
+}

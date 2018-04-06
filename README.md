@@ -8,6 +8,7 @@ Directives were created using Bootstrap 4 CSS framework.
 You simply have to inculde our module into your controller's dependencies and include our module's file ( dist/akkurate-design-system.js ) in your project.
 In our example, we created another module named 'AkkurateDesignSystem' to test our components module, you can change that with your module's name :
      `angular.module('AkkurateDesignSystem', ['akkurate-design-system'])`
+Feel free to change the source code of the components.html file to see how our directives react.
 
 ## Our module's dependencies
 Your index file must have the following scripts included in order for our module to be fully functional
@@ -56,6 +57,7 @@ This project includes a live example to help you test all our directives, to tes
 
      bower install
 
+Then host the project into any server (we used MAMP), go to the home page and then go to the components page to see all the components we have to offer.
 
 ## Source
 
@@ -66,4 +68,40 @@ Then you can regenerate the module's file using **Gulp**, to do that, you first 
 Then simply run :
 
     gulp
-This will generate the normal and the minified version of our module, this command must be executed whenever you modify any file within the **src** folder.
+This will generate the normal and the minified version of our module, a file containing only the template cache and a generated css file from sass source. This command must be executed whenever you modify any file within the **src** folder.
+
+## Package content
+        ├── dist
+        │   ├── akkurate-design-system.css
+        │   ├── akkurate-design-system.css
+        │   ├── akkurate-design-system.min.css
+        │   └── akkurate-design-system.templates.css
+        ├── docs
+        │   ├── components.html
+        │   └── home.html
+        ├── manifest
+        ├── sass
+        │   ├── base
+        │   │   └── *.sass
+        │   ├── components
+        │   │   └── *.sass
+        │   └── *.sass
+        ├── src
+        │   ├── directives
+        │   │   └── *.js
+        │   ├── filters
+        │   │   └── akk-filters.js
+        │   └── templates
+        │       ├── includes
+        │       ├── modals
+        │       │   └── *.html
+        │       ├── overload
+        │       │   └── datepicker
+        │       │        └── *.html
+        │       └── *.html
+        ├── bower.json
+        ├── gulpfile.js
+        ├── index.html
+        ├── package.json
+        ├── README.md
+        └── script.js

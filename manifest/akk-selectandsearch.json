@@ -1,0 +1,85 @@
+{
+    "name": "akk-selectAndSearch",
+    "scope": [
+        {
+            "attr": "label",
+            "bind": "@",
+            "value": "Choose someone"
+        },
+        {
+            "attr": "options",
+            "bind": "=",
+            "value": "view.selectAndSearch.items"
+        },
+        {
+            "attr": "optionsType",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "fields",
+            "bind": "=",
+            "value": [
+                "lastname",
+                " ",
+                "firstname"
+            ]
+        },
+        {
+            "attr": "filterType",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "filterBy",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "placeholder",
+            "bind": "@",
+            "value": "Choose someone"
+        },
+        {
+            "attr": "hasError",
+            "bind": "=",
+            "value": ""
+        },
+        {
+            "attr": "req",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "model",
+            "bind": "=",
+            "value": "view.selectAndSearch.selectedId"
+        },
+        {
+            "attr": "event",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "add",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "modalSize",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "templateItem",
+            "bind": "@",
+            "value": "default"
+        },
+        {
+            "attr": "orderBy",
+            "bind": "@",
+            "value": ""
+        }
+    ],
+    "description": "The akk-selectandsearch directive accepts an array of objects as input as well as how you want to display every object ('fields' attribute) in the modal that pops off, the object passed to the model attribute will contain the id of the selected object, the full list of objects is displayed using the akk-datagrid.<br /> To start Selecting items, click on the 3 dots on the right."
+}
