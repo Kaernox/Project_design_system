@@ -49,7 +49,8 @@ var componentsData = {
         selectedItems: []
     },
     // Data for the akk-datagird directive
-    checkboxList: {
+    datagrid: {
+        items: [],
         columns: ['lastname', 'firstname', 'job', 'location'],
         selectedItems: []
     },
