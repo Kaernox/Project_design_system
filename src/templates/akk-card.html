@@ -1,0 +1,8 @@
+<div class="card">
+  <img data-ng-if="media && media != ''" class="card-img-top" data-ng-src="{{media}}" alt="{{title}}">
+  <div class="card-body">
+    <h5 class="card-title">{{title}}</h5>
+    <p data-ng-if="content && content != ''" class="card-text">{{content}}</p>
+    <button data-ng-if="options.length > 0" type="button" class="btn btn-primary" data-ng-repeat="option in options" ng-click="methods.action(option)">{{option.label}}</a>
+  </div>
+</div>

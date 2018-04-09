@@ -41,6 +41,18 @@ var componentsData = {
             }
         ]
     },
+    // Data for the akk-card directive
+    card: {
+        title: "Card title",
+        text: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+        media: "http://fr.web.img2.acsta.net/r_640_360/videothumbnails/16/06/27/19/35/295010.jpg",
+        options: [
+            {
+                label: "Alert something",
+                event: "cardAlert"
+            }
+        ]
+    },
     // Data for the akk-checkbox directive, it will contain either true or false
     checkboxValue: false,
     // Data for the akk-checkbox-list directive
@@ -445,10 +457,13 @@ designsystem.component('home', {
             };
 
             $scope.view = componentsData; // ==> defined above
+            
             $scope.$on('updateAlert', function (event) {
-                console.log('updateAlert', $scope.view.alert.isDisplayed);
                 $scope.view.alert.isDisplayed = true;
-                console.log('updateAlert', $scope.view.alert.isDisplayed);
+            });
+            
+            $scope.$on('cardAlert', function (event) {
+                alert('Youpi card');
             });
         }
     ]
