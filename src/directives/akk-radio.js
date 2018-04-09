@@ -20,25 +20,25 @@ angular.module('akkurate-design-system').directive('akkRadio', [
                 model: "=",
                 options: "=",
                 property: "@",
-                event: "@"
+                eventUpdate: "@",
             },
             link: function postLink(scope, element, attrs) {
                 scope.view = {
                     isValid: false,
-                    count : 0
+                    count: 0
                 }
 
                 scope.methods = {
-                    init: function() {
+                    init: function () {
                         scope.methods.checkValidity();
                     },
-                    select: function(option) {
+                    select: function (option) {
                         scope.model = option[scope.property] || option;
                         scope.methods.checkValidity();
                     },
-                    checkValidity : function() {
-                        if(scope.req) {
-                            if(scope.model != null) {
+                    checkValidity: function () {
+                        if (scope.req) {
+                            if (scope.model != null) {
                                 scope.view.isValid = true;
                             } else {
                                 scope.view.isValid = false;
@@ -56,7 +56,7 @@ angular.module('akkurate-design-system').directive('akkRadio', [
                      * @param {object} option The object to compare to the model.
                      * @returns {boolean} Returns true if option is equal to the scope.model object
                      */
-                    checkEqualsModel : function(option) {
+                    checkEqualsModel: function (option) {
                         console.log("called : " + ++scope.view.count)
                         if (scope.model == null) {
                             return false;
@@ -65,6 +65,9 @@ angular.module('akkurate-design-system').directive('akkRadio', [
                             if (option[index] !== scope.model[index]) {
                                 return false;
                             }
+                        }
+                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                            $rootScope.$broadcast(scope.eventUpdate);
                         }
                         return true;
                     }

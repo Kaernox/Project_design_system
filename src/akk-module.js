@@ -1,23 +1,9 @@
 angular.module('akkurate-design-system', [
     'ui.bootstrap',
     'ngSanitize',
-//    'ngScrollbar',
-//    'ngTagsInput',
-//    'ngclipboard',
-//    'ui.sortable',
-//    'ui.tinymce',
-//    'ui.codemirror',
     'ui-notification',
-//    'angularMoment',
-//    'angular-toolbox',
-//    'angular-uib-alert',
-//    'angularSelectSearch',
     'gettext',
-//    'imageupload',
-//    'truncate',
-//    'slugifier',
-    'color.picker',
-//    'chart.js'
+    'color.picker'
 ]);
 
 angular.module('akkurate-design-system').config([

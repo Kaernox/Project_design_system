@@ -49,7 +49,7 @@ var componentsData = {
         options: [
             {
                 label: "Alert something",
-                event: "cardAlert"
+                eventClick: "cardAlert"
             }
         ]
     },
@@ -201,7 +201,7 @@ var componentsData = {
             {
                 "id": 5,
                 "firstname": "Benjamin",
-                "lastname": "Benjamin",
+                "lastname": "Dominguez",
                 "job": "Fullstack intern",
                 "location": "Montpellier",
                 "picture": "adfhncb108d56df6daba740f45b3b9ce.jpeg",

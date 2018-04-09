@@ -23,7 +23,7 @@ angular.module('akkurate-design-system').directive('akkSelectandsearch', ['$root
                 hasError: "=",
                 req: "@",
                 model: "=",
-                event: "@",
+                eventUpdate: "@",
                 add: "@",
                 modalSize: "@",
                 templateItem: "@",
@@ -138,8 +138,8 @@ angular.module('akkurate-design-system').directive('akkSelectandsearch', ['$root
                                 }
                                 scope.view.item = item;
 
-                                if (scope.event) {
-                                    $rootScope.$broadcast(scope.event, item);
+                                if (scope.eventUpdate) {
+                                    $rootScope.$broadcast(scope.eventUpdate, item);
                                 }
                             } else {
                                 scope.view.isValid = false;

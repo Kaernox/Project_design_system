@@ -5,7 +5,10 @@
  */
 
 'use strict';
-angular.module('akkurate-design-system').directive("akkDatagrid", function () {
+angular.module('akkurate-design-system').directive("akkDatagrid", [ 
+    '$rootScope', 
+    '$filter', 
+    function ($rootScope, $filter) {
     return {
         restrict: 'E',
         templateUrl: 'templates/akk-datagrid.html',
@@ -17,6 +20,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", function () {
             columns: "=",
             selected: "=",
             eventClick: "@",
+            eventUpdate: "@",
             eventHover: "@"
         },
         link: function postLink(scope, element, attrs) {
@@ -62,7 +66,8 @@ angular.module('akkurate-design-system').directive("akkDatagrid", function () {
             };
         }
     };
-});
+
+}]);
 
 
  

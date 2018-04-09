@@ -1,23 +1,9 @@
 angular.module('akkurate-design-system', [
     'ui.bootstrap',
     'ngSanitize',
-//    'ngScrollbar',
-//    'ngTagsInput',
-//    'ngclipboard',
-//    'ui.sortable',
-//    'ui.tinymce',
-//    'ui.codemirror',
     'ui-notification',
-//    'angularMoment',
-//    'angular-toolbox',
-//    'angular-uib-alert',
-//    'angularSelectSearch',
     'gettext',
-//    'imageupload',
-//    'truncate',
-//    'slugifier',
-    'color.picker',
-//    'chart.js'
+    'color.picker'
 ]);
 
 angular.module('akkurate-design-system').config([
@@ -57,7 +43,7 @@ angular.module('akkurate-design-system').directive("akkAlert",
                         title: "@",
                         message: "@",
                         icon: "@",
-                        event: "@",
+                        eventUpdate: "@",
                         type: "@",
                         isDisplayed: "=",
                         isClosable: "="
@@ -75,8 +61,8 @@ angular.module('akkurate-design-system').directive("akkAlert",
                                 scope.isDisplayed = false;
                                 console.log('close', scope.isDisplayed);
 
-                                if (scope.event != null && scope.event != '') {
-                                    $rootScope.$broadcast(scope.event);
+                                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                                    $rootScope.$broadcast(scope.eventUpdate);
                                 }
                             }
                         };
@@ -184,9 +170,12 @@ angular.module('akkurate-design-system').directive("akkCheckbox", [
         };
     }
 ]);
-/**
- * directive who can let you manage the behavior of 
- * multiple checkbox order in a list
+/*
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License
+ * 
+ * @description: directive who can let you manage the behavior of multiple checkbox order in a list
  * 
  */
 
@@ -207,7 +196,7 @@ angular.module('akkurate-design-system').directive('akkCheckboxList', [
                 options: "=",
                 value: "@",
                 display: "@",
-                event: "@"
+                eventUpdate: "@"
             },
             link: function (scope, element, attrs, ngModel) {
                 scope.view = {
@@ -245,6 +234,9 @@ angular.module('akkurate-design-system').directive('akkCheckboxList', [
                             } else {
                                 scope.model.push(item);
                             }
+                        }
+                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                            $rootScope.$broadcast(scope.eventUpdate);
                         }
                     },
                     checkValidity: function () {
@@ -290,7 +282,7 @@ angular.module('akkurate-design-system').directive("akkColorpicker",
                         req: "@",
                         model: "=",
                         options: "=",
-                        event: "@"
+                        eventUpdate: "@"
                     },
                     link: function postLink(scope, element, attrs) {
 
@@ -306,8 +298,8 @@ angular.module('akkurate-design-system').directive("akkColorpicker",
                             change: function () {
                                 scope.model[scope.property] = !scope.model[scope.property];
 
-                                if (scope.event != null && scope.event != '') {
-                                    $rootScope.$broadcast(scope.event, scope.model);
+                                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                                    $rootScope.$broadcast(scope.eventUpdate, scope.model);
                                 }
                             }
                         };
@@ -334,7 +326,10 @@ angular.module('akkurate-design-system').directive("akkColorpicker",
  */
 
 'use strict';
-angular.module('akkurate-design-system').directive("akkDatagrid", function () {
+angular.module('akkurate-design-system').directive("akkDatagrid", [ 
+    '$rootScope', 
+    '$filter', 
+    function ($rootScope, $filter) {
     return {
         restrict: 'E',
         templateUrl: 'templates/akk-datagrid.html',
@@ -346,6 +341,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", function () {
             columns: "=",
             selected: "=",
             eventClick: "@",
+            eventUpdate: "@",
             eventHover: "@"
         },
         link: function postLink(scope, element, attrs) {
@@ -391,11 +387,13 @@ angular.module('akkurate-design-system').directive("akkDatagrid", function () {
             };
         }
     };
-});
+
+}]);
 
 
  
 /*
+ * 
  * directives for picking a date
  * 
  * 
@@ -418,7 +416,7 @@ angular.module('akkurate-design-system').directive("akkDatepicker",
                         label: "@",
                         req: "@",
                         model: "=",
-                        event: "@"
+                        eventUpdate: "@"
                     },
                     link: function postLink(scope, element, attrs) {
 
@@ -492,8 +490,8 @@ angular.module('akkurate-design-system').directive("akkDatepicker",
                             change: function () {
                                 scope.model[scope.property] = !scope.model[scope.property];
 
-                                if (scope.event != null && scope.event != '') {
-                                    $rootScope.$broadcast(scope.event, scope.model);
+                                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                                    $rootScope.$broadcast(scope.eventUpadate, scope.model);
                                 }
                             }
                         };
@@ -616,6 +614,7 @@ angular.module('akkurate-design-system').directive('akkInput', [
             restrict: 'E',
             transclude: true,
             replace: true,
+            eventUpdate: "@",
             scope: {
                 label: "@",
                 elementclass: "@",
@@ -637,8 +636,8 @@ angular.module('akkurate-design-system').directive('akkInput', [
                 scope.checkValidity = function () {
                     scope.isValid = element[0].children[1].validity.valid;
                 };
-                if (scope.event != null && scope.event != '') {
-                    $rootScope.$broadcast(scope.event, scope.model);
+                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                    $rootScope.$broadcast(scope.eventUpdate, scope.model);
                 };
             }
         };
@@ -798,25 +797,25 @@ angular.module('akkurate-design-system').directive('akkRadio', [
                 model: "=",
                 options: "=",
                 property: "@",
-                event: "@"
+                eventUpdate: "@",
             },
             link: function postLink(scope, element, attrs) {
                 scope.view = {
                     isValid: false,
-                    count : 0
+                    count: 0
                 }
 
                 scope.methods = {
-                    init: function() {
+                    init: function () {
                         scope.methods.checkValidity();
                     },
-                    select: function(option) {
+                    select: function (option) {
                         scope.model = option[scope.property] || option;
                         scope.methods.checkValidity();
                     },
-                    checkValidity : function() {
-                        if(scope.req) {
-                            if(scope.model != null) {
+                    checkValidity: function () {
+                        if (scope.req) {
+                            if (scope.model != null) {
                                 scope.view.isValid = true;
                             } else {
                                 scope.view.isValid = false;
@@ -834,7 +833,7 @@ angular.module('akkurate-design-system').directive('akkRadio', [
                      * @param {object} option The object to compare to the model.
                      * @returns {boolean} Returns true if option is equal to the scope.model object
                      */
-                    checkEqualsModel : function(option) {
+                    checkEqualsModel: function (option) {
                         console.log("called : " + ++scope.view.count)
                         if (scope.model == null) {
                             return false;
@@ -843,6 +842,9 @@ angular.module('akkurate-design-system').directive('akkRadio', [
                             if (option[index] !== scope.model[index]) {
                                 return false;
                             }
+                        }
+                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                            $rootScope.$broadcast(scope.eventUpdate);
                         }
                         return true;
                     }
@@ -930,7 +932,7 @@ angular.module('akkurate-design-system').directive('akkSelectandsearch', ['$root
                 hasError: "=",
                 req: "@",
                 model: "=",
-                event: "@",
+                eventUpdate: "@",
                 add: "@",
                 modalSize: "@",
                 templateItem: "@",
@@ -1045,8 +1047,8 @@ angular.module('akkurate-design-system').directive('akkSelectandsearch', ['$root
                                 }
                                 scope.view.item = item;
 
-                                if (scope.event) {
-                                    $rootScope.$broadcast(scope.event, item);
+                                if (scope.eventUpdate) {
+                                    $rootScope.$broadcast(scope.eventUpdate, item);
                                 }
                             } else {
                                 scope.view.isValid = false;
@@ -1081,7 +1083,7 @@ angular.module('akkurate-design-system').directive('akkSelector', [
                 req: "@",
                 model: "=",
                 property: "@",
-                event: "@"
+                eventUpdate: "@"
             }
         };
     }
@@ -1161,7 +1163,7 @@ angular.module('akkurate-design-system').directive('akkTextarea', [
                 placeholder: "@",
                 req: "@",
                 model: "=",
-                event: "@"
+                eventUpdate: "@"
             },
             link: function postLink(scope, element, attrs, ngModel) {
                 // Check for validity after the element has lost focus
@@ -1171,8 +1173,8 @@ angular.module('akkurate-design-system').directive('akkTextarea', [
                 scope.checkValidity = function () {
                     scope.isValid = element[0].children[1].validity.valid;
                 };
-                if (scope.event != null && scope.event != '') {
-                    $rootScope.$broadcast(scope.event, scope.model);
+                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                    $rootScope.$broadcast(scope.eventUpdate, scope.model);
                 };
             }
         };
@@ -1203,7 +1205,7 @@ angular.module('akkurate-design-system').directive('akkTree', [
                 items: "=",
                 model: "=",
                 options: "=",
-                event: "@"
+                eventUpdate: "@"
             },
             link: function postLink(scope, element, attrs) {
                 scope.view = {
@@ -1241,8 +1243,8 @@ angular.module('akkurate-design-system').directive('akkTree', [
 
                         AkkTreeManager.recursiveCheckVerif( [item], value, false);
                         
-                        if (scope.event != null && scope.event != ''){
-                            $rootScope.$broadcast(scope.event, scope.model);
+                        if (scope.eventUpdate != null && scope.eventUpdate != ''){
+                            $rootScope.$broadcast(scope.eventUpdate, scope.model);
                         }
                         
                         scope.model = AkkTreeManager.getValues();
@@ -1680,7 +1682,7 @@ $templateCache.put('templates/akk-card.html','<div class="card">\n  <img data-ng
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group form-checkbox form-checkbox-list {{!view.isValid ? \'has-error\' : \'\'}}" data-ng-class="elementclass">\n    <div class="d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </div>\n    <div class="d-flex" ng-repeat="option in options track by $index" ng-click="methods.toggle(option)">\n        <i class="material-icons text-primary" data-ng-if="methods.inModel(option)">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!methods.inModel(option)">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{display != null ? option[display] : option}}\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-checkbox.html','<div class="form-group form-checkbox" data-ng-class="elementclass" data-ng-click="methods.change()">\n    <span class="d-flex">\n        <i class="material-icons text-primary" data-ng-if="model[property]">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!model[property]">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{label | translate}}\n        </div>\n    </span>\n</div>');
 $templateCache.put('templates/akk-colorpicker.html','<div class="form-group form-colorpicker" ng-class="!view.isValid ? \'has-error\' : \'\'">\n    <label class="control-label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-container">\n        <div class="icon">\n            <i class="material-icons md-18">color_lens</i>\n        </div>\n        <color-picker\n            ng-model="model"\n            options="view.options"\n            event-api="events"\n            ></color-picker>\n    </div>\n</div>');
-$templateCache.put('templates/akk-datagrid.html','<div class="table-responsive">\n    <table class="table table-vertical-center" data-ng-if="items.length">\n        <caption data-ng-if="caption && caption != \'\'">{{caption}}</caption>\n        <thead>\n            <tr>\n                <th data-ng-if="">\n                    <div data-ng-click="methods.toggleAll()">\n                        <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>\n                        <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>\n                    </div>\n                </th>\n                <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">\n                    <div class="d-flex align-items-center">\n                        <span>{{column| translate}}</span>\n                        <i data-ng-if="view.dimension == column && view.way == \'desc\'" class="material-icons">arrow_downward</i>\n                        <i data-ng-if="view.dimension == column && view.way == \'asc\'" class="material-icons">arrow_upward</i>\n                        <i data-ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>\n                    </div>\n                </th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr data-ng-repeat="item in items| orderBy: methods.order()">\n                <td data-ng-if="">\n                    <i class="material-icons text-primary" data-ng-if="model[property]">check_box</i>\n                    <i class="material-icons text-muted" data-ng-if="!model[property]">check_box_outline_blank</i>\n                </td>\n                <td data-ng-repeat="column in columns">{{item[column]}}</td>\n            </tr>\n        </tbody>\n    </table>\n\n    <akk-alert title="{{\'Aucun r\xE9sultat trouv\xE9 !\'| translate}}" data-ng-if="!items.length"></akk-alert>\n</div>\n');
+$templateCache.put('templates/akk-datagrid.html','<div class="table-responsive">\n    <table class="table table-vertical-center" data-ng-if="items.length">\n        <caption data-ng-if="caption && caption != \'true\'">{{caption}}</caption>\n        <thead>\n            <tr>\n                <th>\n                    <div data-ng-click="methods.toggleAll()">\n                        <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>\n                        <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>\n                    </div>\n                </th>\n                <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">\n                    <div class="d-flex align-items-center">\n                        <span>{{column| translate}}</span>\n                        <i data-ng-if="view.dimension == column && view.way == \'desc\'" class="material-icons">arrow_downward</i>\n                        <i data-ng-if="view.dimension == column && view.way == \'asc\'" class="material-icons">arrow_upward</i>\n                        <i data-ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>\n                    </div>\n                </th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr data-ng-repeat="item in items| orderBy: methods.order()">\n                <td>\n                    <i class="material-icons text-primary" ng-if="view.item.isChecked" ng-click="methods.select(item)">check_box</i>\n                    <i class="material-icons text-muted" ng-if="!view.item.isChecked" ng-click="methods.unselect(item)">check_box_outline_blank</i>\n                </td>\n        <pre>{{view.item}}</pre>\n                <td data-ng-repeat="column in columns">{{item[column]}}</td>\n            </tr>\n        </tbody>\n    </table>\n\n    <akk-alert title="{{\'Aucun r\xE9sultat trouv\xE9 !\'| translate}}" data-ng-if="!items.length"></akk-alert>\n</div>\n');
 $templateCache.put('templates/akk-datepicker.html','<div class="form-group {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label" ng-if="label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        {{label}}\n        <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-control d-flex align-items-center justify-content-between">\n        <span class="input-search" ng-if="model != null" ng-click="methods.datepicker()">\n            {{model | dateShortFormat}}\n        </span>\n        <em ng-if="model == null" class="text-secondary" ng-click="methods.datepicker()">{{\'Ind\xE9fini\' | translate}}</em>\n        <i class="material-icons md-24 ml-auto" ng-click="methods.datepicker()">event</i>\n        <i class="material-icons md-24 ml-1" ng-if="model != null" ng-click="methods.clear()">clear</i>\n    </div>\n</div>');
 $templateCache.put('templates/akk-input-int.html','<div class="form-group well {{elementclass}}">\n    <div class="row">\n        <div class="col-md-6">\n            <p>{{label}}</p>\n        </div>\n        <div class="col-md-2">\n            <button type="button" class="btn btn-link" ng-click="substract()">\n                <i class="material-icons">remove</i>\n            </button>\n        </div>\n        <div class="col-md-2">  \n            <p>{{model}}/{{max}}</p>\n        </div>\n        <div class="col-md-2">\n            <button type="button" class="btn btn-link" ng-click="add()">\n                <i class="material-icons">add</i>\n            </button>\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-input.html','<div class="form-group form-input" ng-class="!isValid ? \'has-error\' : \'\'">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <input type="{{type}}" class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" step="{{step}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()"/>\n</div>');

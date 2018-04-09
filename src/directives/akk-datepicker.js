@@ -1,4 +1,5 @@
 /*
+ * 
  * directives for picking a date
  * 
  * 
@@ -21,7 +22,7 @@ angular.module('akkurate-design-system').directive("akkDatepicker",
                         label: "@",
                         req: "@",
                         model: "=",
-                        event: "@"
+                        eventUpdate: "@"
                     },
                     link: function postLink(scope, element, attrs) {
 
@@ -95,8 +96,8 @@ angular.module('akkurate-design-system').directive("akkDatepicker",
                             change: function () {
                                 scope.model[scope.property] = !scope.model[scope.property];
 
-                                if (scope.event != null && scope.event != '') {
-                                    $rootScope.$broadcast(scope.event, scope.model);
+                                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                                    $rootScope.$broadcast(scope.eventUpadate, scope.model);
                                 }
                             }
                         };

@@ -18,7 +18,7 @@ angular.module('akkurate-design-system').directive("akkAlert",
                         title: "@",
                         message: "@",
                         icon: "@",
-                        event: "@",
+                        eventUpdate: "@",
                         type: "@",
                         isDisplayed: "=",
                         isClosable: "="
@@ -36,8 +36,8 @@ angular.module('akkurate-design-system').directive("akkAlert",
                                 scope.isDisplayed = false;
                                 console.log('close', scope.isDisplayed);
 
-                                if (scope.event != null && scope.event != '') {
-                                    $rootScope.$broadcast(scope.event);
+                                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                                    $rootScope.$broadcast(scope.eventUpdate);
                                 }
                             }
                         };

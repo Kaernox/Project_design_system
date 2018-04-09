@@ -19,7 +19,7 @@ angular.module('akkurate-design-system').directive("akkColorpicker",
                         req: "@",
                         model: "=",
                         options: "=",
-                        event: "@"
+                        eventUpdate: "@"
                     },
                     link: function postLink(scope, element, attrs) {
 
@@ -35,8 +35,8 @@ angular.module('akkurate-design-system').directive("akkColorpicker",
                             change: function () {
                                 scope.model[scope.property] = !scope.model[scope.property];
 
-                                if (scope.event != null && scope.event != '') {
-                                    $rootScope.$broadcast(scope.event, scope.model);
+                                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                                    $rootScope.$broadcast(scope.eventUpdate, scope.model);
                                 }
                             }
                         };

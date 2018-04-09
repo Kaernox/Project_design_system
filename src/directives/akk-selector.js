@@ -18,7 +18,7 @@ angular.module('akkurate-design-system').directive('akkSelector', [
                 req: "@",
                 model: "=",
                 property: "@",
-                event: "@"
+                eventUpdate: "@"
             }
         };
     }

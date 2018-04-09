@@ -1,6 +1,9 @@
-/**
- * directive who can let you manage the behavior of 
- * multiple checkbox order in a list
+/*
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License
+ * 
+ * @description: directive who can let you manage the behavior of multiple checkbox order in a list
  * 
  */
 
@@ -21,7 +24,7 @@ angular.module('akkurate-design-system').directive('akkCheckboxList', [
                 options: "=",
                 value: "@",
                 display: "@",
-                event: "@"
+                eventUpdate: "@"
             },
             link: function (scope, element, attrs, ngModel) {
                 scope.view = {
@@ -59,6 +62,9 @@ angular.module('akkurate-design-system').directive('akkCheckboxList', [
                             } else {
                                 scope.model.push(item);
                             }
+                        }
+                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                            $rootScope.$broadcast(scope.eventUpdate);
                         }
                     },
                     checkValidity: function () {

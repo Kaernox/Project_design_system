@@ -12,6 +12,7 @@ angular.module('akkurate-design-system').directive('akkInput', [
             restrict: 'E',
             transclude: true,
             replace: true,
+            eventUpdate: "@",
             scope: {
                 label: "@",
                 elementclass: "@",
@@ -33,8 +34,8 @@ angular.module('akkurate-design-system').directive('akkInput', [
                 scope.checkValidity = function () {
                     scope.isValid = element[0].children[1].validity.valid;
                 };
-                if (scope.event != null && scope.event != '') {
-                    $rootScope.$broadcast(scope.event, scope.model);
+                if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                    $rootScope.$broadcast(scope.eventUpdate, scope.model);
                 };
             }
         };

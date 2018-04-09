@@ -1,9 +1,9 @@
 <div class="table-responsive">
     <table class="table table-vertical-center" data-ng-if="items.length">
-        <caption data-ng-if="caption && caption != ''">{{caption}}</caption>
+        <caption data-ng-if="caption && caption != 'true'">{{caption}}</caption>
         <thead>
             <tr>
-                <th data-ng-if="">
+                <th>
                     <div data-ng-click="methods.toggleAll()">
                         <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>
                         <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>
@@ -22,9 +22,9 @@
         </thead>
         <tbody>
             <tr data-ng-repeat="item in items| orderBy: methods.order()">
-                <td data-ng-if="">
-                    <i class="material-icons text-primary" data-ng-if="model[property]">check_box</i>
-                    <i class="material-icons text-muted" data-ng-if="!model[property]">check_box_outline_blank</i>
+                <td>
+                    <i class="material-icons text-primary" ng-if="view.item.isChecked" ng-click="methods.select(item)">check_box</i>
+                    <i class="material-icons text-muted" ng-if="!view.item.isChecked" ng-click="methods.unselect(item)">check_box_outline_blank</i>
                 </td>
                 <td data-ng-repeat="column in columns">{{item[column]}}</td>
             </tr>
