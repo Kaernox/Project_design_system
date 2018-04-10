@@ -2,6 +2,11 @@
     "name": "akk-datagrid",
     "scope":[
         {
+            "attr": "caption",
+            "bind": "@",
+            "value": "This is a datagrid"
+        },
+        {
             "attr": "items",
             "bind": "=",
             "value": "view.selectAndSearch.items"
@@ -12,7 +17,32 @@
             "value": "['lastname', 'firstname', 'job', 'location']"
         },
         {
-            "attr": "event",
+            "attr": "selected",
+            "bind": "=",
+            "value": "view.datagrid.selectedItems"
+        },
+        {
+            "attr": "selector",
+            "bind": "=",
+            "value": "true"
+        },
+        {
+            "attr": "eventClick",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "eventHover",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "eventToggle",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "eventToggleAll",
             "bind": "@",
             "value": ""
         }

@@ -1,0 +1,9 @@
+<div class="form-group form-checkbox" data-ng-class="elementclass" data-ng-click="methods.change()">
+    <span class="d-flex">
+        <i class="material-icons text-primary" data-ng-if="model[property]">check_box</i>
+        <i class="material-icons text-muted" data-ng-if="!model[property]">check_box_outline_blank</i>
+        <div class="ml-1">
+            {{label | translate}}
+        </div>
+    </span>
+</div>

@@ -22,5 +22,8 @@
     "gulp-sass": "^3.2.1",
     "gulp-templatecache": "^0.1.0",
     "gulp-uglify": "^3.0.0"
+  },
+  "dependencies": {
+    "gulp-watch": "^5.0.0"
   }
 }

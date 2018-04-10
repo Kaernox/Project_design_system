@@ -64,7 +64,17 @@ var componentsData = {
     datagrid: {
         items: [],
         columns: ['lastname', 'firstname', 'job', 'location'],
-        selectedItems: []
+        selectedItems: [],
+        options: [
+            {
+                label: "edit",
+                event: "datagridOptionEdit"
+            },
+            {
+                label: "delete",
+                event: "datagridOptionDelete"
+            }
+        ]
     },
     // The selected color in the akk-colorpicker directive
     color: "#CC0000",
@@ -464,6 +474,14 @@ designsystem.component('home', {
             
             $scope.$on('cardAlert', function (event) {
                 alert('Youpi card');
+            });
+            
+            $scope.$on('datagridOptionEdit', function (event, item) {
+                alert('Datagrid: edition of #' + item.id);
+            });
+            
+            $scope.$on('datagridOptionDelete', function (event, item) {
+                alert('Datagrid: deletion of #' + item.id);
             });
         }
     ]

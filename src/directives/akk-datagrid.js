@@ -21,6 +21,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                 columns: "=",
                 selected: "=",
                 selector: "=",
+                options: "=",
                 eventClick: "@",
                 eventHover: "@",
                 eventToggle: "@",
@@ -53,10 +54,10 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         item.isChecked = true;
                     },
                     unselect: function (item) {
-                        
+
                         var indexInSelected = $filter('getIndexBy')(scope.selected, 'id', item.id);
                         scope.selected.splice(indexInSelected, 1);
-                        
+
                         var index = $filter('getIndexBy')(scope.items, 'id', item.id);
                         scope.items[index].isChecked = false;
                     },
@@ -87,6 +88,9 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         if (scope.eventHover != null && scope.eventHover != '') {
                             $rootScope.$broadcast(scope.eventHover, item);
                         }
+                    },
+                    optionClick: function (item, option) {
+                        $rootScope.$broadcast(option.event, item);
                     },
                     sortBy: function (dimension, way) {
                         scope.view.dimension = dimension;

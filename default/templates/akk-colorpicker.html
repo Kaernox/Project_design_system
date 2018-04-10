@@ -1,0 +1,15 @@
+<div class="form-group form-colorpicker" ng-class="!view.isValid ? 'has-error' : ''">
+    <label class="control-label">
+        <i ng-if="!view.isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup>
+    </label>
+    <div class="form-container">
+        <div class="icon">
+            <i class="material-icons md-18">color_lens</i>
+        </div>
+        <color-picker
+            ng-model="model"
+            options="view.options"
+            event-api="events"
+            ></color-picker>
+    </div>
+</div>

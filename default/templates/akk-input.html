@@ -1,0 +1,4 @@
+<div class="form-group form-input" ng-class="!isValid ? 'has-error' : ''">
+    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>
+    <input type="{{type}}" class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" step="{{step}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()"/>
+</div>
