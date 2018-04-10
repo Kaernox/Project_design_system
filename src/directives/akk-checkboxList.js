@@ -1,10 +1,8 @@
 /*
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
- * Commercial License
- * 
- * @description: directive who can let you manage the behavior of multiple checkbox order in a list
- * 
+ * Commercial License 
+ * @description: Directive who can let you manage the behavior of multiple checkbox order in a list
  */
 
 'use strict';

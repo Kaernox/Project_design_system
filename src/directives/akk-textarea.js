@@ -1,7 +1,8 @@
 /* 
- * directive who manage to let the user input a large text
- * the input zone can be sized manualy by the user or 
- * fit the input
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directive who manage to let the user input a large text the input zone can be sized manualy by the user or fit the input
  */
 
 'use strict';

@@ -3,7 +3,7 @@
         <caption data-ng-if="caption && caption != 'true'">{{caption}}</caption>
         <thead>
             <tr>
-                <th>
+                <th data-ng-if="scope.selector = true">
                     <div data-ng-click="methods.toggleAll()">
                         <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>
                         <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>
@@ -22,11 +22,13 @@
         </thead>
         <tbody>
             <tr data-ng-repeat="item in items| orderBy: methods.order()">
-                <td>
-                    <i class="material-icons text-primary" ng-if="view.item.isChecked" ng-click="methods.select(item)">check_box</i>
-                    <i class="material-icons text-muted" ng-if="!view.item.isChecked" ng-click="methods.unselect(item)">check_box_outline_blank</i>
+                <td data-ng-if="scope.selector = true">
+                    <div data-ng-click="methods.toggle(item)">
+                        <i class="material-icons text-primary" data-ng-if="item.isChecked">check_box</i>
+                        <i class="material-icons text-muted" data-ng-if="!item.isChecked">check_box_outline_blank</i>
+                    </div>
                 </td>
-                <td data-ng-repeat="column in columns">{{item[column]}}</td>
+                <td data-ng-repeat="column in columns" data-ng-click="methods.eventClick(item)" data-ng-mouseover="methods.eventHover(item)">{{item[column]}}</td>
             </tr>
         </tbody>
     </table>

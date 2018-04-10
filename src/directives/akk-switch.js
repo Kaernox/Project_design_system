@@ -1,7 +1,8 @@
 /* 
- * directive who manage the behavior of a switch
- * he can be use to set the position and the size
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directive who manage the behavior of a switch he can be use to set the position and the size
  */
 
 'use strict';

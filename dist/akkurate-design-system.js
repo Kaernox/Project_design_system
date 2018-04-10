@@ -23,10 +23,178 @@ angular.module('akkurate-design-system').config([
         });
     }
 ]);
-/**
- * directive use to manipulate the behavior of alert
- * it let you choose the type and its content
- * 
+angular.module('akkurate-design-system')
+        .filter('inArray', function () {
+            return function (array, value) {
+                return array.indexOf(value) !== -1;
+            };
+        })
+        .filter('getBy', function () {
+            return function (input, field, value, toReturn) {
+                var i = 0, len = input.length;
+                for (; i < len; i++) {
+                    if (input[i][field] == value) {
+                        return (toReturn) ? input[i][toReturn] : input[i];
+                    }
+                }
+                return null;
+            };
+        })
+        .filter('getIndexBy', function () {
+            return function (input, field, value, toReturn) {
+                var i = 0, len = input.length;
+                for (; i < len; i++) {
+                    if (input[i][field] == value) {
+                        return i;
+                    }
+                }
+                return null;
+            };
+        })
+        .filter('range', function () {
+            return function (input, total) {
+                total = parseInt(total);
+                for (var i = 0; i < total; i++) {
+                    input.push(i);
+                }
+                return input;
+            };
+        })
+        .filter('ucfirst', function () {
+            return function ucFirst(str) {
+                if (str.length > 0) {
+                    return str[0].toUpperCase() + str.substring(1);
+                } else {
+                    return str;
+                }
+            };
+        })
+        .filter('dateShortFormat', function ($filter) {
+            return function (input) {
+                if (input) {
+                    var _date = $filter('date')(new Date(input), 'mediumDate');
+                    return _date;
+                } else {
+                    return input;
+                }
+            };
+        })
+        .filter('timeFormat', function ($filter) {
+            return function (input) {
+                if (input) {
+                    var _date = $filter('date')(new Date(input), 'shortTime');
+                    return _date;
+                } else {
+                    return input;
+                }
+            };
+        })
+        .filter('formatBytes', function ($filter) {
+            return function (bytes, decimals) {
+                if (bytes == 0)
+                    return '0 Byte';
+                var k = 1000; // or 1024 for binary
+                var dm = decimals + 1 || 3;
+                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+                var i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            };
+        })
+        .filter('extensionIcon', function ($filter) {
+            return function (extension) {
+                var unknow = ['apk', 'sql'];
+                if (extension == null || unknow.indexOf(extension.toLowerCase()) >= 0) {
+                    return "css";
+                }
+                return extension.toLowerCase();
+            };
+        })
+        .filter('searchAndDisplay', function ($filter) {
+            return function (displayKey, array, searchKey, searchValue) {
+                var value = $filter('getBy')(array, searchKey, searchValue, displayKey);
+                if (value == null) {
+                    return null;
+                }
+                return value;
+            };
+        })
+        .filter('toArray', [function () {
+                return function (obj, addKey) {
+                    if (!angular.isObject(obj))
+                        return obj;
+                    if (addKey === false) {
+                        return Object.keys(obj).map(function (key) {
+                            return obj[key];
+                        });
+                    } else {
+                        return Object.keys(obj).map(function (key) {
+                            var value = obj[key];
+                            return angular.isObject(value) ?
+                                    Object.defineProperty(value, '$key', {enumerable: false, value: key}) :
+                                    {$key: key, $value: value};
+                        });
+                    }
+                };
+            }])
+        /**
+         * Filter credential by typeName
+         * 
+         * @param {Credential[]} credentials 
+         * @param {String} filterName   
+         */
+        .filter('credentialType', [function () {
+                return function (credentials, filterName) {
+                    var objects = [];
+                    angular.forEach(credentials, function (a, b) {
+                        if (a.type != null && a.type.name == filterName) {
+                            objects.push(a);
+                        }
+                    });
+                    return objects;
+
+                };
+            }])
+
+        .filter('truncate', function () {
+            return function (value, wordwise, max, tail) {
+                if (!value)
+                    return '';
+
+                max = parseInt(max, 10);
+                if (!max)
+                    return value;
+                if (value.length <= max)
+                    return value;
+
+                value = value.substr(0, max);
+                if (wordwise) {
+                    var lastspace = value.lastIndexOf(' ');
+                    if (lastspace != -1) {
+                        //Also remove . and , so its gives a cleaner result.
+                        if (value.charAt(lastspace - 1) == '.' || value.charAt(lastspace - 1) == ',') {
+                            lastspace = lastspace - 1;
+                        }
+                        value = value.substr(0, lastspace);
+                    }
+                }
+
+                return value + (tail || ' …');
+            };
+        })
+
+        .filter('nl2br', function ($sce) {
+            return function (msg, is_xhtml) {
+                var is_xhtml = is_xhtml || true;
+                var breakTag = (is_xhtml) ? '<br />' : '<br>';
+                var msg = (msg + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+                return $sce.trustAsHtml(msg);
+            };
+        });
+/*
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive use to manipulate the behavior of alert it let you choose the type and its content 
  */
 
 'use strict';
@@ -72,10 +240,11 @@ angular.module('akkurate-design-system').directive("akkAlert",
                 };
             }
         ]);
-/**
- * directive use to calibrate modal when use on smartphone and 
- * other portable device.
- * 
+/*
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive use to calibrate modal when use on smartphone and other portable device.
  */
 
 'use strict';
@@ -89,9 +258,11 @@ angular.module('akkurate-design-system').directive('akkAutoFocus', function($tim
         }
     };
 });
-/**
- * directive use to manipulate the behavior of card
- * it let you choose the type and its content
+/*
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive use to manipulate the behavior of card it let you choose the type and its content
  * 
  */
 
@@ -130,9 +301,10 @@ angular.module('akkurate-design-system').directive("akkCard",
             }
         ]);
 /* 
- * directive use to manage the behavior of a checkbox
- * 
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive use to manage the behavior of a checkbox
  */
 
 'use strict';
@@ -173,10 +345,8 @@ angular.module('akkurate-design-system').directive("akkCheckbox", [
 /*
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
- * Commercial License
- * 
- * @description: directive who can let you manage the behavior of multiple checkbox order in a list
- * 
+ * Commercial License 
+ * @description: Directive who can let you manage the behavior of multiple checkbox order in a list
  */
 
 'use strict';
@@ -262,9 +432,10 @@ angular.module('akkurate-design-system').directive('akkCheckboxList', [
 
 
 /*
- * directive who let the user pick a  color
- * the color pick can be pass for ulterior use
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directive who let the user pick a  color the color pick can be pass for ulterior use
  */
 
 'use strict';
@@ -326,77 +497,123 @@ angular.module('akkurate-design-system').directive("akkColorpicker",
  */
 
 'use strict';
-angular.module('akkurate-design-system').directive("akkDatagrid", [ 
-    '$rootScope', 
-    '$filter', 
-    function ($rootScope, $filter) {
-    return {
-        restrict: 'E',
-        templateUrl: 'templates/akk-datagrid.html',
-        transclude: true,
-        replace: true,
-        scope: {
-            caption: "@",
-            items: "=",
-            columns: "=",
-            selected: "=",
-            eventClick: "@",
-            eventUpdate: "@",
-            eventHover: "@"
-        },
-        link: function postLink(scope, element, attrs) {
-            scope.view = {
-                dimension: scope.columns[0],
-                way: 'asc'
-            };
+angular.module('akkurate-design-system').directive("akkDatagrid", [
+    '$rootScope',
+    '$filter',
+    '$window',
+    function ($rootScope, $filter, $window) {
+        return {
+            restrict: 'E',
+            templateUrl: 'templates/akk-datagrid.html',
+            transclude: true,
+            replace: true,
+            scope: {
+                caption: "@",
+                items: "=",
+                columns: "=",
+                selected: "=",
+                selector: "=",
+                eventClick: "@",
+                eventHover: "@",
+                eventToggle: "@",
+                eventToggleAll: "@"
+            },
+            link: function postLink(scope, element, attrs) {
+                scope.view = {
+                    dimension: scope.columns[0],
+                    way: 'asc',
+                    items: null
+                };
 
-            scope.methods = {
-                init: function () {
-                },
-                select: function (item) {
-                    var index = $filter('getIndexBy')(scope.items, 'id', item.id);
-                    scope.selected.push(item);
-                },
-                unselect: function (item) {
-                    var index = $filter('getIndexBy')(scope.selected, 'id', item.id);
-                    scope.selected.splice(index, 1);
-                },
-                toggleAll: function () {
-                    var index = $filter('getIndexBy')(scope.items, 'id', item.id);
-                    scope.selected.push(item);
-                },
-                sortBy: function (dimension, way) {
-                    scope.view.dimension = dimension;
-                    scope.view.way = way;
-                },
-                inverseWay: function (dimension) {
-                    if (dimension == scope.view.dimension) {
-                        if (scope.view.way == 'desc') {
-                            return 'asc';
+                scope.methods = {
+                    init: function () {
+                    },
+                    toggle: function (item) {
+                        console.log('TOGGLE', item);
+                        
+                        if ($filter('getIndexBy')(scope.selected, 'id', item.id)) {
+                            scope.methods.unselect(item);
+
                         } else {
-                            return 'desc';
+                            scope.methods.select(item);
                         }
-                    } else {
-                        return 'asc';
-                    }
-                },
-                order: function () {
-                    var way = scope.view.way == 'desc' ? '-' : '';
-                    return way + scope.view.dimension;
-                }
-            };
-        }
-    };
 
-}]);
+                        if (scope.selector != null && scope.selector == true && scope.eventToggle != null && scope.eventToggle != '') {
+                            $rootScope.$broadcast(scope.eventToggle, item);
+                        }
+
+                    },
+                    eventClick: function (item) {
+                        if (scope.eventClick != null && scope.eventClick != '') {
+                            $rootScope.$broadcast(scope.eventClick, item);
+                        }
+                    },
+                    eventHover: function (item) {
+                        if (scope.eventHover != null && scope.eventHover != '') {
+                            $rootScope.$broadcast(scope.eventHover, item);
+                        }
+                    },
+                    select: function (item) {
+                        console.log('SELECT', item);
+                        scope.selected.push(item);
+                        item.isChecked = true;
+                    },
+                    unselect: function (item) {
+                        console.log('UNSELECT', item);
+                        var itemIndex = $filter('getIndexBy')(scope.items, 'id', item.id);
+                        scope.selected.splice(itemIndex, 1);
+                        item.isChecked = false;
+                    },
+                    toggleAll: function () {
+                        console.log('TOGGLEALL');
+                        if (scope.selected.length > 0) {
+                            scope.selected = [];
+                            angular.forEach(scope.items, function (item, key) {
+                                item.isChecked = false;
+                            });
+                        } else {
+                            scope.selected = angular.copy(scope.items);
+                            angular.forEach(scope.items, function (item, key) {
+                                item.isChecked = true;
+                            });
+                        }
+
+                        if (scope.selector != null && scope.selector == true && scope.eventToggleAll != null && scope.eventToggleAll != '') {
+                            $rootScope.$broadcast(scope.eventToggleAll, item);
+                        }
+                    },
+                    sortBy: function (dimension, way) {
+                        scope.view.dimension = dimension;
+                        scope.view.way = way;
+                    },
+                    inverseWay: function (dimension) {
+                        if (dimension == scope.view.dimension) {
+                            if (scope.view.way == 'desc') {
+                                return 'asc';
+                            } else {
+                                return 'desc';
+                            }
+                        } else {
+                            return 'asc';
+                        }
+                    },
+                    order: function () {
+                        var way = scope.view.way == 'desc' ? '-' : '';
+                        return way + scope.view.dimension;
+                    }
+                };
+            }
+        };
+
+    }]);
 
 
  
 /*
- * 
- * directives for picking a date
- * 
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directives for picking a date 
  */
 
 'use strict';
@@ -601,9 +818,10 @@ angular.module('akkurate-design-system').directive('akkInputInt', [
 ]);
 
 /* 
- * directive to create a zone for an text entry
- * the entry can be use for ulterior fonction
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive to create a zone for an text entry the entry can be use for ulterior fonction
  */
 
 'use strict';
@@ -644,9 +862,10 @@ angular.module('akkurate-design-system').directive('akkInput', [
     }
 ]);
 /*
- * Directive to display a loader
- * 
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directive to display a loader
  */
 
 'use strict';
@@ -662,9 +881,10 @@ angular.module('akkurate-design-system').directive('akkLoading', function () {
     };
 });
 /*
- * can open a modal to display a list
- * then the user can chose multiple choice of the selection
- * this choices can be use at the exit of the modal
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Can open a modal to display a list then the user can chose multiple choice of the selectio this choices can be use at the exit of the modal
  */
 
 'use strict';
@@ -776,8 +996,10 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
 });
 
 /*
- * directive use to manage the behavior of the radio button
- * the choice can be use afterward
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive use to manage the behavior of the radio button the choice can be use afterward
  * 
  */
 
@@ -857,9 +1079,10 @@ angular.module('akkurate-design-system').directive('akkRadio', [
 ]);
 
 /*
- * directive use to choose an option from a list.
- * it manage the behavior of the modal who display the list
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive use to choose an option from a list. It manage the behavior of the modal who display the list
  */
 
 'use strict';
@@ -908,9 +1131,10 @@ angular.module('akkurate-design-system').directive('akkSelect', [
 ]);
 
 /*
- * directive who open a modal for search an item in a list and select him
- * the selected item is return for an ulterior use
- * @return {int}
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive who open a modal for search an item in a list and select him the selected item is return for an ulterior use. @return {int}
  */
 
 'use strict';
@@ -1064,9 +1288,10 @@ angular.module('akkurate-design-system').directive('akkSelectandsearch', ['$root
 ]);
 
 /* 
- * 
- * 
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: 
  */
 
 'use strict';
@@ -1090,9 +1315,10 @@ angular.module('akkurate-design-system').directive('akkSelector', [
 ]);
 
 /* 
- * directive who manage the behavior of a switch
- * he can be use to set the position and the size
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directive who manage the behavior of a switch he can be use to set the position and the size
  */
 
 'use strict';
@@ -1143,9 +1369,10 @@ angular.module('akkurate-design-system').directive("akkSwitch", [
     }
 ]);
 /* 
- * directive who manage to let the user input a large text
- * the input zone can be sized manualy by the user or 
- * fit the input
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directive who manage to let the user input a large text the input zone can be sized manualy by the user or fit the input
  */
 
 'use strict';
@@ -1183,9 +1410,10 @@ angular.module('akkurate-design-system').directive('akkTextarea', [
 
 
 /* 
- * directives who create a tree using a model 
- * checkbox and toggle are implement
- * you can open-closed all and check-uncheck all
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directives who create a tree using a model checkbox and toggle are implement you can open-closed all and check-uncheck all
  */
 
 'use strict';
@@ -1510,179 +1738,12 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
             }
         };
     }]);
-angular.module('akkurate-design-system')
-        .filter('inArray', function () {
-            return function (array, value) {
-                return array.indexOf(value) !== -1;
-            };
-        })
-        .filter('getBy', function () {
-            return function (input, field, value, toReturn) {
-                var i = 0, len = input.length;
-                for (; i < len; i++) {
-                    if (input[i][field] == value) {
-                        return (toReturn) ? input[i][toReturn] : input[i];
-                    }
-                }
-                return null;
-            };
-        })
-        .filter('getIndexBy', function () {
-            return function (input, field, value, toReturn) {
-                var i = 0, len = input.length;
-                for (; i < len; i++) {
-                    if (input[i][field] == value) {
-                        return i;
-                    }
-                }
-                return null;
-            };
-        })
-        .filter('range', function () {
-            return function (input, total) {
-                total = parseInt(total);
-                for (var i = 0; i < total; i++) {
-                    input.push(i);
-                }
-                return input;
-            };
-        })
-        .filter('ucfirst', function () {
-            return function ucFirst(str) {
-                if (str.length > 0) {
-                    return str[0].toUpperCase() + str.substring(1);
-                } else {
-                    return str;
-                }
-            };
-        })
-        .filter('dateShortFormat', function ($filter) {
-            return function (input) {
-                if (input) {
-                    var _date = $filter('date')(new Date(input), 'mediumDate');
-                    return _date;
-                } else {
-                    return input;
-                }
-            };
-        })
-        .filter('timeFormat', function ($filter) {
-            return function (input) {
-                if (input) {
-                    var _date = $filter('date')(new Date(input), 'shortTime');
-                    return _date;
-                } else {
-                    return input;
-                }
-            };
-        })
-        .filter('formatBytes', function ($filter) {
-            return function (bytes, decimals) {
-                if (bytes == 0)
-                    return '0 Byte';
-                var k = 1000; // or 1024 for binary
-                var dm = decimals + 1 || 3;
-                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-                var i = Math.floor(Math.log(bytes) / Math.log(k));
-                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-            };
-        })
-        .filter('extensionIcon', function ($filter) {
-            return function (extension) {
-                var unknow = ['apk', 'sql'];
-                if (extension == null || unknow.indexOf(extension.toLowerCase()) >= 0) {
-                    return "css";
-                }
-                return extension.toLowerCase();
-            };
-        })
-        .filter('searchAndDisplay', function ($filter) {
-            return function (displayKey, array, searchKey, searchValue) {
-                var value = $filter('getBy')(array, searchKey, searchValue, displayKey);
-                if (value == null) {
-                    return null;
-                }
-                return value;
-            };
-        })
-        .filter('toArray', [function () {
-                return function (obj, addKey) {
-                    if (!angular.isObject(obj))
-                        return obj;
-                    if (addKey === false) {
-                        return Object.keys(obj).map(function (key) {
-                            return obj[key];
-                        });
-                    } else {
-                        return Object.keys(obj).map(function (key) {
-                            var value = obj[key];
-                            return angular.isObject(value) ?
-                                    Object.defineProperty(value, '$key', {enumerable: false, value: key}) :
-                                    {$key: key, $value: value};
-                        });
-                    }
-                };
-            }])
-        /**
-         * Filter credential by typeName
-         * 
-         * @param {Credential[]} credentials 
-         * @param {String} filterName   
-         */
-        .filter('credentialType', [function () {
-                return function (credentials, filterName) {
-                    var objects = [];
-                    angular.forEach(credentials, function (a, b) {
-                        if (a.type != null && a.type.name == filterName) {
-                            objects.push(a);
-                        }
-                    });
-                    return objects;
-
-                };
-            }])
-
-        .filter('truncate', function () {
-            return function (value, wordwise, max, tail) {
-                if (!value)
-                    return '';
-
-                max = parseInt(max, 10);
-                if (!max)
-                    return value;
-                if (value.length <= max)
-                    return value;
-
-                value = value.substr(0, max);
-                if (wordwise) {
-                    var lastspace = value.lastIndexOf(' ');
-                    if (lastspace != -1) {
-                        //Also remove . and , so its gives a cleaner result.
-                        if (value.charAt(lastspace - 1) == '.' || value.charAt(lastspace - 1) == ',') {
-                            lastspace = lastspace - 1;
-                        }
-                        value = value.substr(0, lastspace);
-                    }
-                }
-
-                return value + (tail || ' …');
-            };
-        })
-
-        .filter('nl2br', function ($sce) {
-            return function (msg, is_xhtml) {
-                var is_xhtml = is_xhtml || true;
-                var breakTag = (is_xhtml) ? '<br />' : '<br>';
-                var msg = (msg + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-                return $sce.trustAsHtml(msg);
-            };
-        });
 angular.module('akkurate-design-system').run(['$templateCache', function($templateCache) {$templateCache.put('templates/akk-alert.html','<div>\n    <div data-ng-show="isDisplayed" class="alert" role="alert" data-ng-class="type ? \'alert-\' + type : \'alert-dark\'">\n        <div class="d-flex align-items-center">\n            <i class="material-icons mr-1 align-self-start" data-ng-bind="icon" data-ng-if="icon"></i>\n            <span data-ng-if="icon">&nbsp;&nbsp;&nbsp;</span>\n            <div>\n                <h4 class="alert-heading" data-ng-if="title">{{title}}</h4>\n                <div data-ng-bind-html="message"></div>\n            </div>\n            <i class="material-icons align-self-start ml-auto" ng-if="isClosable" data-ng-click="methods.close()">clear</i>\n        </div>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-card.html','<div class="card">\n  <img data-ng-if="media && media != \'\'" class="card-img-top" data-ng-src="{{media}}" alt="{{title}}">\n  <div class="card-body">\n    <h5 class="card-title">{{title}}</h5>\n    <p data-ng-if="content && content != \'\'" class="card-text">{{content}}</p>\n    <button data-ng-if="options.length > 0" type="button" class="btn btn-primary" data-ng-repeat="option in options" ng-click="methods.action(option)">{{option.label}}</a>\n  </div>\n</div>');
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group form-checkbox form-checkbox-list {{!view.isValid ? \'has-error\' : \'\'}}" data-ng-class="elementclass">\n    <div class="d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </div>\n    <div class="d-flex" ng-repeat="option in options track by $index" ng-click="methods.toggle(option)">\n        <i class="material-icons text-primary" data-ng-if="methods.inModel(option)">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!methods.inModel(option)">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{display != null ? option[display] : option}}\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-checkbox.html','<div class="form-group form-checkbox" data-ng-class="elementclass" data-ng-click="methods.change()">\n    <span class="d-flex">\n        <i class="material-icons text-primary" data-ng-if="model[property]">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!model[property]">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{label | translate}}\n        </div>\n    </span>\n</div>');
 $templateCache.put('templates/akk-colorpicker.html','<div class="form-group form-colorpicker" ng-class="!view.isValid ? \'has-error\' : \'\'">\n    <label class="control-label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-container">\n        <div class="icon">\n            <i class="material-icons md-18">color_lens</i>\n        </div>\n        <color-picker\n            ng-model="model"\n            options="view.options"\n            event-api="events"\n            ></color-picker>\n    </div>\n</div>');
-$templateCache.put('templates/akk-datagrid.html','<div class="table-responsive">\n    <table class="table table-vertical-center" data-ng-if="items.length">\n        <caption data-ng-if="caption && caption != \'true\'">{{caption}}</caption>\n        <thead>\n            <tr>\n                <th>\n                    <div data-ng-click="methods.toggleAll()">\n                        <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>\n                        <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>\n                    </div>\n                </th>\n                <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">\n                    <div class="d-flex align-items-center">\n                        <span>{{column| translate}}</span>\n                        <i data-ng-if="view.dimension == column && view.way == \'desc\'" class="material-icons">arrow_downward</i>\n                        <i data-ng-if="view.dimension == column && view.way == \'asc\'" class="material-icons">arrow_upward</i>\n                        <i data-ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>\n                    </div>\n                </th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr data-ng-repeat="item in items| orderBy: methods.order()">\n                <td>\n                    <i class="material-icons text-primary" ng-if="view.item.isChecked" ng-click="methods.select(item)">check_box</i>\n                    <i class="material-icons text-muted" ng-if="!view.item.isChecked" ng-click="methods.unselect(item)">check_box_outline_blank</i>\n                </td>\n        <pre>{{view.item}}</pre>\n                <td data-ng-repeat="column in columns">{{item[column]}}</td>\n            </tr>\n        </tbody>\n    </table>\n\n    <akk-alert title="{{\'Aucun r\xE9sultat trouv\xE9 !\'| translate}}" data-ng-if="!items.length"></akk-alert>\n</div>\n');
+$templateCache.put('templates/akk-datagrid.html','<div class="table-responsive">\n    <table class="table table-vertical-center" data-ng-if="items.length">\n        <caption data-ng-if="caption && caption != \'true\'">{{caption}}</caption>\n        <thead>\n            <tr>\n                <th data-ng-if="scope.selector = true">\n                    <div data-ng-click="methods.toggleAll()">\n                        <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>\n                        <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>\n                    </div>\n                </th>\n                <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">\n                    <div class="d-flex align-items-center">\n                        <span>{{column| translate}}</span>\n                        <i data-ng-if="view.dimension == column && view.way == \'desc\'" class="material-icons">arrow_downward</i>\n                        <i data-ng-if="view.dimension == column && view.way == \'asc\'" class="material-icons">arrow_upward</i>\n                        <i data-ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>\n                    </div>\n                </th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr data-ng-repeat="item in items| orderBy: methods.order()">\n                <td data-ng-if="scope.selector = true">\n                    <div data-ng-click="methods.toggle(item)">\n                        <i class="material-icons text-primary" data-ng-if="item.isChecked">check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="!item.isChecked">check_box_outline_blank</i>\n                    </div>\n                </td>\n                <td data-ng-repeat="column in columns" data-ng-click="methods.eventClick(item)" data-ng-mouseover="methods.eventHover(item)">{{item[column]}}</td>\n            </tr>\n        </tbody>\n    </table>\n\n    <akk-alert title="{{\'Aucun r\xE9sultat trouv\xE9 !\'| translate}}" data-ng-if="!items.length"></akk-alert>\n</div>\n');
 $templateCache.put('templates/akk-datepicker.html','<div class="form-group {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label" ng-if="label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        {{label}}\n        <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-control d-flex align-items-center justify-content-between">\n        <span class="input-search" ng-if="model != null" ng-click="methods.datepicker()">\n            {{model | dateShortFormat}}\n        </span>\n        <em ng-if="model == null" class="text-secondary" ng-click="methods.datepicker()">{{\'Ind\xE9fini\' | translate}}</em>\n        <i class="material-icons md-24 ml-auto" ng-click="methods.datepicker()">event</i>\n        <i class="material-icons md-24 ml-1" ng-if="model != null" ng-click="methods.clear()">clear</i>\n    </div>\n</div>');
 $templateCache.put('templates/akk-input-int.html','<div class="form-group well {{elementclass}}">\n    <div class="row">\n        <div class="col-md-6">\n            <p>{{label}}</p>\n        </div>\n        <div class="col-md-2">\n            <button type="button" class="btn btn-link" ng-click="substract()">\n                <i class="material-icons">remove</i>\n            </button>\n        </div>\n        <div class="col-md-2">  \n            <p>{{model}}/{{max}}</p>\n        </div>\n        <div class="col-md-2">\n            <button type="button" class="btn btn-link" ng-click="add()">\n                <i class="material-icons">add</i>\n            </button>\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-input.html','<div class="form-group form-input" ng-class="!isValid ? \'has-error\' : \'\'">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <input type="{{type}}" class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" step="{{step}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()"/>\n</div>');

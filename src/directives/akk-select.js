@@ -1,7 +1,8 @@
 /*
- * directive use to choose an option from a list.
- * it manage the behavior of the modal who display the list
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive use to choose an option from a list. It manage the behavior of the modal who display the list
  */
 
 'use strict';

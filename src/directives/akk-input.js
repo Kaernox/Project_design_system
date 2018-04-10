@@ -1,7 +1,8 @@
 /* 
- * directive to create a zone for an text entry
- * the entry can be use for ulterior fonction
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive to create a zone for an text entry the entry can be use for ulterior fonction
  */
 
 'use strict';

@@ -1,7 +1,8 @@
 /*
- * directive who open a modal for search an item in a list and select him
- * the selected item is return for an ulterior use
- * @return {int}
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive who open a modal for search an item in a list and select him the selected item is return for an ulterior use. @return {int}
  */
 
 'use strict';

@@ -1,7 +1,8 @@
 /* 
- * directives who create a tree using a model 
- * checkbox and toggle are implement
- * you can open-closed all and check-uncheck all
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directives who create a tree using a model checkbox and toggle are implement you can open-closed all and check-uncheck all
  */
 
 'use strict';

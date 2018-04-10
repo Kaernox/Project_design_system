@@ -1,7 +1,8 @@
 /*
- * directive who let the user pick a  color
- * the color pick can be pass for ulterior use
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directive who let the user pick a  color the color pick can be pass for ulterior use
  */
 
 'use strict';

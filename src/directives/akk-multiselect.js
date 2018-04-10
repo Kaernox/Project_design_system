@@ -1,7 +1,8 @@
 /*
- * can open a modal to display a list
- * then the user can chose multiple choice of the selection
- * this choices can be use at the exit of the modal
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Can open a modal to display a list then the user can chose multiple choice of the selectio this choices can be use at the exit of the modal
  */
 
 'use strict';

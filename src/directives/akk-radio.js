@@ -1,6 +1,8 @@
 /*
- * directive use to manage the behavior of the radio button
- * the choice can be use afterward
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive use to manage the behavior of the radio button the choice can be use afterward
  * 
  */
 
