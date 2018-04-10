@@ -37,28 +37,14 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                     init: function () {
                     },
                     toggle: function (item) {
-                        console.log('TOGGLE', item);
-                        
-                        if ($filter('getIndexBy')(scope.selected, 'id', item.id)) {
+                        var index = $filter('getIndexBy')(scope.selected, 'id', item.id);
+                        if (index != null) {
                             scope.methods.unselect(item);
-
                         } else {
                             scope.methods.select(item);
                         }
-
                         if (scope.selector != null && scope.selector == true && scope.eventToggle != null && scope.eventToggle != '') {
                             $rootScope.$broadcast(scope.eventToggle, item);
-                        }
-
-                    },
-                    eventClick: function (item) {
-                        if (scope.eventClick != null && scope.eventClick != '') {
-                            $rootScope.$broadcast(scope.eventClick, item);
-                        }
-                    },
-                    eventHover: function (item) {
-                        if (scope.eventHover != null && scope.eventHover != '') {
-                            $rootScope.$broadcast(scope.eventHover, item);
                         }
                     },
                     select: function (item) {
@@ -67,10 +53,12 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         item.isChecked = true;
                     },
                     unselect: function (item) {
-                        console.log('UNSELECT', item);
-                        var itemIndex = $filter('getIndexBy')(scope.items, 'id', item.id);
-                        scope.selected.splice(itemIndex, 1);
-                        item.isChecked = false;
+                        
+                        var indexInSelected = $filter('getIndexBy')(scope.selected, 'id', item.id);
+                        scope.selected.splice(indexInSelected, 1);
+                        
+                        var index = $filter('getIndexBy')(scope.items, 'id', item.id);
+                        scope.items[index].isChecked = false;
                     },
                     toggleAll: function () {
                         console.log('TOGGLEALL');
@@ -88,6 +76,16 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
 
                         if (scope.selector != null && scope.selector == true && scope.eventToggleAll != null && scope.eventToggleAll != '') {
                             $rootScope.$broadcast(scope.eventToggleAll, item);
+                        }
+                    },
+                    eventClick: function (item) {
+                        if (scope.eventClick != null && scope.eventClick != '') {
+                            $rootScope.$broadcast(scope.eventClick, item);
+                        }
+                    },
+                    eventHover: function (item) {
+                        if (scope.eventHover != null && scope.eventHover != '') {
+                            $rootScope.$broadcast(scope.eventHover, item);
                         }
                     },
                     sortBy: function (dimension, way) {
