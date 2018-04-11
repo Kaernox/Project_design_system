@@ -1,0 +1,25 @@
+{
+    "name": "akk-card",
+    "scope": [
+        {
+            "attr": "title",
+            "bind": "@",
+            "value": "view.card.title"
+        },
+        {
+            "attr": "content",
+            "bind": "@",
+            "value": "view.card.text"
+        },
+        {
+            "attr": "media",
+            "bind": "@",
+            "value": "view.card.media"
+        },
+        {
+            "attr": "options",
+            "bind": "=",
+            "value": "view.card.options"
+        }
+    ]
+}
