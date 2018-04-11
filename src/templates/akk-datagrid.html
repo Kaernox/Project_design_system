@@ -1,14 +1,14 @@
-<div class="table-responsive">
+<div class="table-responsive table-datagrid">
     <table class="table table-vertical-center" data-ng-if="items.length">
         <caption data-ng-if="!caption">{{caption}}</caption>
         <thead>
             <tr>
-                <th data-ng-if="selector">
-                    <div data-ng-click="methods.toggleAll()">
+                <th data-ng-if="selector" class="selector">
+                    <span data-ng-click="methods.toggleAll()">
                         <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>
                         <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>
                         <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>
-                    </div>
+                    </span>
                 </th>
                 <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">
                     <div class="d-flex align-items-center">
@@ -18,29 +18,27 @@
                         <i data-ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>
                     </div>
                 </th>
-                <th data-ng-if="options.length"></th>
+                <th data-ng-if="options.length" class="options"></th>
             </tr>
         </thead>
         <tbody>
             <tr data-ng-repeat="item in items| orderBy: methods.order() track by $index">
-                <td data-ng-if="selector">
-                    <div data-ng-click="methods.toggle(item)">
+                <td data-ng-if="selector" class="selector">
+                    <span data-ng-click="methods.toggle(item)">
                         <i class="material-icons text-primary" data-ng-if="item.isChecked">check_box</i>
                         <i class="material-icons text-muted" data-ng-if="!item.isChecked">check_box_outline_blank</i>
-                    </div>
+                    </span>
                 </td>
                 <td data-ng-repeat="column in columns" data-ng-click="methods.eventClick(item)" data-ng-mouseover="methods.eventHover(item)">{{item[column]}}</td>
-                <td data-ng-if="options.length">
-                    <div class="btn-group" uib-dropdown dropdown-append-to-body>
-                        <a href id="btn-append-to-body-{{$index}}" uib-dropdown-toggle>
+                <td data-ng-if="options.length" class="options">
+                    <span class="btn-group" uib-dropdown dropdown-append-to-body>
+                        <a href data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="material-icons">more_vert</i>
                         </a>
-                        <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="btn-append-to-body-{{$index}}">
-                            <li role="menuitem" data-ng-repeat="option in options">
-                                <a href="javascript:;" data-ng-click="methods.optionClick(item, option)">{{option.label}}</a>
-                            </li>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" data-ng-repeat="option in options" href="javascript:;" data-ng-click="methods.optionClick(item, option)">{{option.label}}</a>
                         </ul>
-                    </div>
+                    </span>
                 </td>
             </tr>
         </tbody>

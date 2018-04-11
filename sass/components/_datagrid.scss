@@ -1,0 +1,21 @@
+.table-datagrid {
+    .selector,
+    .options {
+        width: 42px;
+    }
+    
+    .table-vertical-center {
+        th,
+        td {
+           vertical-align: middle;
+        }
+        
+        .selector,
+        .options {
+            i {
+                position: relative;
+                top: .15rem;
+            }
+        }
+    }
+}
