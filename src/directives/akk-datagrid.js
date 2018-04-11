@@ -1,7 +1,8 @@
 /*
- * directive who order a list in a table. This one can be reorder
- * and can use chebox for passing somme parameter
- * 
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: directive who order a list in a table. This one can be reorder and can use chebox for passing somme parameter
  */
 
 'use strict';
@@ -49,7 +50,6 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         }
                     },
                     select: function (item) {
-                        console.log('SELECT', item);
                         scope.selected.push(item);
                         item.isChecked = true;
                     },
@@ -62,7 +62,6 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         scope.items[index].isChecked = false;
                     },
                     toggleAll: function () {
-                        console.log('TOGGLEALL');
                         if (scope.selected.length > 0) {
                             scope.selected = [];
                             angular.forEach(scope.items, function (item, key) {

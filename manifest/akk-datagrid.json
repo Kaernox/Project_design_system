@@ -46,7 +46,5 @@
             "bind": "@",
             "value": ""
         }
-    ],
-    "label": "This is a datagrid",
-    "description": "The akk-datagrid takes an array of objects and an array of columns names and displays it, the datagrid is sortable using any column, just click on the column name to sort, clicking multiple times will toggle the sort type between ascending and descending."
+    ]
 }

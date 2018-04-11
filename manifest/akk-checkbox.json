@@ -36,6 +36,5 @@
             "bind": "@",
             "value": ""
         }
-    ],
-    "description": "Here we have our akk-checkbox directive, it takes three values, the label, the model object and the property to take from that model object. The property will contain true if akk-checkbox is checked, or false."
+    ]
 }
