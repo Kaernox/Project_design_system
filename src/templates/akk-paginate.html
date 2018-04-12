@@ -1,0 +1,22 @@
+<nav>
+    <ul class="pagination">
+        <li class="page-item">
+            <a href="javascript:;" data-ng-class="methods.isFirstPage() ? 'disabled' : '';" data-ng-click="methods.firstPage()" class="page-link">
+                <i class="material-icons">first_page</i>
+                <span class="sr-only" translate>First page</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <span class="page-link">
+                {{view.pagin.current + 1}}/{{methods.numberOfPages()}}
+                <span class="sr-only" translate>(current)</span>
+            </span>
+        </li>
+        <li class="page-item">
+            <a href="javascript:;" data-ng-class="methods.isLastPage() ? 'disabled' : '';" data-ng-click="methods.lastPage()" class="page-link">
+                <i class="material-icons">first_page</i>
+                <span class="sr-only" translate>Last page</span>
+            </a>
+        </li>
+    </ul>
+</nav>
