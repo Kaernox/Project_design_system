@@ -212,9 +212,9 @@
             <div class="component">
                 <h2>Paginate</h2>
                 <div class="row">
-                    <div class="col-12 col-md-3">
-                        <akk-datagrid items="view.selectAndSearch.items" columns="view.datagrid.columns" selected="view.datagrid.selectedItems" caption="This is a datagrid" selector="true" options="view.datagrid.options"></akk-datagrid>
-                        <akk-paginate items="view.selectAndSearch.items" itemPerPage="3"></akk-paginate>
+                    <div class="col-12">
+                        <akk-datagrid items="view.selectAndSearch.items" columns="view.datagrid.columns" selected="view.datagrid.selectedItems" caption="example of paginate" selector="false" options="view.datagrid.options" paginate="{itemPerPage:3, size: 'lg', alignment: 'center'}"></akk-datagrid>
+                        <!--<akk-paginate items="view.selectAndSearch.items" item-per-page="3" size="lg" alignment="center"></akk-paginate>-->
                     </div>
                     <div class="col-12 col-md-6">
                         <p class="description text-justify">

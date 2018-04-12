@@ -348,6 +348,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                 selected: "=",
                 selector: "=",
                 options: "=",
+                paginate: "=",
                 eventClick: "@",
                 eventHover: "@",
                 eventToggle: "@",
@@ -362,6 +363,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
 
                 scope.methods = {
                     init: function () {
+                        console.log('INIT', scope.paginate);
                     },
                     toggle: function (item) {
                         var index = $filter('getIndexBy')(scope.selected, 'id', item.id);
@@ -436,6 +438,8 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         return way + scope.view.dimension;
                     }
                 };
+                
+                scope.methods.init();
             }
         };
 
@@ -842,76 +846,97 @@ angular.module('akkurate-design-system').directive("akkPaginate", [
     '$window',
     function ($rootScope, $window) {
         return {
-            restrict: "A",
+            restrict: "E",
             templateUrl: 'templates/akk-paginate.html',
             transclude: true,
             replace: false,
             scope: {
-                item: "&",
+                items: "=",
                 itemPerPage: "=",
+                size: "@",
+                alignment: "@",
                 eventUpdate: "@"
             },
-            pre: function preLink(scope, iElement, iAttrs, controller) {
+            link: function postLink(scope, element, attrs) {
                 scope.view = {
                     displayPage: 9,
                     limits: [10, 20, 50, 100],
                     pagin: {
                         itemPerPage: 10,
+                        pages: null,
                         current: 0
                     }
                 };
 
                 scope.methods = {
-                    init: function() {
-                        if(scope.itemPerPage) {
+                    init: function () {
+                        console.log('INIT', scope.items);
+                        
+                        if (scope.itemPerPage) {
+                            console.log('ITEMPERPAGE', scope.itemPerPage);
                             scope.view.pagin.itemPerPage = scope.itemPerPage;
                         }
+
+                        scope.methods.numberOfPages();
+                    },
+                    numberOfPages: function () {
+                        scope.view.pagin.pages = Math.ceil(scope.items.length / scope.view.pagin.itemPerPage);
+                        console.log('NUMBEROFPAGES', scope.view.pagin.pages);
                     },
                     isFirstPage: function () {
                         return scope.view.pagin.current == 0;
                     },
                     isLastPage: function () {
-                        return scope.view.pagin.current
-                                >= scope.items().length / scope.view.pagin.itemPerPage - 1;
+                        return scope.view.pagin.current >= scope.view.pagin.pages - 1;
                     },
                     next: function () {
-                        if (!methods.isLastPage()) {
+                        if (!scope.methods.isLastPage()) {
                             scope.view.pagin.current++;
                         }
                     },
+                    goto: function (page) {
+                        scope.view.pagin.current = page;
+                    },
                     previous: function () {
-                        if (!methods.isFirstPage()) {
+                        if (!scope.methods.isFirstPage()) {
                             scope.view.pagin.current--;
                         }
                     },
-                    first: function () {
+                    firstPage: function () {
                         scope.view.pagin.current = 0;
                     },
-                    last: function () {
-                        scope.view.pagin.current = scope.view.pagin.itemPerPage - 1;
+                    lastPage: function () {
+                        scope.view.pagin.current = scope.view.pagin.pages - 1;
                     },
-                    numberOfPages: function () {
-                        return Math.ceil(scope.items().length / scope.view.pagin.itemPerPage);
+                    setSize: function() {
+                        return scope.size ? 'pagination-' + scope.size : '';
+                    },
+                    setAlignement: function() {
+                        return scope.alignment ? 'justify-content-' + scope.alignment : '';
+                    },
+                    setDisplay: function() {
+                        return scope.methods.setSize() + ' ' + scope.methods.setAlignement();
                     }
-                },
-                scope.$watch('view.pageSize', function (newValue, oldValue) {
-                    if (newValue != oldValue) {
-                        scope.methods.firstPage();
-                    }
-                });
+                };
+//                scope.$watch('view.pagin.', function (newValue, oldValue) {
+//                    if (newValue != oldValue) {
+//                        scope.methods.firstPage();
+//                    }
+//                });
 
-                scope.$parent.firstPage = function () {
-                    scope.methods.firstPage();
-                };
-                // Function that returns the reduced items list, to use in ng-repeat
-                scope.$parent.pageItems = function () {
-                    var start = scope.view.pagin.current * scope.view.pagin.itemPerPage;
-                    return scope.items().slice(start, start + scope.view.pagin.itemPerPage);
-                };
-                
+//                scope.$parent.firstPage = function () {
+//                    scope.methods.firstPage();
+//                };
+//                // Function that returns the reduced items list, to use in ng-repeat
+//                scope.$parent.pageItems = function () {
+//                    var start = scope.view.pagin.current * scope.view.pagin.itemPerPage;
+//                    return scope.items.slice(start, start + scope.view.pagin.itemPerPage);
+//                };
+
                 scope.methods.init();
-            },
-            link: function postLink(scope, element, attrs) {
+
+//            },
+//            link: function postLink(scope, element, attrs) {
             }
         };
     }
@@ -1833,13 +1858,13 @@ $templateCache.put('templates/akk-card.html','<div class="card"> \n  <img data-n
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group form-checkbox form-checkbox-list {{!view.isValid ? \'has-error\' : \'\'}}" data-ng-class="elementclass">\n    <div class="d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </div>\n    <div class="d-flex" ng-repeat="option in options track by $index" ng-click="methods.toggle(option)">\n        <i class="material-icons text-primary" data-ng-if="methods.inModel(option)">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!methods.inModel(option)">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{display != null ? option[display] : option}}\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-checkbox.html','<div class="form-group form-checkbox" data-ng-class="elementclass" data-ng-click="methods.change()">\n    <span class="d-flex">\n        <i class="material-icons text-primary" data-ng-if="model[property]">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!model[property]">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{label | translate}}\n        </div>\n    </span>\n</div>');
 $templateCache.put('templates/akk-colorpicker.html','<div class="form-group form-colorpicker" ng-class="!view.isValid ? \'has-error\' : \'\'">\n    <label class="control-label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-container">\n        <div class="icon">\n            <i class="material-icons md-18">color_lens</i>\n        </div>\n        <color-picker\n            ng-model="model"\n            options="view.options"\n            event-api="events"\n            ></color-picker>\n    </div>\n</div>');
-$templateCache.put('templates/akk-datagrid.html','<div class="table-responsive table-datagrid">\n    <table class="table table-vertical-center" data-ng-if="items.length">\n        <caption data-ng-if="!caption">{{caption}}</caption>\n        <thead>\n            <tr>\n                <th data-ng-if="selector" class="selector">\n                    <span data-ng-click="methods.toggleAll()">\n                        <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>\n                        <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>\n                    </span>\n                </th>\n                <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">\n                    <div class="d-flex align-items-center">\n                        <span>{{column| translate}}</span>\n                        <i data-ng-if="view.dimension == column && view.way == \'desc\'" class="material-icons">arrow_downward</i>\n                        <i data-ng-if="view.dimension == column && view.way == \'asc\'" class="material-icons">arrow_upward</i>\n                        <i data-ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>\n                    </div>\n                </th>\n                <th data-ng-if="options.length" class="options"></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr data-ng-repeat="item in items| orderBy: methods.order() track by $index">\n                <td data-ng-if="selector" class="selector">\n                    <span data-ng-click="methods.toggle(item)">\n                        <i class="material-icons text-primary" data-ng-if="item.isChecked">check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="!item.isChecked">check_box_outline_blank</i>\n                    </span>\n                </td>\n                <td data-ng-repeat="column in columns" data-ng-click="methods.eventClick(item)" data-ng-mouseover="methods.eventHover(item)">{{item[column]}}</td>\n                <td data-ng-if="options.length" class="options">\n                    <span class="btn-group" uib-dropdown dropdown-append-to-body>\n                        <a href data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n                            <i class="material-icons">more_vert</i>\n                        </a>\n                        <ul class="dropdown-menu dropdown-menu-right">\n                            <a class="dropdown-item" data-ng-repeat="option in options" href="javascript:;" data-ng-click="methods.optionClick(item, option)">{{option.label}}</a>\n                        </ul>\n                    </span>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n\n    <akk-alert title="{{\'Aucun r\xE9sultat trouv\xE9 !\'| translate}}" data-ng-if="!items.length"></akk-alert>\n</div>\n');
+$templateCache.put('templates/akk-datagrid.html','<div class="table-responsive table-datagrid">\n    <table class="table table-vertical-center" data-ng-if="items.length">\n        <caption data-ng-if="!caption">{{caption}}</caption>\n        <thead>\n            <tr>\n                <th data-ng-if="selector" class="selector">\n                    <span data-ng-click="methods.toggleAll()">\n                        <i class="material-icons text-primary" data-ng-if="selected.length == items.length">check_box</i>\n                        <i class="material-icons text-primary" data-ng-if="selected.length > 0 && selected.length < items.length">indeterminate_check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="selected.length == 0">check_box_outline_blank</i>\n                    </span>\n                </th>\n                <th ng-repeat="column in columns" data-ng-click="methods.sortBy(column, methods.inverseWay(column))">\n                    <div class="d-flex align-items-center">\n                        <span>{{column| translate}}</span>\n                        <i data-ng-if="view.dimension == column && view.way == \'desc\'" class="material-icons">arrow_downward</i>\n                        <i data-ng-if="view.dimension == column && view.way == \'asc\'" class="material-icons">arrow_upward</i>\n                        <i data-ng-if="view.dimension != column" class="material-icons text-muted">arrow_drop_down</i>\n                    </div>\n                </th>\n                <th data-ng-if="options.length" class="options"></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr data-ng-repeat="item in items| orderBy: methods.order() track by $index">\n                <td data-ng-if="selector" class="selector">\n                    <span data-ng-click="methods.toggle(item)">\n                        <i class="material-icons text-primary" data-ng-if="item.isChecked">check_box</i>\n                        <i class="material-icons text-muted" data-ng-if="!item.isChecked">check_box_outline_blank</i>\n                    </span>\n                </td>\n                <td data-ng-repeat="column in columns" data-ng-click="methods.eventClick(item)" data-ng-mouseover="methods.eventHover(item)">{{item[column]}}</td>\n                <td data-ng-if="options.length" class="options">\n                    <span class="btn-group" uib-dropdown dropdown-append-to-body>\n                        <a href data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n                            <i class="material-icons">more_vert</i>\n                        </a>\n                        <ul class="dropdown-menu dropdown-menu-right">\n                            <a class="dropdown-item" data-ng-repeat="option in options" href="javascript:;" data-ng-click="methods.optionClick(item, option)">{{option.label}}</a>\n                        </ul>\n                    </span>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <akk-paginate data-ng-if="items.length && paginate" items="items" item-per-page="paginate.itemPerPage" size="paginate.size" alignment="paginate.alignment"></akk-paginate>\n\n    <akk-alert title="{{\'Aucun r\xE9sultat trouv\xE9 !\'| translate}}" data-ng-if="!items.length"></akk-alert>\n</div>\n');
 $templateCache.put('templates/akk-datepicker.html','<div class="form-group {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label" ng-if="label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        {{label}}\n        <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-control d-flex align-items-center justify-content-between">\n        <span class="input-search" ng-if="model != null" ng-click="methods.datepicker()">\n            {{model | dateShortFormat}}\n        </span>\n        <em ng-if="model == null" class="text-secondary" ng-click="methods.datepicker()">{{\'Ind\xE9fini\' | translate}}</em>\n        <i class="material-icons md-24 ml-auto" ng-click="methods.datepicker()">event</i>\n        <i class="material-icons md-24 ml-1" ng-if="model != null" ng-click="methods.clear()">clear</i>\n    </div>\n</div>');
 $templateCache.put('templates/akk-input-int.html','<div class="form-group well {{elementclass}}">\n    <div class="row">\n        <div class="col-md-6">\n            <p>{{label}}</p>\n        </div>\n        <div class="col-md-2">\n            <button type="button" class="btn btn-link" ng-click="substract()">\n                <i class="material-icons">remove</i>\n            </button>\n        </div>\n        <div class="col-md-2">  \n            <p>{{model}}/{{max}}</p>\n        </div>\n        <div class="col-md-2">\n            <button type="button" class="btn btn-link" ng-click="add()">\n                <i class="material-icons">add</i>\n            </button>\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-input.html','<div class="form-group form-input" ng-class="!isValid ? \'has-error\' : \'\'">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <input type="{{type}}" class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" step="{{step}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()"/>\n</div>');
 $templateCache.put('templates/akk-loader.html','<div class="loader">\n    <div data-ng-show="loading" class="loader-container">\n        <div class="loader-spinner"></div>\n        <div class="loader-info">{{\'Loading...\' | translate}}</div>\n    </div>\n    <div data-ng-show="!loading" data-ng-transclude></div>\n</div>');
 $templateCache.put('templates/akk-multiselect.html','<div class="form-group">\n    <label class="control-label" ng-if="view.label">{{view.label}}</label>\n    <div class="form-control d-flex align-items-center justify-content-between" ng-click="methods.open()">\n        <span ng-if="view.selected.length">\n            {{view.selected.length}} <span>selected</span>\n        </span>\n        <span ng-if="!view.selected.length" class="text-secondary">{{view.placeholder}}</span>\n        <i class="material-icons md-18">arrow_drop_down</i>\n    </div>\n</div>\n');
-$templateCache.put('templates/akk-paginate.html','<nav>\n    <ul class="pagination">\n        <li class="page-item">\n            <a href="javascript:;" data-ng-class="methods.isFirstPage() ? \'disabled\' : \'\';" data-ng-click="methods.firstPage()" class="page-link">\n                <i class="material-icons">first_page</i>\n                <span class="sr-only" translate>First page</span>\n            </a>\n        </li>\n        <li class="page-item">\n            <span class="page-link">\n                {{view.pagin.current + 1}}/{{methods.numberOfPages()}}\n                <span class="sr-only" translate>(current)</span>\n            </span>\n        </li>\n        <li class="page-item">\n            <a href="javascript:;" data-ng-class="methods.isLastPage() ? \'disabled\' : \'\';" data-ng-click="methods.lastPage()" class="page-link">\n                <i class="material-icons">first_page</i>\n                <span class="sr-only" translate>Last page</span>\n            </a>\n        </li>\n    </ul>\n</nav>');
+$templateCache.put('templates/akk-paginate.html','<nav>\n    <ul class="pagination" data-ng-class="methods.setDisplay();">\n        <li class="page-item" data-ng-class="methods.isFirstPage() ? \'disabled\' : \'\'">\n            <a href="javascript:;" data-ng-click="methods.firstPage()" class="page-link">\n                <i class="material-icons">first_page</i>\n                <span class="sr-only" translate>First page</span>\n            </a>\n        </li>\n        <li class="page-item" data-ng-class="methods.isFirstPage() ? \'disabled\' : \'\'">\n            <a href="javascript:;" data-ng-click="methods.previous()" class="page-link">\n                <i class="material-icons">chevron_left</i>\n                <span class="sr-only" translate>Previous page</span>\n            </a>\n        </li>\n        <li class="page-item" data-ng-repeat="i in []| range:view.pagin.pages" data-ng-class="i == view.pagin.current ? \'active\' : \'\'">\n            <a href="javascript:;" data-ng-click="methods.goto(i)" class="page-link" data-ng-if="i != view.pagin.current">\n                {{i + 1}}\n            </a>\n            <span class="page-link" data-ng-if="i == view.pagin.current">\n                {{i + 1}}\n                <span class="sr-only" translate>(current)</span>\n            </span>\n        </li>\n        <li class="page-item" data-ng-class="methods.isLastPage() ? \'disabled\' : \'\'">\n            <a href="javascript:;" data-ng-click="methods.next()" class="page-link">\n                <i class="material-icons">chevron_right</i>\n                <span class="sr-only" translate>Next page</span>\n            </a>\n        </li>\n        <li class="page-item" data-ng-class="methods.isLastPage() ? \'disabled\' : \'\'">\n            <a href="javascript:;" data-ng-click="methods.lastPage()" class="page-link">\n                <i class="material-icons">last_page</i>\n                <span class="sr-only" translate>Last page</span>\n            </a>\n        </li>\n    </ul>\n</nav>');
 $templateCache.put('templates/akk-radio.html','<div class="form-group form-radio {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label"><i data-ng-if="!view.isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <div class="d-flex align-items-center {{elementclass}}" data-ng-repeat="option in options track by $index" data-ng-click="methods.select(option)">\n        <div data-ng-if="(property && model == option[property]) || (!property && methods.checkEqualsModel(option) )"><i class="material-icons text-primary">radio_button_checked</i></div>\n        <div data-ng-if="(property && model != option[property]) || (!property && !methods.checkEqualsModel(option) )"><i class="material-icons text-muted">radio_button_unchecked</i></div>\n        <div class="ml-1">{{option.name}}</div>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-select.html','<div class="form-group form-select {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </label>\n    <select class="form-control {{elementclass}}" ng-options="option{{value != null ? \'[value]\' : \'\'}} as option{{display != null ? \'[display]\' : \'\'}} for option in options{{value == null && display != null ? \' track by option.id\' : \'\'}}" ng-model="model" ng-required="{{req}}" ng-blur="methods.checkValidity()" ng-change="methods.change()">\n        <option value="" ng-if="defaultDisplayEnabled" selected>{{defaultDisplay}}</option>\n    </select>\n</div>\n');
 $templateCache.put('templates/akk-selectandsearch.html','<div class="form-group {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label" ng-if="label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        {{label}}\n        <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-control d-flex align-items-center justify-content-between">\n        <input type="hidden" ng-model="view.item.id" ng-required="{{req}}" />\n        <span class="input-search" ng-if="view.item != null" ng-click="methods.wizard()">\n            <span ng-repeat="field in fields"><span ng-if="!view.item[field]">{{field}}</span><span ng-if="view.item[field]">{{view.item[field]}}</span></span>\n        </span>\n        <em ng-if="view.item == null" class="text-secondary" ng-click="methods.wizard()">{{placeholder}}</em>\n        <i class="material-icons md-24 ml-auto" ng-click="methods.wizard()" role="button">more_horiz</i>\n        <i class="material-icons md-24 ml-1" ng-if="add != null" ng-click="methods.add()">add</i>\n    </div>\n</div>');

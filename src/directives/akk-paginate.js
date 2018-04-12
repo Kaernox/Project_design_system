@@ -11,76 +11,97 @@ angular.module('akkurate-design-system').directive("akkPaginate", [
     '$window',
     function ($rootScope, $window) {
         return {
-            restrict: "A",
+            restrict: "E",
             templateUrl: 'templates/akk-paginate.html',
             transclude: true,
             replace: false,
             scope: {
-                item: "&",
+                items: "=",
                 itemPerPage: "=",
+                size: "@",
+                alignment: "@",
                 eventUpdate: "@"
             },
-            pre: function preLink(scope, iElement, iAttrs, controller) {
+            link: function postLink(scope, element, attrs) {
                 scope.view = {
                     displayPage: 9,
                     limits: [10, 20, 50, 100],
                     pagin: {
                         itemPerPage: 10,
+                        pages: null,
                         current: 0
                     }
                 };
 
                 scope.methods = {
-                    init: function() {
-                        if(scope.itemPerPage) {
+                    init: function () {
+                        console.log('INIT', scope.items);
+                        
+                        if (scope.itemPerPage) {
+                            console.log('ITEMPERPAGE', scope.itemPerPage);
                             scope.view.pagin.itemPerPage = scope.itemPerPage;
                         }
+
+                        scope.methods.numberOfPages();
+                    },
+                    numberOfPages: function () {
+                        scope.view.pagin.pages = Math.ceil(scope.items.length / scope.view.pagin.itemPerPage);
+                        console.log('NUMBEROFPAGES', scope.view.pagin.pages);
                     },
                     isFirstPage: function () {
                         return scope.view.pagin.current == 0;
                     },
                     isLastPage: function () {
-                        return scope.view.pagin.current
-                                >= scope.items().length / scope.view.pagin.itemPerPage - 1;
+                        return scope.view.pagin.current >= scope.view.pagin.pages - 1;
                     },
                     next: function () {
-                        if (!methods.isLastPage()) {
+                        if (!scope.methods.isLastPage()) {
                             scope.view.pagin.current++;
                         }
                     },
+                    goto: function (page) {
+                        scope.view.pagin.current = page;
+                    },
                     previous: function () {
-                        if (!methods.isFirstPage()) {
+                        if (!scope.methods.isFirstPage()) {
                             scope.view.pagin.current--;
                         }
                     },
-                    first: function () {
+                    firstPage: function () {
                         scope.view.pagin.current = 0;
                     },
-                    last: function () {
-                        scope.view.pagin.current = scope.view.pagin.itemPerPage - 1;
+                    lastPage: function () {
+                        scope.view.pagin.current = scope.view.pagin.pages - 1;
                     },
-                    numberOfPages: function () {
-                        return Math.ceil(scope.items().length / scope.view.pagin.itemPerPage);
+                    setSize: function() {
+                        return scope.size ? 'pagination-' + scope.size : '';
+                    },
+                    setAlignement: function() {
+                        return scope.alignment ? 'justify-content-' + scope.alignment : '';
+                    },
+                    setDisplay: function() {
+                        return scope.methods.setSize() + ' ' + scope.methods.setAlignement();
                     }
-                },
-                scope.$watch('view.pageSize', function (newValue, oldValue) {
-                    if (newValue != oldValue) {
-                        scope.methods.firstPage();
-                    }
-                });
+                };
+//                scope.$watch('view.pagin.', function (newValue, oldValue) {
+//                    if (newValue != oldValue) {
+//                        scope.methods.firstPage();
+//                    }
+//                });
 
-                scope.$parent.firstPage = function () {
-                    scope.methods.firstPage();
-                };
-                // Function that returns the reduced items list, to use in ng-repeat
-                scope.$parent.pageItems = function () {
-                    var start = scope.view.pagin.current * scope.view.pagin.itemPerPage;
-                    return scope.items().slice(start, start + scope.view.pagin.itemPerPage);
-                };
-                
+//                scope.$parent.firstPage = function () {
+//                    scope.methods.firstPage();
+//                };
+//                // Function that returns the reduced items list, to use in ng-repeat
+//                scope.$parent.pageItems = function () {
+//                    var start = scope.view.pagin.current * scope.view.pagin.itemPerPage;
+//                    return scope.items.slice(start, start + scope.view.pagin.itemPerPage);
+//                };
+
                 scope.methods.init();
-            },
-            link: function postLink(scope, element, attrs) {
+
+//            },
+//            link: function postLink(scope, element, attrs) {
             }
         };
     }

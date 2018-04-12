@@ -43,6 +43,7 @@
             </tr>
         </tbody>
     </table>
+    <akk-paginate data-ng-if="items.length && paginate" items="items" item-per-page="paginate.itemPerPage" size="paginate.size" alignment="paginate.alignment"></akk-paginate>
 
     <akk-alert title="{{'Aucun résultat trouvé !'| translate}}" data-ng-if="!items.length"></akk-alert>
 </div>

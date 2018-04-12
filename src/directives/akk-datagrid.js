@@ -23,6 +23,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                 selected: "=",
                 selector: "=",
                 options: "=",
+                paginate: "=",
                 eventClick: "@",
                 eventHover: "@",
                 eventToggle: "@",
@@ -37,6 +38,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
 
                 scope.methods = {
                     init: function () {
+                        console.log('INIT', scope.paginate);
                     },
                     toggle: function (item) {
                         var index = $filter('getIndexBy')(scope.selected, 'id', item.id);
@@ -111,6 +113,8 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         return way + scope.view.dimension;
                     }
                 };
+                
+                scope.methods.init();
             }
         };
 

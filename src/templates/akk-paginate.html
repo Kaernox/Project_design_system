@@ -1,20 +1,35 @@
 <nav>
-    <ul class="pagination">
-        <li class="page-item">
-            <a href="javascript:;" data-ng-class="methods.isFirstPage() ? 'disabled' : '';" data-ng-click="methods.firstPage()" class="page-link">
+    <ul class="pagination" data-ng-class="methods.setDisplay();">
+        <li class="page-item" data-ng-class="methods.isFirstPage() ? 'disabled' : ''">
+            <a href="javascript:;" data-ng-click="methods.firstPage()" class="page-link">
                 <i class="material-icons">first_page</i>
                 <span class="sr-only" translate>First page</span>
             </a>
         </li>
-        <li class="page-item">
-            <span class="page-link">
-                {{view.pagin.current + 1}}/{{methods.numberOfPages()}}
+        <li class="page-item" data-ng-class="methods.isFirstPage() ? 'disabled' : ''">
+            <a href="javascript:;" data-ng-click="methods.previous()" class="page-link">
+                <i class="material-icons">chevron_left</i>
+                <span class="sr-only" translate>Previous page</span>
+            </a>
+        </li>
+        <li class="page-item" data-ng-repeat="i in []| range:view.pagin.pages" data-ng-class="i == view.pagin.current ? 'active' : ''">
+            <a href="javascript:;" data-ng-click="methods.goto(i)" class="page-link" data-ng-if="i != view.pagin.current">
+                {{i + 1}}
+            </a>
+            <span class="page-link" data-ng-if="i == view.pagin.current">
+                {{i + 1}}
                 <span class="sr-only" translate>(current)</span>
             </span>
         </li>
-        <li class="page-item">
-            <a href="javascript:;" data-ng-class="methods.isLastPage() ? 'disabled' : '';" data-ng-click="methods.lastPage()" class="page-link">
-                <i class="material-icons">first_page</i>
+        <li class="page-item" data-ng-class="methods.isLastPage() ? 'disabled' : ''">
+            <a href="javascript:;" data-ng-click="methods.next()" class="page-link">
+                <i class="material-icons">chevron_right</i>
+                <span class="sr-only" translate>Next page</span>
+            </a>
+        </li>
+        <li class="page-item" data-ng-class="methods.isLastPage() ? 'disabled' : ''">
+            <a href="javascript:;" data-ng-click="methods.lastPage()" class="page-link">
+                <i class="material-icons">last_page</i>
                 <span class="sr-only" translate>Last page</span>
             </a>
         </li>
