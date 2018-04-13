@@ -22,7 +22,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr data-ng-repeat="item in items| orderBy: methods.order() track by $index">
+            <tr data-ng-repeat="item in view.items| orderBy: methods.order() | limitTo: view.limitTo.limit : view.limitTo.start track by $index ">
                 <td data-ng-if="selector" class="selector">
                     <span data-ng-click="methods.toggle(item)">
                         <i class="material-icons text-primary" data-ng-if="item.isChecked">check_box</i>
@@ -43,7 +43,7 @@
             </tr>
         </tbody>
     </table>
-    <akk-paginate data-ng-if="items.length && paginate" items="items" item-per-page="paginate.itemPerPage" size="paginate.size" alignment="paginate.alignment"></akk-paginate>
+    <akk-paginate data-ng-if="items.length && paginate" items="items" item-per-page="paginate.itemPerPage" event-update="updatePaginate" size="paginate.size" alignment="paginate.alignment"></akk-paginate>
 
     <akk-alert title="{{'Aucun résultat trouvé !'| translate}}" data-ng-if="!items.length"></akk-alert>
 </div>

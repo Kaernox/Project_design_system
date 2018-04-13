@@ -33,12 +33,24 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                 scope.view = {
                     dimension: scope.columns[0],
                     way: 'asc',
-                    items: null
+                    items: angular.copy(scope.items),
+                    paginate: null,
+                    limitTo: {
+                        limit: 0,
+                        start: 0
+                    }
                 };
 
                 scope.methods = {
                     init: function () {
-                        console.log('INIT', scope.paginate);
+                        if (scope.paginate && scope.paginate.itemPerPage) {
+                            scope.view.paginate = scope.paginate;
+                            scope.view.limitTo.limit = scope.paginate.itemPerPage;
+                            scope.view.limitTo.start = 0;
+                        } else {
+                            scope.view.limitTo.limit = scope.view.items.length;
+                            scope.view.limitTo.start = 0;
+                        }
                     },
                     toggle: function (item) {
                         var index = $filter('getIndexBy')(scope.selected, 'id', item.id);
@@ -60,18 +72,18 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         var indexInSelected = $filter('getIndexBy')(scope.selected, 'id', item.id);
                         scope.selected.splice(indexInSelected, 1);
 
-                        var index = $filter('getIndexBy')(scope.items, 'id', item.id);
-                        scope.items[index].isChecked = false;
+                        var index = $filter('getIndexBy')(scope.view.items, 'id', item.id);
+                        scope.view.items[index].isChecked = false;
                     },
                     toggleAll: function () {
                         if (scope.selected.length > 0) {
                             scope.selected = [];
-                            angular.forEach(scope.items, function (item, key) {
+                            angular.forEach(scope.view.items, function (item, key) {
                                 item.isChecked = false;
                             });
                         } else {
-                            scope.selected = angular.copy(scope.items);
-                            angular.forEach(scope.items, function (item, key) {
+                            scope.selected = angular.copy(scope.view.items);
+                            angular.forEach(scope.view.items, function (item, key) {
                                 item.isChecked = true;
                             });
                         }
@@ -113,7 +125,12 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
                         return way + scope.view.dimension;
                     }
                 };
-                
+
+                scope.$on('updatePaginate', function (event, page) {
+                    scope.view.limitTo.start = page;
+                });
+
+
                 scope.methods.init();
             }
         };

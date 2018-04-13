@@ -8,8 +8,7 @@
 'use strict';
 angular.module('akkurate-design-system').directive("akkPaginate", [
     '$rootScope',
-    '$window',
-    function ($rootScope, $window) {
+    function ($rootScope) {
         return {
             restrict: "E",
             templateUrl: 'templates/akk-paginate.html',
@@ -35,10 +34,8 @@ angular.module('akkurate-design-system').directive("akkPaginate", [
 
                 scope.methods = {
                     init: function () {
-                        console.log('INIT', scope.items);
-                        
+
                         if (scope.itemPerPage) {
-                            console.log('ITEMPERPAGE', scope.itemPerPage);
                             scope.view.pagin.itemPerPage = scope.itemPerPage;
                         }
 
@@ -46,7 +43,6 @@ angular.module('akkurate-design-system').directive("akkPaginate", [
                     },
                     numberOfPages: function () {
                         scope.view.pagin.pages = Math.ceil(scope.items.length / scope.view.pagin.itemPerPage);
-                        console.log('NUMBEROFPAGES', scope.view.pagin.pages);
                     },
                     isFirstPage: function () {
                         return scope.view.pagin.current == 0;
@@ -57,51 +53,44 @@ angular.module('akkurate-design-system').directive("akkPaginate", [
                     next: function () {
                         if (!scope.methods.isLastPage()) {
                             scope.view.pagin.current++;
+                            scope.methods.update();
                         }
                     },
                     goto: function (page) {
                         scope.view.pagin.current = page;
+                        scope.methods.update();
                     },
                     previous: function () {
                         if (!scope.methods.isFirstPage()) {
                             scope.view.pagin.current--;
+                            scope.methods.update();
                         }
                     },
                     firstPage: function () {
                         scope.view.pagin.current = 0;
+                        scope.methods.update();
                     },
                     lastPage: function () {
                         scope.view.pagin.current = scope.view.pagin.pages - 1;
+                        scope.methods.update();
                     },
-                    setSize: function() {
+                    setSize: function () {
                         return scope.size ? 'pagination-' + scope.size : '';
                     },
-                    setAlignement: function() {
+                    setAlignement: function () {
                         return scope.alignment ? 'justify-content-' + scope.alignment : '';
                     },
-                    setDisplay: function() {
+                    setDisplay: function () {
                         return scope.methods.setSize() + ' ' + scope.methods.setAlignement();
+                    },
+                    update: function () {
+                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                            $rootScope.$broadcast(scope.eventUpdate, scope.view.pagin.current * scope.view.pagin.itemPerPage);
+                        }
                     }
                 };
-//                scope.$watch('view.pagin.', function (newValue, oldValue) {
-//                    if (newValue != oldValue) {
-//                        scope.methods.firstPage();
-//                    }
-//                });
-
-//                scope.$parent.firstPage = function () {
-//                    scope.methods.firstPage();
-//                };
-//                // Function that returns the reduced items list, to use in ng-repeat
-//                scope.$parent.pageItems = function () {
-//                    var start = scope.view.pagin.current * scope.view.pagin.itemPerPage;
-//                    return scope.items.slice(start, start + scope.view.pagin.itemPerPage);
-//                };
 
                 scope.methods.init();
-
-//            },
-//            link: function postLink(scope, element, attrs) {
             }
         };
     }
