@@ -1,0 +1,55 @@
+{
+    "name": "akk-datagrid",
+    "scope":[
+        {
+            "attr": "caption",
+            "bind": "@",
+            "value": "example of a Paginate"
+        },
+        {
+            "attr": "items",
+            "bind": "=",
+            "value": "view.selectAndSearch.items"
+        },
+        {
+            "attr": "columns",
+            "bind": "=",
+            "value": "['lastname', 'firstname', 'job', 'location']"
+        },
+        {
+            "attr": "selected",
+            "bind": "=",
+            "value": "view.datagrid.selectedItems"
+        },
+        {
+            "attr": "selector",
+            "bind": "=",
+            "value": "false"
+        },
+        {
+            "attr": "paginate",
+            "bind": "=",
+            "value": "{itemPerPage:3, size: 'lg', alignment: 'center'}"
+        },
+        {
+            "attr": "eventClick",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "eventHover",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "eventToggle",
+            "bind": "@",
+            "value": ""
+        },
+        {
+            "attr": "eventToggleAll",
+            "bind": "@",
+            "value": ""
+        }
+    ]
+}

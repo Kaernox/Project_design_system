@@ -18,6 +18,11 @@ var minifyHtml = require('gulp-minify-html');
 var inject = require('gulp-inject');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
+var hb = require('gulp-hb');
+var merge = require('merge-stream');
+var fs = require('fs');
+var data = require('gulp-data');
+var glob = require('glob');
 
 /**
  * First we create the template cache for all our templates
@@ -88,4 +93,37 @@ gulp.task('default', [
 gulp.task('watch', function () {
     gulp.watch('src/**/*.js', ['default']);
     gulp.watch('src/**/*.html', ['default']);
+});
+
+gulp.task('createDocumentation', function () {
+    var tasks = [];
+
+    //going throught each Json file.
+    glob.sync("./manifest/*/*.json").forEach(function (filePath) {
+        //read it as a Json object
+        var jsonFile = JSON.parse(fs.readFileSync(filePath));
+        jsonFile.forEach(function (fileData) {
+            //They should all be arrays, so iterate over them
+
+            var hbStream = hb()
+                    .data(paths.data);
+            
+            //create a file for each one, using the template = filename they specify
+            var currentTask = gulp.src("" + fileData.name + ".hbs")
+                    .pipe(data(function (file) {
+                        return fileData;
+                    }))
+                    .pipe(hbStream)
+                    .pipe(rename({
+                        basename: fileData.slug,
+                        extname: '.html'
+                    }))
+                    .pipe(gulp.dest(paths.dest + "/" + fileData.dest))
+                    .pipe(gulp.dest('docs/documentation' + fileData.dest))
+                    .pipe(livereload());
+        });
+    });
+
+    return (merge(tasks));
+
 });
