@@ -1,0 +1,19 @@
+<div class="component">
+    <h2>akk-switch</h2>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <akk-switch label="{{'Switch #1 (default default)'| translate}},{{'Switch #2 (default center)'| translate}},{{'Switch #3 (default left)'| translate}},{{'Switch #4 (large default)'| translate}},{{'Switch #5 (large CENTER)'| translate}},{{'Switch #6 (large left)'| translate}}" alignment=",center,left,,center,left" elementclass="" icon="" size=",,,lg,lg,lg" req="" model="view.switch" property="value" eventUpdate="" ></akk-switch>
+            <div>
+                {@@loop(name + '.html', "dependencies")
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <p class="description text-justify">
+                @@description
+            </p>
+        </div>
+        <div class="col-12 col-md-2">
+            <pre class="show-value">{{ view| json }}</pre>
+        </div>
+    </div>
+</div>

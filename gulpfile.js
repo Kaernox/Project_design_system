@@ -7,6 +7,9 @@ var moduleName = 'akkurate-design-system';
 var outPutFolder = "./dist";
 var srcFolder = "./src";
 var templatesFolder = srcFolder + '/templates';
+var srcDocumentation = "./manifest/*";
+var srcTemplate = "./templates";
+var outputDocumentation = "./docs/documentation";
 
 // Dépendencies
 var gulp = require('gulp');
@@ -18,11 +21,10 @@ var minifyHtml = require('gulp-minify-html');
 var inject = require('gulp-inject');
 var sass = require('gulp-sass');
 var watch = require('gulp-watch');
-var hb = require('gulp-hb');
-var merge = require('merge-stream');
-var fs = require('fs');
-var data = require('gulp-data');
 var glob = require('glob');
+var merge = require('merge-stream');
+var fileinclude = require('gulp-file-include');
+var fs = require('fs');
 
 /**
  * First we create the template cache for all our templates
@@ -95,33 +97,43 @@ gulp.task('watch', function () {
     gulp.watch('src/**/*.html', ['default']);
 });
 
-gulp.task('createDocumentation', function () {
+gulp.task('creadoc', function () {
     var tasks = [];
 
+    var methods = {
+        parseScope: function (manifest) {
+            return manifest.scope;
+        },
+        parseDependencies: function (manifest) {
+            return manifest.dependencies;
+        }
+    };
+
     //going throught each Json file.
-    glob.sync("./manifest/*/*.json").forEach(function (filePath) {
+    glob.sync(srcDocumentation + "/*.json").forEach(function (filePath) {
         //read it as a Json object
         var jsonFile = JSON.parse(fs.readFileSync(filePath));
-        jsonFile.forEach(function (fileData) {
-            //They should all be arrays, so iterate over them
+        var akkName = jsonFile.name; // str
+        var scope = methods.parseScope(jsonFile); // array
+        var dependencies = methods.parseDependencies(jsonFile); // array
+        var template = srcTemplate + '/view.html'; //template
 
-            var hbStream = hb()
-                    .data(paths.data);
-            
-            //create a file for each one, using the template = filename they specify
-            var currentTask = gulp.src("" + fileData.name + ".hbs")
-                    .pipe(data(function (file) {
-                        return fileData;
-                    }))
-                    .pipe(hbStream)
-                    .pipe(rename({
-                        basename: fileData.slug,
-                        extname: '.html'
-                    }))
-                    .pipe(gulp.dest(paths.dest + "/" + fileData.dest))
-                    .pipe(gulp.dest('docs/documentation' + fileData.dest))
-                    .pipe(livereload());
-        });
+//        console.log('SYNC', akkName, scope, dependencies);
+
+        var objectToInclude = {
+            "prefix": "@@",
+            "basepath": "@file",
+            "context": {
+                "name": akkName,
+                "scope": scope,
+                "dependencies": dependencies
+            }
+        };
+
+        gulp.src([template])
+                .pipe(fileinclude(objectToInclude))
+                .pipe(rename(akkName + ".html"))
+                .pipe(gulp.dest(outputDocumentation + "/"));
     });
 
     return (merge(tasks));
