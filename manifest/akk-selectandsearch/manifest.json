@@ -80,5 +80,7 @@
             "bind": "@",
             "value": ""
         }
+    ],
+    "dependencies": [
     ]
 }

@@ -25,6 +25,21 @@
                     "attr": "property",
                     "bind": "@",
                     "value": "isDisplayed"
+                },
+                {
+                    "attr": "elementclass",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "alignment",
+                    "bind": "@",
+                    "value": ""
+                },
+                {
+                    "attr": "req",
+                    "bind": "@",
+                    "value": ""
                 }
             ]
         }

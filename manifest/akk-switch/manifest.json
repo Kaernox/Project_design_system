@@ -67,5 +67,7 @@
             "bind": "@",
             "value": ""
         }
+    ],
+    "dependencies": [
     ]
 }

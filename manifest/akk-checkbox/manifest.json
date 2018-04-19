@@ -36,5 +36,7 @@
             "bind": "@",
             "value": ""
         }
+    ],
+    "dependencies": [
     ]
 }

@@ -21,5 +21,7 @@
             "bind": "=",
             "value": "view.card.options"
         }
+    ],
+    "dependencies": [
     ]
 }
