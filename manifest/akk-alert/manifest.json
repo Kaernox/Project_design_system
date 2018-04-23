@@ -24,7 +24,7 @@
         {
             "attr": "type",
             "bind": "@",
-            "value": "view.alert.model"
+            "value": "{{view.alert.model}}"
         },
         {
             "attr": "isDisplayed",

@@ -2,12 +2,12 @@
     <h2>akk-datagrid</h2>
     <div class="row">
         <div class="col-12 col-md-4">
-            <akk-datagrid caption="example of a Paginate" items="view.selectAndSearch.items" columns="['lastname', 'firstname', 'job', 'location']" selected="view.datagrid.selectedItems" selector="false" paginate="{itemPerPage:3, size: 'lg', alignment: 'center'}" eventClick="" eventHover="" eventToggle="" eventToggleAll="" ></akk-datagrid>
-               
+            <akk-datagrid caption="This is a datagrid" items="view.selectAndSearch.items" columns="['lastname', 'firstname', 'job', 'location']" selected="view.datagrid.selectedItems" selector="true" paginate="" eventClick="" eventHover="" eventToggle="" eventToggleAll="" ></akk-datagrid>
+
         </div>
         <div class="col-12 col-md-6">
             <p class="description text-justify">
-                @@description
+                The akk-datagrid takes an array of objects and an array of columns names and displays it, the datagrid is sortable using any column, just click on the column name to sort, clicking multiple times will toggle the sort type between ascending and descending.<br />You can add a checkbox for the datagrid and in all the entry, this serve to pass parameter and select multiple choice in the datagrid.<br />You can also add an expense button like in this exmaple at the right of the list and add multiple function to it. In this example we you can see a button edit and delete who open a modal and says something.
             </p>
         </div>
         <div class="col-12 col-md-2">

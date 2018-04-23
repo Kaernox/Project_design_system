@@ -4,17 +4,17 @@
         {
             "attr": "title",
             "bind": "@",
-            "value": "view.card.title"
+            "value": "{{view.card.title}}"
         },
         {
             "attr": "content",
             "bind": "@",
-            "value": "view.card.text"
+            "value": "{{view.card.text}}"
         },
         {
             "attr": "media",
             "bind": "@",
-            "value": "view.card.media"
+            "value": "{{view.card.media}}"
         },
         {
             "attr": "options",

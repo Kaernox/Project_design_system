@@ -1,15 +1,7 @@
-<div class="component">
-    <h2>@@name</h2>
-    <div class="row">
-        <div class="col-12 col-md-4">
-            <@@name @@for(var i = 0 ; i < scope.length ; i++) {`+scope[i].attr+`="`+scope[i].value+`" }></@@name>
-               @@for(var i = 0; i < dependencies.length ; i++){<`+dependencies[i].field+` `+dependencies[i].attributes[0].attr+`="`+dependencies[i].attributes[0].value+`" `+dependencies[i].attributes[1].attr+`="`+dependencies[i].attributes[1].value+`" `+dependencies[i].attributes[2].attr+`="`+dependencies[i].attributes[2].value+`" `+dependencies[i].attributes[3].attr+`="`+dependencies[i].attributes[3].value+`" `+dependencies[i].attributes[4].attr+`="`+dependencies[i].attributes[4].value+`" `+dependencies[i].attributes[5].attr+`="`+dependencies[i].attributes[5].value+`" ></`+dependencies[i].field+`>\n}
-        </div>
-        <div class="col-12 col-md-6">
-                @@include('../manifest/'+@@name+'description.html')
-        </div>
-        <div class="col-12 col-md-2">
-            <pre class="show-value">{{ view| json }}</pre>
-        </div>
+<h2 class="component">@@name</h2>
+<div class="row">
+    <div class="col-12 col-md-4">
+        <@@name @@for(var i = 0 ; i < scope.length ; i++) {`+scope[i].attr+`="`+scope[i].value+`" }></@@name>
+        @@for(var i = 0; i < dependencies.length ; i++){<`+dependencies[i].field+` `+dependencies[i].attributes[0].attr+`="`+dependencies[i].attributes[0].value+`" `+dependencies[i].attributes[1].attr+`="`+dependencies[i].attributes[1].value+`" `+dependencies[i].attributes[2].attr+`="`+dependencies[i].attributes[2].value+`" `+dependencies[i].attributes[3].attr+`="`+dependencies[i].attributes[3].value+`" `+dependencies[i].attributes[4].attr+`="`+dependencies[i].attributes[4].value+`" `+dependencies[i].attributes[5].attr+`="`+dependencies[i].attributes[5].value+`" ></`+dependencies[i].field+`>\n}
     </div>
-</div>
+    

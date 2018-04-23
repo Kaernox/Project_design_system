@@ -25,6 +25,7 @@ var glob = require('glob');
 var merge = require('merge-stream');
 var fileinclude = require('gulp-file-include');
 var fs = require('fs');
+var parentFolder = require('parent-folder');
 
 /**
  * First we create the template cache for all our templates
@@ -97,7 +98,7 @@ gulp.task('watch', function () {
     gulp.watch('src/**/*.html', ['default']);
 });
 
-gulp.task('creadoc', function () {
+gulp.task('createHtml', function () {
     var tasks = [];
 
     var methods = {
@@ -113,12 +114,12 @@ gulp.task('creadoc', function () {
     glob.sync(srcDocumentation + "/*.json").forEach(function (filePath) {
         //read it as a Json object
         var jsonFile = JSON.parse(fs.readFileSync(filePath));
-        var akkName = jsonFile.name; // str
+        var akkName = parentFolder(filePath, true); // str
         var scope = methods.parseScope(jsonFile); // array
         var dependencies = methods.parseDependencies(jsonFile); // array
         var template = srcTemplate + '/view.html'; //template
 
-//        console.log('SYNC', akkName, scope, dependencies);
+        console.log('SYNC', akkName, scope, dependencies);
 
         var objectToInclude = {
             "prefix": "@@",
@@ -133,9 +134,30 @@ gulp.task('creadoc', function () {
         gulp.src([template])
                 .pipe(fileinclude(objectToInclude))
                 .pipe(rename(akkName + ".html"))
-                .pipe(gulp.dest(outputDocumentation + "/"));
+                .pipe(gulp.dest(srcDocumentation + "/"));
     });
 
     return (merge(tasks));
+
+});
+
+gulp.task('CreateDocumentation', ['createHtml'], function () {
+    glob.sync(srcDocumentation + "/*.html").forEach(function (filePath) {
+        var akkName = parentFolder(filePath, true);
+        console.log('DESC', filePath);
+        return gulp.src(filepath)
+                .pipe(concat("all.html"))
+                .pipe(rename(akkName + ".html"))
+                .pipe(gulp.dest(outputDocumentation + "/"));
+                
+    });
+
+});
+
+
+gulp.task('navigationComponent', function () {
+    glob.sync().forEach(function(){
+        
+    });
 
 });

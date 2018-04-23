@@ -27,6 +27,11 @@
             "value": "true"
         },
         {
+            "attr": "paginate",
+            "bind": "=",
+            "value": ""
+        },
+        {
             "attr": "eventClick",
             "bind": "@",
             "value": ""

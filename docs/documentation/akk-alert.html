@@ -1,19 +1,17 @@
-<div class="component">
-    <h2>akk-alert</h2>
-    <div class="row">
-        <div class="col-12 col-md-4">
-            <akk-alert title="Youpi" message="Il va faire beau !" icon="warning" event="" type="view.alert.model" isDisplayed="view.alert.isDisplayed" isClosable="view.alert.isClosable" ></akk-alert>
-               <akk-select label="Select the type" model="view.alert.model" options="view.alert.types" value="key" display="label" eventUpdate="updateAlert" ></akk-select>
-<akk-checkbox label="Show the close action" model="view.alert" property="isClosable" elementclass="" alignment="" req="" ></akk-checkbox>
+<h2 class="component">akk-alert</h2>
+<div class="row">
+    <div class="col-12 col-md-4">
+        <akk-alert title="Youpi" message="Il va faire beau !" icon="warning" event="" type="{{view.alert.model}}" isDisplayed="view.alert.isDisplayed" isClosable="view.alert.isClosable" ></akk-alert>
+        <akk-select label="Select the type" model="view.alert.model" options="view.alert.types" value="key" display="label" eventUpdate="updateAlert" ></akk-select>
+        <akk-checkbox label="Show the close action" model="view.alert" property="isClosable" elementclass="" alignment="" req="" ></akk-checkbox>
 
-        </div>
-        <div class="col-12 col-md-6">
-            <p class="description text-justify">
-                @@description
-            </p>
-        </div>
-        <div class="col-12 col-md-2">
-            <pre class="show-value">{{ view| json }}</pre>
-        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <p class="description text-justify">
+            The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below.<br />You can also use the akk-checkbox for add a close action to your alert. In this example when you have closed your alert, you can switch the option with select to reappear the alert.
+        </p>
+    </div>
+    <div class="col-12 col-md-2">
+        <pre class="show-value">{{ view| json }}</pre>
     </div>
 </div>

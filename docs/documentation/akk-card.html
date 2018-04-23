@@ -2,13 +2,13 @@
     <h2>akk-card</h2>
     <div class="row">
         <div class="col-12 col-md-4">
-            <akk-card title="view.card.title" content="view.card.text" media="view.card.media" options="view.card.options" ></akk-card>
+            <akk-card title="{{view.card.title}}" content="{{view.card.text}}" media="{{view.card.media}}" options="view.card.options" ></akk-card>
                
         </div>
         <div class="col-12 col-md-6">
             <p class="description text-justify">
-                @@description
-            </p>
+    Here we have our akk-checkbox directive, it takes three values, the label, the model object and the property to take from that model object. The property will contain true if akk-checkbox is checked, or false.
+</p>
         </div>
         <div class="col-12 col-md-2">
             <pre class="show-value">{{ view| json }}</pre>
