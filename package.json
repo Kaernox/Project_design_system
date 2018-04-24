@@ -4,7 +4,8 @@
   "description": "",
   "authors": [
     "Olivier Lacombe <olacombe@subvitamine.com>",
-    "Moatez Mkhinini <mkhinini.motaz@gmail.com>"
+    "Moatez Mkhinini <mkhinini.motaz@gmail.com>",
+    "Benjamin Dominguez <b.dominguez.3d@gmail.com"
   ],
   "main": " ",
   "scripts": {
@@ -32,6 +33,7 @@
     "glob": "^7.1.2",
     "gulp-file-include": "^2.0.1",
     "gulp-watch": "^5.0.0",
-    "merge-stream": "^1.0.1"
+    "merge-stream": "^1.0.1",
+    "parent-folder": "^1.1.0"
   }
 }

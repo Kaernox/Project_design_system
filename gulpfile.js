@@ -119,7 +119,7 @@ gulp.task('createHtml', function () {
         var dependencies = methods.parseDependencies(jsonFile); // array
         var template = srcTemplate + '/view.html'; //template
 
-        console.log('SYNC', akkName, scope, dependencies);
+       // console.log('SYNC', akkName, scope, dependencies);
 
         var objectToInclude = {
             "prefix": "@@",
@@ -134,7 +134,7 @@ gulp.task('createHtml', function () {
         gulp.src([template])
                 .pipe(fileinclude(objectToInclude))
                 .pipe(rename(akkName + ".html"))
-                .pipe(gulp.dest(srcDocumentation + "/"));
+                .pipe(gulp.dest( ".manifest/" + akkName +"/"));
     });
 
     return (merge(tasks));
@@ -154,10 +154,3 @@ gulp.task('CreateDocumentation', ['createHtml'], function () {
 
 });
 
-
-gulp.task('navigationComponent', function () {
-    glob.sync().forEach(function(){
-        
-    });
-
-});
