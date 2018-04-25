@@ -24,7 +24,7 @@
         {
             "attr": "selected",
             "bind": "=",
-            "value": "view.multiselect.list"
+            "value": "view.multiselect.selected"
         },
         {
             "attr": "field",

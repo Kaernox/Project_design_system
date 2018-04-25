@@ -2,7 +2,7 @@
     <h2>akk-textarea</h2>
     <div class="row">
         <div class="col-12 col-md-4">
-            <akk-textarea label="{{Input your text here | translate}}" elementclass="" size="" placeholder="input your text" req="true" model="view.textareaValue" event="" ></akk-textarea>
+            <akk-textarea label="Input your text here" elementclass="" size="" placeholder="input your text" req="true" model="view.textareaValue" event="" ></akk-textarea>
                
         </div>
         <div class="col-12 col-md-6">
@@ -11,7 +11,7 @@
 </p>
         </div>
         <div class="col-12 col-md-2">
-            <pre class="show-value">{{ view| json }}</pre>
+            <pre class="show-value">{{ view.textareaValue ? view.textareaValue : 'Start typing to see the result' }}</pre>
         </div>
     </div>
 </div>

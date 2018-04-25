@@ -29,7 +29,7 @@
         {
             "attr": "property",
             "bind": "@",
-            "value": "acceptanceValue"
+            "value": "checkboxValue"
         },
         {
             "attr": "eventUpdate",

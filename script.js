@@ -81,7 +81,7 @@ var componentsData = {
     // The date selected in the akk-datepicker directive will be stored here
     date_created: new Date(),
     // The text entered in the akk-input directive will be stored here
-    inputValue: "Bob",
+    inputValue: "",
     // Data for the akk-multiselect directive
     loading: {
         isDisplayed: false
@@ -140,7 +140,7 @@ var componentsData = {
                 name: 'test 4',
                 value: false
             }
-        ],
+        ]
     },
     // Data for the akk-select directive, the selected value will be stored in the model property
     select: {
@@ -309,11 +309,11 @@ var componentsData = {
         ]
     },
     // Data for the akk-switch directive, it will contain either true or false
-    switch: {
+    switch : {
         value: true
     },
     // The text entered in the akk-textarea directive will be stored here
-    textareaValue: '',
+    textareaValue : '',
     // This is an example representation of what the akk-tree directive is expecting, alll levels of nesting are allowed
     tree: {
         model: [],
@@ -454,37 +454,126 @@ designsystem.component('home', {
         function ($scope) {
         }
     ]
-})
-.component('components', {
+}).component('components', {
     templateUrl: 'docs/components.html',
     controller: [
         '$scope',
         function ($scope) {
+
             $scope.methods = {
+                init: function () {
+                    $scope.methods.toggleValuesDisplay();
+                },
                 toggleValuesDisplay: function () {
-                    angular.element(".show-value").toggleClass("d-none");
+                    angular.element(".show-value").toggle();
+                },
+                setTemplate: function (template) {
+                    $scope.view.template = template;
+                },
+                getTemplate: function () {
+                    return '/docs/documentation/' + $scope.view.template + '.html';
                 }
             };
 
-            $scope.view = componentsData; // ==> defined above
-            
+            $scope.view = componentsData;
+            $scope.view.template = 'akk-alert';
+            $scope.view.links = [
+                {
+                    name: 'Alert',
+                    template: 'akk-alert'
+                },
+                {
+                    name: 'Card',
+                    template: 'akk-card'
+                },
+                {
+                    name: 'Checkbox',
+                    template: 'akk-checkbox'
+                },
+                {
+                    name: 'Checkbox List',
+                    template: 'akk-checkboxList'
+                },
+                {
+                    name: 'Color Picker',
+                    template: 'akk-colorpicker'
+                },
+                {
+                    name: 'Datagrid',
+                    template: 'akk-datagrid'
+                },
+                {
+                    name: 'Date Picker',
+                    template: 'akk-datepicker'
+                },
+                {
+                    name: 'Input',
+                    template: 'akk-input'
+                },
+                {
+                    name: 'Loader',
+                    template: 'akk-loader'
+                },
+                {
+                    name: 'Multiselect',
+                    template: 'akk-multiselect'
+                },
+                {
+                    name: 'Paginate',
+                    template: 'akk-paginate'
+                },
+                {
+                    name: 'Radio',
+                    template: 'akk-radio'
+                },
+                {
+                    name: 'Select',
+                    template: 'akk-select'
+                },
+                {
+                    name: 'Select and Search',
+                    template: 'akk-selectAndSearch'
+                },
+                {
+                    name: 'Selector',
+                    template: 'akk-selector'
+                },
+                {
+                    name: 'Switch',
+                    template: 'akk-switch'
+                },
+                {
+                    name: 'Textarea',
+                    template: 'akk-textarea'
+                },
+                {
+                    name: 'Tree',
+                    template: 'akk-tree'
+                }
+            ];
+
             $scope.$on('updateAlert', function (event) {
                 $scope.view.alert.isDisplayed = true;
             });
-            
+
             $scope.$on('cardAlert', function (event) {
                 alert('Youpi card');
             });
-            
+
             $scope.$on('datagridOptionEdit', function (event, item) {
                 alert('Datagrid: edition of #' + item.id);
             });
-            
+
             $scope.$on('datagridOptionDelete', function (event, item) {
                 alert('Datagrid: deletion of #' + item.id);
+            });
+
+            $scope.$on('$viewContentLoaded', function (event) {
+                $scope.methods.init();
             });
         }
     ]
 });
+
 designsystem.run(function ($uiRouter) {
 });

@@ -2,7 +2,7 @@
     <h2>akk-checkbox</h2>
     <div class="row">
         <div class="col-12 col-md-4">
-            <akk-checkbox label="Do accept the conditions of use (there a none anyway)?" alignment="" elementclass="" req="" model="view" property="acceptanceValue" eventUpdate="" ></akk-checkbox>
+            <akk-checkbox label="Do accept the conditions of use (there a none anyway)?" alignment="" elementclass="" req="" model="view" property="checkboxValue" eventUpdate="" ></akk-checkbox>
                
         </div>
         <div class="col-12 col-md-6">
@@ -11,7 +11,7 @@
 </p>
         </div>
         <div class="col-12 col-md-2">
-            <pre class="show-value">{{ view| json }}</pre>
+            <pre class="show-value">{{ view.checkboxValue| json }}</pre>
         </div>
     </div>
 </div>

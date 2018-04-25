@@ -19,11 +19,7 @@
         {
             "attr": "fields",
             "bind": "=",
-            "value": [
-                "lastname",
-                " ",
-                "firstname"
-            ]
+            "value": "['lastname',' ','firstname']"
         },
         {
             "attr": "filterType",
