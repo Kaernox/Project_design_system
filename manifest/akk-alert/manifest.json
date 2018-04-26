@@ -9,7 +9,7 @@
         {
             "attr": "message",
             "bind": "@",
-            "value": "Il va faire beau !"
+            "value": "Today is a good day !"
         },
         {
             "attr": "icon",
@@ -17,7 +17,7 @@
             "value": "warning"
         },
         {
-            "attr": "event",
+            "attr": "eventUpdate",
             "bind": "@",
             "value": ""
         },
@@ -27,12 +27,12 @@
             "value": "{{view.alert.model}}"
         },
         {
-            "attr": "isDisplayed",
+            "attr": "displayed",
             "bind": "=",
             "value": "view.alert.isDisplayed"
         },
         {
-            "attr": "isClosable",
+            "attr": "closable",
             "bind": "=",
             "value": "view.alert.isClosable"
         }

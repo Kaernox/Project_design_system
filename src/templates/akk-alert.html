@@ -1,5 +1,5 @@
 <div>
-    <div data-ng-show="isDisplayed" class="alert" role="alert" data-ng-class="type ? 'alert-' + type : 'alert-dark'">
+    <div data-ng-show="displayed" class="alert" role="alert" data-ng-class="type ? 'alert-' + type : 'alert-dark'">
         <div class="d-flex align-items-center">
             <i class="material-icons mr-1 align-self-start" data-ng-bind="icon" data-ng-if="icon"></i>
             <span data-ng-if="icon">&nbsp;&nbsp;&nbsp;</span>
@@ -7,7 +7,7 @@
                 <h4 class="alert-heading" data-ng-if="title">{{title}}</h4>
                 <div data-ng-bind-html="message"></div>
             </div>
-            <i class="material-icons align-self-start ml-auto" ng-if="isClosable" data-ng-click="methods.close()">clear</i>
+            <i class="material-icons align-self-start ml-auto" ng-if="closable" data-ng-click="methods.close()">clear</i>
         </div>
     </div>
 </div>

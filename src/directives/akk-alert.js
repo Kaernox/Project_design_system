@@ -21,8 +21,8 @@ angular.module('akkurate-design-system').directive("akkAlert",
                         icon: "@",
                         eventUpdate: "@",
                         type: "@",
-                        isDisplayed: "=",
-                        isClosable: "="
+                        displayed: "=",
+                        closable: "="
                     },
                     link: function postLink(scope, element, attrs) {
                         
@@ -31,11 +31,11 @@ angular.module('akkurate-design-system').directive("akkAlert",
                         
                         scope.methods = {
                             init: function() {
-//                                scope.isDisplayed = true;
+//                                scope.displayed = true;
                             },
                             close: function() {
-                                scope.isDisplayed = false;
-                                console.log('close', scope.isDisplayed);
+                                scope.displayed = false;
+//                                console.log('close', scope.displayed);
 
                                 if (scope.eventUpdate != null && scope.eventUpdate != '') {
                                     $rootScope.$broadcast(scope.eventUpdate);

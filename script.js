@@ -4,8 +4,8 @@ var componentsData = {
     // Data for costumizing the akk-alert directive,  changing the alert type is doable by  select a value in the akk-select directive above
     alert: {
         model: 'primary',
-        isDisplayed: true,
-        isClosable: false,
+        displayed: true,
+        closable: false,
         types: [
             {
                 key: 'primary',
@@ -145,7 +145,23 @@ var componentsData = {
     // Data for the akk-select directive, the selected value will be stored in the model property
     select: {
         model: "",
-        options: ["one", "two", "three", "four"]
+        options: [
+            {
+                key: 'one',
+                label: 'one'
+            },
+            {
+                key: 'two',
+                label: 'two'
+            },
+            {
+                key: 'three',
+                label: 'three'
+            },
+            {
+                key: 'four',
+                label: 'four'
+            }]
     },
     // The akk-selectandsearch values
     selectAndSearch: {
@@ -553,10 +569,13 @@ designsystem.component('home', {
             ];
 
             $scope.$on('updateAlert', function (event) {
-                $scope.view.alert.isDisplayed = true;
+                $scope.view.alert.displayed = true;
             });
 
             $scope.$on('cardAlert', function (event) {
+                console.log("-------------");
+                console.log("srciptEvent");
+                console.log("-------------");
                 alert('Youpi card');
             });
 
