@@ -32,6 +32,7 @@ angular.module('akkurate-design-system').directive("akkAlert",
                         scope.methods = {
                             init: function() {
 //                                scope.displayed = true;
+
                             },
                             close: function() {
                                 scope.displayed = false;

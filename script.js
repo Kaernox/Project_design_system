@@ -49,7 +49,7 @@ var componentsData = {
         options: [
             {
                 label: "Alert something",
-                eventClick: "cardAlert"
+                event: "cardAlert"
             }
         ]
     },
@@ -508,7 +508,7 @@ designsystem.component('home', {
                 },
                 {
                     name: 'Checkbox List',
-                    template: 'akk-checkboxList'
+                    template: 'akk-checkbox-list'
                 },
                 {
                     name: 'Color Picker',
@@ -573,9 +573,6 @@ designsystem.component('home', {
             });
 
             $scope.$on('cardAlert', function (event) {
-                console.log("-------------");
-                console.log("srciptEvent");
-                console.log("-------------");
                 alert('Youpi card');
             });
 

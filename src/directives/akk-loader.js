@@ -6,10 +6,10 @@
  */
 
 'use strict';
-angular.module('akkurate-design-system').directive('akkLoading', function () {
+angular.module('akkurate-design-system').directive('akkLoader', function () {
     return {
         templateUrl: 'templates/akk-loader.html',
-        restrict: 'A',
+        restrict: 'AE',
         transclude: true,
         replace: true,
         scope: {

@@ -22,7 +22,7 @@ angular.module('akkurate-design-system').directive('akkSelect', [
                 options: "=",
                 value: "@",
                 display: "@",
-                eventUpdate: "@",
+                update: "@",
                 defaultDisplayEnabled: "@",
                 defaultDisplay: "@"
             },
@@ -40,8 +40,8 @@ angular.module('akkurate-design-system').directive('akkSelect', [
                         scope.view.isValid = element[0].children[1].validity.valid;
                     },
                     change: function () {
-                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
-                            $rootScope.$broadcast(scope.eventUpdate);
+                        if (scope.update != null && scope.update != '') {
+                            $rootScope.$broadcast(scope.update);
                         }
                     }
                 };
