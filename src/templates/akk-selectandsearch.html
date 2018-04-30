@@ -9,7 +9,7 @@
         <span class="input-search" ng-if="view.item != null" ng-click="methods.wizard()">
             <span ng-repeat="field in fields"><span ng-if="!view.item[field]">{{field}}</span><span ng-if="view.item[field]">{{view.item[field]}}</span></span>
         </span>
-        <em ng-if="view.item == null" class="text-secondary" ng-click="methods.wizard()">{{placeholder}}</em>
+        <em ng-if="view.item == null" class="text-muted" ng-click="methods.wizard()">{{placeholder}}</em>
         <i class="material-icons md-24 ml-auto" ng-click="methods.wizard()" role="button">more_horiz</i>
         <i class="material-icons md-24 ml-1" ng-if="add != null" ng-click="methods.add()">add</i>
     </div>

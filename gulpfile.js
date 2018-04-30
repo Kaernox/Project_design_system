@@ -130,7 +130,8 @@ gulp.task('createHtml', function () {
                 "dependencies": dependencies
             }
         };
-
+        
+// using gulp to generate the fist part of the Html who will be concatenate in the next task
         gulp.src([template])
                 .pipe(fileinclude(objectToInclude))
                 .pipe(rename(akkName + ".html"))
@@ -141,6 +142,8 @@ gulp.task('createHtml', function () {
 
 });
 
+
+// concatanate the html to create the final page who will be use in the documentation
 gulp.task('CreateDocumentation', ['createHtml'], function () {
     glob.sync(srcDocumentation + "/*.html").forEach(function (filePath) {
         var akkName = parentFolder(filePath, true);

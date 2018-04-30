@@ -329,8 +329,8 @@ var componentsData = {
         value: true
     },
     // The text entered in the akk-textarea directive will be stored here
-    textareaValue : '',
-    // This is an example representation of what the akk-tree directive is expecting, alll levels of nesting are allowed
+    textareaValue: '',
+    // This is an example representation of what the akk-tree directive is expecting, all levels of nesting are allowed
     tree: {
         model: [],
         items: [
@@ -391,7 +391,7 @@ var componentsData = {
     }
 };
 
-
+//configuration for the documentation
 var designsystem = angular.module('AkkurateDesignSystem', ['akkurate-design-system', 'ui.router']);
 
 designsystem.config([
@@ -463,6 +463,7 @@ designsystem.config([
     }
 ]);
 
+//component for the documentation contains the path for include example in the component page
 designsystem.component('home', {
     templateUrl: 'docs/home.html',
     controller: [
@@ -567,7 +568,8 @@ designsystem.component('home', {
                     template: 'akk-tree'
                 }
             ];
-
+            
+// event for the display again akk alert if it was close
             $scope.$on('updateAlert', function (event) {
                 $scope.view.alert.displayed = true;
             });
