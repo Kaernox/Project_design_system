@@ -388,6 +388,19 @@ var componentsData = {
                 value: 'label 4'
             }
         ]
+    },
+    verify: {
+        model: "",
+        options: [
+            {
+                key: 'confirm',
+                label: 'confirm'
+            },
+            {
+                key: 'alert',
+                label: 'alert'
+            }
+            ]
     }
 };
 

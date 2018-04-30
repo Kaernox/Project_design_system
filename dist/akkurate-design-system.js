@@ -1693,6 +1693,94 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
             }
         };
     }]);
+/**
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Factory who's managing an alert or a confirmation for an action the user realise
+ */
+
+angular.module('akkurate-design-system').factory('akkVerify', [
+    '$q',
+    '$uibModal',
+    function ($q, $uibModal) {
+        return {
+            alert: function (title, message, windowClass) {
+                var q = $q.defer();
+                var modalInstance = $uibModal.open({
+                    templateUrl: "templates/modals/akk-verify-alert.html",
+                    controller: [
+                        '$scope',
+                        '$uibModalInstance',
+                        'title',
+                        'message',
+                        function ($scope, $uibModalInstance, title, message) {
+                            $scope.title = title;
+                            $scope.message = message;
+                            $scope.close = function () {
+                                $uibModalInstance.close();
+                            };
+                        }],
+                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
+                    size: 'sm',
+                    backdrop: 'static',
+                    keyboard: false,
+                    resolve: {
+                        title: function () {
+                            return title;
+                        },
+                        message: function () {
+                            return message;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (response) {
+                    q.resolve(response);
+                }, function () {});
+                return q.promise;
+            },
+            confirm: function (title, message, buttons, windowClass) {
+                var q = $q.defer();
+                var modalInstance = $uibModal.open({
+                    templateUrl: "templates/modals/akk-verify-confirm.html",
+                    controller: [
+                        '$scope',
+                        '$uibModalInstance',
+                        'title',
+                        'message',
+                        'buttons',
+                        function ($scope, $uibModalInstance, title, message, buttons) {
+                            $scope.title = title;
+                            $scope.message = message;
+                            $scope.buttons = buttons;
+                            $scope.response = function (result) {
+                                $uibModalInstance.close(result);
+                            };
+                        }],
+                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
+                    size: 'sm',
+                    backdrop: 'static',
+                    keyboard: false,
+                    resolve: {
+                        title: function () {
+                            return title;
+                        },
+                        message: function () {
+                            return message;
+                        },
+                        buttons: function () {
+                            return buttons;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (response) {
+                    q.resolve(response);
+                }, function () {});
+                return q.promise;
+            }
+        };
+    }
+]);
 angular.module('akkurate-design-system')
         .filter('inArray', function () {
             return function (array, value) {
@@ -1739,6 +1827,8 @@ angular.module('akkurate-design-system')
                 }
             };
         })
+        
+        // For dates
         .filter('dateShortFormat', function ($filter) {
             return function (input) {
                 if (input) {
@@ -1759,6 +1849,8 @@ angular.module('akkurate-design-system')
                 }
             };
         })
+        
+        // For files
         .filter('formatBytes', function ($filter) {
             return function (bytes, decimals) {
                 if (bytes == 0)
@@ -1768,6 +1860,17 @@ angular.module('akkurate-design-system')
                 var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
                 var i = Math.floor(Math.log(bytes) / Math.log(k));
                 return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            };
+        })
+        .filter('formatOctets', function ($filter) {
+            return function (octet, decimals) {
+                if (octet == 0)
+                    return '0 octet';
+                var k = 8000; // 8 bytes for 1 octet
+                var dm = decimals + 1 || 3;
+                var sizes = ['Octet', 'KO', 'MO', 'GO', 'TO', 'PO', 'EO', 'ZO', 'YO'];
+                var i = Math.floor(Math.log(octet) / Math.log(k));
+                return parseFloat((octet / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
             };
         })
         .filter('extensionIcon', function ($filter) {
@@ -1864,90 +1967,227 @@ angular.module('akkurate-design-system')
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
- * @description: Directive who can let you manage the behavior of multiple checkbox order in a list
+ * @description: provider for the notification
  */
 
-angular.module('akkurate-design-system').factory('akkVerify', [
-    '$q',
-    '$uibModal',
-    function ($q, $uibModal) {
-        return {
-            alert: function (title, message, windowClass) {
-                var q = $q.defer();
-                var modalInstance = $uibModal.open({
-                    templateUrl: "templates/modals/akk-verify-alert.html",
-                    controller: [
-                        '$scope',
-                        '$uibModalInstance',
-                        'title',
-                        'message',
-                        function ($scope, $uibModalInstance, title, message) {
-                            $scope.title = title;
-                            $scope.message = message;
-                            $scope.close = function () {
-                                $uibModalInstance.close();
-                            };
-                        }],
-                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
-                    size: 'sm',
-                    backdrop: 'static',
-                    keyboard: false,
-                    resolve: {
-                        title: function () {
-                            return title;
-                        },
-                        message: function () {
-                            return message;
-                        }
-                    }
-                });
-                modalInstance.result.then(function (response) {
-                    q.resolve(response);
-                }, function () {});
-                return q.promise;
-            },
-            confirm: function (title, message, buttons, windowClass) {
-                var q = $q.defer();
-                var modalInstance = $uibModal.open({
-                    templateUrl: "templates/modals/akk-verify-confirm.html",
-                    controller: [
-                        '$scope',
-                        '$uibModalInstance',
-                        'title',
-                        'message',
-                        'buttons',
-                        function ($scope, $uibModalInstance, title, message, buttons) {
-                            $scope.title = title;
-                            $scope.message = message;
-                            $scope.buttons = buttons;
-                            $scope.response = function (result) {
-                                $uibModalInstance.close(result);
-                            };
-                        }],
-                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
-                    size: 'sm',
-                    backdrop: 'static',
-                    keyboard: false,
-                    resolve: {
-                        title: function () {
-                            return title;
-                        },
-                        message: function () {
-                            return message;
-                        },
-                        buttons: function () {
-                            return buttons;
-                        }
-                    }
-                });
-                modalInstance.result.then(function (response) {
-                    q.resolve(response);
-                }, function () {});
-                return q.promise;
+
+angular.module('akkurate-design-system').provider('akkNotification', function() {
+
+    this.options = {
+        delay: 5000,
+        startTop: 10,
+        startRight: 10,
+        verticalSpacing: 10,
+        horizontalSpacing: 10,
+        positionX: 'right',
+        positionY: 'top',
+        replaceMessage: false,
+        templateUrl: 'template/akk-notification.html',
+        onClose: undefined,
+        closeOnClick: true,
+        maxCount: 0 // 0 - Infinite
+    };
+
+    this.setOptions = function(options) {
+        if (!angular.isObject(options)) throw new Error("Options should be an object!");
+        this.options = angular.extend({}, this.options, options);
+    };
+
+    this.$get = function($timeout, $http, $compile, $templateCache, $rootScope, $injector, $sce, $q, $window) {
+        var options = this.options;
+
+        var startTop = options.startTop;
+        var startRight = options.startRight;
+        var verticalSpacing = options.verticalSpacing;
+        var horizontalSpacing = options.horizontalSpacing;
+        var delay = options.delay;
+
+        var messageElements = [];
+        var isResizeBound = false;
+
+        var notify = function(args, t){
+            var deferred = $q.defer();
+
+            if (typeof args !== 'object') {
+                args = {message:args};
             }
+
+            args.scope = args.scope ? args.scope : $rootScope;
+            args.template = args.templateUrl ? args.templateUrl : options.templateUrl;
+            args.delay = !angular.isUndefined(args.delay) ? args.delay : delay;
+            args.type = t || options.type ||  '';
+            args.positionY = args.positionY ? args.positionY : options.positionY;
+            args.positionX = args.positionX ? args.positionX : options.positionX;
+            args.replaceMessage = args.replaceMessage ? args.replaceMessage : options.replaceMessage;
+            args.onClose = args.onClose ? args.onClose : options.onClose;
+            args.closeOnClick = (args.closeOnClick !== null && args.closeOnClick !== undefined) ? args.closeOnClick : options.closeOnClick;
+
+            $http.get(args.template,{cache: $templateCache}).success(function(template) {
+
+                var scope = args.scope.$new();
+                scope.message = $sce.trustAsHtml(args.message);
+                scope.title = $sce.trustAsHtml(args.title);
+                scope.t = args.type.substr(0,1);
+                scope.delay = args.delay;
+                scope.onClose = args.onClose;
+
+                var reposite = function() {
+                    var j = 0;
+                    var k = 0;
+                    var lastTop = startTop;
+                    var lastRight = startRight;
+                    var lastPosition = [];
+                    for(var i = messageElements.length - 1; i >= 0; i --) {
+                        var element  = messageElements[i];
+                        if (args.replaceMessage && i < messageElements.length - 1) {
+                            element.addClass('killed');
+                            continue;
+                        }
+                        var elHeight = parseInt(element[0].offsetHeight);
+                        var elWidth  = parseInt(element[0].offsetWidth);
+                        var position = lastPosition[element._positionY+element._positionX];
+
+                        if ((top + elHeight) > window.innerHeight) {
+                            position = startTop;
+                            k ++;
+                            j = 0;
+                        }
+
+                        var top = (lastTop = position ? (j === 0 ? position : position + verticalSpacing) : startTop);
+                        var right = lastRight + (k * (horizontalSpacing + elWidth));
+
+                        element.css(element._positionY, top + 'px');
+                        if (element._positionX == 'center') {
+                            element.css('left', parseInt(window.innerWidth / 2 - elWidth / 2) + 'px');
+                        } else {
+                            element.css(element._positionX, right + 'px');
+                        }
+
+                        lastPosition[element._positionY+element._positionX] = top + elHeight;
+
+                        if (options.maxCount > 0 && messageElements.length > options.maxCount && i === 0) {
+                            element.scope().kill(true);
+                        }
+
+                        j ++;
+                    }
+                };
+
+                var templateElement = $compile(template)(scope);
+                templateElement._positionY = args.positionY;
+                templateElement._positionX = args.positionX;
+                templateElement.addClass(args.type);
+
+                var closeEvent = function(e) {
+                    e = e.originalEvent || e;
+                    if (e.type === 'click' || (e.propertyName === 'opacity' && e.elapsedTime >= 1)){
+                        if (scope.onClose) {
+                            scope.$apply(scope.onClose(templateElement));
+                        }
+
+                        templateElement.remove();
+                        messageElements.splice(messageElements.indexOf(templateElement), 1);
+                        scope.$destroy();
+                        reposite();
+                    }
+                };
+
+                if (args.closeOnClick) {
+                    templateElement.addClass('clickable');
+                    templateElement.bind('click', closeEvent);
+                }
+
+                templateElement.bind('webkitTransitionEnd oTransitionEnd otransitionend transitionend msTransitionEnd', closeEvent);
+
+                if (angular.isNumber(args.delay)) {
+                    $timeout(function() {
+                        templateElement.addClass('killed');
+                    }, args.delay);
+                }
+
+                setCssTransitions('none');
+
+                angular.element(document.getElementsByTagName('body')).append(templateElement);
+                var offset = -(parseInt(templateElement[0].offsetHeight) + 50);
+                templateElement.css(templateElement._positionY, offset + "px");
+                messageElements.push(templateElement);
+
+                if(args.positionX == 'center'){
+                    var elWidth = parseInt(templateElement[0].offsetWidth);
+                    templateElement.css('left', parseInt(window.innerWidth / 2 - elWidth / 2) + 'px');
+                }
+
+                $timeout(function(){
+                    setCssTransitions('');
+                });
+
+                function setCssTransitions(value){
+                    ['-webkit-transition', '-o-transition', 'transition'].forEach(function(prefix){
+                        templateElement.css(prefix, value);
+                    });
+                }
+
+                scope._templateElement = templateElement;
+
+                scope.kill = function(isHard) {
+                    if (isHard) {
+                        if (scope.onClose) {
+                            scope.$apply(scope.onClose(scope._templateElement));
+                        }
+
+                        messageElements.splice(messageElements.indexOf(scope._templateElement), 1);
+                        scope._templateElement.remove();
+                        scope.$destroy();
+                        $timeout(reposite);
+                    } else {
+                        scope._templateElement.addClass('killed');
+                    }
+                };
+
+                $timeout(reposite);
+
+                if (!isResizeBound) {
+                    angular.element($window).bind('resize', function(e) {
+                        $timeout(reposite);
+                    });
+                    isResizeBound = true;
+                }
+
+                deferred.resolve(scope);
+
+            }).error(function(data){
+                throw new Error('Template ('+args.template+') could not be loaded. ' + data);
+            });
+
+            return deferred.promise;
         };
-    }
-]);
+
+        notify.primary = function(args) {
+            return this(args, 'primary');
+        };
+        notify.error = function(args) {
+            return this(args, 'error');
+        };
+        notify.success = function(args) {
+            return this(args, 'success');
+        };
+        notify.info = function(args) {
+            return this(args, 'info');
+        };
+        notify.warning = function(args) {
+            return this(args, 'warning');
+        };
+
+        notify.clearAll = function() {
+            angular.forEach(messageElements, function(element) {
+                element.addClass('killed');
+            });
+        };
+
+        return notify;
+    };
+});
+
 angular.module('akkurate-design-system').run(['$templateCache', function($templateCache) {$templateCache.put('templates/akk-alert.html','<div>\n    <div data-ng-show="displayed" class="alert" role="alert" data-ng-class="type ? \'alert-\' + type : \'alert-dark\'">\n        <div class="d-flex align-items-center">\n            <i class="material-icons mr-1 align-self-start" data-ng-bind="icon" data-ng-if="icon"></i>\n            <span data-ng-if="icon">&nbsp;&nbsp;&nbsp;</span>\n            <div>\n                <h4 class="alert-heading" data-ng-if="title">{{title}}</h4>\n                <div data-ng-bind-html="message"></div>\n            </div>\n            <i class="material-icons align-self-start ml-auto" ng-if="closable" data-ng-click="methods.close()">clear</i>\n        </div>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-card.html','<div class="card"> \n  <img data-ng-if="media && media != \'\'" class="card-img-top" data-ng-src="{{media}}" alt="{{title}}">\n  <div class="card-body">\n    <h5 class="card-title">{{title}}</h5>\n    <p data-ng-if="content && content != \'\'" class="card-text">{{content}}</p>\n    <button data-ng-if="options.length > 0" type="button" class="btn btn-primary" data-ng-repeat="option in options" ng-click="methods.action(option)">{{option.label}}</a>\n  </div>\n</div>');
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group form-checkbox form-checkbox-list {{!view.isValid ? \'has-error\' : \'\'}}" data-ng-class="elementclass">\n    <div class="d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </div>\n    <div class="d-flex" ng-repeat="option in options track by $index" ng-click="methods.toggle(option)">\n        <i class="material-icons text-primary" data-ng-if="methods.inModel(option)">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!methods.inModel(option)">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{display ? option[display] : option}}\n        </div>\n    </div>\n</div>');
@@ -1959,6 +2199,7 @@ $templateCache.put('templates/akk-input-int.html','<div class="form-group well {
 $templateCache.put('templates/akk-input.html','<div class="form-group form-input" ng-class="!isValid ? \'has-error\' : \'\'">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <input type="{{type}}" class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" step="{{step}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()"/>\n</div>');
 $templateCache.put('templates/akk-loader.html','<div class="loader">\n    <div data-ng-show="loading" class="loader-container">\n        <div class="loader-spinner"></div>\n        <div class="loader-info">{{\'Loading...\' | translate}}</div>\n    </div>\n    <div data-ng-show="!loading" data-ng-transclude></div>\n</div>');
 $templateCache.put('templates/akk-multiselect.html','<div class="form-group">\n    <label class="control-label" ng-if="view.label">{{view.label}}</label>\n    <div class="form-control d-flex align-items-center justify-content-between" ng-click="methods.open()">\n        <span ng-if="view.selected.length">\n            {{view.selected.length}} <span>selected</span>\n        </span>\n        <span ng-if="!view.selected.length" class="text-muted">{{view.placeholder}}</span>\n        <i class="material-icons md-18">arrow_drop_down</i>\n    </div>\n</div>\n');
+$templateCache.put('templates/akk-notification.html','<div class="ui-notification">\n    <h3 ng-show="title" ng-bind-html="title"></h3>\n    <div class="message" ng-bind-html="message"></div>\n</div>');
 $templateCache.put('templates/akk-paginate.html','<nav>\n    <ul class="pagination" data-ng-class="methods.setDisplay();">\n        <li class="page-item" data-ng-class="methods.isFirstPage() ? \'disabled\' : \'\'">\n            <button type="button" data-ng-click="methods.firstPage()" class="page-link">\n                <i class="material-icons">first_page</i>\n                <span class="sr-only" translate>First page</span>\n            </button>\n        </li>\n        <li class="page-item" data-ng-class="methods.isFirstPage() ? \'disabled\' : \'\'">\n            <button type="button" data-ng-click="methods.previous()" class="page-link">\n                <i class="material-icons">chevron_left</i>\n                <span class="sr-only" translate>Previous page</span>\n            </button>\n        </li>\n        <li class="page-item" data-ng-repeat="i in []| range:view.pagin.pages" data-ng-class="i == view.pagin.current ? \'active\' : \'\'">\n            <button type="button" data-ng-click="methods.goto(i)" class="page-link" data-ng-if="i != view.pagin.current">\n                {{i + 1}}\n            </button>\n            <span class="page-link" data-ng-if="i == view.pagin.current">\n                {{i + 1}}\n                <span class="sr-only" translate>(current)</span>\n            </span>\n        </li>\n        <li class="page-item" data-ng-class="methods.isLastPage() ? \'disabled\' : \'\'">\n            <button type="button" data-ng-click="methods.next()" class="page-link">\n                <i class="material-icons">chevron_right</i>\n                <span class="sr-only" translate>Next page</span>\n            </button>\n        </li>\n        <li class="page-item" data-ng-class="methods.isLastPage() ? \'disabled\' : \'\'">\n            <button type="button" data-ng-click="methods.lastPage()" class="page-link">\n                <i class="material-icons">last_page</i>\n                <span class="sr-only" translate>Last page</span>\n            </button>\n        </li>\n    </ul>\n</nav>');
 $templateCache.put('templates/akk-radio.html','<div class="form-group form-radio {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label"><i data-ng-if="!view.isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <div class="d-flex align-items-center {{elementclass}}" data-ng-repeat="option in options track by $index" data-ng-click="methods.select(option)">\n        <div data-ng-if="(property && model == option[property]) || (!property && methods.checkEqualsModel(option) )"><i class="material-icons text-primary">radio_button_checked</i></div>\n        <div data-ng-if="(property && model != option[property]) || (!property && !methods.checkEqualsModel(option) )"><i class="material-icons text-muted">radio_button_unchecked</i></div>\n        <div class="ml-1">{{option.name}}</div>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-select.html','<div class="form-group form-select {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </label>\n    <select class="form-control {{elementclass}}" ng-options="option{{value != null ? \'[value]\' : \'\'}} as option{{display != null ? \'[display]\' : \'\'}} for option in options{{value == null && display != null ? \' track by option.id\' : \'\'}}" ng-model="model" ng-required="{{req}}" ng-blur="methods.checkValidity()" ng-change="methods.change()">\n        <option value="" ng-if="defaultDisplayEnabled" selected>{{defaultDisplay}}</option>\n    </select>\n</div>\n');

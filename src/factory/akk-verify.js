@@ -2,7 +2,7 @@
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
- * @description: Directive who can let you manage the behavior of multiple checkbox order in a list
+ * @description: Factory who's managing an alert or a confirmation for an action the user realise
  */
 
 angular.module('akkurate-design-system').factory('akkVerify', [

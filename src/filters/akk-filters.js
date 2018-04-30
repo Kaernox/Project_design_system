@@ -44,6 +44,8 @@ angular.module('akkurate-design-system')
                 }
             };
         })
+        
+        // For dates
         .filter('dateShortFormat', function ($filter) {
             return function (input) {
                 if (input) {
@@ -64,6 +66,8 @@ angular.module('akkurate-design-system')
                 }
             };
         })
+        
+        // For files
         .filter('formatBytes', function ($filter) {
             return function (bytes, decimals) {
                 if (bytes == 0)
@@ -73,6 +77,17 @@ angular.module('akkurate-design-system')
                 var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
                 var i = Math.floor(Math.log(bytes) / Math.log(k));
                 return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            };
+        })
+        .filter('formatOctets', function ($filter) {
+            return function (octet, decimals) {
+                if (octet == 0)
+                    return '0 octet';
+                var k = 8000; // 8 bytes for 1 octet
+                var dm = decimals + 1 || 3;
+                var sizes = ['Octet', 'KO', 'MO', 'GO', 'TO', 'PO', 'EO', 'ZO', 'YO'];
+                var i = Math.floor(Math.log(octet) / Math.log(k));
+                return parseFloat((octet / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
             };
         })
         .filter('extensionIcon', function ($filter) {
