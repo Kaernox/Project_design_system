@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="datetimePickerModalLabel">{{title != undefined ? title : 'Confirmation'}}</h5>
+    <button type="button" class="close" data-ng-click="response(false)">
+        <span aria-hidden="true">
+            <i class="material-icons md-24">clear</i>
+        </span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="message" data-ng-bind-html="message"></div>
+</div>
+<div class="modal-footer">
+    <button type="button" role="button" class="{{button.class}}" data-ng-click="response(button.value)" data-ng-repeat="button in buttons">{{button.text}}</button>
+    <div data-ng-if="!buttons">
+        <button type="button" role="button" class="btn btn-default" data-ng-click="response(false)">Cancel</button>
+        <button type="button" role="button" class="btn btn-primary" data-ng-click="response(true)">OK</button>
+    </div>
+</div>

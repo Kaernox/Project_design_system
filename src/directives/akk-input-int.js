@@ -1,4 +1,4 @@
-/* 
+/** 
  * directive for an input configurate to let accept only integer
  * it an variation of akk-input
  * 

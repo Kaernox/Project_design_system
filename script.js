@@ -398,32 +398,7 @@ designsystem.config([
     '$provide',
     '$stateProvider',
     '$urlRouterProvider',
-    'NotificationProvider',
-    function ($provide, $stateProvider, $urlRouterProvider, NotificationProvider) {
-
-        /**
-         * Colorpicker configuration
-         */
-        $provide.decorator('ColorPickerOptions', function ($delegate) {
-            var options = angular.copy($delegate);
-            options.round = true;
-            options.alpha = false;
-            options.format = 'hex';
-            return options;
-        });
-
-        /**
-         * Notification default configuration
-         */
-        NotificationProvider.setOptions({
-            delay: 3500,
-            startTop: 20,
-            startRight: 10,
-            verticalSpacing: 20,
-            horizontalSpacing: 20,
-            positionX: 'right',
-            positionY: 'top'
-        });
+    function ($provide, $stateProvider, $urlRouterProvider) {
 
 //        /**
 //         * Routes configuration
@@ -475,7 +450,8 @@ designsystem.component('home', {
     templateUrl: 'docs/components.html',
     controller: [
         '$scope',
-        function ($scope) {
+        'akkVerify',
+        function ($scope, akkVerify) {
 
             $scope.methods = {
                 init: function () {
@@ -568,14 +544,26 @@ designsystem.component('home', {
                     template: 'akk-tree'
                 }
             ];
-            
+
 // event for the display again akk alert if it was close
             $scope.$on('updateAlert', function (event) {
-                $scope.view.alert.displayed = true;
+                akkVerify.confirm(null, 'Are you sure you want to show alert?', [{
+                        text: 'No',
+                        class: 'btn btn-default',
+                        value: false
+                    }, {
+                        text: 'Yes',
+                        class: 'btn btn-primary',
+                        value: true
+                    }]).then(function (response) {
+                    if (response === true) {
+                        $scope.view.alert.displayed = true;
+                    }
+                });
             });
 
             $scope.$on('cardAlert', function (event) {
-                alert('Youpi card');
+                akkVerify.alert(null, 'You clicked on the card\'s button', 'modal-alert').then(function (response) {});
             });
 
             $scope.$on('datagridOptionEdit', function (event, item) {

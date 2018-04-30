@@ -23,7 +23,7 @@ angular.module('akkurate-design-system').config([
         });
     }
 ]);
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -74,7 +74,7 @@ angular.module('akkurate-design-system').directive("akkAlert",
                 };
             }
         ]);
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -92,7 +92,7 @@ angular.module('akkurate-design-system').directive('akkAutoFocus', function($tim
         }
     };
 });
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -134,7 +134,7 @@ angular.module('akkurate-design-system').directive("akkCard",
                 };
             }
         ]);
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -223,7 +223,7 @@ angular.module('akkurate-design-system').directive('akkCheckboxList', [
 ]);
 
 
-/* 
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -265,7 +265,7 @@ angular.module('akkurate-design-system').directive("akkCheckbox", [
         };
     }
 ]);
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -324,7 +324,7 @@ angular.module('akkurate-design-system').directive("akkColorpicker",
                 };
             }
         ]);
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -465,7 +465,7 @@ angular.module('akkurate-design-system').directive("akkDatagrid", [
 
 
  
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -619,7 +619,7 @@ angular.module('akkurate-design-system').directive("akkIframe", function () {
         }
     };
 });
-/* 
+/** 
  * directive for an input configurate to let accept only integer
  * it an variation of akk-input
  * 
@@ -673,7 +673,7 @@ angular.module('akkurate-design-system').directive('akkInputInt', [
     }
 ]);
 
-/* 
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -717,7 +717,7 @@ angular.module('akkurate-design-system').directive('akkInput', [
         };
     }
 ]);
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -736,7 +736,7 @@ angular.module('akkurate-design-system').directive('akkLoader', function () {
         }
     };
 });
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -851,7 +851,7 @@ angular.module('akkurate-design-system').directive("akkMultiselect", function ($
     };
 });
 
-/* 
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -950,7 +950,7 @@ angular.module('akkurate-design-system').directive("akkPaginate", [
 ]);
 
 
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -1033,7 +1033,7 @@ angular.module('akkurate-design-system').directive('akkRadio', [
     }
 ]);
 
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -1085,7 +1085,7 @@ angular.module('akkurate-design-system').directive('akkSelect', [
     }
 ]);
 
-/*
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -1242,7 +1242,7 @@ angular.module('akkurate-design-system').directive('akkSelectandsearch', ['$root
     }
 ]);
 
-/* 
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -1269,7 +1269,7 @@ angular.module('akkurate-design-system').directive('akkSelector', [
     }
 ]);
 
-/* 
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -1323,7 +1323,7 @@ angular.module('akkurate-design-system').directive("akkSwitch", [
         };
     }
 ]);
-/* 
+/**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -1364,7 +1364,7 @@ angular.module('akkurate-design-system').directive('akkTextarea', [
 ]);
 
 
-/* 
+/** 
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
@@ -1860,6 +1860,94 @@ angular.module('akkurate-design-system')
                 return $sce.trustAsHtml(msg);
             };
         });
+/**
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Directive who can let you manage the behavior of multiple checkbox order in a list
+ */
+
+angular.module('akkurate-design-system').factory('akkVerify', [
+    '$q',
+    '$uibModal',
+    function ($q, $uibModal) {
+        return {
+            alert: function (title, message, windowClass) {
+                var q = $q.defer();
+                var modalInstance = $uibModal.open({
+                    templateUrl: "templates/modals/akk-verify-alert.html",
+                    controller: [
+                        '$scope',
+                        '$uibModalInstance',
+                        'title',
+                        'message',
+                        function ($scope, $uibModalInstance, title, message) {
+                            $scope.title = title;
+                            $scope.message = message;
+                            $scope.close = function () {
+                                $uibModalInstance.close();
+                            };
+                        }],
+                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
+                    size: 'sm',
+                    backdrop: 'static',
+                    keyboard: false,
+                    resolve: {
+                        title: function () {
+                            return title;
+                        },
+                        message: function () {
+                            return message;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (response) {
+                    q.resolve(response);
+                }, function () {});
+                return q.promise;
+            },
+            confirm: function (title, message, buttons, windowClass) {
+                var q = $q.defer();
+                var modalInstance = $uibModal.open({
+                    templateUrl: "templates/modals/akk-verify-confirm.html",
+                    controller: [
+                        '$scope',
+                        '$uibModalInstance',
+                        'title',
+                        'message',
+                        'buttons',
+                        function ($scope, $uibModalInstance, title, message, buttons) {
+                            $scope.title = title;
+                            $scope.message = message;
+                            $scope.buttons = buttons;
+                            $scope.response = function (result) {
+                                $uibModalInstance.close(result);
+                            };
+                        }],
+                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
+                    size: 'sm',
+                    backdrop: 'static',
+                    keyboard: false,
+                    resolve: {
+                        title: function () {
+                            return title;
+                        },
+                        message: function () {
+                            return message;
+                        },
+                        buttons: function () {
+                            return buttons;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (response) {
+                    q.resolve(response);
+                }, function () {});
+                return q.promise;
+            }
+        };
+    }
+]);
 angular.module('akkurate-design-system').run(['$templateCache', function($templateCache) {$templateCache.put('templates/akk-alert.html','<div>\n    <div data-ng-show="displayed" class="alert" role="alert" data-ng-class="type ? \'alert-\' + type : \'alert-dark\'">\n        <div class="d-flex align-items-center">\n            <i class="material-icons mr-1 align-self-start" data-ng-bind="icon" data-ng-if="icon"></i>\n            <span data-ng-if="icon">&nbsp;&nbsp;&nbsp;</span>\n            <div>\n                <h4 class="alert-heading" data-ng-if="title">{{title}}</h4>\n                <div data-ng-bind-html="message"></div>\n            </div>\n            <i class="material-icons align-self-start ml-auto" ng-if="closable" data-ng-click="methods.close()">clear</i>\n        </div>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-card.html','<div class="card"> \n  <img data-ng-if="media && media != \'\'" class="card-img-top" data-ng-src="{{media}}" alt="{{title}}">\n  <div class="card-body">\n    <h5 class="card-title">{{title}}</h5>\n    <p data-ng-if="content && content != \'\'" class="card-text">{{content}}</p>\n    <button data-ng-if="options.length > 0" type="button" class="btn btn-primary" data-ng-repeat="option in options" ng-click="methods.action(option)">{{option.label}}</a>\n  </div>\n</div>');
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group form-checkbox form-checkbox-list {{!view.isValid ? \'has-error\' : \'\'}}" data-ng-class="elementclass">\n    <div class="d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </div>\n    <div class="d-flex" ng-repeat="option in options track by $index" ng-click="methods.toggle(option)">\n        <i class="material-icons text-primary" data-ng-if="methods.inModel(option)">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!methods.inModel(option)">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{display ? option[display] : option}}\n        </div>\n    </div>\n</div>');
@@ -1885,6 +1973,8 @@ $templateCache.put('templates/modals/akk-datepicker-modal.html','<div class="mod
 $templateCache.put('templates/modals/akk-multiselect-modal.html','<div class="modal-header">\n    <h4 class="modal-title">{{view.placeholder}}</h4>\n    <button type="button" class="close" data-ng-click="methods.close()" aria-label="Close">\n        <span aria-hidden="true">\n            <i class="material-icons md-24">clear</i>\n        </span>\n    </button>\n</div>\n<div class="modal-body">\n    <div class="row">\n        <div class="col-6">\n            <h5 translate>Selectable items ({{view.items.length}})</h5>\n            <div data-ng-if="view.items.length">\n                <div data-ng-repeat="item in view.items | orderBy:view.field" class="d-flex align-items-center text-secondary" data-ng-click="methods.select(item)">\n                    <i class="material-icons">keyboard_arrow_right</i>\n                    <div class="ml-1">{{item[view.field]}}</div>\n                </div>\n            </div>\n        </div>\n        <div class="col-6">\n            <h5 translate>Selected items ({{view.selected.length}})</h5>\n            <div data-ng-if="view.selected.length">\n                <div data-ng-repeat="item in view.selected | orderBy:view.field" class="d-flex align-items-center text-primary" data-ng-click="methods.unselect(item)">\n                    <i class="material-icons">clear</i>\n                    <div class="ml-1">{{item[view.field]}}</div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class="modal-footer">\n    <button type="button" class="btn btn-default" data-ng-click="methods.cancel()" translate>Cancel</button>\n    <button type="button" class="btn btn-primary" data-ng-click="methods.save()" translate>Save</button>\n</div>\n');
 $templateCache.put('templates/modals/akk-selectandsearch-modal-default.html','<span ng-repeat="field in view.fields">\n    <span ng-if="!option[field]">{{field}}</span><span ng-if="option[field]">{{option[field]}}</span>\n</span>');
 $templateCache.put('templates/modals/akk-selectandsearch-modal.html','<div class="modal-header">\n    <h4 class="modal-title">{{view.placeholder}}</h4>\n    <button type="button" class="close" ng-click="methods.close()" aria-label="Close">\n        <span aria-hidden="true">\n            <i class="material-icons md-24">clear</i>\n        </span>\n    </button>\n</div>\n<div class="modal-body">\n    <div class="form-group" ng-show="view.options.length > 10">\n        <input type="text" placeholder="{{\'Recherchez...\'| translate}}" ng-model="keywords" akk-AutoFocus class="form-control" />\n    </div>\n    <div class="form-options">\n        <ul class="list-group list-group-flush">\n            <li class="list-group-item" ng-repeat="option in view.options| filter: keywords | orderBy:(view.orderBy) ? orderBy : view.fields[0]" ng-click="methods.select(option)" ng-class="view.item.id == option.id ? \'active\':\'\'">\n                <span ng-include="methods.template.get()"></span>\n            </li>\n        </ul>\n    </div>\n</div>\n<div class="modal-footer">\n    <button type="button" class="btn btn-primary" ng-click="methods.valid()" ng-disabled="view.item.id == null" translate>S\xE9lectionner</button>\n</div>');
+$templateCache.put('templates/modals/akk-verify-alert.html','<div class="modal-header">\n    <h5 class="modal-title" id="datetimePickerModalLabel">{{title != undefined ? title : \'Attention\'}}</h5>\n    <button type="button" class="close" data-ng-click="close()">\n        <span aria-hidden="true">\n            <i class="material-icons md-24">clear</i>\n        </span>\n    </button>\n</div>\n<div class="modal-body">\n    <div class="message" data-ng-bind-html="message"></div>\n</div>\n<div class="modal-footer">\n    <button type="button" role="button" class="btn btn-primary" data-ng-click="close()">OK</button>\n</div>');
+$templateCache.put('templates/modals/akk-verify-confirm.html','<div class="modal-header">\n    <h5 class="modal-title" id="datetimePickerModalLabel">{{title != undefined ? title : \'Confirmation\'}}</h5>\n    <button type="button" class="close" data-ng-click="response(false)">\n        <span aria-hidden="true">\n            <i class="material-icons md-24">clear</i>\n        </span>\n    </button>\n</div>\n<div class="modal-body">\n    <div class="message" data-ng-bind-html="message"></div>\n</div>\n<div class="modal-footer">\n    <button type="button" role="button" class="{{button.class}}" data-ng-click="response(button.value)" data-ng-repeat="button in buttons">{{button.text}}</button>\n    <div data-ng-if="!buttons">\n        <button type="button" role="button" class="btn btn-default" data-ng-click="response(false)">Cancel</button>\n        <button type="button" role="button" class="btn btn-primary" data-ng-click="response(true)">OK</button>\n    </div>\n</div>');
 $templateCache.put('templates/overload/datepicker/datepicker.html','<div ng-switch="datepickerMode">\n    <div uib-daypicker ng-switch-when="day" tabindex="0" class="uib-daypicker" template-url="/apps/brain/templates/components/datepicker/day.html"></div>\n    <div uib-monthpicker ng-switch-when="month" tabindex="0" class="uib-monthpicker" template-url="/apps/brain/templates/components/datepicker/month.html"></div>\n    <div uib-yearpicker ng-switch-when="year" tabindex="0" class="uib-yearpicker" template-url="/apps/brain/templates/components/datepicker/year.html"></div>\n</div>');
 $templateCache.put('templates/overload/datepicker/day.html','<div class="d-flex align-items-center justify-content-between">\n    <div>\n        <button type="button" class="btn btn-link" ng-click="move(-1)" tabindex="-1">\n            <i class="material-icons md-18">keyboard_arrow_left</i>\n        </button>\n    </div>\n    <div id="{{::uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" class="h3" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="-1">\n        {{title}}\n    </div>\n    <div>\n        <button type="button" class="btn btn-link" ng-click="move(1)" tabindex="-1">\n            <i class="material-icons md-18">keyboard_arrow_right</i>\n        </button>\n    </div>\n</div>\n<table class="table table-days" role="grid" aria-labelledby="{{::uniqueId}}-title" aria-activedescendant="{{activeDateId}}">\n    <thead>\n        <!--        <tr>\n                    <th>\n                        <button type="button" class="btn btn-link btn-sm pull-left uib-left" ng-click="move(-1)" tabindex="-1">\n                            <i class="material-icons md-18">keyboard_arrow_left</i>\n                        </button>\n                    </th>\n                    <th colspan="{{::5 + showWeeks}}" class="text-center">\n                        <button id="{{::uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-md uib-title" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="-1">\n                            <strong>{{title}}</strong>\n                            <span class="caret"></span>\n                        </button>\n                    </th>\n                    <th>\n                        <button type="button" class="btn btn-link btn-sm pull-right uib-right" ng-click="move(1)" tabindex="-1">\n                            <i class="material-icons md-18">keyboard_arrow_right</i>\n                        </button>\n                    </th>\n                </tr>-->\n        <tr>\n            <th ng-if="showWeeks" class="text-center"></th>\n            <th ng-repeat="label in ::labels track by $index" class="text-center">\n                <small aria-label="{{::label.full}}">{{::label.abbr}}</small>\n            </th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class="uib-weeks" ng-repeat="row in rows track by $index">\n            <td ng-if="showWeeks" class="text-center h6">\n                <em>{{ weekNumbers[$index]}}</em>\n            </td>\n            <td ng-repeat="dt in row" class="uib-day text-center" role="gridcell" id="{{::dt.uid}}" ng-class="::dt.customClass">\n                <button type="button" class="btn btn-light"\n                        uib-is-class="\n                        \'btn-primary\' for selectedDt,\n                        \'active\' for activeDt\n                        on dt"\n                        ng-click="select(dt.date)"\n                        ng-disabled="::dt.disabled"\n                        tabindex="-1">\n                    <span ng-class="::{\'text-muted\': dt.secondary}">{{::dt.label}}</span>\n                </button>\n            </td>\n        </tr>\n    </tbody>\n</table>');
 $templateCache.put('templates/overload/datepicker/month.html','<table class="table table-condensed" role="grid" aria-labelledby="{{::uniqueId}}-title" aria-activedescendant="{{activeDateId}}">\n    <thead>\n        <tr>\n            <th>\n                <button type="button" class="btn btn-link btn-sm pull-left uib-left" ng-click="move( - 1)" tabindex="-1">\n                    <i class="material-icons">keyboard_arrow_left</i>\n                </button>\n            </th>\n            <th colspan="{{::yearHeaderColspan}}" class="text-center">\n                <button id="{{::uniqueId}}-title" role="heading" aria-live="assertive" aria-atomic="true" type="button" class="btn btn-default btn-md uib-title" ng-click="toggleMode()" ng-disabled="datepickerMode === maxMode" tabindex="-1">\n                    <strong>{{title}}</strong>\n                    <span class="caret"></span>\n                </button>\n            </th>\n            <th>\n                <button type="button" class="btn btn-link btn-sm pull-right uib-right" ng-click="move(1)" tabindex="-1">\n                    <i class="material-icons">keyboard_arrow_right</i>\n                </button>\n            </th>\n        </tr>\n    </thead>\n    <tbody>\n        <tr class="uib-months" ng-repeat="row in rows track by $index">\n            <td ng-repeat="dt in row" class="uib-month text-center" role="gridcell"\n                id="{{::dt.uid}}"\n                ng-class="::dt.customClass">\n                <button type="button" class="btn btn-link"\n                        uib-is-class="\n                        \'btn-info\' for selectedDt,\n                        \'active\' for activeDt\n                        on dt"\n                        ng-click="select(dt.date)"\n                        ng-disabled="::dt.disabled"\n                        tabindex="-1"><span>{{::dt.label}}</span></button>\n            </td>\n        </tr>\n    </tbody>\n</table>');
