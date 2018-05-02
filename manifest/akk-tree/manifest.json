@@ -19,12 +19,18 @@
         {
             "attr": "options",
             "bind": "=",
-            "value": "{debug: false}"
+            "value": "{debug: false, label: 'label',icon: 'label'}"
         },
         {
-            "attr": "icon",
-            "bind": "=",
-            "value": "label"
+            "attr": "multiple",
+            "bind": "@",
+            "value": "true"
+        },
+        
+        {
+            "attr": "withoutChoice",
+            "bind": "@",
+            "value": "false"
         },
         {
             "attr": "event",

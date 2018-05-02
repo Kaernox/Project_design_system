@@ -22,8 +22,8 @@ angular.module('akkurate-design-system').directive('akkTree', [
                 items: "=",
                 model: "=",
                 options: "=",
-                multiple: "@",
-                icon: "@",
+                multiple: "=",
+                withoutChoice: "@",
                 eventUpdate: "@"
             },
             link: function postLink(scope, element, attrs) {

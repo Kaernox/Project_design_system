@@ -1,27 +1,27 @@
 <div class="form-group form-tree">
     <div class="pull-right">
-        <a href="javascript:;" ng-click="methods.expandAll()" translate>Tout ouvrir</a>
+        <a href="javascript:;" data-ng-click="methods.expandAll()" translate>Tout ouvrir</a>
         <span> | 
-            <a href="javascript:;" ng-click="methods.inpandAll()" translate>Tout fermer</a>
+            <a href="javascript:;" data-ng-click="methods.inpandAll()" translate>Tout fermer</a>
         </span>
         <span ng-if="multiple"> |
-            <a href="javascript:;" ng-click="methods.selectAll()" translate>Tout sélectionner</a>
+            <a href="javascript:;" data-ng-click="methods.selectAll()" translate>Tout sélectionner</a>
         </span>
         <span ng-if="multiple"> |
-            <a href="javascript:;" ng-click="methods.unselectAll()" translate>Tout désélectionner</a>
+            <a href="javascript:;" data-ng-click="methods.unselectAll()" translate>Tout désélectionner</a>
         </span>
 
         <span ng-if="options.debug && options.debug == true"> |
-            <a href="javascript:;" ng-click="methods.debug()" translate>Debug</a>
+            <a href="javascript:;" data-ng-click="methods.debug()" translate>Debug</a>
         </span>
     </div>
     
-    <div class="h4" ng-if="view.title">
+    <div class="h4" data-ng-if="view.title">
         {{view.title}}
     </div>
     
     <ul>
-        <akk-tree-item item="item" ng-repeat="item in view.items"></akk-tree-item>
+        <akk-tree-item item="item" data-ng-repeat="item in view.items"></akk-tree-item>
     </ul>
     <div ng-if="options.debug && options.debug == true">
         Model debug
