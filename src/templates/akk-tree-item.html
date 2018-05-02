@@ -2,7 +2,7 @@
     <div class="d-flex align-items-center">
         <i ng-if="view.item.childs && view.item.childs.length > 0 && view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">expand_more</i>
         <i ng-if="view.item.childs && view.item.childs.length > 0 && !view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">chevron_right</i>
-        <i ng-if="!view.item.childs || view.item.childs.length == 0" ng-click="methods.toggle(view.item)" class="material-icons text-muted">bookmark</i>
+        <i ng-if="!view.item.childs || view.item.childs.length == 0" ng-click="methods.toggle(view.item)" class="material-icons text-muted" ng-bind="icon != null ? icon : 'bookmark'"></i>
         
         <i ng-if="view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-primary">check_box</i>
         <i ng-if="view.item.isPartialyChecked && !view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">indeterminate_check_box</i>

@@ -1,9 +1,6 @@
 angular.module('akkurate-design-system')
-        .filter('inArray', function () {
-            return function (array, value) {
-                return array.indexOf(value) !== -1;
-            };
-        })
+
+        //for getting by 
         .filter('getBy', function () {
             return function (input, field, value, toReturn) {
                 var i = 0, len = input.length;
@@ -24,24 +21,6 @@ angular.module('akkurate-design-system')
                     }
                 }
                 return null;
-            };
-        })
-        .filter('range', function () {
-            return function (input, total) {
-                total = parseInt(total);
-                for (var i = 0; i < total; i++) {
-                    input.push(i);
-                }
-                return input;
-            };
-        })
-        .filter('ucfirst', function () {
-            return function ucFirst(str) {
-                if (str.length > 0) {
-                    return str[0].toUpperCase() + str.substring(1);
-                } else {
-                    return str;
-                }
             };
         })
         
@@ -67,7 +46,7 @@ angular.module('akkurate-design-system')
             };
         })
         
-        // For files
+        // For files size
         .filter('formatBytes', function ($filter) {
             return function (bytes, decimals) {
                 if (bytes == 0)
@@ -90,6 +69,32 @@ angular.module('akkurate-design-system')
                 return parseFloat((octet / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
             };
         })
+        
+        .filter('inArray', function () {
+            return function (array, value) {
+                return array.indexOf(value) !== -1;
+            };
+        })
+
+        .filter('range', function () {
+            return function (input, total) {
+                total = parseInt(total);
+                for (var i = 0; i < total; i++) {
+                    input.push(i);
+                }
+                return input;
+            };
+        })
+        .filter('ucfirst', function () {
+            return function ucFirst(str) {
+                if (str.length > 0) {
+                    return str[0].toUpperCase() + str.substring(1);
+                } else {
+                    return str;
+                }
+            };
+        })
+        
         .filter('extensionIcon', function ($filter) {
             return function (extension) {
                 var unknow = ['apk', 'sql'];

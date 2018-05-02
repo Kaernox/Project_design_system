@@ -22,6 +22,8 @@ angular.module('akkurate-design-system').directive('akkTree', [
                 items: "=",
                 model: "=",
                 options: "=",
+                multiple: "@",
+                icon: "@",
                 eventUpdate: "@"
             },
             link: function postLink(scope, element, attrs) {
@@ -47,24 +49,36 @@ angular.module('akkurate-design-system').directive('akkTree', [
                      * @value is use for isChecked
                      */
                     check: function (item) {
-                        var value;
-                        if ($filter('getBy')(scope.model, 'value', item.value)) {
-                            var itemIndex = $filter('getIndexBy')(scope.model, 'value', item.value);
-                            scope.model.splice(itemIndex, 1);
-                            value= item.isChecked = false;
-                            
-                        } else {
-                            scope.model.push({label: item.label, value: item.value});
-                            value= item.isChecked = true;
-                        }
+                        if (scope.multiple == true) {
+                            var value;
 
-                        AkkTreeManager.recursiveCheckVerif( [item], value, false);
-                        
-                        if (scope.eventUpdate != null && scope.eventUpdate != ''){
-                            $rootScope.$broadcast(scope.eventUpdate, scope.model);
+                            if ($filter('getBy')(scope.model, 'value', item.value)) {
+                                var itemIndex = $filter('getIndexBy')(scope.model, 'value', item.value);
+                                scope.model.splice(itemIndex, 1);
+                                value = item.isChecked = false;
+
+                            } else {
+                                scope.model.push({label: item.label, value: item.value});
+                                value = item.isChecked = true;
+                            }
+
+                            AkkTreeManager.recursiveCheckVerif([item], value, false);
+
+                            if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                                $rootScope.$broadcast(scope.eventUpdate, scope.model);
+                            }
+
+                            scope.model = AkkTreeManager.getValues();
+                        } else {
+                            scope.methods.unselectAll();
+                            item.isChecked = true;
+                            
+                            var model = angular.copy(item);
+                            delete model.childs;
+                            delete model.isChecked;
+                            
+                            scope.model = model;
                         }
-                        
-                        scope.model = AkkTreeManager.getValues();
                     },
                     expandAll: function () {
                         AkkTreeManager.expandAll();
@@ -168,12 +182,12 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
 
             var nbCheck = 0;
             var data = {
-                isChecked:false,
+                isChecked: false,
                 isPartialyChecked: false
             };
             angular.forEach(tree, function (item, key) {
                 var sonData = {
-                    isChecked:false,
+                    isChecked: false,
                     isPartialyChecked: false
                 };
                 if (item.childs != undefined && item.childs.length > 0) {
@@ -184,35 +198,33 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
                 } else if ($filter('getBy')(selected, 'value', item.value)) {
                     item[property] = value;
                 }
-                if(item.isChecked || sonData.isChecked || sonData.isPartialyChecked) {
-                    if(sonData.isPartialyChecked) {
+                if (item.isChecked || sonData.isChecked || sonData.isPartialyChecked) {
+                    if (sonData.isPartialyChecked) {
                         item.isPartialyChecked = true;
                         item.isChecked = false;
-                    }
-                    else {
+                    } else {
                         item.isPartialyChecked = false;
                         item.isChecked = true;
-                        if(Array.isArray(selected) && !$filter('getBy')(selected, 'value', item.value)) {
+                        if (Array.isArray(selected) && !$filter('getBy')(selected, 'value', item.value)) {
                             var topush = angular.copy(item);
                             delete topush.isShown;
                             delete topush.isChecked;
                             delete topush.childs;
                             delete topush.isPartialyChecked;
-                            
+
                             selected.push(topush);
                         }
-                    } 
+                    }
                     nbCheck++;
                 }
             });
-            
-            if(nbCheck === tree.length) {
+
+            if (nbCheck === tree.length) {
                 data.isChecked = true;
-            }
-            else if(nbCheck > 0 && nbCheck < tree.length) {
+            } else if (nbCheck > 0 && nbCheck < tree.length) {
                 data.isPartialyChecked = true;
             }
-            
+
             return data;
         };
         /*
@@ -224,51 +236,48 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
 
             var nbCheck = 0;
             var data = {
-                isChecked:false,
+                isChecked: false,
                 isPartialyChecked: false
             };
             angular.forEach(tree, function (item, key) {
                 var sonData = {
-                        isChecked:false,
-                        isPartialyChecked: false
-                    },
-                    localIsSonOf = isSonOf;
-                    
+                    isChecked: false,
+                    isPartialyChecked: false
+                },
+                localIsSonOf = isSonOf;
+
                 if ($filter('getBy')(selected, 'value', item.value) || isSonOf) {
                     item.isChecked = value;
                     sonData.isChecked = value;
                     localIsSonOf = true;
                 }
                 if (item.childs != undefined && item.childs.length > 0) {
-                    sonData = _recursiveCheckVerif(item.childs,selected, value, localIsSonOf);
+                    sonData = _recursiveCheckVerif(item.childs, selected, value, localIsSonOf);
                 }
-                if(item.isChecked || sonData.isChecked || sonData.isPartialyChecked) {
-                    if(sonData.isPartialyChecked) {
+                if (item.isChecked || sonData.isChecked || sonData.isPartialyChecked) {
+                    if (sonData.isPartialyChecked) {
                         item.isPartialyChecked = true;
                         item.isChecked = false;
-                    }
-                    else {
+                    } else {
                         item.isPartialyChecked = false;
                         item.isChecked = true;
-                    } 
+                    }
                     nbCheck++;
-                }
-                else {
+                } else {
                     item.isPartialyChecked = false;
                     item.isChecked = false;
                 }
             });
 
-            if(nbCheck === tree.length) {
+            if (nbCheck === tree.length) {
                 data.isChecked = true;
-            }
-            else if(nbCheck > 0 && nbCheck < tree.length) {
+            } else if (nbCheck > 0 && nbCheck < tree.length) {
                 data.isPartialyChecked = true;
             }
-            
+
             return data;
         };
-        
+
         /*
          * recuperate the information of the model
          * and put it in the var collection
@@ -322,7 +331,7 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
                 recursiveUpdate(this.tree, 'isChecked', false, 'all');
             },
             recursiveUpdate: recursiveUpdate,
-            recursiveCheckVerif: function(selected, value, isSonOf) {
+            recursiveCheckVerif: function (selected, value, isSonOf) {
                 _recursiveCheckVerif(this.tree, selected, value, isSonOf);
             }
         };

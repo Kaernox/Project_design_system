@@ -22,6 +22,11 @@
             "value": "{debug: false}"
         },
         {
+            "attr": "icon",
+            "bind": "=",
+            "value": "label"
+        },
+        {
             "attr": "event",
             "bind": "@",
             "value": ""

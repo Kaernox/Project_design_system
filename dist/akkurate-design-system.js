@@ -27,6 +27,94 @@ angular.module('akkurate-design-system').config([
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
+ * @description: Factory who's managing an alert or a confirmation for an action the user realise
+ */
+
+angular.module('akkurate-design-system').factory('akkVerify', [
+    '$q',
+    '$uibModal',
+    function ($q, $uibModal) {
+        return {
+            alert: function (title, message, windowClass) {
+                var q = $q.defer();
+                var modalInstance = $uibModal.open({
+                    templateUrl: "templates/modals/akk-verify-alert.html",
+                    controller: [
+                        '$scope',
+                        '$uibModalInstance',
+                        'title',
+                        'message',
+                        function ($scope, $uibModalInstance, title, message) {
+                            $scope.title = title;
+                            $scope.message = message;
+                            $scope.close = function () {
+                                $uibModalInstance.close();
+                            };
+                        }],
+                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
+                    size: 'sm',
+                    backdrop: 'static',
+                    keyboard: false,
+                    resolve: {
+                        title: function () {
+                            return title;
+                        },
+                        message: function () {
+                            return message;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (response) {
+                    q.resolve(response);
+                }, function () {});
+                return q.promise;
+            },
+            confirm: function (title, message, buttons, windowClass) {
+                var q = $q.defer();
+                var modalInstance = $uibModal.open({
+                    templateUrl: "templates/modals/akk-verify-confirm.html",
+                    controller: [
+                        '$scope',
+                        '$uibModalInstance',
+                        'title',
+                        'message',
+                        'buttons',
+                        function ($scope, $uibModalInstance, title, message, buttons) {
+                            $scope.title = title;
+                            $scope.message = message;
+                            $scope.buttons = buttons;
+                            $scope.response = function (result) {
+                                $uibModalInstance.close(result);
+                            };
+                        }],
+                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
+                    size: 'sm',
+                    backdrop: 'static',
+                    keyboard: false,
+                    resolve: {
+                        title: function () {
+                            return title;
+                        },
+                        message: function () {
+                            return message;
+                        },
+                        buttons: function () {
+                            return buttons;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (response) {
+                    q.resolve(response);
+                }, function () {});
+                return q.promise;
+            }
+        };
+    }
+]);
+/**
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
  * @description: directive use to manipulate the behavior of alert it let you choose the type and its content 
  */
 
@@ -1388,6 +1476,8 @@ angular.module('akkurate-design-system').directive('akkTree', [
                 items: "=",
                 model: "=",
                 options: "=",
+                multiple: "@",
+                icon: "@",
                 eventUpdate: "@"
             },
             link: function postLink(scope, element, attrs) {
@@ -1413,24 +1503,36 @@ angular.module('akkurate-design-system').directive('akkTree', [
                      * @value is use for isChecked
                      */
                     check: function (item) {
-                        var value;
-                        if ($filter('getBy')(scope.model, 'value', item.value)) {
-                            var itemIndex = $filter('getIndexBy')(scope.model, 'value', item.value);
-                            scope.model.splice(itemIndex, 1);
-                            value= item.isChecked = false;
-                            
-                        } else {
-                            scope.model.push({label: item.label, value: item.value});
-                            value= item.isChecked = true;
-                        }
+                        if (scope.multiple == true) {
+                            var value;
 
-                        AkkTreeManager.recursiveCheckVerif( [item], value, false);
-                        
-                        if (scope.eventUpdate != null && scope.eventUpdate != ''){
-                            $rootScope.$broadcast(scope.eventUpdate, scope.model);
+                            if ($filter('getBy')(scope.model, 'value', item.value)) {
+                                var itemIndex = $filter('getIndexBy')(scope.model, 'value', item.value);
+                                scope.model.splice(itemIndex, 1);
+                                value = item.isChecked = false;
+
+                            } else {
+                                scope.model.push({label: item.label, value: item.value});
+                                value = item.isChecked = true;
+                            }
+
+                            AkkTreeManager.recursiveCheckVerif([item], value, false);
+
+                            if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                                $rootScope.$broadcast(scope.eventUpdate, scope.model);
+                            }
+
+                            scope.model = AkkTreeManager.getValues();
+                        } else {
+                            scope.methods.unselectAll();
+                            item.isChecked = true;
+                            
+                            var model = angular.copy(item);
+                            delete model.childs;
+                            delete model.isChecked;
+                            
+                            scope.model = model;
                         }
-                        
-                        scope.model = AkkTreeManager.getValues();
                     },
                     expandAll: function () {
                         AkkTreeManager.expandAll();
@@ -1534,12 +1636,12 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
 
             var nbCheck = 0;
             var data = {
-                isChecked:false,
+                isChecked: false,
                 isPartialyChecked: false
             };
             angular.forEach(tree, function (item, key) {
                 var sonData = {
-                    isChecked:false,
+                    isChecked: false,
                     isPartialyChecked: false
                 };
                 if (item.childs != undefined && item.childs.length > 0) {
@@ -1550,35 +1652,33 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
                 } else if ($filter('getBy')(selected, 'value', item.value)) {
                     item[property] = value;
                 }
-                if(item.isChecked || sonData.isChecked || sonData.isPartialyChecked) {
-                    if(sonData.isPartialyChecked) {
+                if (item.isChecked || sonData.isChecked || sonData.isPartialyChecked) {
+                    if (sonData.isPartialyChecked) {
                         item.isPartialyChecked = true;
                         item.isChecked = false;
-                    }
-                    else {
+                    } else {
                         item.isPartialyChecked = false;
                         item.isChecked = true;
-                        if(Array.isArray(selected) && !$filter('getBy')(selected, 'value', item.value)) {
+                        if (Array.isArray(selected) && !$filter('getBy')(selected, 'value', item.value)) {
                             var topush = angular.copy(item);
                             delete topush.isShown;
                             delete topush.isChecked;
                             delete topush.childs;
                             delete topush.isPartialyChecked;
-                            
+
                             selected.push(topush);
                         }
-                    } 
+                    }
                     nbCheck++;
                 }
             });
-            
-            if(nbCheck === tree.length) {
+
+            if (nbCheck === tree.length) {
                 data.isChecked = true;
-            }
-            else if(nbCheck > 0 && nbCheck < tree.length) {
+            } else if (nbCheck > 0 && nbCheck < tree.length) {
                 data.isPartialyChecked = true;
             }
-            
+
             return data;
         };
         /*
@@ -1590,51 +1690,48 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
 
             var nbCheck = 0;
             var data = {
-                isChecked:false,
+                isChecked: false,
                 isPartialyChecked: false
             };
             angular.forEach(tree, function (item, key) {
                 var sonData = {
-                        isChecked:false,
-                        isPartialyChecked: false
-                    },
-                    localIsSonOf = isSonOf;
-                    
+                    isChecked: false,
+                    isPartialyChecked: false
+                },
+                localIsSonOf = isSonOf;
+
                 if ($filter('getBy')(selected, 'value', item.value) || isSonOf) {
                     item.isChecked = value;
                     sonData.isChecked = value;
                     localIsSonOf = true;
                 }
                 if (item.childs != undefined && item.childs.length > 0) {
-                    sonData = _recursiveCheckVerif(item.childs,selected, value, localIsSonOf);
+                    sonData = _recursiveCheckVerif(item.childs, selected, value, localIsSonOf);
                 }
-                if(item.isChecked || sonData.isChecked || sonData.isPartialyChecked) {
-                    if(sonData.isPartialyChecked) {
+                if (item.isChecked || sonData.isChecked || sonData.isPartialyChecked) {
+                    if (sonData.isPartialyChecked) {
                         item.isPartialyChecked = true;
                         item.isChecked = false;
-                    }
-                    else {
+                    } else {
                         item.isPartialyChecked = false;
                         item.isChecked = true;
-                    } 
+                    }
                     nbCheck++;
-                }
-                else {
+                } else {
                     item.isPartialyChecked = false;
                     item.isChecked = false;
                 }
             });
 
-            if(nbCheck === tree.length) {
+            if (nbCheck === tree.length) {
                 data.isChecked = true;
-            }
-            else if(nbCheck > 0 && nbCheck < tree.length) {
+            } else if (nbCheck > 0 && nbCheck < tree.length) {
                 data.isPartialyChecked = true;
             }
-            
+
             return data;
         };
-        
+
         /*
          * recuperate the information of the model
          * and put it in the var collection
@@ -1688,105 +1785,14 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
                 recursiveUpdate(this.tree, 'isChecked', false, 'all');
             },
             recursiveUpdate: recursiveUpdate,
-            recursiveCheckVerif: function(selected, value, isSonOf) {
+            recursiveCheckVerif: function (selected, value, isSonOf) {
                 _recursiveCheckVerif(this.tree, selected, value, isSonOf);
             }
         };
     }]);
-/**
- * Akkurate v1.0.0 (https://ww.akkurate.io)
- * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
- * Commercial License 
- * @description: Factory who's managing an alert or a confirmation for an action the user realise
- */
-
-angular.module('akkurate-design-system').factory('akkVerify', [
-    '$q',
-    '$uibModal',
-    function ($q, $uibModal) {
-        return {
-            alert: function (title, message, windowClass) {
-                var q = $q.defer();
-                var modalInstance = $uibModal.open({
-                    templateUrl: "templates/modals/akk-verify-alert.html",
-                    controller: [
-                        '$scope',
-                        '$uibModalInstance',
-                        'title',
-                        'message',
-                        function ($scope, $uibModalInstance, title, message) {
-                            $scope.title = title;
-                            $scope.message = message;
-                            $scope.close = function () {
-                                $uibModalInstance.close();
-                            };
-                        }],
-                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
-                    size: 'sm',
-                    backdrop: 'static',
-                    keyboard: false,
-                    resolve: {
-                        title: function () {
-                            return title;
-                        },
-                        message: function () {
-                            return message;
-                        }
-                    }
-                });
-                modalInstance.result.then(function (response) {
-                    q.resolve(response);
-                }, function () {});
-                return q.promise;
-            },
-            confirm: function (title, message, buttons, windowClass) {
-                var q = $q.defer();
-                var modalInstance = $uibModal.open({
-                    templateUrl: "templates/modals/akk-verify-confirm.html",
-                    controller: [
-                        '$scope',
-                        '$uibModalInstance',
-                        'title',
-                        'message',
-                        'buttons',
-                        function ($scope, $uibModalInstance, title, message, buttons) {
-                            $scope.title = title;
-                            $scope.message = message;
-                            $scope.buttons = buttons;
-                            $scope.response = function (result) {
-                                $uibModalInstance.close(result);
-                            };
-                        }],
-                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
-                    size: 'sm',
-                    backdrop: 'static',
-                    keyboard: false,
-                    resolve: {
-                        title: function () {
-                            return title;
-                        },
-                        message: function () {
-                            return message;
-                        },
-                        buttons: function () {
-                            return buttons;
-                        }
-                    }
-                });
-                modalInstance.result.then(function (response) {
-                    q.resolve(response);
-                }, function () {});
-                return q.promise;
-            }
-        };
-    }
-]);
 angular.module('akkurate-design-system')
-        .filter('inArray', function () {
-            return function (array, value) {
-                return array.indexOf(value) !== -1;
-            };
-        })
+
+        //for getting by 
         .filter('getBy', function () {
             return function (input, field, value, toReturn) {
                 var i = 0, len = input.length;
@@ -1807,24 +1813,6 @@ angular.module('akkurate-design-system')
                     }
                 }
                 return null;
-            };
-        })
-        .filter('range', function () {
-            return function (input, total) {
-                total = parseInt(total);
-                for (var i = 0; i < total; i++) {
-                    input.push(i);
-                }
-                return input;
-            };
-        })
-        .filter('ucfirst', function () {
-            return function ucFirst(str) {
-                if (str.length > 0) {
-                    return str[0].toUpperCase() + str.substring(1);
-                } else {
-                    return str;
-                }
             };
         })
         
@@ -1850,7 +1838,7 @@ angular.module('akkurate-design-system')
             };
         })
         
-        // For files
+        // For files size
         .filter('formatBytes', function ($filter) {
             return function (bytes, decimals) {
                 if (bytes == 0)
@@ -1873,6 +1861,32 @@ angular.module('akkurate-design-system')
                 return parseFloat((octet / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
             };
         })
+        
+        .filter('inArray', function () {
+            return function (array, value) {
+                return array.indexOf(value) !== -1;
+            };
+        })
+
+        .filter('range', function () {
+            return function (input, total) {
+                total = parseInt(total);
+                for (var i = 0; i < total; i++) {
+                    input.push(i);
+                }
+                return input;
+            };
+        })
+        .filter('ucfirst', function () {
+            return function ucFirst(str) {
+                if (str.length > 0) {
+                    return str[0].toUpperCase() + str.substring(1);
+                } else {
+                    return str;
+                }
+            };
+        })
+        
         .filter('extensionIcon', function ($filter) {
             return function (extension) {
                 var unknow = ['apk', 'sql'];
@@ -2207,8 +2221,8 @@ $templateCache.put('templates/akk-selectandsearch.html','<div class="form-group 
 $templateCache.put('templates/akk-selector.html','<div class="form-group {{!view.isValid ? \'has-error\' : \'\'}}">\n    <label class="control-label" ng-if="label">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <sup ng-if="req">*</sup>\n    </label>\n    <div class="form-control d-flex align-items-center justify-content-between">\n        <input type="hidden" ng-model="view.item.id" ng-required="{{req}}" />\n        <span class="input-search" ng-if="view.item != null" ng-click="methods.wizard()">\n            {{model[property]}}\n        </span>\n        <em ng-if="view.item == null" class="text-muted" ng-click="methods.wizard()">{{placeholder}}</em>\n        <i class="material-icons md-24 ml-auto" ng-click="methods.wizard()" role="button">keyboard_arrow_right</i>\n    </div>\n</div>');
 $templateCache.put('templates/akk-switch.html','<div class="form-group form-switch {{elementclass}}" data-ng-click="methods.toggle()">\n    <div class="d-flex align-items-center" data-ng-class="alignment == \'center\' ? \'justify-content-center\' : \'justify-content-between\'">\n        <div data-ng-if="alignment == \'left\' || alignment == \'center\'" data-ng-class="size != null ? \'switch-\' + size : \'\'">\n            <div class="d-flex switch-box" data-ng-class="model[property] ? \'switch-active justify-content-end\' : \'justify-content-start\'">\n                <div class="switch-handle">\n                    <i class="material-icons text-primary" data-ng-if="model[property] && size != null">check</i>\n                </div>\n            </div>\n        </div>\n        <div data-ng-if="alignment != \'center\'" data-ng-class="alignment == \'left\' ? \'text-right\' : \'\';">\n            {{label}}\n        </div>\n        <div data-ng-if="alignment == \'right\'" data-ng-class="size != null ? \'switch-\' + size : \'\'">\n            <div class="d-flex switch-box" data-ng-class="model[property] ? \'switch-active justify-content-end\' : \'justify-content-start\'">\n                <div class="switch-handle">\n                    <i class="material-icons text-primary" data-ng-if="model[property] && size != null">check</i>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-textarea.html','<div class="form-group form-textarea" ng-class="!isValid ? \'has-error\' : \'\'">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <textarea class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" ng-model="model" rows="{{size}}" ng-required="{{req}}" ng-blur="checkValidity()"></textarea>\n</div>');
-$templateCache.put('templates/akk-tree-item.html','<li ng-class="view.item.childs != undefined ? \'has-child\' : \'\'" class="tree-item d-flex flex-column">\n    <div class="d-flex align-items-center">\n        <i ng-if="view.item.childs && view.item.childs.length > 0 && view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">expand_more</i>\n        <i ng-if="view.item.childs && view.item.childs.length > 0 && !view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">chevron_right</i>\n        <i ng-if="!view.item.childs || view.item.childs.length == 0" ng-click="methods.toggle(view.item)" class="material-icons text-muted">bookmark</i>\n        \n        <i ng-if="view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-primary">check_box</i>\n        <i ng-if="view.item.isPartialyChecked && !view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">indeterminate_check_box</i>\n        <i ng-if="!view.item.isChecked  && !view.item.isPartialyChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">check_box_outline_blank</i>\n        \n        <a href="javascript:;" ng-if="view.item.childs && view.item.childs.length > 0" ng-click="methods.toggle(view.item)">\n            {{view.item.label}}\n        </a>\n        \n        <span ng-if="view.item.childs && view.item.childs.length > 0">\n            ({{view.item.childs.length}})\n        </span>\n        \n        <span ng-if="!view.item.childs || view.item.childs.length == 0">\n            {{view.item.label}}\n        </span>\n    </diV>\n\n    <ul ng-if="view.item.childs && view.item.childs.length > 0" ng-show="view.item.isShown">\n        <akk-tree-item item="child" ng-repeat="child in view.item.childs"></akk-tree-item>\n    </ul>\n</li>');
-$templateCache.put('templates/akk-tree.html','<div class="form-group form-tree">\n    <div class="pull-right">\n        <a href="javascript:;" ng-click="methods.expandAll()" translate>Tout ouvrir</a>\n        <span> | \n            <a href="javascript:;" ng-click="methods.inpandAll()" translate>Tout fermer</a>\n        </span>\n        <span> |\n            <a href="javascript:;" ng-click="methods.selectAll()" translate>Tout s\xE9lectionner</a>\n        </span>\n        <span> |\n            <a href="javascript:;" ng-click="methods.unselectAll()" translate>Tout d\xE9s\xE9lectionner</a>\n        </span>\n\n        <span ng-if="options.debug && options.debug == true"> |\n            <a href="javascript:;" ng-click="methods.debug()" translate>Debug</a>\n        </span>\n    </div>\n    <div class="h4" ng-if="view.title">\n        {{view.title}}\n    </div>\n    <ul>\n        <akk-tree-item item="item" ng-repeat="item in view.items"></akk-tree-item>\n    </ul>\n    <div ng-if="options.debug && options.debug == true">\n        Model debug\n        <div class="row">\n            <div class="col">\n                <pre>{{view.items| json}}</pre>\n            </div>\n            <div class="col">\n                <pre>{{model| json}}</pre>\n            </div>\n        </div>\n    </div>\n</div>');
+$templateCache.put('templates/akk-tree-item.html','<li ng-class="view.item.childs != undefined ? \'has-child\' : \'\'" class="tree-item d-flex flex-column">\n    <div class="d-flex align-items-center">\n        <i ng-if="view.item.childs && view.item.childs.length > 0 && view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">expand_more</i>\n        <i ng-if="view.item.childs && view.item.childs.length > 0 && !view.item.isShown" ng-click="methods.toggle(view.item)" class="material-icons">chevron_right</i>\n        <i ng-if="!view.item.childs || view.item.childs.length == 0" ng-click="methods.toggle(view.item)" class="material-icons text-muted" ng-bind="icon != null ? icon : \'bookmark\'"></i>\n        \n        <i ng-if="view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-primary">check_box</i>\n        <i ng-if="view.item.isPartialyChecked && !view.item.isChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">indeterminate_check_box</i>\n        <i ng-if="!view.item.isChecked  && !view.item.isPartialyChecked" ng-click="methods.check(view.item)" class="material-icons text-muted">check_box_outline_blank</i>\n        \n        <a href="javascript:;" ng-if="view.item.childs && view.item.childs.length > 0" ng-click="methods.toggle(view.item)">\n            {{view.item.label}}\n        </a>\n        \n        <span ng-if="view.item.childs && view.item.childs.length > 0">\n            ({{view.item.childs.length}})\n        </span>\n        \n        <span ng-if="!view.item.childs || view.item.childs.length == 0">\n            {{view.item.label}}\n        </span>\n    </diV>\n\n    <ul ng-if="view.item.childs && view.item.childs.length > 0" ng-show="view.item.isShown">\n        <akk-tree-item item="child" ng-repeat="child in view.item.childs"></akk-tree-item>\n    </ul>\n</li>');
+$templateCache.put('templates/akk-tree.html','<div class="form-group form-tree">\n    <div class="pull-right">\n        <a href="javascript:;" ng-click="methods.expandAll()" translate>Tout ouvrir</a>\n        <span> | \n            <a href="javascript:;" ng-click="methods.inpandAll()" translate>Tout fermer</a>\n        </span>\n        <span ng-if="multiple"> |\n            <a href="javascript:;" ng-click="methods.selectAll()" translate>Tout s\xE9lectionner</a>\n        </span>\n        <span ng-if="multiple"> |\n            <a href="javascript:;" ng-click="methods.unselectAll()" translate>Tout d\xE9s\xE9lectionner</a>\n        </span>\n\n        <span ng-if="options.debug && options.debug == true"> |\n            <a href="javascript:;" ng-click="methods.debug()" translate>Debug</a>\n        </span>\n    </div>\n    \n    <div class="h4" ng-if="view.title">\n        {{view.title}}\n    </div>\n    \n    <ul>\n        <akk-tree-item item="item" ng-repeat="item in view.items"></akk-tree-item>\n    </ul>\n    <div ng-if="options.debug && options.debug == true">\n        Model debug\n        <div class="row">\n            <div class="col">\n                <pre>{{view.items| json}}</pre>\n            </div>\n            <div class="col">\n                <pre>{{model| json}}</pre>\n            </div>\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/modals/akk-datepicker-modal-month.html','<div ng-switch="datepickerMode">\n    <div uib-daypicker ng-switch-when="day" tabindex="0" class="uib-daypicker" template-url="templates/overload/datepicker/day.html"></div>\n    <div uib-monthpicker ng-switch-when="month" tabindex="0" class="uib-monthpicker" template-url="templates/overload/datepicker/month.html"></div>\n    <div uib-yearpicker ng-switch-when="year" tabindex="0" class="uib-yearpicker" template-url="templates/overload/datepicker/year.html"></div>\n</div>');
 $templateCache.put('templates/modals/akk-datepicker-modal.html','<div class="modal-header">\n    <h5 class="modal-title" id="datetimePickerModalLabel">{{view.title}}</h5>\n    <button type="button" class="close" ng-click="methods.cancel()">\n        <span aria-hidden="true">\n            <i class="material-icons md-24">clear</i>\n        </span>\n    </button>\n</div>\n<div class="modal-body">\n    <div uib-datepicker\n         ng-model="view.datetime"\n         datepicker-options="view.datepickerOptions"\n         template-url="templates/modals/akk-datepicker-modal-month.html">\n    </div>\n</div>\n<div class="modal-footer">\n    <button type="button" ng-click="methods.cancel()" class="btn btn-link" data-dismiss="modal" translate>Close</button>\n    <button type="button" ng-click="methods.valid()" class="btn btn-primary" translate>Select</button>\n</div>\n');
 $templateCache.put('templates/modals/akk-multiselect-modal.html','<div class="modal-header">\n    <h4 class="modal-title">{{view.placeholder}}</h4>\n    <button type="button" class="close" data-ng-click="methods.close()" aria-label="Close">\n        <span aria-hidden="true">\n            <i class="material-icons md-24">clear</i>\n        </span>\n    </button>\n</div>\n<div class="modal-body">\n    <div class="row">\n        <div class="col-6">\n            <h5 translate>Selectable items ({{view.items.length}})</h5>\n            <div data-ng-if="view.items.length">\n                <div data-ng-repeat="item in view.items | orderBy:view.field" class="d-flex align-items-center text-secondary" data-ng-click="methods.select(item)">\n                    <i class="material-icons">keyboard_arrow_right</i>\n                    <div class="ml-1">{{item[view.field]}}</div>\n                </div>\n            </div>\n        </div>\n        <div class="col-6">\n            <h5 translate>Selected items ({{view.selected.length}})</h5>\n            <div data-ng-if="view.selected.length">\n                <div data-ng-repeat="item in view.selected | orderBy:view.field" class="d-flex align-items-center text-primary" data-ng-click="methods.unselect(item)">\n                    <i class="material-icons">clear</i>\n                    <div class="ml-1">{{item[view.field]}}</div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>\n<div class="modal-footer">\n    <button type="button" class="btn btn-default" data-ng-click="methods.cancel()" translate>Cancel</button>\n    <button type="button" class="btn btn-primary" data-ng-click="methods.save()" translate>Save</button>\n</div>\n');

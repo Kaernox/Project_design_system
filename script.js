@@ -400,7 +400,7 @@ var componentsData = {
                 key: 'alert',
                 label: 'alert'
             }
-            ]
+        ]
     }
 };
 
@@ -560,19 +560,7 @@ designsystem.component('home', {
 
 // event for the display again akk alert if it was close
             $scope.$on('updateAlert', function (event) {
-                akkVerify.confirm(null, 'Are you sure you want to show alert?', [{
-                        text: 'No',
-                        class: 'btn btn-default',
-                        value: false
-                    }, {
-                        text: 'Yes',
-                        class: 'btn btn-primary',
-                        value: true
-                    }]).then(function (response) {
-                    if (response === true) {
-                        $scope.view.alert.displayed = true;
-                    }
-                });
+                $scope.view.alert.displayed = true;
             });
 
             $scope.$on('cardAlert', function (event) {
