@@ -23,7 +23,7 @@ angular.module('akkurate-design-system').directive('akkTree', [
                 model: "=",
                 options: "=",
                 multiple: "=",
-                withoutChoice: "@",
+                selectable: "=",
                 eventUpdate: "@"
             },
             link: function postLink(scope, element, attrs) {
@@ -50,35 +50,41 @@ angular.module('akkurate-design-system').directive('akkTree', [
                      */
                     check: function (item) {
                         if (scope.multiple == true) {
-                            var value;
-
-                            if ($filter('getBy')(scope.model, 'value', item.value)) {
-                                var itemIndex = $filter('getIndexBy')(scope.model, 'value', item.value);
-                                scope.model.splice(itemIndex, 1);
-                                value = item.isChecked = false;
-
-                            } else {
-                                scope.model.push({label: item.label, value: item.value});
-                                value = item.isChecked = true;
-                            }
-
-                            AkkTreeManager.recursiveCheckVerif([item], value, false);
-
-                            if (scope.eventUpdate != null && scope.eventUpdate != '') {
-                                $rootScope.$broadcast(scope.eventUpdate, scope.model);
-                            }
-
-                            scope.model = AkkTreeManager.getValues();
+                            scope.methods.checkMultiple(item);
                         } else {
-                            scope.methods.unselectAll();
-                            item.isChecked = true;
-                            
-                            var model = angular.copy(item);
-                            delete model.childs;
-                            delete model.isChecked;
-                            
-                            scope.model = model;
+                            scope.methods.checkSingle(item);
                         }
+                    },
+                    checkMultiple: function (item) {
+                        var value;
+
+                        if ($filter('getBy')(scope.model, 'value', item.value)) {
+                            var itemIndex = $filter('getIndexBy')(scope.model, 'value', item.value);
+                            scope.model.splice(itemIndex, 1);
+                            value = item.isChecked = false;
+
+                        } else {
+                            scope.model.push({label: item.label, value: item.value});
+                            value = item.isChecked = true;
+                        }
+
+                        AkkTreeManager.recursiveCheckVerif([item], value, false);
+
+                        if (scope.eventUpdate != null && scope.eventUpdate != '') {
+                            $rootScope.$broadcast(scope.eventUpdate, scope.model);
+                        }
+
+                        scope.model = AkkTreeManager.getValues();
+                    },
+                    checkSingle: function (item) {
+                        scope.methods.unselectAll();
+                        item.isChecked = true;
+
+                        var model = angular.copy(item);
+                        delete model.childs;
+                        delete model.isChecked;
+
+                        scope.model = model;
                     },
                     expandAll: function () {
                         AkkTreeManager.expandAll();

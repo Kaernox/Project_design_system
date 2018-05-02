@@ -2,13 +2,11 @@
     <div class="d-flex align-items-center">
         <i data-ng-if="view.item.childs && view.item.childs.length > 0 && view.item.isShown" data-ng-click="methods.toggle(view.item)" class="material-icons">expand_more</i>
         <i data-ng-if="view.item.childs && view.item.childs.length > 0 && !view.item.isShown" data-ng-click="methods.toggle(view.item)" class="material-icons">chevron_right</i>
-        <i data-ng-if="!view.item.childs || view.item.childs.length == 0" data-ng-click="methods.toggle(view.item)" class="material-icons text-muted" data-ng-bind="icon != null ? icon : 'bookmark'"></i>
+        <i data-ng-if="!view.item.childs || view.item.childs.length == 0" data-ng-click="methods.toggle(view.item)" class="material-icons text-muted" data-ng-bind="options.icon != null ? options.icon : 'bookmark'"></i>
 
-        <div data-ng-if="!view.item.withoutChoice && view.item.withoutChoice!='true'">
             <i data-ng-if="view.item.isChecked" data-ng-click="methods.check(view.item)" class="material-icons text-primary">check_box</i>
             <i data-ng-if="view.item.isPartialyChecked && !view.item.isChecked" data-ng-click="methods.check(view.item)" class="material-icons text-muted">indeterminate_check_box</i>
             <i data-ng-if="!view.item.isChecked && !view.item.isPartialyChecked" data-ng-click="methods.check(view.item)" class="material-icons text-muted">check_box_outline_blank</i>
-        </div>
 
         <a href="javascript:;" data-ng-if="view.item.childs && view.item.childs.length > 0" data-ng-click="methods.toggle(view.item)">
             {{view.options.label ? view.item[view.options.label] : view.item.label}}

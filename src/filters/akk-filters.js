@@ -1,6 +1,6 @@
 angular.module('akkurate-design-system')
 
-        //for getting by 
+        // For getting by 
         .filter('getBy', function () {
             return function (input, field, value, toReturn) {
                 var i = 0, len = input.length;
@@ -23,7 +23,7 @@ angular.module('akkurate-design-system')
                 return null;
             };
         })
-        
+
         // For dates
         .filter('dateShortFormat', function ($filter) {
             return function (input) {
@@ -45,7 +45,7 @@ angular.module('akkurate-design-system')
                 }
             };
         })
-        
+
         // For files size
         .filter('formatBytes', function ($filter) {
             return function (bytes, decimals) {
@@ -59,49 +59,21 @@ angular.module('akkurate-design-system')
             };
         })
         .filter('formatOctets', function ($filter) {
-            return function (octet, decimals) {
-                if (octet == 0)
+            return function (octets, decimals) {
+                if (octets == 0)
                     return '0 octet';
                 var k = 8000; // 8 bytes for 1 octet
                 var dm = decimals + 1 || 3;
-                var sizes = ['Octet', 'KO', 'MO', 'GO', 'TO', 'PO', 'EO', 'ZO', 'YO'];
-                var i = Math.floor(Math.log(octet) / Math.log(k));
-                return parseFloat((octet / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-            };
-        })
-        
-        .filter('inArray', function () {
-            return function (array, value) {
-                return array.indexOf(value) !== -1;
+                var sizes = ['Octets', 'KO', 'MO', 'GO', 'TO', 'PO', 'EO', 'ZO', 'YO'];
+                var i = Math.floor(Math.log(octets) / Math.log(k));
+                return parseFloat((octets / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
             };
         })
 
-        .filter('range', function () {
-            return function (input, total) {
-                total = parseInt(total);
-                for (var i = 0; i < total; i++) {
-                    input.push(i);
-                }
-                return input;
-            };
-        })
-        .filter('ucfirst', function () {
-            return function ucFirst(str) {
-                if (str.length > 0) {
-                    return str[0].toUpperCase() + str.substring(1);
-                } else {
-                    return str;
-                }
-            };
-        })
-        
-        .filter('extensionIcon', function ($filter) {
-            return function (extension) {
-                var unknow = ['apk', 'sql'];
-                if (extension == null || unknow.indexOf(extension.toLowerCase()) >= 0) {
-                    return "css";
-                }
-                return extension.toLowerCase();
+        // For array
+        .filter('inArray', function () {
+            return function (array, value) {
+                return array.indexOf(value) !== -1;
             };
         })
         .filter('searchAndDisplay', function ($filter) {
@@ -131,6 +103,17 @@ angular.module('akkurate-design-system')
                     }
                 };
             }])
+
+        // For Extention
+        .filter('extensionIcon', function ($filter) {
+            return function (extension) {
+                var unknow = ['apk', 'sql'];
+                if (extension == null || unknow.indexOf(extension.toLowerCase()) >= 0) {
+                    return "css";
+                }
+                return extension.toLowerCase();
+            };
+        })
         /**
          * Filter credential by typeName
          * 
@@ -150,6 +133,25 @@ angular.module('akkurate-design-system')
                 };
             }])
 
+        //
+        .filter('range', function () {
+            return function (input, total) {
+                total = parseInt(total);
+                for (var i = 0; i < total; i++) {
+                    input.push(i);
+                }
+                return input;
+            };
+        })
+        .filter('ucfirst', function () {
+            return function ucFirst(str) {
+                if (str.length > 0) {
+                    return str[0].toUpperCase() + str.substring(1);
+                } else {
+                    return str;
+                }
+            };
+        })
         .filter('truncate', function () {
             return function (value, wordwise, max, tail) {
                 if (!value)

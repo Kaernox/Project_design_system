@@ -28,9 +28,9 @@
         },
         
         {
-            "attr": "withoutChoice",
+            "attr": "selectable",
             "bind": "@",
-            "value": "false"
+            "value": "true"
         },
         {
             "attr": "event",
