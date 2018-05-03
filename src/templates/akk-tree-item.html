@@ -12,7 +12,7 @@
         </div>
 
         <span data-ng-if="!eventClick">
-            {{view.item.label}}
+            {{view.options.label ? view.item[view.options.label] : view.item.label}}
         </span>
         
         <a href="javascript:;" data-ng-if="eventClick" data-ng-click="methods.click(view.item)" data-ng-class="(view.item.isChecked) ? 'active':''">
