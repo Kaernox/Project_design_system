@@ -1,8 +1,7 @@
 <div class="component">
     <h2>akk-tree</h2>
     <div class="row">
-        <div class="col-12 col-md-4">
-            <akk-tree title="My tree" items="view.tree.items" model="view.tree.model" options="{debug: false}" multiple="true" icon="label" event="" ></akk-tree>
-               
+        <div class="col-12">
+            <akk-tree title="My tree" items="view.tree.items" model="view.tree.model" options="{debug: false, label: 'label', icon: 'label'}" multiple="true" selectable="true" event-click="treeSelectItem" event-update="" ></akk-tree>
         </div>
         

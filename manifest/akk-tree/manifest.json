@@ -33,7 +33,12 @@
             "value": "true"
         },
         {
-            "attr": "event",
+            "attr": "eventClick",
+            "bind": "@",
+            "value": "treeSelectItem"
+        },
+        {
+            "attr": "eventUpdate",
             "bind": "@",
             "value": ""
         }

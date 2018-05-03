@@ -1,0 +1,31 @@
+.form-tree {
+    .control-label {
+        font-size: .8rem;
+        color: $text-muted;
+    }
+    
+    .control-panel {
+        font-size: .8rem;
+        color: $text-muted;
+    }
+    
+    .level-root {
+        padding-left: 0;
+        
+        ul {
+            padding-left: 1.35rem;
+        }
+    }
+    
+    .tree-item {
+        .active {
+            font-weight: 700;
+            color: $primary;
+        }
+    }
+    
+    .minus {
+        font-size: .80rem;
+    }
+    
+}

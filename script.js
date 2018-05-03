@@ -462,9 +462,10 @@ designsystem.component('home', {
 }).component('components', {
     templateUrl: 'docs/components.html',
     controller: [
+        '$rootScope',
         '$scope',
         'akkVerify',
-        function ($scope, akkVerify) {
+        function ($rootScope, $scope, akkVerify) {
 
             $scope.methods = {
                 init: function () {
@@ -565,6 +566,10 @@ designsystem.component('home', {
 
             $scope.$on('cardAlert', function (event) {
                 akkVerify.alert(null, 'You clicked on the card\'s button', 'modal-alert').then(function (response) {});
+            });
+
+            $scope.$on('treeSelectItem', function (event, item) {
+                alert('Tree: select of #' + item.label);
             });
 
             $scope.$on('datagridOptionEdit', function (event, item) {

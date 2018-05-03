@@ -6242,3 +6242,23 @@ hr.hr-900 {
 .form-textarea .control-label {
   font-size: .8rem;
   color: #6c757d; }
+
+.form-tree .control-label {
+  font-size: .8rem;
+  color: #6c757d; }
+
+.form-tree .control-panel {
+  font-size: .8rem;
+  color: #6c757d; }
+
+.form-tree .level-root {
+  padding-left: 0; }
+  .form-tree .level-root ul {
+    padding-left: 1.35rem; }
+
+.form-tree .tree-item .active {
+  font-weight: 700;
+  color: #007bff; }
+
+.form-tree .minus {
+  font-size: .80rem; }

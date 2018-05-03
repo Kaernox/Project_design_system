@@ -24,7 +24,8 @@ angular.module('akkurate-design-system').directive('akkTree', [
                 options: "=",
                 multiple: "=",
                 selectable: "=",
-                eventUpdate: "@"
+                eventUpdate: "@",
+                eventClick: "@"
             },
             link: function postLink(scope, element, attrs) {
                 scope.view = {
@@ -39,8 +40,17 @@ angular.module('akkurate-design-system').directive('akkTree', [
                         if (scope.title) {
                             scope.view.title = scope.title;
                         }
+                        if (scope.selectable) {
+                            scope.view.selectable = scope.selectable;
+                        }
 
                         AkkTreeManager.setTree(scope.model, scope.items, scope.options);
+                    },
+                    click: function(item) {
+                        scope.methods.unselectAll();
+                        item.isChecked = true;
+                        
+                        $rootScope.$broadcast(scope.eventClick, item);
                     },
                     /*
                      * verify if exist in array
@@ -134,7 +144,11 @@ angular.module('akkurate-design-system').directive('akkTreeItem', [
             transclude: true,
             replace: true,
             scope: {
-                item: "="
+                item: "=",
+                selectable:"=",
+                options:"=",
+                eventUpdate: "@",
+                eventClick: "@"
             },
             link: function postLink(scope, element, attrs) {
                 scope.view = {
@@ -148,6 +162,9 @@ angular.module('akkurate-design-system').directive('akkTreeItem', [
                         if (scope.isShown) {
                             scope.view.isShown = scope.isShown;
                         }
+                    },
+                    click: function (item) {
+                        scope.$parent.methods.click(item);
                     },
                     check: function (item) {
                         scope.$parent.methods.check(item);
