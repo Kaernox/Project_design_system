@@ -12,11 +12,11 @@
         </div>
 
         <span data-ng-if="!eventClick">
-            {{view.options.label ? view.item[view.options.label] : view.item.label}}
+            {{options.label ? item[options.label] : item.label}}
         </span>
         
         <a href="javascript:;" data-ng-if="eventClick" data-ng-click="methods.click(view.item)" data-ng-class="(view.item.isChecked) ? 'active':''">
-            {{view.options.label ? view.item[view.options.label] : view.item.label}}
+            {{options.label ? item[options.label] : item.label}}
         </a>
 
         <span class="badge badge-light ml-1" data-ng-if="view.item.childs && view.item.childs.length > 0">
