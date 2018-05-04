@@ -332,7 +332,8 @@ var componentsData = {
     textareaValue: '',
     // This is an example representation of what the akk-tree directive is expecting, all levels of nesting are allowed
     tree: {
-        model: [],
+        model: [{label: 'granchild1',
+                value: 'granchild1'}],
         items: [
             {
                 label: 'label 1',
