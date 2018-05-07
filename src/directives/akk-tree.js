@@ -44,7 +44,7 @@ angular.module('akkurate-design-system').directive('akkTree', [
                             scope.view.selectable = scope.selectable;
                         }
 
-                        AkkTreeManager.setTree(scope.model, scope.items, scope.options);
+                        AkkTreeManager.setTree(scope.model, scope.items, scope.options, scope.multiple);
                     },
                     click: function(item) {
                         scope.methods.unselectAll();
@@ -201,7 +201,7 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
          * for the toggle all and the check all
          * @data is use for isChecked and isPartialyChecked
          */
-        var recursiveUpdate = function (tree, property, value, selected) {
+        var recursiveUpdate = function (tree, property, value, selected, multiple) {
 
             var nbCheck = 0;
             var data = {
@@ -214,7 +214,7 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
                     isPartialyChecked: false
                 };
                 if (item.childs != undefined && item.childs.length > 0) {
-                    sonData = recursiveUpdate(item.childs, property, value, selected);
+                    sonData = recursiveUpdate(item.childs, property, value, selected, multiple);
                 }
                 if (selected == 'all') {
                     item[property] = value;
@@ -242,10 +242,12 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
                 }
             });
 
-            if (nbCheck === tree.length) {
+            if (nbCheck === tree.length && multiple == true) {
                 data.isChecked = true;
-            } else if (nbCheck > 0 && nbCheck < tree.length) {
+            } else if (nbCheck > 0 && nbCheck < tree.length && multiple == true) {
                 data.isPartialyChecked = true;
+            }else{
+                data.isPartialyChecked = false;
             }
 
             return data;
@@ -334,24 +336,24 @@ angular.module('akkurate-design-system').service('AkkTreeManager', [
             getValues: function () {
                 return recursiveGet(this.tree, []);
             },
-            setTree: function (selecteds, tree, options) {
+            setTree: function (selecteds, tree, options, multiple) {
                 this.tree = tree;
 
                 if (selecteds.length > 0) {
-                    recursiveUpdate(tree, 'isChecked', true, selecteds);
+                    recursiveUpdate(tree, 'isChecked', true, selecteds, multiple);
                 }
             },
-            expandAll: function () {
-                recursiveUpdate(this.tree, 'isShown', true, 'all');
+            expandAll: function (multiple) {
+                recursiveUpdate(this.tree, 'isShown', true, 'all', multiple);
             },
-            inpandAll: function () {
-                recursiveUpdate(this.tree, 'isShown', false, 'all');
+            inpandAll: function (multiple) {
+                recursiveUpdate(this.tree, 'isShown', false, 'all', multiple );
             },
             selectAll: function () {
-                recursiveUpdate(this.tree, 'isChecked', true, 'all');
+                recursiveUpdate(this.tree, 'isChecked', true, 'all', true);
             },
             unselectAll: function () {
-                recursiveUpdate(this.tree, 'isChecked', false, 'all');
+                recursiveUpdate(this.tree, 'isChecked', false, 'all', true);
             },
             recursiveUpdate: recursiveUpdate,
             recursiveCheckVerif: function (selected, value, isSonOf) {
