@@ -24,7 +24,7 @@
     color: $primary;
     width: 64px;
     height: 64px;
-    background: linear-gradient(to left top, rgba($primary, 0%),  rgba($primary, 100%));
+    background: linear-gradient(to left top, rgba($primary, 0),  rgba($primary, 1));
     display: block;
     border-radius: 50%;
     animation: rotating 2s linear infinite;

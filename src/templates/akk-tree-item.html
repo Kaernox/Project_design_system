@@ -5,17 +5,15 @@
         <i data-ng-if="view.item.childs && view.item.childs.length > 0 && !view.item.isShown" data-ng-click="methods.toggle(view.item)" class="material-icons minus mr-1">add</i>
         <i class="material-icons text-muted mr-1" data-ng-bind="options.icon != null ? options.icon : 'bookmark'"></i>
 
-        <div data-ng-if="selectable">
-            <i data-ng-if="view.item.isChecked" data-ng-click="methods.check(view.item)" class="material-icons text-primary">check_box</i>
-            <i data-ng-if="view.item.isPartialyChecked && !view.item.isChecked" data-ng-click="methods.check(view.item)" class="material-icons text-muted">indeterminate_check_box</i>
-            <i data-ng-if="!view.item.isChecked && !view.item.isPartialyChecked" data-ng-click="methods.check(view.item)" class="material-icons text-muted">check_box_outline_blank</i>
-        </div>
-
+        <i data-ng-if="selectable && view.item.isChecked" data-ng-click="methods.check(view.item)" class="material-icons text-primary">check_box</i>
+        <i data-ng-if="selectable && view.item.isPartialyChecked && !view.item.isChecked" data-ng-click="methods.check(view.item)" class="material-icons text-muted">indeterminate_check_box</i>
+        <i data-ng-if="selectable && !view.item.isChecked && !view.item.isPartialyChecked" data-ng-click="methods.check(view.item)" class="material-icons text-muted">check_box_outline_blank</i>
+        
         <span data-ng-if="!eventClick">
             {{options.label ? item[options.label] : item.label}}
         </span>
-        
-        <a href="javascript:;" data-ng-if="eventClick" data-ng-click="methods.click(view.item)" data-ng-class="(view.item.isChecked) ? 'active':''">
+
+        <a href="javascript:;" data-ng-if="eventClick" data-ng-click="methods.click(view.item)" data-ng-class="(view.item.isChecked) ? 'active' : ''">
             {{options.label ? item[options.label] : item.label}}
         </a>
 
