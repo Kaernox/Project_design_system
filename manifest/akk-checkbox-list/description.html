@@ -2,8 +2,70 @@
     <p class="description text-justify">
         Here we have our akk-checkbox-list directive, it's usefull when you have a list of options that you want to present to your users as a checkbox list, it taks the options to show the user and the model that will contain the selected items.
     </p>
-    </div>
-    <div class="col-12 col-md-2">
-        <pre class="show-value">{{ view.checkboxList.selectedItems| json }}</pre>
-    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Required</th>
+                <th>Format</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>label</td>
+                <td>X</td>
+                <td>string</td>
+                <td>Checkbox List</td>
+            </tr>
+            <tr>
+                <td>elementclass</td>
+                <td>X</td>
+                <td>string</td>
+                <td>class</td>
+            </tr>
+            <tr>
+                <td>req</td>
+                <td>X</td>
+                <td>boolean</td>
+                <td>true</td>
+            </tr>
+            <tr>
+                <td>model</td>
+                <td>✓</td>
+                <td>array</td>
+                <td>[]</td>
+            </tr>
+            <tr>
+                <td>options</td>
+                <td>✓</td>
+                <td>array</td>
+                <td>["test1", "test2", "test3", "test4"]</td>
+            </tr>
+            <tr>
+                <td>value</td>
+                <td>X</td>
+                <td>boolean</td>
+                <td>true</td>
+            </tr>
+            <tr>
+                <td>display</td>
+                <td>X</td>
+                <td>boolean</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>event</td>
+                <td>X</td>
+                <td>string</td>
+                <td>alert</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="col-12 col-md-2">
+    <pre class="show-value">{{ view.checkboxList.selectedItems| json }}</pre>
+</div>
 </div>

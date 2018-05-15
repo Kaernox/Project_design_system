@@ -2,6 +2,44 @@
 <p class="description text-justify">
     The akk-datepicker allows you to pick a date and store it as a javascript date object in the value provided in the model property.
 </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Required</th>
+                <th>Format</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>label</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>My DatePicker</td>
+            </tr>
+            <tr>
+                <td>req</td>
+                <td>X</td>
+                <td>boolean</td>
+                <td>true</td>
+            </tr>
+            <tr>
+                <td>model</td>
+                <td>✓</td>
+                <td>class</td>
+                <td>new Date()</td>
+            </tr>
+            <tr>
+                <td>event</td>
+                <td>X</td>
+                <td>string</td>
+                <td>functionEvent</td>
+            </tr>
+        </tbody>
+    </table>
+
     </div>
     <div class="col-12 col-md-2">
         <pre class="show-value">{{ view.date | json }}</pre>

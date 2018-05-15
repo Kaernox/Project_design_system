@@ -1,9 +1,47 @@
 <div class="col-12 col-md-6">
     <p class="description text-justify">
-        Here we have our akk-checkbox directive, it takes three values, the label, the model object and the property to take from that model object. The property will contain true if akk-checkbox is checked, or false.
+        This exemple of Akk-Card show an image and an alert bind to this. The alert is difined in the option of the file.
     </p>
-    </div>
-    <div class="col-12 col-md-2">
-        <pre class="show-value">{{ view.card| json }}</pre>
-    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Required</th>
+                <th>Format</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>title</td>
+                <td>✓</td>
+                <td>String</td>
+                <td>Card title</td>
+            </tr>
+            <tr>
+                <td>content</td>
+                <td>✓</td>
+                <td>String</td>
+                <td>example text to build on the card title.</td>
+            </tr>
+            <tr>
+                <td>media</td>
+                <td>✓</td>
+                <td>URL</td>
+                <td>http://fr.stockage.image.net/image.jpg</td>
+            </tr>
+            <tr>
+                <td>options</td>
+                <td>X</td>
+                <td>Object</td>
+                <td>{label: "Alert sometding",event: "cardAlert"}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="col-12 col-md-2">
+    <pre class="show-value">{{ view.card| json }}</pre>
+</div>
 </div>

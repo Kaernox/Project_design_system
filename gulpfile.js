@@ -135,7 +135,7 @@ gulp.task('createHtml', function () {
         gulp.src([template])
                 .pipe(fileinclude(objectToInclude))
                 .pipe(rename(akkName + ".html"))
-                .pipe(gulp.dest( ".manifest/" + akkName +"/"));
+                .pipe(gulp.dest( "manifest/" + akkName +"/"));
     });
 
     return (merge(tasks));

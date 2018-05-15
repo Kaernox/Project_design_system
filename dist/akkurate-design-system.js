@@ -1961,94 +1961,6 @@ angular.module('akkurate-design-system')
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
  * Commercial License 
- * @description: Factory who's managing an alert or a confirmation for an action the user realise
- */
-
-angular.module('akkurate-design-system').factory('akkVerify', [
-    '$q',
-    '$uibModal',
-    function ($q, $uibModal) {
-        return {
-            alert: function (title, message, windowClass) {
-                var q = $q.defer();
-                var modalInstance = $uibModal.open({
-                    templateUrl: "templates/modals/akk-verify-alert.html",
-                    controller: [
-                        '$scope',
-                        '$uibModalInstance',
-                        'title',
-                        'message',
-                        function ($scope, $uibModalInstance, title, message) {
-                            $scope.title = title;
-                            $scope.message = message;
-                            $scope.close = function () {
-                                $uibModalInstance.close();
-                            };
-                        }],
-                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
-                    size: 'sm',
-                    backdrop: 'static',
-                    keyboard: false,
-                    resolve: {
-                        title: function () {
-                            return title;
-                        },
-                        message: function () {
-                            return message;
-                        }
-                    }
-                });
-                modalInstance.result.then(function (response) {
-                    q.resolve(response);
-                }, function () {});
-                return q.promise;
-            },
-            confirm: function (title, message, buttons, windowClass) {
-                var q = $q.defer();
-                var modalInstance = $uibModal.open({
-                    templateUrl: "templates/modals/akk-verify-confirm.html",
-                    controller: [
-                        '$scope',
-                        '$uibModalInstance',
-                        'title',
-                        'message',
-                        'buttons',
-                        function ($scope, $uibModalInstance, title, message, buttons) {
-                            $scope.title = title;
-                            $scope.message = message;
-                            $scope.buttons = buttons;
-                            $scope.response = function (result) {
-                                $uibModalInstance.close(result);
-                            };
-                        }],
-                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
-                    size: 'sm',
-                    backdrop: 'static',
-                    keyboard: false,
-                    resolve: {
-                        title: function () {
-                            return title;
-                        },
-                        message: function () {
-                            return message;
-                        },
-                        buttons: function () {
-                            return buttons;
-                        }
-                    }
-                });
-                modalInstance.result.then(function (response) {
-                    q.resolve(response);
-                }, function () {});
-                return q.promise;
-            }
-        };
-    }
-]);
-/**
- * Akkurate v1.0.0 (https://ww.akkurate.io)
- * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
- * Commercial License 
  * @description: provider for the notification
  */
 
@@ -2270,6 +2182,94 @@ angular.module('akkurate-design-system').provider('akkNotification', function() 
     };
 });
 
+/**
+ * Akkurate v1.0.0 (https://ww.akkurate.io)
+ * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
+ * Commercial License 
+ * @description: Factory who's managing an alert or a confirmation for an action the user realise
+ */
+
+angular.module('akkurate-design-system').factory('akkVerify', [
+    '$q',
+    '$uibModal',
+    function ($q, $uibModal) {
+        return {
+            alert: function (title, message, windowClass) {
+                var q = $q.defer();
+                var modalInstance = $uibModal.open({
+                    templateUrl: "templates/modals/akk-verify-alert.html",
+                    controller: [
+                        '$scope',
+                        '$uibModalInstance',
+                        'title',
+                        'message',
+                        function ($scope, $uibModalInstance, title, message) {
+                            $scope.title = title;
+                            $scope.message = message;
+                            $scope.close = function () {
+                                $uibModalInstance.close();
+                            };
+                        }],
+                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
+                    size: 'sm',
+                    backdrop: 'static',
+                    keyboard: false,
+                    resolve: {
+                        title: function () {
+                            return title;
+                        },
+                        message: function () {
+                            return message;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (response) {
+                    q.resolve(response);
+                }, function () {});
+                return q.promise;
+            },
+            confirm: function (title, message, buttons, windowClass) {
+                var q = $q.defer();
+                var modalInstance = $uibModal.open({
+                    templateUrl: "templates/modals/akk-verify-confirm.html",
+                    controller: [
+                        '$scope',
+                        '$uibModalInstance',
+                        'title',
+                        'message',
+                        'buttons',
+                        function ($scope, $uibModalInstance, title, message, buttons) {
+                            $scope.title = title;
+                            $scope.message = message;
+                            $scope.buttons = buttons;
+                            $scope.response = function (result) {
+                                $uibModalInstance.close(result);
+                            };
+                        }],
+                    windowClass: 'show' + (windowClass != undefined ? ' ' + windowClass : ''),
+                    size: 'sm',
+                    backdrop: 'static',
+                    keyboard: false,
+                    resolve: {
+                        title: function () {
+                            return title;
+                        },
+                        message: function () {
+                            return message;
+                        },
+                        buttons: function () {
+                            return buttons;
+                        }
+                    }
+                });
+                modalInstance.result.then(function (response) {
+                    q.resolve(response);
+                }, function () {});
+                return q.promise;
+            }
+        };
+    }
+]);
 angular.module('akkurate-design-system').run(['$templateCache', function($templateCache) {$templateCache.put('templates/akk-alert.html','<div>\n    <div data-ng-show="displayed" class="alert" role="alert" data-ng-class="type ? \'alert-\' + type : \'alert-dark\'">\n        <div class="d-flex align-items-center">\n            <i class="material-icons mr-1 align-self-start" data-ng-bind="icon" data-ng-if="icon"></i>\n            <span data-ng-if="icon">&nbsp;&nbsp;&nbsp;</span>\n            <div>\n                <h4 class="alert-heading" data-ng-if="title">{{title}}</h4>\n                <div data-ng-bind-html="message"></div>\n            </div>\n            <i class="material-icons align-self-start ml-auto" ng-if="closable" data-ng-click="methods.close()">clear</i>\n        </div>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-card.html','<div class="card"> \n  <img data-ng-if="media && media != \'\'" class="card-img-top" data-ng-src="{{media}}" alt="{{title}}">\n  <div class="card-body">\n    <h5 class="card-title">{{title}}</h5>\n    <p data-ng-if="content && content != \'\'" class="card-text">{{content}}</p>\n    <button data-ng-if="options.length > 0" type="button" class="btn btn-primary" data-ng-repeat="option in options" ng-click="methods.action(option)">{{option.label}}</a>\n  </div>\n</div>');
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group form-checkbox form-checkbox-list {{!view.isValid ? \'has-error\' : \'\'}}" data-ng-class="elementclass">\n    <div class="d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </div>\n    <div class="d-flex" ng-repeat="option in options track by $index" ng-click="methods.toggle(option)">\n        <i class="material-icons text-primary" data-ng-if="methods.inModel(option)">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!methods.inModel(option)">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{display ? option[display] : option}}\n        </div>\n    </div>\n</div>');

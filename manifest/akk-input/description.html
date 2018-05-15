@@ -1,9 +1,78 @@
 <div class="col-12 col-md-6">
-<p class="description text-justify">
-    The akk-input directive allows your users to type some text and stores it in the model property.
-</p>
-    </div>
-    <div class="col-12 col-md-2">
-        <pre class="show-value">{{ view.inputValue ? view.inputValue : 'Start typing to see the result' }}</pre>
-    </div>
+    <p class="description text-justify">
+        The akk-input directive allows your users to type some text and stores it in the model property.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Required</th>
+                <th>Format</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>label</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>Your custom label goes here</td>
+            </tr>
+            <tr>
+                <td>elementclass</td>
+                <td>X</td>
+                <td>string</td>
+                <td>class</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>X</td>
+                <td>string</td>
+                <td>integer</td>
+            </tr>
+            <tr>
+                <td>step</td>
+                <td>X</td>
+                <td>string</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>placeholder</td>
+                <td>X</td>
+                <td>string</td>
+                <td>example : Bob</td>
+            </tr>
+            <tr>
+                <td>req</td>
+                <td>X</td>
+                <td>boolean</td>
+                <td>true</td>
+            </tr>
+            <tr>
+                <td>hasError</td>
+                <td>X</td>
+                <td>boolean</td>
+                <td>true</td>
+            </tr>
+            <tr>
+                <td>model</td>
+                <td>X</td>
+                <td>string</td>
+                <td>un peu de texte</td>
+            </tr>
+            <tr>
+                <td>event</td>
+                <td>X</td>
+                <td>string</td>
+                <td>functionEvent</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+<div class="col-12 col-md-2">
+    <pre class="show-value">{{ view.inputValue ? view.inputValue : 'Start typing to see the result' }}</pre>
+</div>
 </div>

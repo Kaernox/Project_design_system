@@ -3,12 +3,56 @@
     <div class="row">
         <div class="col-12 col-md-4">
             <akk-colorpicker label="Couleur de la pomme" req="" model="view.color" options="" event="" ></akk-colorpicker>
-               
+
         </div>
         <div class="col-12 col-md-6">
             <p class="description text-justify">
-    The akk-colorpicker directive is an improvement of the angular colorpicker directive that provide a visual view of colors, it takes the model which will contain the color chosen by the user in a 6 digit hex format.
-</p>
+                The akk-colorpicker directive is an improvement of the angular colorpicker directive that provide a visual view of colors, it takes the model which will contain the color chosen by the user in a 6 digit hex format.
+            </p>
+
+            <table class='table-doc'>
+                <thead>
+                    <tr>
+                        <th>Scope</th>
+                        <th>Required</th>
+                        <th>Format</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>label</td>
+                        <td>✓</td>
+                        <td>string</td>
+                        <td>test color picker</td>
+                    </tr>
+                    <tr>
+                        <td>req</td>
+                        <td>X</td>
+                        <td>boolean</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>model</td>
+                        <td>✓</td>
+                        <td>string</td>
+                        <td>#CC0000</td>
+                    </tr>
+                    <tr>
+                        <td>options</td>
+                        <td>X</td>
+                        <td>array</td>
+                        <td>[]</td>
+                    </tr>
+                    <tr>
+                        <td>event</td>
+                        <td>X</td>
+                        <td>string</td>
+                        <td>function</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
         <div class="col-12 col-md-2">
             <pre class="show-value">{{ view.color| json }}</pre>

@@ -3,12 +3,67 @@
     <div class="row">
         <div class="col-12 col-md-4">
             <akk-checkbox label="Do accept the conditions of use (there a none anyway)?" alignment="" elementclass="" req="" model="view" property="checkboxValue" eventUpdate="" ></akk-checkbox>
-               
+
         </div>
         <div class="col-12 col-md-6">
             <p class="description text-justify">
-    Here we have our akk-checkbox directive, it takes three values, the label, the model object and the property to take from that model object. The property will contain true if akk-checkbox is checked, or false.
-</p>
+                Here we have our akk-checkbox directive, it takes three values, the label, the model object and the property to take from that model object. The property will contain true if akk-checkbox is checked, or false.
+            </p>
+
+            <table class='table-doc'>
+                <thead>
+                    <tr>
+                        <th>Scope</th>
+                        <th>Required</th>
+                        <th>Format</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>label</td>
+                        <td>✓</td>
+                        <td>String</td>
+                        <td>"Do accept tde conditions of use?"</td>
+                    </tr>
+                    <tr>
+                        <td>alignment</td>
+                        <td>X</td>
+                        <td>String</td>
+                        <td>center</td>
+                    </tr>
+                    <tr>
+                        <td>elementclass</td>
+                        <td>X</td>
+                        <td>string</td>
+                        <td>class</td>
+                    </tr>
+                    <tr>
+                        <td>req</td>
+                        <td>X</td>
+                        <td>boolean</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>model</td>
+                        <td>✓</td>
+                        <td>object</td>
+                        <td>view</td>
+                    </tr>
+                    <tr>
+                        <td>property</td>
+                        <td>✓</td>
+                        <td>boolean</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>eventUpdate</td>
+                        <td>X</td>
+                        <td>Object</td>
+                        <td>{}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="col-12 col-md-2">
             <pre class="show-value">{{ view.checkboxValue| json }}</pre>

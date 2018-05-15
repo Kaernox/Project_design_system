@@ -1,11 +1,79 @@
 <div class="col-12 col-md-6">
-<p class="description text-justify">
-    The akk-switch directive is simply a checkbox with a lot of verification to position the label correctly, you have three options for the button's position, you can edit it by setting the alignment property to <strong>right</strong>(default value), <strong>center</strong> or <strong>left</strong>, the example shows the three possible positions in order.
-    <br />
-    Size can also be increased by adding <strong>size="lg"</strong> to the directive.
-</p>
-    </div>
-    <div class="col-12 col-md-2">
-        <pre class="show-value">{{ view.switch.value | json }}</pre>
-    </div>
+    <p class="description text-justify">
+        The akk-switch directive is simply a checkbox with a lot of verification to position the label correctly, you have three options for the button's position, you can edit it by setting the alignment property to <strong>right</strong>(default value), <strong>center</strong> or <strong>left</strong>, the example shows the three possible positions in order.
+        <br />
+        Size can also be increased by adding <strong>size="lg"</strong> to the directive.
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Required</th>
+                <th>Format</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>label</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>switch 1</td>
+            </tr>
+            <tr>
+                <td>alignment</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>center</td>
+            </tr>
+            <tr>
+                <td>elementclass</td>
+                <td>X</td>
+                <td>string</td>
+                <td>class</td>
+            </tr>
+            <tr>
+                <td>icon</td>
+                <td>X</td>
+                <td>string</td>
+                <td>alert</td>
+            </tr>
+            <tr>
+                <td>size</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>lg</td>
+            </tr>
+            <tr>
+                <td>req</td>
+                <td>X</td>
+                <td>boolean</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>model</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>view.switch</td>
+            </tr>
+            <tr>
+                <td>property</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>value</td>
+            </tr>
+            <tr>
+                <td>eventUpdate</td>
+                <td>X</td>
+                <td>string</td>
+                <td>functionEvent</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="col-12 col-md-2">
+    <pre class="show-value">{{ view.switch.value | json }}</pre>
+</div>
 </div>

@@ -1,9 +1,59 @@
 <div class="col-12 col-md-6">
-<p class="description text-justify">
-    Here goes the description but actually the directive doesn't work like intended
-</p>
-    </div>
-    <div class="col-12 col-md-2">
-        <pre class="show-value">{{ view| json }}</pre>
-    </div>
+    <p class="description text-justify">
+        Here goes the description but actually the directive doesn't work like intended
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Required</th>
+                <th>Format</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>label</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>Label of your field</td>
+            </tr>
+            <tr>
+                <td>elementclass</td>
+                <td>X</td>
+                <td>string</td>
+                <td>class</td>
+            </tr>
+            <tr>
+                <td>req</td>
+                <td>X</td>
+                <td>boolean</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>model</td>
+                <td>✓</td>
+                <td>array</td>
+                <td>[]</td>
+            </tr>
+            <tr>
+                <td>property</td>
+                <td>✓</td>
+                <td>string</td>
+                <td>lastname</td>
+            </tr>
+            <tr>
+                <td>event</td>
+                <td>X</td>
+                <td>string</td>
+                <td>functionEvent</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="col-12 col-md-2">
+    <pre class="show-value">{{ view| json }}</pre>
+</div>
 </div>
