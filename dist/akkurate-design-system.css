@@ -6094,6 +6094,14 @@ hr.hr-800 {
 hr.hr-900 {
   border-top-color: #212529; }
 
+.table-doc th {
+  border: 1px solid black;
+  text-align: center; }
+
+.table-doc td {
+  border: 1px solid black;
+  text-align: center; }
+
 .material-icons.icon-sm {
   font-size: .5rem; }
 
@@ -6204,14 +6212,6 @@ hr.hr-900 {
 
 .loader-info {
   margin-top: .5rem; }
-
-.table-doc {
-  border-style: solid;
-  border-width: 1px;
-  border-color: black; }
-
-td, th {
-  border: 1px solid black; }
 
 .form-select .control-label {
   font-size: .8rem;
