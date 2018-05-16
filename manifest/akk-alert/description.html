@@ -3,7 +3,7 @@
         The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below.<br />You can also use the akk-checkbox for add a close action to your alert. In this example when you have closed your alert, you can switch the option with select to reappear the alert.
     </p>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Scope</th>
@@ -17,19 +17,19 @@
                 <td>title</td>
                 <td>✓</td>
                 <td>String</td>
-                <td>Youpi</td>
+                <td>"Youpi"</td>
             </tr>
             <tr>
                 <td>message</td>
                 <td>✓</td>
                 <td>String</td>
-                <td>Today is a good day !</td>
+                <td>"Today is a good day !"</td>
             </tr>
             <tr>
                 <td>icon</td>
                 <td>✓</td>
                 <td>String</td>
-                <td>Warning</td>
+                <td>"Warning"</td>
             </tr>
             <tr>
                 <td>eventUpdate</td>
@@ -55,4 +55,5 @@
 </div>
 <div class="col-12 col-md-2">
     <pre class="show-value">{{ view.alert.model| json }}</pre>
+</div>
 </div>

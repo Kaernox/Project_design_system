@@ -1,9 +1,9 @@
 <div class="col-12 col-md-6">
-<p class="description text-justify">
-    The akk-multiselect directive takes a list of object (in the items property) and the field to be shown from those objects in the modal that will appear, selected objects will be removed from the items array and added to the selected array.
-</p>
+    <p class="description text-justify">
+        The akk-multiselect directive takes a list of object (in the items property) and the field to be shown from those objects in the modal that will appear, selected objects will be removed from the items array and added to the selected array.
+    </p>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th>Scope</th>
@@ -16,51 +16,50 @@
             <tr>
                 <td>label</td>
                 <td>X</td>
-                <td>string</td>
-                <td>this is a multiselect</td>
+                <td>String</td>
+                <td>"this is a multiselect"</td>
             </tr>
             <tr>
                 <td>model</td>
                 <td>X</td>
-                <td>string</td>
-                <td>model</td>
+                <td>String</td>
+                <td>"model"</td>
             </tr>
             <tr>
                 <td>placeholder</td>
                 <td>X</td>
-                <td>string</td>
-                <td>My placholder</td>
+                <td>String</td>
+                <td>"My placholder"</td>
             </tr>
             <tr>
                 <td>items</td>
                 <td>✓</td>
-                <td>array</td>
-                <td>[]</td>
+                <td>Array</td>
+                <td>[{id: 1, name: 'test 1', value: true}]</td>
             </tr>
             <tr>
                 <td>selected</td>
                 <td>✓</td>
-                <td>array</td>
-                <td>[]</td>
+                <td>Array</td>
+                <td>[{id: 2, name: 'test 2', value: false}]</td>
             </tr>
             <tr>
                 <td>field</td>
                 <td>✓</td>
-                <td>string</td>
-                <td>name</td>
+                <td>String</td>
+                <td>"name"</td>
             </tr>
             <tr>
                 <td>event</td>
                 <td>X</td>
-                <td>string</td>
-                <td>functionEvent</td>
+                <td>String</td>
+                <td>"functionEvent"</td>
             </tr>
         </tbody>
     </table>
 
-
-    </div>
-    <div class="col-12 col-md-2">
-        <pre class="show-value">{{ view.multiselect.slected| json }}</pre>
-    </div>
+</div>
+<div class="col-12 col-md-2">
+    <pre class="show-value">{{ view.multiselect.slected| json }}</pre>
+</div>
 </div>

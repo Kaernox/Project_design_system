@@ -1,67 +1,69 @@
-<h2 class="component">akk-alert</h2>
-<div class="row">
-    <div class="col-12 col-md-4">
-        <akk-alert title="Youpi" message="Today is a good day !" icon="warning" eventUpdate="" type="{{view.alert.model}}" displayed="view.alert.displayed" closable="view.alert.closable"></akk-alert>
-        <akk-select label="Select the type" model="view.alert.model" options="view.alert.types" value="key" display="label" update="updateAlert" ></akk-select>
-        <akk-checkbox label="Show the close action" model="view.alert" property="closable" elementclass="" alignment="" req="" ></akk-checkbox>
+<div class="component">
+    <h2>akk-alert</h2>
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <akk-alert title="Youpi" message="Today is a good day !" icon="warning" eventUpdate="" type="{{view.alert.model}}" displayed="view.alert.displayed" closable="view.alert.closable"></akk-alert>
+            <akk-select label="Select the type" model="view.alert.model" options="view.alert.types" value="key" display="label" update="updateAlert" ></akk-select>
+            <akk-checkbox label="Show the close action" model="view.alert" property="closable" elementclass="" alignment="" req="" ></akk-checkbox>
 
-    </div>
-    <div class="col-12 col-md-6">
-        <p class="description text-justify">
-            The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below.<br />You can also use the akk-checkbox for add a close action to your alert. In tdis example when you have closed your alert, you can switch tde option witd select to reappear tde alert.
-        </p>
+        </div>
+        <div class="col-12 col-md-6">
+            <p class="description text-justify">
+                The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below.<br />You can also use the akk-checkbox for add a close action to your alert. In tdis example when you have closed your alert, you can switch tde option witd select to reappear tde alert.
+            </p>
 
-        <table class='table-doc'>
-            <thead>
-                <tr>
-                    <th>Scope</th>
-                    <th>Required</th>
-                    <th>Format</th>
-                    <th>Example</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>title</td>
-                    <td>✓</td>
-                    <td>String</td>
-                    <td>Youpi</td>
-                </tr>
-                <tr>
-                    <td>message</td>
-                    <td>✓</td>
-                    <td>String</td>
-                    <td>Today is a good day !</td>
-                </tr>
-                <tr>
-                    <td>icon</td>
-                    <td>✓</td>
-                    <td>String</td>
-                    <td>Warning</td>
-                </tr>
-                <tr>
-                    <td>eventUpdate</td>
-                    <td>X</td>
-                    <td>Object</td>
-                    <td>{key: 'primary', label: 'Primary'}</td>
-                </tr>
-                <tr>
-                    <td>displayed</td>
-                    <td>✓</td>
-                    <td>Boolean</td>
-                    <td>true</td>
-                </tr>
-                <tr>
-                    <td>closable</td>
-                    <td>✓</td>
-                    <td>Boolean</td>
-                    <td>false</td>
-                </tr>
-            </tbody>
-        </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Scope</th>
+                        <th>Required</th>
+                        <th>Format</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>title</td>
+                        <td>✓</td>
+                        <td>String</td>
+                        <td>"Youpi"</td>
+                    </tr>
+                    <tr>
+                        <td>message</td>
+                        <td>✓</td>
+                        <td>String</td>
+                        <td>"Today is a good day !"</td>
+                    </tr>
+                    <tr>
+                        <td>icon</td>
+                        <td>✓</td>
+                        <td>String</td>
+                        <td>"Warning"</td>
+                    </tr>
+                    <tr>
+                        <td>eventUpdate</td>
+                        <td>X</td>
+                        <td>Object</td>
+                        <td>{key: 'primary', label: 'Primary'}</td>
+                    </tr>
+                    <tr>
+                        <td>displayed</td>
+                        <td>✓</td>
+                        <td>Boolean</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td>closable</td>
+                        <td>✓</td>
+                        <td>Boolean</td>
+                        <td>false</td>
+                    </tr>
+                </tbody>
+            </table>
 
-    </div>
-    <div class="col-12 col-md-2">
-        <pre class="show-value">{{ view.alert| json }}</pre>
+        </div>
+        <div class="col-12 col-md-2">
+            <pre class="show-value">{{ view.alert| json }}</pre>
+        </div>
     </div>
 </div>
