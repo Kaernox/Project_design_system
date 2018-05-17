@@ -6094,14 +6094,6 @@ hr.hr-800 {
 hr.hr-900 {
   border-top-color: #212529; }
 
-.table-doc th {
-  border: 1px solid black;
-  text-align: center; }
-
-.table-doc td {
-  border: 1px solid black;
-  text-align: center; }
-
 .material-icons.icon-sm {
   font-size: .5rem; }
 
@@ -6113,6 +6105,13 @@ hr.hr-900 {
 
 .material-icons.icon-xl {
   font-size: 2rem; }
+
+.table-vertical-center td {
+  vertical-align: middle; }
+
+.text-code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: .85rem; }
 
 .form-colorpicker .form-container {
   position: relative;

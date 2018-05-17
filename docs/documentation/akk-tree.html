@@ -1,79 +1,89 @@
 <div class="component">
     <h2>akk-tree</h2>
-    <div class="row">
-        <div class="col-12 col-md-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
             <akk-tree title="My tree" items="view.tree.items" model="view.tree.model" options="{debug: false, label: 'label', icon: 'label'}" multiple="true" selectable="true" event-click="treeSelectItem" event-update=""></akk-tree>
 
         </div>
-        <div class="col-12 col-md-6">
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
             <p class="description text-justify">
                 The akk-tree directive takes a list of items with children (at any depth) and diplays them in a tree like format, the selected items of the tree will be stored within the model property.
             </p>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Scope</th>
-                        <th>Required</th>
-                        <th>Format</th>
-                        <th>Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>title</td>
-                        <td>✓</td>
-                        <td>String</td>
-                        <td>"My tree"</td>
-                    </tr>
-                    <tr>
-                        <td>items</td>
-                        <td>✓</td>
-                        <td>Array</td>
-                        <td>[{label: 'example', value:'example_value}]</td>
-                    </tr>
-                    <tr>
-                        <td>model</td>
-                        <td>✓</td>
-                        <td>Array</td>
-                        <td>[{label: 'example', value:'example_value}]</td>
-                    </tr>
-                    <tr>
-                        <td>options</td>
-                        <td>✓</td>
-                        <td>Object</td>
-                        <td>{debug: false, label: 'label',icon: 'label'}</td>
-                    </tr>
-                    <tr>
-                        <td>multiple</td>
-                        <td>✓</td>
-                        <td>Boolean</td>
-                        <td>true</td>
-                    </tr>
-                    <tr>
-                        <td>selectable</td>
-                        <td>✓</td>
-                        <td>Boolean</td>
-                        <td>false</td>
-                    </tr>
-                    <tr>
-                        <td>eventClick</td>
-                        <td>X</td>
-                        <td>String</td>
-                        <td>"functionCLick"</td>
-                    </tr>
-                    <tr>
-                        <td>eventUpdate</td>
-                        <td>X</td>
-                        <td>String</td>
-                        <td>"functionUpdate"</td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <div class="col-12 col-md-2">
-            <pre class="show-value">{{ view.tree.model| json }}</pre>
         </div>
     </div>
+
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.tree.model| json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Required</th>
+                <th>Format</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>title</td>
+                <td><i class="material-icons text-success">check</i></td>
+                <td>String</td>
+                <td>"My tree"</td>
+            </tr>
+            <tr>
+                <td>items</td>
+                <td><i class="material-icons text-success">check</i></td>
+                <td>Array</td>
+                <td class="text-code">[{label: 'example', value:'example_value}]</td>
+            </tr>
+            <tr>
+                <td>model</td>
+                <td><i class="material-icons text-success">check</i></td>
+                <td>Array</td>
+                <td class="text-code">[{label: 'example', value:'example_value}]</td>
+            </tr>
+            <tr>
+                <td>options</td>
+                <td><i class="material-icons text-success">check</i></td>
+                <td>Object</td>
+                <td class="text-code">{debug: false, label: 'label',icon: 'label'}</td>
+            </tr>
+            <tr>
+                <td>multiple</td>
+                <td><i class="material-icons text-success">check</i></td>
+                <td>Boolean</td>
+                <td class="text-code">true</td>
+            </tr>
+            <tr>
+                <td>selectable</td>
+                <td><i class="material-icons text-success">check</i></td>
+                <td>Boolean</td>
+                <td class="text-code">false</td>
+            </tr>
+            <tr>
+                <td>eventClick</td>
+                <td><i class="material-icons text-danger">clear</i></td>
+                <td>String</td>
+                <td>"functionCLick"</td>
+            </tr>
+            <tr>
+                <td>eventUpdate</td>
+                <td><i class="material-icons text-danger">clear</i></td>
+                <td>String</td>
+                <td>"functionUpdate"</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>

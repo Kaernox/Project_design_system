@@ -1,68 +1,50 @@
 <div class="component">
     <h2>akk-loader</h2>
-    <div class="row">
-        <div class="col-12 col-md-4">
-            <akk-loader loading="view.loading.isDisplayed" >text is loaded</akk-loader>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <akk-loader loader-state="view.loading.isDisplayed" loader-label="{{}}">text is loaded</akk-loader>
             <akk-checkbox label="Show the loading" model="view.loading" property="isDisplayed" elementclass="" alignment="" req="" ></akk-checkbox>
 
         </div>
-        <div class="col-12 col-md-6">
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
             <p class="description text-justify">
                 Here we have our akk-loading, the property loading is binded with the checkbox so you can test this directive by indicating wether there is loading or not. To use it in your project, simply add the akk-loading directive as an attribute to any html element that you want to add a loading status to, and then assign a value to loading attribute, that value should be true when your content is loading and then changed to false when you content has finished loading
             </p>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Scope</th>
-                        <th>Required</th>
-                        <th>Format</th>
-                        <th>Example</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>label</td>
-                        <td>✓</td>
-                        <td>String</td>
-                        <td>"Show tde loading"</td>
-                    </tr>
-                    <tr>
-                        <td>model</td>
-                        <td>✓</td>
-                        <td>Object</td>
-                        <td>{isDisplayed: false}</td>
-                    </tr>
-                    <tr>
-                        <td>property</td>
-                        <td>✓</td>
-                        <td>Boolean</td>
-                        <td>false</td>
-                    </tr>
-                    <tr>
-                        <td>elementclass</td>
-                        <td>X</td>
-                        <td>String</td>
-                        <td>"class"</td>
-                    </tr>
-                    <tr>
-                        <td>alignment</td>
-                        <td>X</td>
-                        <td>String</td>
-                        <td>"center"</td>
-                    </tr>
-                    <tr>
-                        <td>req</td>
-                        <td>X</td>
-                        <td>Boolean</td>
-                        <td>true</td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-        <div class="col-12 col-md-2">
-            <pre class="show-value">{{ view.loading| json }}</pre>
         </div>
     </div>
+
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.loading| json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
+        <thead>
+            <tr>
+                <th>Scope</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
+                <th>Format</th>
+                <th>Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>loading</td>
+                <td>loading</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
+                <td>boolean</td>
+                <td class="text-code">false</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>
