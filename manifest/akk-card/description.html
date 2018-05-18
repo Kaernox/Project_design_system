@@ -1,13 +1,26 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        This exemple of Akk-Card show an image and an alert bind to this. The alert is difined in the option of the file.
-    </p>
+    <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                This exemple of Akk-Card show an image and an alert bind to this. The alert is difined in the option of the file.
+            </p>
+        </div>
+    </div>
+    <div class="show-value ">
+        <hr class="hr-lg" />
+        <h3>Data</h3>
+        <pre>{{ view.card| json }}</pre>
+    </div>
 
-    <table class="table">
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,33 +28,33 @@
         <tbody>
             <tr>
                 <td>title</td>
-                <td>✓</td>
+                <td>title</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"Card title"</td>
             </tr>
             <tr>
                 <td>content</td>
-                <td>✓</td>
+                <td>content</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"example text to build on the card title."</td>
             </tr>
             <tr>
                 <td>media</td>
-                <td>✓</td>
+                <td>media</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>URL</td>
                 <td>http://fr.stockage.image.net/image.jpg</td>
             </tr>
             <tr>
                 <td>options</td>
-                <td>X</td>
+                <td>options</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Object</td>
-                <td>{label: "Alert sometding",event: "cardAlert"}</td>
+                <td class="text-code">{label: "Alert sometding",event: "cardAlert"}</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.card| json }}</pre>
-</div>
 </div>

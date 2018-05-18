@@ -1,13 +1,27 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        Here we have our akk-checkbox-list directive, it's usefull when you have a list of options that you want to present to your users as a checkbox list, it taks the options to show the user and the model that will contain the selected items.
-    </p>
+ <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                Here we have our akk-checkbox-list directive, it's usefull when you have a list of options that you want to present to your users as a checkbox list, it taks the options to show the user and the model that will contain the selected items.
+            </p>
+        </div>
+    </div>
 
-    <table class="table">
+    <div class="show-value">
+        <hr class="hr-lg" />
+        <h3>Data</h3>
+        <pre>{{ view.checkboxList| json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,57 +29,61 @@
         <tbody>
             <tr>
                 <td>label</td>
-                <td>X</td>
+                <td>label</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"Checkbox List"</td>
             </tr>
             <tr>
                 <td>elementclass</td>
-                <td>X</td>
+                <td>elementclass</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"class"</td>
             </tr>
             <tr>
                 <td>req</td>
-                <td>X</td>
+                <td>req</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>model</td>
-                <td>✓</td>
+                <td>model</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>["test1", "test3"]</td>
+                <td class="text-code">["test1", "test3"]</td>
             </tr>
             <tr>
                 <td>options</td>
-                <td>✓</td>
+                <td>options</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>["test1", "test2", "test3", "test4"]</td>
+                <td class="text-code">["test1", "test2", "test3", "test4"]</td>
             </tr>
             <tr>
                 <td>value</td>
-                <td>X</td>
+                <td>value</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>display</td>
-                <td>X</td>
+                <td>display</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>false</td>
+                <td class="text-code">false</td>
             </tr>
             <tr>
                 <td>event</td>
-                <td>X</td>
+                <td>event</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionEvent"</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.checkboxList.selectedItems| json }}</pre>
-</div>
 </div>

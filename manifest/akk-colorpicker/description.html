@@ -1,13 +1,26 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        The akk-colorpicker directive is an improvement of the angular colorpicker directive that provide a visual view of colors, it takes the model which will contain the color chosen by the user in a 6 digit hex format.
-    </p>
+ <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                The akk-colorpicker directive is an improvement of the angular colorpicker directive that provide a visual view of colors, it takes the model which will contain the color chosen by the user in a 6 digit hex format.
+            </p>
+        </div>
+    </div>
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.color| json }}</pre>
+    </div>
 
-    <table class="table">
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,39 +28,40 @@
         <tbody>
             <tr>
                 <td>label</td>
-                <td>✓</td>
+                <td>label</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"test color picker"</td>
             </tr>
             <tr>
                 <td>req</td>
-                <td>X</td>
+                <td>req</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>model</td>
-                <td>✓</td>
+                <td>model</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"#CC0000"</td>
             </tr>
             <tr>
                 <td>options</td>
-                <td>X</td>
+                <td>options</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Array</td>
-                <td>[{label: "you've choose", event: "colorAlert"}]</td>
+                <td class="text-code">[{label: "you've choose", event: "colorAlert"}]</td>
             </tr>
             <tr>
                 <td>event</td>
-                <td>X</td>
+                <td>event</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionEvent"</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.color| json }}</pre>
-</div>
 </div>

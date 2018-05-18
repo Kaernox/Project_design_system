@@ -1,13 +1,27 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        The akk-multiselect directive takes a list of object (in the items property) and the field to be shown from those objects in the modal that will appear, selected objects will be removed from the items array and added to the selected array.
-    </p>
+    <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                The akk-multiselect directive takes a list of object (in the items property) and the field to be shown from those objects in the modal that will appear, selected objects will be removed from the items array and added to the selected array.
+            </p>
+        </div>
+    </div>
 
-    <table class="table">
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.multiselect.selected| json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,51 +29,47 @@
         <tbody>
             <tr>
                 <td>label</td>
-                <td>X</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"this is a multiselect"</td>
             </tr>
             <tr>
                 <td>model</td>
-                <td>X</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"model"</td>
             </tr>
             <tr>
                 <td>placeholder</td>
-                <td>X</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"My placholder"</td>
             </tr>
             <tr>
                 <td>items</td>
-                <td>✓</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{id: 1, name: 'test 1', value: true}]</td>
+                <td class="text-code">[{id: 1, name: 'test 1', value: true}]</td>
             </tr>
             <tr>
                 <td>selected</td>
-                <td>✓</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{id: 2, name: 'test 2', value: false}]</td>
+                <td class="text-code">[{id: 2, name: 'test 2', value: false}]</td>
             </tr>
             <tr>
                 <td>field</td>
-                <td>✓</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"name"</td>
             </tr>
             <tr>
                 <td>event</td>
-                <td>X</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionEvent"</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.multiselect.slected| json }}</pre>
-</div>
 </div>

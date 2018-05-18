@@ -1,13 +1,26 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below.<br />You can also use the akk-checkbox for add a close action to your alert. In this example when you have closed your alert, you can switch the option with select to reappear the alert.
-    </p>
-
-    <table class="table">
+<div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                The akk-select tag here is used to change the type of the alert so you can see the diffrent options it has to offer, another example it's of usage is available below.<br />You can also use the akk-checkbox for add a close action to your alert. In tdis example when you have closed your alert, you can switch tde option witd select to reappear tde alert.
+            </p>
+        </div>
+    </div>
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.alert| json }}</pre>
+    </div>
+    
+    <hr class="hr-lg" />
+    
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,45 +28,47 @@
         <tbody>
             <tr>
                 <td>title</td>
-                <td>✓</td>
+                <td>title</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"Youpi"</td>
             </tr>
             <tr>
                 <td>message</td>
-                <td>✓</td>
+                <td>message</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"Today is a good day !"</td>
             </tr>
             <tr>
                 <td>icon</td>
-                <td>✓</td>
+                <td>icon</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"Warning"</td>
             </tr>
             <tr>
                 <td>eventUpdate</td>
-                <td>X</td>
+                <td>event-update</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Object</td>
-                <td>{key: 'primary', label: 'Primary'}</td>
+                <td class="text-code">{key: 'primary', label: 'Primary'}</td>
             </tr>
             <tr>
                 <td>displayed</td>
-                <td>✓</td>
+                <td>displayed</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>closable</td>
-                <td>✓</td>
+                <td>closable</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Boolean</td>
-                <td>false</td>
+                <td class="text-code">false</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.alert.model| json }}</pre>
-</div>
 </div>

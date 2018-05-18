@@ -1,13 +1,27 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        The akk-radio is a set of radio buttons where options are specified in the options property as objects and the selected option will be in the model.<br />In property, you specify a field to be selected, model will contain the field vaue of the selected object, if no property has been specified, the model will contain the entire selected object, this will give you freedom to use primitives types as well as objects.<br />The akk-radio directive requires a all objects in options to have a property name so it can use it to display radio buttons.
-    </p>
+   <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                The akk-radio is a set of radio buttons where options are specified in the options property as objects and the selected option will be in the model.<br />In property, you specify a field to be selected, model will contain the field vaue of the selected object, if no property has been specified, the model will contain the entire selected object, this will give you freedom to use primitives types as well as objects.<br />The akk-radio directive requires a all objects in options to have a property name so it can use it to display radio buttons.
+            </p>
+        </div>
+    </div>
 
-    <table class="table">
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.radio.value | json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,57 +29,61 @@
         <tbody>
             <tr>
                 <td>label</td>
-                <td>✓</td>
+                <td>label</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"Your personel label"</td>
             </tr>
             <tr>
                 <td>elementclass</td>
-                <td>X</td>
+                <td>elementclass</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"class"</td>
             </tr>
             <tr>
                 <td>req</td>
-                <td>X</td>
+                <td>req</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>name</td>
-                <td>X</td>
+                <td>name</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"test radio"</td>
             </tr>
             <tr>
                 <td>model</td>
-                <td>✓</td>
+                <td>model</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"test 1"</td>
             </tr>
             <tr>
                 <td>options</td>
-                <td>✓</td>
+                <td>options</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{id: 1,name: 'test 1',value: true}]</td>
+                <td class="text-code">[{id: 1,name: 'test 1',value: true}]</td>
             </tr>
             <tr>
                 <td>property</td>
-                <td>✓</td>
+                <td>property</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"name"</td>
             </tr>
             <tr>
                 <td>event</td>
-                <td>X</td>
+                <td>event</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionEvent"</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.radio.value | json }}</pre>
-</div>
 </div>

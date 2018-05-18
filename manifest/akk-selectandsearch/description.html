@@ -1,13 +1,27 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        The akk-selectandsearch directive accepts an array of objects as input as well as how you want to display every object ('fields' attribute) in the modal that pops off, the object passed to the model attribute will contain the id of the selected object, the full list of objects is displayed using the akk-datagrid.<br />To start Selecting items, click on the 3 dots on the right.
-    </p>
+   <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                The akk-selectandsearch directive accepts an array of objects as input as well as how you want to display every object ('fields' attribute) in the modal that pops off, the object passed to the model attribute will contain the id of the selected object, the full list of objects is displayed using the akk-datagrid.<br />To start Selecting items, click on the 3 dots on the right.
+            </p>
+        </div>
+    </div>
 
-    <table class="table">
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.selectAndSearch.selectedId | json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>   
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,99 +29,110 @@
         <tbody>
             <tr>
                 <td>label</td>
-                <td>✓</td>
+                <td>label</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"Choose someone"</td>
             </tr>
             <tr>
                 <td>options</td>
-                <td>✓</td>
+                <td>options</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{"ID":2, "name":"test"}]</td>
+                <td class="text-code">[{"ID":2, "name":"test"}]</td>
             </tr>
             <tr>
                 <td>optionsType</td>
-                <td>X</td>
+                <td>options-type</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"label"</td>
             </tr>
             <tr>
                 <td>fields</td>
-                <td>✓</td>
+                <td>fields</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>['lastname',' ','firstname']</td>
+                <td class="text-code">['lastname',' ','firstname']</td>
             </tr>
             <tr>
                 <td>filterType</td>
-                <td>X</td>
+                <td>filter-type</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"integer"</td>
             </tr>
             <tr>
                 <td>filterBy</td>
-                <td>X</td>
+                <td>filter-by</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"name"</td>
             </tr>
             <tr>
                 <td>placeholder</td>
-                <td>X</td>
+                <td>placeholder</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"Choose someone"</td>
             </tr>
             <tr>
                 <td>hasError</td>
-                <td>X</td>
+                <td>has-error</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>req</td>
-                <td>✓</td>
+                <td>req</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>model</td>
-                <td>✓</td>
+                <td>model</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"2"</td>
             </tr>
             <tr>
                 <td>event</td>
-                <td>X</td>
+                <td>event</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionEvent"</td>
             </tr>
             <tr>
                 <td>add</td>
-                <td>X</td>
+                <td>add</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionAdd"</td>
             </tr>
             <tr>
                 <td>modalSize</td>
-                <td>X</td>
+                <td>modal-size</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"lg"</td>
             </tr>
             <tr>
                 <td>templateItem</td>
-                <td>✓</td>
+                <td>template-item</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"default"</td>
             </tr>
             <tr>
                 <td>orderBy</td>
-                <td>X</td>
+                <td>order-by</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"ID"</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.selectAndSearch.selectedId | json }}</pre>
-</div>
 </div>

@@ -1,13 +1,27 @@
-<div class="col-12">
-    <p class="description text-justify">
-        The akk-tree directive takes a list of items with children (at any depth) and diplays them in a tree like format, the selected items of the tree will be stored within the model property.
-    </p>
+    <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                The akk-tree directive takes a list of items with children (at any depth) and diplays them in a tree like format, the selected items of the tree will be stored within the model property.
+            </p>
+        </div>
+    </div>
 
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.tree.model| json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
     <table class="table">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,57 +29,61 @@
         <tbody>
             <tr>
                 <td>title</td>
-                <td>✓</td>
+                <td>title</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"My tree"</td>
             </tr>
             <tr>
                 <td>items</td>
-                <td>✓</td>
+                <td>items</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{label: 'example', value:'example_value}]</td>
+                <td class="text-code">[{label: 'example', value:'example_value}]</td>
             </tr>
             <tr>
                 <td>model</td>
-                <td>✓</td>
+                <td>model</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{label: 'example', value:'example_value}]</td>
+                <td class="text-code">[{label: 'example', value:'example_value}]</td>
             </tr>
             <tr>
                 <td>options</td>
-                <td>✓</td>
+                <td>options</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Object</td>
-                <td>{debug: false, label: 'label',icon: 'label'}</td>
+                <td class="text-code">{debug: false, label: 'label',icon: 'label'}</td>
             </tr>
             <tr>
                 <td>multiple</td>
-                <td>✓</td>
+                <td>multiple</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>selectable</td>
-                <td>✓</td>
+                <td>selectable</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Boolean</td>
-                <td>false</td>
+                <td class="text-code">false</td>
             </tr>
             <tr>
                 <td>eventClick</td>
-                <td>X</td>
+                <td>event-click</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionCLick"</td>
             </tr>
             <tr>
                 <td>eventUpdate</td>
-                <td>X</td>
+                <td>event-update</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionUpdate"</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12">
-    <pre class="show-value">{{ view.tree.model| json }}</pre>
-</div>
 </div>

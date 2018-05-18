@@ -1,13 +1,27 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        The akk-textarea directive allows your users to type some text and stores it in the model property, you can increase the length of the text area as you like by dragging the bottom-right corner up and down.
-    </p>
+    <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                The akk-textarea directive allows your users to type some text and stores it in the model property, you can increase the length of the text area as you like by dragging the bottom-right corner up and down.
+            </p>
+        </div>
+    </div>
 
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.textareaValue ? view.textareaValue : 'Start typing to see the result' }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
     <table class="table">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,51 +29,54 @@
         <tbody>
             <tr>
                 <td>label</td>
-                <td>✓</td>
+                <td>label</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"Input your text here"</td>
             </tr>
             <tr>
                 <td>elementclass</td>
-                <td>X</td>
+                <td>elementclass</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"class"</td>
             </tr>
             <tr>
                 <td>size</td>
-                <td>X</td>
+                <td>size</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"large"</td>
             </tr>
             <tr>
                 <td>placeholder</td>
-                <td>X</td>
+                <td>placeholder</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"Input your text"</td>
             </tr>
             <tr>
                 <td>req</td>
-                <td>X</td>
+                <td>req</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>model</td>
-                <td>✓</td>
+                <td>model</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"a not so little text"</td>
             </tr>
             <tr>
                 <td>event</td>
-                <td>X</td>
+                <td>event</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionEvent"</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.textareaValue ? view.textareaValue : 'Start typing to see the result' }}</pre>
-</div>
 </div>

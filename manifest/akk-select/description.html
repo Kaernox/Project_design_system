@@ -1,13 +1,27 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        The akk-select directive provides a modal with options to select from. Options are specified in the options property and the selected item will be stored in the model property.
-    </p>
+   <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                The akk-select directive provides a modal with options to select from. Options are specified in the options property and the selected item will be stored in the model property.
+            </p>
+        </div>
+    </div>
 
-    <table class="table">
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.select | json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Attribute</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,69 +29,75 @@
         <tbody>
             <tr>
                 <td>label</td>
-                <td>X</td>
+                <td>label</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"test select"</td>
             </tr>
             <tr>
                 <td>elementclass</td>
-                <td>X</td>
+                <td>elementclass</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"class"</td>
             </tr>
             <tr>
                 <td>req</td>
-                <td>X</td>
+                <td>req</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>true</td>
+                <td class="text-code">true</td>
             </tr>
             <tr>
                 <td>model</td>
-                <td>✓</td>
+                <td>model</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"value 1"</td>
             </tr>
             <tr>
                 <td>options</td>
-                <td>✓</td>
+                <td>options</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{id: 1, key: 'one', label: 'one'}]</td>
+                <td class="text-code">[{id: 1, key: 'one', label: 'one'}]</td>
             </tr>
             <tr>
                 <td>value</td>
-                <td>✓</td>
+                <td>value</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"id"</td>
             </tr>
             <tr>
                 <td>display</td>
-                <td>✓</td>
+                <td>display</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"name"</td>
             </tr>
             <tr>
                 <td>update</td>
-                <td>X</td>
+                <td>update</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionUpdate"</td>
             </tr>
             <tr>
                 <td>defaultDisplayEnabled</td>
-                <td>X</td>
+                <td>default-display-enabled</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>false</td>
+                <td class="text-code">false</td>
             </tr>
             <tr>
                 <td>defaultDisplay</td>
-                <td>X</td>
+                <td>default-display</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Boolean</td>
-                <td>false</td>
+                <td class="text-code">false</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.select | json }}</pre>
-</div>
 </div>

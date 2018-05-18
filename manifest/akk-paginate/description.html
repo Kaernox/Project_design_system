@@ -1,13 +1,27 @@
-<div class="col-12 col-md-6">
-    <p class="description text-justify">
-        There you can see an paginate option who have been added to the previously datagrid.
-    </p>
+    <div class="row">
+        <div class="col-12">
+            <h3>Description</h3>
+            <p class="description text-justify">
+                There you can see an paginate option who have been added to the previously datagrid.
+            </p>
+        </div>
+    </div>
 
-    <table class="table">
+    <div class="show-value">
+        <hr class="hr-lg"/>
+        <h3>Data</h3>
+        <pre>{{ view.datagrid| json }}</pre>
+    </div>
+
+    <hr class="hr-lg" />
+
+    <h3>Properties</h3>
+    <table class="table table-vertical-center">
         <thead>
             <tr>
                 <th>Scope</th>
-                <th>Required</th>
+                <th>Scope</th>
+                <th class="text-center">Required</th>
                 <th>Format</th>
                 <th>Example</th>
             </tr>
@@ -15,69 +29,75 @@
         <tbody>
             <tr>
                 <td>caption</td>
-                <td>✓</td>
+                <td>caption</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>String</td>
                 <td>"example of a Paginate"</td>
             </tr>
             <tr>
                 <td>items</td>
-                <td>✓</td>
+                <td>items</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{id: 23, name: test}]</td>
+                <td class="text-code">[{id: 23, name: test}]</td>
             </tr>
             <tr>
                 <td>colums</td>
-                <td>✓</td>
+                <td>colums</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Object</td>
-                <td>['lastname', 'firstname', 'job', 'location']</td>
+                <td class="text-code">['lastname', 'firstname', 'job', 'location']</td>
             </tr>
             <tr>
                 <td>selected</td>
-                <td>✓</td>
+                <td>selected</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Array</td>
-                <td>[{id: 34, name: result}]</td>
+                <td class="text-code">[{id: 34, name: result}]</td>
             </tr>
             <tr>
                 <td>selector</td>
-                <td>✓</td>
+                <td>selector</td>
+                <td class="text-center"><i class="material-icons text-success">check</i></td>
                 <td>Boolean</td>
-                <td>false</td>
+                <td class="text-code">false</td>
             </tr>
             <tr>
                 <td>paginate</td>
-                <td>X</td>
+                <td>paginate</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>Object</td>
-                <td>{itemPerPage:3, size: 'lg', alignment: 'center'}</td>
+                <td class="text-code">{itemPerPage:3, size: 'lg', alignment: 'center'}</td>
             </tr>
             <tr>
                 <td>enventClick</td>
-                <td>X</td>
+                <td>enventClick</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionClick"</td>
             </tr>
             <tr>
                 <td>eventHover</td>
-                <td>X</td>
+                <td>eventHover</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionHover"</td>
             </tr>
             <tr>
                 <td>eventToggle</td>
-                <td>X</td>
+                <td>eventToggle</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionToggle"</td>
             </tr>
             <tr>
                 <td>eventToggleAll</td>
-                <td>X</td>
+                <td>eventToggleAll</td>
+                <td class="text-center"><i class="material-icons text-danger">clear</i></td>
                 <td>String</td>
                 <td>"functionToggleAll"</td>
             </tr>
         </tbody>
     </table>
 
-</div>
-<div class="col-12 col-md-2">
-    <pre class="show-value">{{ view.datagrid| json }}</pre>
-</div>
 </div>

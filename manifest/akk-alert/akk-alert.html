@@ -1,10 +1,9 @@
 <div class="component">
     <h2>akk-alert</h2>
-    <div class="row">
-        <div class="col-12 col-md-4">
-            <akk-alert title="Youpi" message="Today is a good day !" icon="warning" eventUpdate="" type="{{view.alert.model}}" isDisplayed="view.alert.isDisplayed" isClosable="view.alert.isClosable" ></akk-alert>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-6">
+            <akk-alert title="Youpi" message="Today is a good day !" icon="warning" eventUpdate="" type="{{view.alert.model}}" displayed="view.alert.displayed" closable="view.alert.closable"></akk-alert>
             <akk-select label="Select the type" model="view.alert.model" options="view.alert.types" value="key" display="label" update="updateAlert" ></akk-select>
-            <akk-checkbox label="Show the close action" model="view.alert" property="isClosable" elementclass="" alignment="" req="" ></akk-checkbox>
-
+            <akk-checkbox label="Show the close action" model="view.alert" property="closable" elementclass="" alignment="" req="" ></akk-checkbox>
         </div>
-
+    </div>
