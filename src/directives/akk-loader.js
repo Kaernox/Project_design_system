@@ -13,7 +13,8 @@ angular.module('akkurate-design-system').directive('akkLoader', function () {
         transclude: true,
         replace: true,
         scope: {
-            loading: "="
+            loaderStatus: "=",
+            loaderText: "@"
         }
     };
 });

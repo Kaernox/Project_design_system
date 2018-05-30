@@ -773,7 +773,8 @@ angular.module('akkurate-design-system').directive('akkLoader', function () {
         transclude: true,
         replace: true,
         scope: {
-            loading: "="
+            loaderStatus: "=",
+            loaderText: "@"
         }
     };
 });
@@ -1855,195 +1856,6 @@ angular.module('akkurate-design-system').factory('akkVerify', [
         };
     }
 ]);
-angular.module('akkurate-design-system')
-
-        // For getting by 
-        .filter('getBy', function () {
-            return function (input, field, value, toReturn) {
-                var i = 0, len = input.length;
-                for (; i < len; i++) {
-                    if (input[i][field] == value) {
-                        return (toReturn) ? input[i][toReturn] : input[i];
-                    }
-                }
-                return null;
-            };
-        })
-        .filter('getIndexBy', function () {
-            return function (input, field, value, toReturn) {
-                var i = 0, len = input.length;
-                for (; i < len; i++) {
-                    if (input[i][field] == value) {
-                        return i;
-                    }
-                }
-                return null;
-            };
-        })
-
-        // For dates
-        .filter('dateShortFormat', function ($filter) {
-            return function (input) {
-                if (input) {
-                    var _date = $filter('date')(new Date(input), 'mediumDate');
-                    return _date;
-                } else {
-                    return input;
-                }
-            };
-        })
-        .filter('timeFormat', function ($filter) {
-            return function (input) {
-                if (input) {
-                    var _date = $filter('date')(new Date(input), 'shortTime');
-                    return _date;
-                } else {
-                    return input;
-                }
-            };
-        })
-
-        // For files size
-        .filter('formatBytes', function ($filter) {
-            return function (bytes, decimals) {
-                if (bytes == 0)
-                    return '0 Byte';
-                var k = 1000; // or 1024 for binary
-                var dm = decimals + 1 || 3;
-                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-                var i = Math.floor(Math.log(bytes) / Math.log(k));
-                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-            };
-        })
-        .filter('formatOctets', function ($filter) {
-            return function (octets, decimals) {
-                if (octets == 0)
-                    return '0 octet';
-                var k = 8000; // 8 bytes for 1 octet
-                var dm = decimals + 1 || 3;
-                var sizes = ['Octets', 'KO', 'MO', 'GO', 'TO', 'PO', 'EO', 'ZO', 'YO'];
-                var i = Math.floor(Math.log(octets) / Math.log(k));
-                return parseFloat((octets / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-            };
-        })
-
-        // For array
-        .filter('inArray', function () {
-            return function (array, value) {
-                return array.indexOf(value) !== -1;
-            };
-        })
-        .filter('searchAndDisplay', function ($filter) {
-            return function (displayKey, array, searchKey, searchValue) {
-                var value = $filter('getBy')(array, searchKey, searchValue, displayKey);
-                if (value == null) {
-                    return null;
-                }
-                return value;
-            };
-        })
-        .filter('toArray', [function () {
-                return function (obj, addKey) {
-                    if (!angular.isObject(obj))
-                        return obj;
-                    if (addKey === false) {
-                        return Object.keys(obj).map(function (key) {
-                            return obj[key];
-                        });
-                    } else {
-                        return Object.keys(obj).map(function (key) {
-                            var value = obj[key];
-                            return angular.isObject(value) ?
-                                    Object.defineProperty(value, '$key', {enumerable: false, value: key}) :
-                                    {$key: key, $value: value};
-                        });
-                    }
-                };
-            }])
-
-        // For Extention
-        .filter('extensionIcon', function ($filter) {
-            return function (extension) {
-                var unknow = ['apk', 'sql'];
-                if (extension == null || unknow.indexOf(extension.toLowerCase()) >= 0) {
-                    return "css";
-                }
-                return extension.toLowerCase();
-            };
-        })
-        /**
-         * Filter credential by typeName
-         * 
-         * @param {Credential[]} credentials 
-         * @param {String} filterName   
-         */
-        .filter('credentialType', [function () {
-                return function (credentials, filterName) {
-                    var objects = [];
-                    angular.forEach(credentials, function (a, b) {
-                        if (a.type != null && a.type.name == filterName) {
-                            objects.push(a);
-                        }
-                    });
-                    return objects;
-
-                };
-            }])
-
-        //
-        .filter('range', function () {
-            return function (input, total) {
-                total = parseInt(total);
-                for (var i = 0; i < total; i++) {
-                    input.push(i);
-                }
-                return input;
-            };
-        })
-        .filter('ucfirst', function () {
-            return function ucFirst(str) {
-                if (str.length > 0) {
-                    return str[0].toUpperCase() + str.substring(1);
-                } else {
-                    return str;
-                }
-            };
-        })
-        .filter('truncate', function () {
-            return function (value, wordwise, max, tail) {
-                if (!value)
-                    return '';
-
-                max = parseInt(max, 10);
-                if (!max)
-                    return value;
-                if (value.length <= max)
-                    return value;
-
-                value = value.substr(0, max);
-                if (wordwise) {
-                    var lastspace = value.lastIndexOf(' ');
-                    if (lastspace != -1) {
-                        //Also remove . and , so its gives a cleaner result.
-                        if (value.charAt(lastspace - 1) == '.' || value.charAt(lastspace - 1) == ',') {
-                            lastspace = lastspace - 1;
-                        }
-                        value = value.substr(0, lastspace);
-                    }
-                }
-
-                return value + (tail || ' …');
-            };
-        })
-
-        .filter('nl2br', function ($sce) {
-            return function (msg, is_xhtml) {
-                var is_xhtml = is_xhtml || true;
-                var breakTag = (is_xhtml) ? '<br />' : '<br>';
-                var msg = (msg + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
-                return $sce.trustAsHtml(msg);
-            };
-        });
 /**
  * Akkurate v1.0.0 (https://ww.akkurate.io)
  * Copyright 2017-2018 Subvitamine(tm) (https://www.subvitamine.com)
@@ -2269,6 +2081,195 @@ angular.module('akkurate-design-system').provider('akkNotification', function() 
     };
 });
 
+angular.module('akkurate-design-system')
+
+        // For getting by 
+        .filter('getBy', function () {
+            return function (input, field, value, toReturn) {
+                var i = 0, len = input.length;
+                for (; i < len; i++) {
+                    if (input[i][field] == value) {
+                        return (toReturn) ? input[i][toReturn] : input[i];
+                    }
+                }
+                return null;
+            };
+        })
+        .filter('getIndexBy', function () {
+            return function (input, field, value, toReturn) {
+                var i = 0, len = input.length;
+                for (; i < len; i++) {
+                    if (input[i][field] == value) {
+                        return i;
+                    }
+                }
+                return null;
+            };
+        })
+
+        // For dates
+        .filter('dateShortFormat', function ($filter) {
+            return function (input) {
+                if (input) {
+                    var _date = $filter('date')(new Date(input), 'mediumDate');
+                    return _date;
+                } else {
+                    return input;
+                }
+            };
+        })
+        .filter('timeFormat', function ($filter) {
+            return function (input) {
+                if (input) {
+                    var _date = $filter('date')(new Date(input), 'shortTime');
+                    return _date;
+                } else {
+                    return input;
+                }
+            };
+        })
+
+        // For files size
+        .filter('formatBytes', function ($filter) {
+            return function (bytes, decimals) {
+                if (bytes == 0)
+                    return '0 Byte';
+                var k = 1000; // or 1024 for binary
+                var dm = decimals + 1 || 3;
+                var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+                var i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            };
+        })
+        .filter('formatOctets', function ($filter) {
+            return function (octets, decimals) {
+                if (octets == 0)
+                    return '0 octet';
+                var k = 8000; // 8 bytes for 1 octet
+                var dm = decimals + 1 || 3;
+                var sizes = ['Octets', 'KO', 'MO', 'GO', 'TO', 'PO', 'EO', 'ZO', 'YO'];
+                var i = Math.floor(Math.log(octets) / Math.log(k));
+                return parseFloat((octets / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            };
+        })
+
+        // For array
+        .filter('inArray', function () {
+            return function (array, value) {
+                return array.indexOf(value) !== -1;
+            };
+        })
+        .filter('searchAndDisplay', function ($filter) {
+            return function (displayKey, array, searchKey, searchValue) {
+                var value = $filter('getBy')(array, searchKey, searchValue, displayKey);
+                if (value == null) {
+                    return null;
+                }
+                return value;
+            };
+        })
+        .filter('toArray', [function () {
+                return function (obj, addKey) {
+                    if (!angular.isObject(obj))
+                        return obj;
+                    if (addKey === false) {
+                        return Object.keys(obj).map(function (key) {
+                            return obj[key];
+                        });
+                    } else {
+                        return Object.keys(obj).map(function (key) {
+                            var value = obj[key];
+                            return angular.isObject(value) ?
+                                    Object.defineProperty(value, '$key', {enumerable: false, value: key}) :
+                                    {$key: key, $value: value};
+                        });
+                    }
+                };
+            }])
+
+        // For Extention
+        .filter('extensionIcon', function ($filter) {
+            return function (extension) {
+                var unknow = ['apk', 'sql'];
+                if (extension == null || unknow.indexOf(extension.toLowerCase()) >= 0) {
+                    return "css";
+                }
+                return extension.toLowerCase();
+            };
+        })
+        /**
+         * Filter credential by typeName
+         * 
+         * @param {Credential[]} credentials 
+         * @param {String} filterName   
+         */
+        .filter('credentialType', [function () {
+                return function (credentials, filterName) {
+                    var objects = [];
+                    angular.forEach(credentials, function (a, b) {
+                        if (a.type != null && a.type.name == filterName) {
+                            objects.push(a);
+                        }
+                    });
+                    return objects;
+
+                };
+            }])
+
+        //
+        .filter('range', function () {
+            return function (input, total) {
+                total = parseInt(total);
+                for (var i = 0; i < total; i++) {
+                    input.push(i);
+                }
+                return input;
+            };
+        })
+        .filter('ucfirst', function () {
+            return function ucFirst(str) {
+                if (str.length > 0) {
+                    return str[0].toUpperCase() + str.substring(1);
+                } else {
+                    return str;
+                }
+            };
+        })
+        .filter('truncate', function () {
+            return function (value, wordwise, max, tail) {
+                if (!value)
+                    return '';
+
+                max = parseInt(max, 10);
+                if (!max)
+                    return value;
+                if (value.length <= max)
+                    return value;
+
+                value = value.substr(0, max);
+                if (wordwise) {
+                    var lastspace = value.lastIndexOf(' ');
+                    if (lastspace != -1) {
+                        //Also remove . and , so its gives a cleaner result.
+                        if (value.charAt(lastspace - 1) == '.' || value.charAt(lastspace - 1) == ',') {
+                            lastspace = lastspace - 1;
+                        }
+                        value = value.substr(0, lastspace);
+                    }
+                }
+
+                return value + (tail || ' …');
+            };
+        })
+
+        .filter('nl2br', function ($sce) {
+            return function (msg, is_xhtml) {
+                var is_xhtml = is_xhtml || true;
+                var breakTag = (is_xhtml) ? '<br />' : '<br>';
+                var msg = (msg + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+                return $sce.trustAsHtml(msg);
+            };
+        });
 angular.module('akkurate-design-system').run(['$templateCache', function($templateCache) {$templateCache.put('templates/akk-alert.html','<div>\n    <div data-ng-show="displayed" class="alert" role="alert" data-ng-class="type ? \'alert-\' + type : \'alert-dark\'">\n        <div class="d-flex align-items-center">\n            <i class="material-icons mr-1 align-self-start" data-ng-bind="icon" data-ng-if="icon"></i>\n            <span data-ng-if="icon">&nbsp;&nbsp;&nbsp;</span>\n            <div>\n                <h4 class="alert-heading" data-ng-if="title">{{title}}</h4>\n                <div data-ng-bind-html="message"></div>\n            </div>\n            <i class="material-icons align-self-start ml-auto" ng-if="closable" data-ng-click="methods.close()">clear</i>\n        </div>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-card.html','<div class="card"> \n  <img data-ng-if="media && media != \'\'" class="card-img-top" data-ng-src="{{media}}" alt="{{title}}">\n  <div class="card-body">\n    <h5 class="card-title">{{title}}</h5>\n    <p data-ng-if="content && content != \'\'" class="card-text">{{content}}</p>\n    <button data-ng-if="options.length > 0" type="button" class="btn btn-primary" data-ng-repeat="option in options" ng-click="methods.action(option)">{{option.label}}</a>\n  </div>\n</div>');
 $templateCache.put('templates/akk-checkbox-list.html','<div class="form-group form-checkbox form-checkbox-list {{!view.isValid ? \'has-error\' : \'\'}}" data-ng-class="elementclass">\n    <div class="d-flex">\n        <i ng-if="!view.isValid" class="material-icons md-14">warning</i>\n        <div class="ml-1">{{label}}</div>\n        <sup ng-if="req">*</sup>\n    </div>\n    <div class="d-flex" ng-repeat="option in options track by $index" ng-click="methods.toggle(option)">\n        <i class="material-icons text-primary" data-ng-if="methods.inModel(option)">check_box</i>\n        <i class="material-icons text-muted" data-ng-if="!methods.inModel(option)">check_box_outline_blank</i>\n        <div class="ml-1">\n            {{display ? option[display] : option}}\n        </div>\n    </div>\n</div>');
@@ -2279,7 +2280,7 @@ $templateCache.put('templates/akk-datepicker.html','<div class="form-group {{!vi
 $templateCache.put('templates/akk-infinite-scroll.html','<div data-ng-scroll="methods.loadMore()">\n    \n</div>\n');
 $templateCache.put('templates/akk-input-int.html','<div class="form-group well {{elementclass}}">\n    <div class="row">\n        <div class="col-md-6">\n            <p>{{label}}</p>\n        </div>\n        <div class="col-md-2">\n            <button type="button" class="btn btn-link" ng-click="substract()">\n                <i class="material-icons">remove</i>\n            </button>\n        </div>\n        <div class="col-md-2">  \n            <p>{{model}}/{{max}}</p>\n        </div>\n        <div class="col-md-2">\n            <button type="button" class="btn btn-link" ng-click="add()">\n                <i class="material-icons">add</i>\n            </button>\n        </div>\n    </div>\n</div>');
 $templateCache.put('templates/akk-input.html','<div class="form-group form-input" ng-class="!isValid ? \'has-error\' : \'\'">\n    <label class="control-label"><i ng-if="!isValid" class="material-icons md-14">warning</i> {{label}} <sup ng-if="req">*</sup></label>\n    <input type="{{type}}" class="form-control" ng-class="elementclass" placeholder="{{placeholder}}" step="{{step}}" ng-model="model" ng-required="{{req}}" ng-blur="checkValidity()"/>\n</div>');
-$templateCache.put('templates/akk-loader.html','<div class="loader">\n    <div data-ng-show="loading" class="loader-container">\n        <div class="loader-spinner"></div>\n        <div class="loader-info">{{\'Loading...\' | translate}}</div>\n    </div>\n    <div data-ng-show="!loading" data-ng-transclude></div>\n</div>');
+$templateCache.put('templates/akk-loader.html','<div class="loader">\n    <div data-ng-show="loaderStatus" class="loader-container">\n        <div class="loader-spinner"></div>\n        <div class="loader-info">{{loaderText}}</div>\n    </div>\n    <div data-ng-show="!loaderStatus" data-ng-transclude></div>\n</div>\n');
 $templateCache.put('templates/akk-multiselect.html','<div class="form-group">\n    <label class="control-label" ng-if="view.label">{{view.label}}</label>\n    <div class="form-control d-flex align-items-center justify-content-between" ng-click="methods.open()">\n        <span ng-if="view.selected.length">\n            {{view.selected.length}} <span>selected</span>\n        </span>\n        <span ng-if="!view.selected.length" class="text-muted">{{view.placeholder}}</span>\n        <i class="material-icons md-18">arrow_drop_down</i>\n    </div>\n</div>\n');
 $templateCache.put('templates/akk-notification.html','<div class="ui-notification">\n    <h3 ng-show="title" ng-bind-html="title"></h3>\n    <div class="message" ng-bind-html="message"></div>\n</div>');
 $templateCache.put('templates/akk-paginate.html','<nav>\n    <ul class="pagination" data-ng-class="methods.setDisplay();">\n        <li class="page-item" data-ng-class="methods.isFirstPage() ? \'disabled\' : \'\'">\n            <button type="button" data-ng-click="methods.firstPage()" class="page-link">\n                <i class="material-icons">first_page</i>\n                <span class="sr-only" translate>First page</span>\n            </button>\n        </li>\n        <li class="page-item" data-ng-class="methods.isFirstPage() ? \'disabled\' : \'\'">\n            <button type="button" data-ng-click="methods.previous()" class="page-link">\n                <i class="material-icons">chevron_left</i>\n                <span class="sr-only" translate>Previous page</span>\n            </button>\n        </li>\n        <li class="page-item" data-ng-repeat="i in []| range:view.pagin.pages" data-ng-class="i == view.pagin.current ? \'active\' : \'\'">\n            <button type="button" data-ng-click="methods.goto(i)" class="page-link" data-ng-if="i != view.pagin.current">\n                {{i + 1}}\n            </button>\n            <span class="page-link" data-ng-if="i == view.pagin.current">\n                {{i + 1}}\n                <span class="sr-only" translate>(current)</span>\n            </span>\n        </li>\n        <li class="page-item" data-ng-class="methods.isLastPage() ? \'disabled\' : \'\'">\n            <button type="button" data-ng-click="methods.next()" class="page-link">\n                <i class="material-icons">chevron_right</i>\n                <span class="sr-only" translate>Next page</span>\n            </button>\n        </li>\n        <li class="page-item" data-ng-class="methods.isLastPage() ? \'disabled\' : \'\'">\n            <button type="button" data-ng-click="methods.lastPage()" class="page-link">\n                <i class="material-icons">last_page</i>\n                <span class="sr-only" translate>Last page</span>\n            </button>\n        </li>\n    </ul>\n</nav>');

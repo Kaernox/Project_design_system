@@ -82,7 +82,7 @@ var componentsData = {
     date_created: new Date(),
     // The text entered in the akk-input directive will be stored here
     inputValue: "",
-    // Data for the akk-multiselect directive
+    // Data for the akk-loading directive
     loading: {
         isDisplayed: false
     },

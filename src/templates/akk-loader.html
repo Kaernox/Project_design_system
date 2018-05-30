@@ -1,7 +1,7 @@
 <div class="loader">
-    <div data-ng-show="loading" class="loader-container">
+    <div data-ng-show="loaderStatus" class="loader-container">
         <div class="loader-spinner"></div>
-        <div class="loader-info">{{'Loading...' | translate}}</div>
+        <div class="loader-info">{{loaderText}}</div>
     </div>
-    <div data-ng-show="!loading" data-ng-transclude></div>
+    <div data-ng-show="!loaderStatus" data-ng-transclude></div>
 </div>
